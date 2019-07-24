@@ -8,7 +8,7 @@ namespace Worldshifters.Data.Raid
 
     public static class FieldEffectLibrary
     {
-        public static void AddNewFieldEffect(FieldEffect fieldEffect)
+        public static void AddNewFieldEffect(string id, Func<FieldEffect> fieldEffectFactory)
         {
             throw new NotImplementedException();
         }

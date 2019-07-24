@@ -49,6 +49,11 @@ namespace Worldshifters.Data.Hero
         public bool IsUsedInternally { get; set; }
 
         /// <summary>
+        /// Passive effects can't be dispelled and are not removed on death (effects are still removed when their remaining duration reaches 0).
+        /// </summary>
+        public bool IsPassiveEffect { get; set; }
+
+        /// <summary>
         /// Build a list of <see cref="AbilityEffect"/>s matching a template <see cref="ApplyStatusEffect"/>.
         /// </summary>
         /// <param name="template">A template <see cref="ApplyStatusEffect"/>.</param>

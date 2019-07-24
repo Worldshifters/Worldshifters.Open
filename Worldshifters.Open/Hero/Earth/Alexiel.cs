@@ -16,7 +16,7 @@ namespace Worldshifters.Assets.Hero.Earth
         public static Guid Id = Guid.Parse("7d3a79da-c92d-4c5a-be19-ab507b8320c7");
 
         private const string MirrorBladeId = "alexiel/mirror_blade";
-        private const string AlexielEarthDamageBoostId = "alexiel/earth_dmg_boost";
+        private const string GuardianOfTheRealmId = "alexiel/earth_dmg_boost";
 
         public static Hero NewInstance()
         {
@@ -158,38 +158,15 @@ namespace Worldshifters.Assets.Hero.Earth
                         UpgradedAbilityIndex = 1,
                     },
                 },
-                OnActionStart = (alexiel, raidActions) =>
-                {
-                    if (alexiel.PositionInFrontline >= 4 && !alexiel.IsAlive())
-                    {
-                        return;
-                    }
-
-                    foreach (var ally in alexiel.Raid.Allies)
-                    {
-                        if (ally.IsAlive() && ally.PositionInFrontline < 4)
-                        {
-                            ally.ApplyStatusEffect(
-                                new StatusEffectSnapshot
-                                {
-                                    Id = AlexielEarthDamageBoostId,
-                                    IsBuff = true,
-                                    IsUsedInternally = true,
-                                    Modifier = ModifierLibrary.ElementalAttackBoostAmplification,
-                                    Strength = 30,
-                                    TurnDuration = 1,
-                                    IsPassiveEffect = true,
-                                });
-                        }
-                    }
-                },
+                OnActionStart = (alexiel, raidActions) => ProcessPassiveEffects(alexiel),
+                OnEnteringFrontline = (alexiel, raidActions) => ProcessPassiveEffects(alexiel),
                 OnDeath = (alexiel, raidActions) =>
                 {
                     foreach (var ally in alexiel.Raid.Allies)
                     {
                         if (ally.PositionInFrontline < 4)
                         {
-                            ally.RemoveStatusEffect(AlexielEarthDamageBoostId);
+                            ally.RemoveStatusEffect(GuardianOfTheRealmId);
                         }
                     }
                 },
@@ -201,7 +178,7 @@ namespace Worldshifters.Assets.Hero.Earth
             return new Ability
             {
                 Name = "Uncrossable Realm",
-                Cooldown = (int) cooldown,
+                Cooldown = (int)cooldown,
                 ModelMetadata = new ModelMetadata
                 {
                     JsAssetPath =
@@ -295,6 +272,34 @@ namespace Worldshifters.Assets.Hero.Earth
             };
         }
 
+        private static void ProcessPassiveEffects(EntitySnapshot alexiel)
+        {
+            if (!alexiel.IsAlive() || alexiel.PositionInFrontline >= 4)
+            {
+                return;
+            }
+
+            foreach (var ally in alexiel.Raid.Allies)
+            {
+                if (ally.IsAlive() && ally.PositionInFrontline < 4)
+                {
+                    ally.ApplyStatusEffect(
+                        new StatusEffectSnapshot
+                        {
+                            Id = GuardianOfTheRealmId,
+                            IsBuff = true,
+                            IsUsedInternally = true,
+                            Modifier = ModifierLibrary.ElementalAttackBoostAmplification,
+                            Strength = 30,
+                            TurnDuration = 1,
+                            IsPassiveEffect = true,
+                        });
+                }
+            }
+
+            ProcessMirrorBladeEffects(alexiel);
+        }
+
         private static void ProcessMirrorBladeEffects(EntitySnapshot alexiel)
         {
             if (!alexiel.IsAlive() || alexiel.PositionInFrontline >= 4)
@@ -316,10 +321,10 @@ namespace Worldshifters.Assets.Hero.Earth
                     IsUsedInternally = true,
                     TurnDuration = int.MaxValue,
                 },
-                ("alexiel/atk_up", ModifierLibrary.FlatAttackBoost, 10 * bladeCount),
-                ("alexiel/def_up", ModifierLibrary.FlatDefenseBoost, 10 * bladeCount),
-                ("alexiel/ca_up", ModifierLibrary.FlatChargeAttackDamageBoost, 10 * (bladeCount + 1)),
-                ("alexiel/ca_cap_up", ModifierLibrary.FlatChargeAttackDamageCapBoost, 5 * (bladeCount + 1)));
+                ($"{MirrorBladeId}/atk_up", ModifierLibrary.FlatAttackBoost, 10 * bladeCount),
+                ($"{MirrorBladeId}/def_up", ModifierLibrary.FlatDefenseBoost, 10 * bladeCount),
+                ($"{MirrorBladeId}/ca_up", ModifierLibrary.FlatChargeAttackDamageBoost, 10 * (bladeCount + 1)),
+                ($"{MirrorBladeId}/ca_cap_up", ModifierLibrary.FlatChargeAttackDamageCapBoost, 5 * (bladeCount + 1)));
         }
 
         private static void AddMirrorBlade(EntitySnapshot alexiel, int count, IList<RaidAction> raidActions)

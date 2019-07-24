@@ -145,9 +145,7 @@ namespace Worldshifters.Assets.Hero.Dark
                 SpecialAbility = new SpecialAbility
                 {
                     Name = string.Empty,
-
                     HitCount = { 1 },
-
                     ModelMetadata =
                     {
                         new ModelMetadata
@@ -249,25 +247,7 @@ namespace Worldshifters.Assets.Hero.Dark
                         Type = PassiveAbility.Types.PassiveAbilityType.TriggerOnEnteringFrontline,
                     },
                 },
-                OnActionStart = (nier, raidActions) =>
-                {
-                    ProcessLoveRedemptionEffects(nier);
-                },
-                OnTurnEnd = (nier, raidActions) =>
-                {
-                    if (!nier.IsAlive() || nier.PositionInFrontline >= 4)
-                    {
-                        return;
-                    }
-
-                    IncrementLoveRedemption(nier, -2, raidActions);
-
-                    if (!nier.GetStatusEffects().Any(e => e.Id.StartsWith(LoveRedemptionId, StringComparison.InvariantCulture)))
-                    {
-                        nier.DealRawDamage(nier.Hp, Element.Null, raidActions);
-                        nier.Die(raidActions);
-                    }
-                },
+                OnActionStart = (nier, raidActions) => ProcessLoveRedemptionEffects(nier),
                 OnSetup = (nier, allies, loadout) =>
                 {
                     // Love redemption stacks are frozen when Nier is relegated to the backrow.
@@ -285,6 +265,29 @@ namespace Worldshifters.Assets.Hero.Dark
                     }
 
                     ProcessLoveRedemptionEffects(nier);
+                },
+                OnTurnEnd = (nier, raidActions) =>
+                {
+                    if (!nier.IsAlive() || nier.PositionInFrontline >= 4)
+                    {
+                        return;
+                    }
+
+                    IncrementLoveRedemption(nier, -2, raidActions);
+
+                    if (nier.GetStatusEffectStacks(LoveRedemptionId) == 0)
+                    {
+                        nier.DealRawDamage(nier.Hp, Element.Null, raidActions);
+                        nier.Die(raidActions);
+                    }
+                },
+                OnAbilityEnd = (nier, ability, raidActions) =>
+                {
+                    if (nier.IsAlive() && nier.PositionInFrontline < 4 && nier.GetStatusEffectStacks(LoveRedemptionId) == 0)
+                    {
+                        nier.DealRawDamage(nier.Hp, Element.Null, raidActions);
+                        nier.Die(raidActions);
+                    }
                 },
                 OnDeath = (nier, raidActions) =>
                 {
@@ -320,29 +323,16 @@ namespace Worldshifters.Assets.Hero.Dark
                             },
                             raidActions);
 
-                        hero.ApplyStatusEffect(
+                        hero.ApplyStatusEffectsFromTemplate(
                             new StatusEffectSnapshot
                             {
-                                Id = $"{ThirstingId}/auto_revive",
                                 IsBuff = true,
                                 IsUndispellable = true,
                                 TurnDuration = int.MaxValue,
-                                Modifier = ModifierLibrary.AutoRevive,
-                                Strength = 50,
                                 IsUsedInternally = true,
-                            });
-
-                        hero.ApplyStatusEffect(
-                            new StatusEffectSnapshot
-                            {
-                                Id = $"{ThirstingId}/absorb",
-                                IsBuff = true,
-                                IsUndispellable = true,
-                                TurnDuration = int.MaxValue,
-                                Modifier = ModifierLibrary.DamageAbsorption,
-                                Strength = 30,
-                                IsUsedInternally = true,
-                            });
+                            },
+                            ($"{ThirstingId}/auto_revive", ModifierLibrary.AutoRevive, 50),
+                            ($"{ThirstingId}/absorb", ModifierLibrary.DamageAbsorption, 30));
                     }
                 },
             };
@@ -350,7 +340,7 @@ namespace Worldshifters.Assets.Hero.Dark
 
         public static void RegisterWorldOfDeathAndLoveFieldEffect()
         {
-            FieldEffectLibrary.AddNewFieldEffect(new FieldEffect
+            FieldEffectLibrary.AddNewFieldEffect(WorldOfDeathAndLoveId, () => new FieldEffect
             {
                 Id = WorldOfDeathAndLoveId,
                 IsLocal = true,
@@ -521,9 +511,9 @@ namespace Worldshifters.Assets.Hero.Dark
                     IsUndispellable = true,
                     TurnDuration = 1,
                 },
-                ("nier/ca_up", ModifierLibrary.FlatChargeAttackDamageBoost, (14 - loveRedemptionStacks) * 10),
-                ("nier/ca_cap_up", ModifierLibrary.FlatChargeAttackDamageCapBoost, (14 - loveRedemptionStacks) * 5),
-                ("nier/dmg_reduction", ModifierLibrary.DamageReductionBoost, 90));
+                ($"{LoveRedemptionId}/ca_up", ModifierLibrary.FlatChargeAttackDamageBoost, (14 - loveRedemptionStacks) * 10),
+                ($"{LoveRedemptionId}/ca_cap_up", ModifierLibrary.FlatChargeAttackDamageCapBoost, (14 - loveRedemptionStacks) * 5),
+                ($"{LoveRedemptionId}/dmg_reduction", ModifierLibrary.DamageReductionBoost, 90));
         }
     }
 }
