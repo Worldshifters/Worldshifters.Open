@@ -1,2 +1,6 @@
+dist: bionic
+sudo: required
+mono: none
 language: csharp
 solution: Worldshifters.Open.sln
+dotnet: 2.2
