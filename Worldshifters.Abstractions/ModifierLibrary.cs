@@ -75,6 +75,10 @@ namespace Worldshifters.Data
         /// </summary>
         public static Modifier FlatChargeAttackDamageCapBoost;
 
+        /// <summary>
+        /// Values are given as a percentage subtracted from the base accuracy of debuff effects (percentage of chance to land a debuff).
+        /// A debuff resistance greater than 0 means that the chance to land the debuff is lower.
+        /// </summary>
         public static Modifier FlatDebuffResistanceBoost;
 
         /// <summary>

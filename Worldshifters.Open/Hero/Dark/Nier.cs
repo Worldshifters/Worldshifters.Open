@@ -429,6 +429,30 @@ namespace Worldshifters.Assets.Hero.Dark
                 AbilityTargetting = AbilityTargettingType.TargetSingleAliveFrontLineMemberExcludingSelf,
                 Effects =
                 {
+                    new AbilityEffect
+                    {
+                        Type = AbilityEffect.Types.AbilityEffectType.ApplyStatusEffect,
+                        ExtraData = new ApplyStatusEffect
+                        {
+                            Id = BelovedId,
+                            IsBuff = true,
+                            IsUndispellable = true,
+                            OnSelf = true,
+                            TurnDuration = 4,
+                        }.ToByteString(),
+                    },
+                    new AbilityEffect
+                    {
+                        Type = AbilityEffect.Types.AbilityEffectType.ApplyStatusEffect,
+                        ExtraData = new ApplyStatusEffect
+                        {
+                            Id = BelovedId,
+                            IsBuff = true,
+                            IsUndispellable = true,
+                            OnSelectedTarget = true,
+                            TurnDuration = 4,
+                        }.ToByteString(),
+                    },
                     ApplyStatusEffect.FromTemplate(
                         new ApplyStatusEffect
                         {
@@ -436,8 +460,8 @@ namespace Worldshifters.Assets.Hero.Dark
                             IsUndispellable = true,
                             OnSelf = true,
                             TurnDuration = 4,
+                            IsUsedInternally = true,
                         },
-                        (BelovedId, 0),
                         (StatusEffectLibrary.TripleAttackRateUpNpc, double.MaxValue),
                         (StatusEffectLibrary.DamageReductionUpNpc, 50)),
                     ApplyStatusEffect.FromTemplate(
@@ -447,8 +471,8 @@ namespace Worldshifters.Assets.Hero.Dark
                             IsUndispellable = true,
                             OnSelectedTarget = true,
                             TurnDuration = 4,
+                            IsUsedInternally = true,
                         },
-                        (BelovedId, 0),
                         (StatusEffectLibrary.TripleAttackRateUpNpc, double.MaxValue),
                         (StatusEffectLibrary.DamageReductionUpNpc, 50)),
                 },
