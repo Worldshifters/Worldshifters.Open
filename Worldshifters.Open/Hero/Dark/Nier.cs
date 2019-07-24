@@ -81,49 +81,18 @@ namespace Worldshifters.Assets.Hero.Dark
                             continue;
                         }
 
-                        entity.ApplyStatusEffect(new StatusEffectSnapshot
-                        {
-                            Id = "unfished_business_def_down",
-                            Strength = -50,
-                            Modifier = ModifierLibrary.FlatDefenseBoost,
-                            BaseAccuracy = double.MaxValue,
-                            IsUndispellable = true,
-                            IsUsedInternally = true,
-                            TurnDuration = 4,
-                        });
-
-                        entity.ApplyStatusEffect(new StatusEffectSnapshot
-                        {
-                            Id = "unfished_business_da_down",
-                            Strength = -100,
-                            Modifier = ModifierLibrary.FlatDoubleAttackRateBoost,
-                            BaseAccuracy = double.MaxValue,
-                            IsUndispellable = true,
-                            IsUsedInternally = true,
-                            TurnDuration = 4,
-                        });
-
-                        entity.ApplyStatusEffect(new StatusEffectSnapshot
-                        {
-                            Id = "unfished_business_ta_down",
-                            Strength = -100,
-                            Modifier = ModifierLibrary.FlatTripleAttackRateBoost,
-                            BaseAccuracy = double.MaxValue,
-                            IsUndispellable = true,
-                            IsUsedInternally = true,
-                            TurnDuration = 4,
-                        });
-
-                        entity.ApplyStatusEffect(new StatusEffectSnapshot
-                        {
-                            Id = "unfished_business_no_healing",
-                            Strength = double.MinValue,
-                            Modifier = ModifierLibrary.FlatHealingCapBoost,
-                            BaseAccuracy = double.MaxValue,
-                            IsUndispellable = true,
-                            IsUsedInternally = true,
-                            TurnDuration = 4,
-                        });
+                        entity.ApplyStatusEffectsFromTemplate(
+                            new StatusEffectSnapshot
+                            {
+                                BaseAccuracy = double.MaxValue,
+                                IsUndispellable = true,
+                                IsUsedInternally = true,
+                                TurnDuration = 4,
+                            },
+                            ($"{UnfinishedBusinessId}/def_down", ModifierLibrary.FlatDefenseBoost, -50),
+                            ($"{UnfinishedBusinessId}/da_down", ModifierLibrary.FlatDoubleAttackRateBoost, -100),
+                            ($"{UnfinishedBusinessId}/ta_down", ModifierLibrary.FlatTripleAttackRateBoost, -100),
+                            ($"{UnfinishedBusinessId}/no_healing", ModifierLibrary.FlatHealingCapBoost, double.MinValue));
                     }
                 },
             };
@@ -139,10 +108,72 @@ namespace Worldshifters.Assets.Hero.Dark
                 MaxLevel = 80,
                 BaseDoubleAttackRate = 6,
                 BaseTripleAttackRate = 4.5,
+                Element = Element.Dark,
+                WeaponProficiencies = { EquipmentType.Dagger },
+                ModelMetadata =
+                {
+                    new ModelMetadata
+                    {
+                        JsAssetPath = "npc/0269f30f-3c61-45ac-9c75-9290516e8985/model/0/npc_3040169000_02.js",
+                        ConstructorName = "mc_npc_3040169000_02",
+                        ImageAssets =
+                        {
+                            new ImageAsset
+                            {
+                                Name = "npc_3040169000_02",
+                                Path = "npc/0269f30f-3c61-45ac-9c75-9290516e8985/model/0/npc_3040169000_02.png",
+                            },
+                        },
+                    },
+                },
+                OnHitEffectModelMetadata =
+                {
+                    new ModelMetadata
+                    {
+                        JsAssetPath = "npc/0269f30f-3c61-45ac-9c75-9290516e8985/model/0/phit_3040169000.js",
+                        ConstructorName = "phit_3040169000_effect",
+                        ImageAssets =
+                        {
+                            new ImageAsset
+                            {
+                                Name = "phit_3040169000",
+                                Path = "npc/0269f30f-3c61-45ac-9c75-9290516e8985/model/0/phit_3040169000.png",
+                            },
+                        },
+                    },
+                },
+                SpecialAbility = new SpecialAbility
+                {
+                    Name = string.Empty,
+
+                    HitCount = { 1 },
+
+                    ModelMetadata =
+                    {
+                        new ModelMetadata
+                        {
+                            JsAssetPath = "npc/0269f30f-3c61-45ac-9c75-9290516e8985/model/0/nsp_3040169000_02_s2.js",
+                            ConstructorName = "mc_nsp_3040169000_02_s2_special",
+                            ImageAssets =
+                            {
+                                new ImageAsset
+                                {
+                                    Name = "nsp_3040169000_02_s2_a",
+                                    Path = "npc/0269f30f-3c61-45ac-9c75-9290516e8985/model/0/nsp_3040169000_02_s2_a.png",
+                                },
+                                new ImageAsset
+                                {
+                                    Name = "nsp_3040169000_02_s2_b",
+                                    Path = "npc/0269f30f-3c61-45ac-9c75-9290516e8985/model/0/nsp_3040169000_02_s2_b.png",
+                                },
+                            },
+                        },
+                    },
+                },
                 Abilities =
                 {
                     WorldOfDeathAndLove(cooldown: 7),
-                    Beloved(6),
+                    Beloved(cooldown: 6),
                     new Ability
                     {
                         Name = "Last Love",
@@ -194,7 +225,7 @@ namespace Worldshifters.Assets.Hero.Dark
                     new AbilityUpgrade
                     {
                         RequiredLevel = 75,
-                        Ability = Beloved(5),
+                        Ability = Beloved(cooldown: 5),
                         UpgradedAbilityIndex = 1,
                     },
                 },
@@ -213,110 +244,14 @@ namespace Worldshifters.Assets.Hero.Dark
                     },
                     new PassiveAbility
                     {
-                        Name = "The Lovers Upright	",
+                        Name = "The Lovers Upright",
                         Description = "When Switching to Main Ally: All Dark allies gain Thirsting.",
                         Type = PassiveAbility.Types.PassiveAbilityType.TriggerOnEnteringFrontline,
                     },
                 },
-                SpecialAbility = new SpecialAbility
-                {
-                    Name = string.Empty,
-
-                    HitCount = { 1 },
-
-                    ModelMetadata =
-                    {
-                        new ModelMetadata
-                        {
-                            JsAssetPath = "npc/0269f30f-3c61-45ac-9c75-9290516e8985/model/0/nsp_3040169000_02_s2.js",
-                            ConstructorName = "mc_nsp_3040169000_02_s2_special",
-                            ImageAssets =
-                            {
-                                new ImageAsset
-                                {
-                                    Name = "nsp_3040169000_02_s2_a",
-                                    Path = "npc/0269f30f-3c61-45ac-9c75-9290516e8985/model/0/nsp_3040169000_02_s2_a.png",
-                                },
-                                new ImageAsset
-                                {
-                                    Name = "nsp_3040169000_02_s2_b",
-                                    Path = "npc/0269f30f-3c61-45ac-9c75-9290516e8985/model/0/nsp_3040169000_02_s2_b.png",
-                                },
-                            },
-                        },
-                    },
-                },
-                Element = Element.Dark,
-                WeaponProficiencies = { EquipmentType.Dagger },
-                ModelMetadata =
-                {
-                    new ModelMetadata
-                    {
-                        JsAssetPath = "npc/0269f30f-3c61-45ac-9c75-9290516e8985/model/0/npc_3040169000_02.js",
-                        ConstructorName = "mc_npc_3040169000_02",
-                        ImageAssets =
-                        {
-                            new ImageAsset
-                            {
-                                Name = "npc_3040169000_02",
-                                Path = "npc/0269f30f-3c61-45ac-9c75-9290516e8985/model/0/npc_3040169000_02.png",
-                            },
-                        },
-                    },
-                },
-                OnHitEffectModelMetadata =
-                {
-                    new ModelMetadata
-                    {
-                        JsAssetPath = "npc/0269f30f-3c61-45ac-9c75-9290516e8985/model/0/phit_3040169000.js",
-                        ConstructorName = "phit_3040169000_effect",
-                        ImageAssets =
-                        {
-                            new ImageAsset
-                            {
-                                Name = "phit_3040169000",
-                                Path = "npc/0269f30f-3c61-45ac-9c75-9290516e8985/model/0/phit_3040169000.png",
-                            },
-                        },
-                    },
-                },
                 OnActionStart = (nier, raidActions) =>
                 {
-                    if (nier.IsAlive() && nier.PositionInFrontline < 4)
-                    {
-                        var loveRedemptionStacks = nier.GetStatusEffectStacks(LoveRedemptionId);
-                        nier.ApplyStatusEffect(new StatusEffectSnapshot
-                        {
-                            Id = "nier_ca_up",
-                            Strength = (14 - loveRedemptionStacks) * 10,
-                            IsBuff = true,
-                            IsUsedInternally = true,
-                            Modifier = ModifierLibrary.FlatChargeAttackDamageBoost,
-                            TurnDuration = 1,
-                        });
-                        nier.ApplyStatusEffect(new StatusEffectSnapshot
-                        {
-                            Id = "nier_ca_cap_up",
-                            Strength = (14 - loveRedemptionStacks) * 5,
-                            IsBuff = true,
-                            IsUsedInternally = true,
-                            Modifier = ModifierLibrary.FlatChargeAttackDamageCapBoost,
-                            TurnDuration = 1,
-                        });
-
-                        if (loveRedemptionStacks > 0)
-                        {
-                            nier.ApplyStatusEffect(new StatusEffectSnapshot
-                            {
-                                Id = "nier_dmg_cut",
-                                Strength = 90,
-                                IsBuff = true,
-                                IsUsedInternally = true,
-                                Modifier = ModifierLibrary.DamageReductionBoost,
-                                TurnDuration = 1,
-                            });
-                        }
-                    }
+                    ProcessLoveRedemptionEffects(nier);
                 },
                 OnTurnEnd = (nier, raidActions) =>
                 {
@@ -335,30 +270,37 @@ namespace Worldshifters.Assets.Hero.Dark
                 },
                 OnSetup = (nier, allies, loadout) =>
                 {
-                    nier.ApplyStatusEffect(new StatusEffectSnapshot
+                    // Love redemption stacks are frozen when Nier is relegated to the backrow.
+                    // Nier starts with 13 stacks after being revived.
+                    if (nier.GetStatusEffectStacks(LoveRedemptionId) == 0)
                     {
-                        Id = $"{LoveRedemptionId}_13",
-                        Strength = 13,
-                        IsBuff = true,
-                        IsUndispellable = true,
-                        TurnDuration = int.MaxValue,
-                    });
+                        nier.ApplyStatusEffect(new StatusEffectSnapshot
+                        {
+                            Id = $"{LoveRedemptionId}_13",
+                            Strength = 13,
+                            IsBuff = true,
+                            IsUndispellable = true,
+                            TurnDuration = int.MaxValue,
+                        });
+                    }
+
+                    ProcessLoveRedemptionEffects(nier);
                 },
                 OnDeath = (nier, raidActions) =>
                 {
-                    if (nier.GetStatusEffects().Any(e => e.Id.StartsWith(LoveRedemptionId, StringComparison.InvariantCulture)))
+                    if (nier.GetStatusEffectStacks(LoveRedemptionId) > 0)
                     {
                         unfinishedBusiness.Cast(nier, nier.Raid.SelectedTarget, raidActions);
                     }
                 },
                 OnEnteringFrontline = (nier, raidActions) =>
                 {
-                    if (nier.GlobalState.ContainsKey("once"))
+                    if (nier.GlobalState.ContainsKey("nonce"))
                     {
                         return;
                     }
 
-                    nier.GlobalState["once"] = TypedValue.FromBool(true);
+                    nier.GlobalState["nonce"] = TypedValue.FromBool(true);
 
                     ability4Sprite.Cast(nier, nier.Raid.SelectedTarget, raidActions);
                     foreach (var hero in nier.Raid.Allies)
@@ -381,7 +323,7 @@ namespace Worldshifters.Assets.Hero.Dark
                         hero.ApplyStatusEffect(
                             new StatusEffectSnapshot
                             {
-                                Id = "thirsting_auto_revive",
+                                Id = $"{ThirstingId}/auto_revive",
                                 IsBuff = true,
                                 IsUndispellable = true,
                                 TurnDuration = int.MaxValue,
@@ -393,7 +335,7 @@ namespace Worldshifters.Assets.Hero.Dark
                         hero.ApplyStatusEffect(
                             new StatusEffectSnapshot
                             {
-                                Id = "thirsting_absorb",
+                                Id = $"{ThirstingId}/absorb",
                                 IsBuff = true,
                                 IsUndispellable = true,
                                 TurnDuration = int.MaxValue,
@@ -419,13 +361,13 @@ namespace Worldshifters.Assets.Hero.Dark
                     {
                         entity.ApplyStatusEffect(new StatusEffectSnapshot
                         {
-                            Id = "nier/field_atk_up",
+                            Id = $"{WorldOfDeathAndLoveId}/atk_up",
                             TurnDuration = 1,
                             IsBuff = true,
-                            IsUndispellable = true,
                             IsUsedInternally = true,
                             Modifier = ModifierLibrary.FlatAttackBoost,
                             Strength = 20,
+                            IsPassiveEffect = true,
                         });
                     }
 
@@ -433,13 +375,13 @@ namespace Worldshifters.Assets.Hero.Dark
                     {
                         entity.ApplyStatusEffect(new StatusEffectSnapshot
                         {
-                            Id = "nier/field_echo",
+                            Id = $"{WorldOfDeathAndLoveId}/echo",
                             TurnDuration = 1,
                             IsBuff = true,
-                            IsUndispellable = true,
                             IsUsedInternally = true,
                             Modifier = ModifierLibrary.AdditionalDamage,
-                            Strength = 20,
+                            Strength = 30,
+                            IsPassiveEffect = true,
                         });
                     }
                 },
@@ -497,86 +439,28 @@ namespace Worldshifters.Assets.Hero.Dark
                 AbilityTargetting = AbilityTargettingType.TargetSingleAliveFrontLineMemberExcludingSelf,
                 Effects =
                 {
-                    new AbilityEffect
-                    {
-                        Type = AbilityEffect.Types.AbilityEffectType.ApplyStatusEffect,
-                        ExtraData = new ApplyStatusEffect
+                    ApplyStatusEffect.FromTemplate(
+                        new ApplyStatusEffect
                         {
-                            Id = BelovedId,
                             IsBuff = true,
                             IsUndispellable = true,
                             OnSelf = true,
                             TurnDuration = 4,
-                        }.ToByteString(),
-                    },
-                    new AbilityEffect
-                    {
-                        Type = AbilityEffect.Types.AbilityEffectType.ApplyStatusEffect,
-                        ExtraData = new ApplyStatusEffect
+                        },
+                        (BelovedId, 0),
+                        (StatusEffectLibrary.TripleAttackRateUpNpc, double.MaxValue),
+                        (StatusEffectLibrary.DamageReductionUpNpc, 50)),
+                    ApplyStatusEffect.FromTemplate(
+                        new ApplyStatusEffect
                         {
-                            Id = StatusEffectLibrary.TripleAttackRateUpNpc,
-                            IsBuff = true,
-                            IsUndispellable = true,
-                            OnSelf = true,
-                            TurnDuration = 4,
-                            Strength = double.MaxValue,
-                            IsUsedInternally = true,
-                        }.ToByteString(),
-                    },
-                    new AbilityEffect
-                    {
-                        Type = AbilityEffect.Types.AbilityEffectType.ApplyStatusEffect,
-                        ExtraData = new ApplyStatusEffect
-                        {
-                            Id = StatusEffectLibrary.DamageCutUpNpc,
-                            IsBuff = true,
-                            IsUndispellable = true,
-                            OnSelf = true,
-                            TurnDuration = 4,
-                            Strength = 50,
-                            IsUsedInternally = true,
-                        }.ToByteString(),
-                    },
-                    new AbilityEffect
-                    {
-                        Type = AbilityEffect.Types.AbilityEffectType.ApplyStatusEffect,
-                        ExtraData = new ApplyStatusEffect
-                        {
-                            Id = BelovedId,
                             IsBuff = true,
                             IsUndispellable = true,
                             OnSelectedTarget = true,
                             TurnDuration = 4,
-                        }.ToByteString(),
-                    },
-                    new AbilityEffect
-                    {
-                        Type = AbilityEffect.Types.AbilityEffectType.ApplyStatusEffect,
-                        ExtraData = new ApplyStatusEffect
-                        {
-                            Id = StatusEffectLibrary.TripleAttackRateUpNpc,
-                            IsBuff = true,
-                            IsUndispellable = true,
-                            OnSelectedTarget = true,
-                            TurnDuration = 4,
-                            Strength = double.MaxValue,
-                            IsUsedInternally = true,
-                        }.ToByteString(),
-                    },
-                    new AbilityEffect
-                    {
-                        Type = AbilityEffect.Types.AbilityEffectType.ApplyStatusEffect,
-                        ExtraData = new ApplyStatusEffect
-                        {
-                            Id = StatusEffectLibrary.DamageCutUpNpc,
-                            IsBuff = true,
-                            IsUndispellable = true,
-                            OnSelectedTarget = true,
-                            TurnDuration = 4,
-                            Strength = 50,
-                            IsUsedInternally = true,
-                        }.ToByteString(),
-                    },
+                        },
+                        (BelovedId, 0),
+                        (StatusEffectLibrary.TripleAttackRateUpNpc, double.MaxValue),
+                        (StatusEffectLibrary.DamageReductionUpNpc, 50)),
                 },
                 ProcessEffects = (nier, target, raidActions) =>
                 {
@@ -619,6 +503,27 @@ namespace Worldshifters.Assets.Hero.Dark
                     return remainingStacks > 0;
                 },
                 raidActions);
+        }
+
+        private static void ProcessLoveRedemptionEffects(EntitySnapshot nier)
+        {
+            if (!nier.IsAlive() || nier.PositionInFrontline >= 4)
+            {
+                return;
+            }
+
+            var loveRedemptionStacks = nier.GetStatusEffectStacks(LoveRedemptionId);
+            nier.ApplyStatusEffectsFromTemplate(
+                new StatusEffectSnapshot
+                {
+                    IsBuff = true,
+                    IsUsedInternally = true,
+                    IsUndispellable = true,
+                    TurnDuration = 1,
+                },
+                ("nier/ca_up", ModifierLibrary.FlatChargeAttackDamageBoost, (14 - loveRedemptionStacks) * 10),
+                ("nier/ca_cap_up", ModifierLibrary.FlatChargeAttackDamageCapBoost, (14 - loveRedemptionStacks) * 5),
+                ("nier/dmg_reduction", ModifierLibrary.DamageReductionBoost, 90));
         }
     }
 }

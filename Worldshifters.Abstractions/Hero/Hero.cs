@@ -87,7 +87,8 @@ namespace Worldshifters.Data.Hero
         public Action<EntitySnapshot, IList<RaidAction>> OnAttackActionEnd { get; set; }
 
         /// <summary>
-        /// The first method called after joining a raid. It will run once after joining the raid, and whenever the hero enters the frontline, either from the backrow pr after being revived.
+        /// The first method called after joining a raid. It will run once after joining the raid, and whenever the hero enters the frontline, either from
+        /// the backrow or after being revived. When the hero is revived, <see cref="OnEnteringFrontline"/> will be called first, followed by <see cref="OnSetup"/>.
         /// Invoked with 'this', the other party members, the party loadout chosen when joining the raid.
         /// </summary>
         public Action<EntitySnapshot, IEnumerable<EntitySnapshot>, RaidSnapshot.Types.Loadout> OnSetup { get; set; }

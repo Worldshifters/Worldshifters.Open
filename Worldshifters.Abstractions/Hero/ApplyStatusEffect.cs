@@ -5,6 +5,7 @@
 namespace Worldshifters.Data.Hero
 {
     using System;
+    using System.Collections.Generic;
     using Google.Protobuf;
 
     public class ApplyStatusEffect
@@ -46,6 +47,17 @@ namespace Worldshifters.Data.Hero
         /// Status effects used internally are not rendered on the player side but are still taken into account for server side calculations.
         /// </summary>
         public bool IsUsedInternally { get; set; }
+
+        /// <summary>
+        /// Build a list of <see cref="AbilityEffect"/>s matching a template <see cref="ApplyStatusEffect"/>.
+        /// </summary>
+        /// <param name="template">A template <see cref="ApplyStatusEffect"/>.</param>
+        /// <param name="idsAndStrength">A list of pairs of <see cref="Worldshifters.Data.Raid.StatusEffectSnapshot.Id"/>s and <see cref="Worldshifters.Data.Raid.StatusEffectSnapshot.Strength"/>s.</param>
+        /// <returns>A list of <see cref="AbilityEffect"/>s with the provided <see cref="idsAndStrength"/> and matching the <see cref="template"/>.</returns>
+        public static IEnumerable<AbilityEffect> FromTemplate(ApplyStatusEffect template, params (string, double)[] idsAndStrength)
+        {
+            throw new NotImplementedException();
+        }
 
         public ByteString ToByteString()
         {
