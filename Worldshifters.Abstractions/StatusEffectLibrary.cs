@@ -35,6 +35,7 @@ namespace Worldshifters.Data
         public static string DamageCapUpWeapon;
         public static string DamageCutUpNpc;
         public static string DamageCutUpWeapon;
+        public static string DamageReductionUpNpc;
         public static string DarkAttackUpNpc;
         public static string DarkAttackUpSummon;
         public static string DarkAttackUpWeapon;
@@ -114,6 +115,7 @@ namespace Worldshifters.Data
         public static string TripleAttackRateUpNpc;
         public static string TripleAttackRateUpWeapon;
         public static string Unchallenged;
+        public static string Veil;
         public static string WaterAttackUpNpc;
         public static string WaterAttackUpSummon;
         public static string WaterAttackUpWeapon;

@@ -53,5 +53,10 @@ namespace Worldshifters.Data.Raid
         /// The status effect modifier is automatically inferred from <see cref="StatusEffectSnapshot.Id"/> for IDs defined in <see cref="StatusEffectLibrary"/>.
         /// </summary>
         public Modifier Modifier { get; set; }
+
+        /// <summary>
+        /// Passive effects can't be dispelled and are not removed on death (effects are still removed when their remaining duration reaches 0).
+        /// </summary>
+        public bool IsPassiveEffect { get; set; }
     }
 }
