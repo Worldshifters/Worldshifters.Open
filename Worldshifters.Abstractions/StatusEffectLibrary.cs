@@ -118,6 +118,7 @@ namespace Worldshifters.Data
         public static string TripleAttackRateUpNpc;
         public static string TripleAttackRateUpWeapon;
         public static string TripleAttackRateUpSummon;
+        public static string TripleStrike;
         public static string Unchallenged;
         public static string Veil;
         public static string WaterAttackUpNpc;

@@ -84,6 +84,17 @@ namespace Worldshifters.Data.Raid
         /// Apply <see cref="StatusEffectSnapshot"/>s matching a template <see cref="StatusEffectSnapshot"/>.
         /// </summary>
         /// <param name="template">A template <see cref="ApplyStatusEffect"/>.</param>
+        /// <param name="raidActions">The list of raid actions to process on the player's side.</param>
+        /// <param name="idsAndModifiersAndStrength">A list of triplets of <see cref="StatusEffectSnapshot.Id"/>s, <see cref="Modifier"/>s and <see cref="StatusEffectSnapshot.Strength"/>s.</param>
+        public void ApplyStatusEffectsFromTemplate(StatusEffectSnapshot template, IList<RaidAction> raidActions, params (string, Modifier, double)[] idsAndModifiersAndStrength)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Apply <see cref="StatusEffectSnapshot"/>s matching a template <see cref="StatusEffectSnapshot"/>.
+        /// </summary>
+        /// <param name="template">A template <see cref="ApplyStatusEffect"/>.</param>
         /// <param name="idsAndModifiersAndStrength">A list of triplets of <see cref="StatusEffectSnapshot.Id"/>s, <see cref="Modifier"/>s and <see cref="StatusEffectSnapshot.Strength"/>s.</param>
         public void ApplyStatusEffectsFromTemplate(StatusEffectSnapshot template, params (string, Modifier, double)[] idsAndModifiersAndStrength)
         {
