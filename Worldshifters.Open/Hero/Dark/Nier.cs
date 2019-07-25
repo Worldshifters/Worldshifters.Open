@@ -277,16 +277,14 @@ namespace Worldshifters.Assets.Hero.Dark
 
                     if (nier.GetStatusEffectStacks(LoveRedemptionId) == 0)
                     {
-                        nier.DealRawDamage(nier.Hp, Element.Null, raidActions);
-                        nier.Die(raidActions);
+                        nier.Kill(raidActions);
                     }
                 },
                 OnAbilityEnd = (nier, ability, raidActions) =>
                 {
                     if (nier.IsAlive() && nier.PositionInFrontline < 4 && nier.GetStatusEffectStacks(LoveRedemptionId) == 0)
                     {
-                        nier.DealRawDamage(nier.Hp, Element.Null, raidActions);
-                        nier.Die(raidActions);
+                        nier.Kill(raidActions);
                     }
                 },
                 OnDeath = (nier, raidActions) =>

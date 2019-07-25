@@ -143,6 +143,14 @@ namespace Worldshifters.Data.Raid
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Deal <see cref="Hp"/> null damage to the character.
+        /// </summary>
+        public void Kill(IList<RaidAction> raidActions)
+        {
+            throw new NotImplementedException();
+        }
+
         public int GetStatusEffectStacks(string id)
         {
             throw new NotImplementedException();
