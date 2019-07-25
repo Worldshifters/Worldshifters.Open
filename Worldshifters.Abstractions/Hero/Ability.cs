@@ -54,12 +54,13 @@ namespace Worldshifters.Data.Hero
         /// A delegate method which returns a pair where the first element is true if the ability can be used,
         /// and false otherwise. The second element of the pair is an optional (nullable) error message which will
         /// be displayed to the player when the ability can't be used.
+        /// Inputs: the caster, the target index.
         /// </summary>
         /// <remarks>
         /// Regardless whether <see cref="CanCast"/> is provided or not, the ability cooldown and selected target
         /// are evaluated first and will have the precedence to determine whether the ability can be used or not.
         /// </remarks>
-        public Func<EntitySnapshot, (bool canUse, string errorMessage)> CanCast { get; set; }
+        public Func<EntitySnapshot, int, (bool canUse, string errorMessage)> CanCast { get; set; }
 
         public void Cast(EntitySnapshot caster, int targetIndex, IList<RaidAction> raidActions)
         {

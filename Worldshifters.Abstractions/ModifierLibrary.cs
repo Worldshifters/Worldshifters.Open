@@ -9,6 +9,11 @@ namespace Worldshifters.Data
     public static class ModifierLibrary
     {
         /// <summary>
+        /// The default modifier. Does nothing.
+        /// </summary>
+        public static Modifier None;
+
+        /// <summary>
         /// Strength values must be given in percentage.
         /// </summary>
         public static Modifier AttackBoost;
