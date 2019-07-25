@@ -114,5 +114,15 @@ namespace Worldshifters.Data
         /// The strength value of a status effect with this modifier is both the damage percentage reduction and recovered.
         /// </summary>
         public static Modifier DamageAbsorption;
+
+        /// <summary>
+        /// Every character has a base hostility score of 10. A character's chance to get hit is their hostility score over the party's sum total hostility score.
+        /// </summary>
+        public static Modifier HostilityBoost;
+
+        /// <summary>
+        /// Burn damage applies before refresh/revitalize effects.
+        /// </summary>
+        public static Modifier Burnt;
     }
 }

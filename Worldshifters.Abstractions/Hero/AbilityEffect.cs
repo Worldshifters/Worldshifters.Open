@@ -2,6 +2,8 @@
 // Copyright (c) Worldshifters. All rights reserved.
 // </copyright>
 
+#pragma warning disable CA1034 // Nested types should not be visible
+
 namespace Worldshifters.Data.Hero
 {
     using Google.Protobuf;

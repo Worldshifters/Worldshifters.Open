@@ -50,7 +50,7 @@ namespace Worldshifters.Data.Raid
         public int TurnDuration { get; set; }
 
         /// <summary>
-        /// The status effect modifier is automatically inferred from <see cref="StatusEffectSnapshot.Id"/> for IDs defined in <see cref="StatusEffectLibrary"/>.
+        /// The status effect modifier is automatically inferred from <see cref="Id"/> for IDs defined in <see cref="StatusEffectLibrary"/>.
         /// </summary>
         public Modifier Modifier { get; set; }
 

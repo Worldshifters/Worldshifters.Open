@@ -57,9 +57,9 @@ namespace Worldshifters.Data.Hero
         /// Build a list of <see cref="AbilityEffect"/>s matching a template <see cref="ApplyStatusEffect"/>.
         /// </summary>
         /// <param name="template">A template <see cref="ApplyStatusEffect"/>.</param>
-        /// <param name="idsAndStrength">A list of pairs of <see cref="Worldshifters.Data.Raid.StatusEffectSnapshot.Id"/>s and <see cref="Worldshifters.Data.Raid.StatusEffectSnapshot.Strength"/>s.</param>
-        /// <returns>A list of <see cref="AbilityEffect"/>s with the provided <see cref="idsAndStrength"/> and matching the <see cref="template"/>.</returns>
-        public static IEnumerable<AbilityEffect> FromTemplate(ApplyStatusEffect template, params (string, double)[] idsAndStrength)
+        /// <param name="idsAndStrengths">A list of pairs of <see cref="Raid.StatusEffectSnapshot.Id"/>s and <see cref="Raid.StatusEffectSnapshot.Strength"/>s.</param>
+        /// <returns>A list of <see cref="AbilityEffect"/>s with the provided <see cref="idsAndStrengths"/> and matching the <see cref="template"/>.</returns>
+        public static IEnumerable<AbilityEffect> FromTemplate(ApplyStatusEffect template, params (string, double)[] idsAndStrengths)
         {
             throw new NotImplementedException();
         }

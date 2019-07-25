@@ -12,7 +12,7 @@ namespace Worldshifters.Data.Hero
         public long HealingCap { get; set; }
 
         /// <summary>
-        /// Whether to treat the <see cref="Worldshifters.Data.Raid.StatusEffectSnapshot.Strength"/> of a <see cref="StatusEffectLibrary.RevitalizeNpc"/>
+        /// Whether to treat the <see cref="Raid.StatusEffectSnapshot.Strength"/> of a <see cref="StatusEffectLibrary.RevitalizeNpc"/>
         /// effect as a percentage or a flat HP amount.
         /// </summary>
         public bool IsPercentageBased { get; set; }

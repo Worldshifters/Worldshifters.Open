@@ -2,6 +2,8 @@
 // Copyright (c) Worldshifters. All rights reserved.
 // </copyright>
 
+#pragma warning disable CA1034 // Nested types should not be visible
+
 namespace Worldshifters.Data.Hero
 {
     using System;
@@ -61,7 +63,7 @@ namespace Worldshifters.Data.Hero
 
         public void Cast(EntitySnapshot caster, int targetIndex, IList<RaidAction> raidActions)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public static class Types

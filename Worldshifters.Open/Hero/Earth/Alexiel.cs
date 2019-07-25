@@ -20,7 +20,7 @@ namespace Worldshifters.Assets.Hero.Earth
 
         public static Hero NewInstance()
         {
-            return new Worldshifters.Data.Hero.Hero
+            return new Hero
             {
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Alexiel",
