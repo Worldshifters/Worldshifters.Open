@@ -21,6 +21,7 @@ namespace Worldshifters.Data.Hero
         public static int DebuffSuccessRateBoost;
         public static int DebuffResistanceBoost;
         public static int DefenseBoost;
+        public static int DodgeRateBoost;
         public static int DoubleAttackRateBoost;
         public static int EarthAttackBoost;
         public static int EarthDamageReduction;
