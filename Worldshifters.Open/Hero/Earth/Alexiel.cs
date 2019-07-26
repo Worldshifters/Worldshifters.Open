@@ -341,7 +341,7 @@ namespace Worldshifters.Assets.Hero.Earth
                 MirrorBladeId,
                 (previousStatusEffect, newStatusEffect) =>
                 {
-                    var bladeCount = (int)previousStatusEffect.Strength + count;
+                    var bladeCount = Math.Min(5, (int)previousStatusEffect.Strength + count);
                     newStatusEffect.Strength = bladeCount;
                     newStatusEffect.Id = $"{MirrorBladeId}_{bladeCount}";
                     return bladeCount > 0;
