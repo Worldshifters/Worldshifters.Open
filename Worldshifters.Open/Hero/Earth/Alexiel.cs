@@ -96,7 +96,7 @@ namespace Worldshifters.Assets.Hero.Earth
                     },
                     ProcessEffects = (alexiel, raidActions) =>
                     {
-                        AddMirrorBlade(alexiel, 1, raidActions);
+                        AddMirrorBlade(alexiel, raidActions);
                     },
                 },
                 Abilities =
@@ -139,7 +139,7 @@ namespace Worldshifters.Assets.Hero.Earth
                         },
                         ProcessEffects = (alexiel, targetIndex, raidActions) =>
                         {
-                            AddMirrorBlade(alexiel, 1, raidActions);
+                            AddMirrorBlade(alexiel, raidActions);
                         },
                     },
                 },
@@ -327,7 +327,7 @@ namespace Worldshifters.Assets.Hero.Earth
                 ($"{MirrorBladeId}/ca_cap_up", ModifierLibrary.FlatChargeAttackDamageCapBoost, 5 * (bladeCount + 1)));
         }
 
-        private static void AddMirrorBlade(EntitySnapshot alexiel, int count, IList<RaidAction> raidActions)
+        private static void AddMirrorBlade(EntitySnapshot alexiel, IList<RaidAction> raidActions)
         {
             alexiel.OverrideStatusEffect(
                 new StatusEffectSnapshot
@@ -341,7 +341,7 @@ namespace Worldshifters.Assets.Hero.Earth
                 MirrorBladeId,
                 (previousStatusEffect, newStatusEffect) =>
                 {
-                    var bladeCount = Math.Min(5, (int)previousStatusEffect.Strength + count);
+                    var bladeCount = Math.Min(5, (int)previousStatusEffect.Strength + 1);
                     newStatusEffect.Strength = bladeCount;
                     newStatusEffect.Id = $"{MirrorBladeId}_{bladeCount}";
                     return bladeCount > 0;
