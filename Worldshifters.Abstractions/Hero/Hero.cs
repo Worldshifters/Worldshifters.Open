@@ -10,7 +10,7 @@ namespace Worldshifters.Data.Hero
     using Google.Protobuf.Collections;
     using Worldshifters.Data.Raid;
 
-    public class Hero
+    public sealed class Hero
     {
         public RepeatedField<Ability> Abilities { get; }
 
@@ -61,6 +61,11 @@ namespace Worldshifters.Data.Hero
         public RepeatedField<PassiveAbilityUpgrade> UpgradedPassiveAbilities { get; }
 
         public RepeatedField<EquipmentType> WeaponProficiencies { get; }
+
+        /// <summary>
+        /// The list of extended mastery perks that the hero can master.
+        /// </summary>
+        public RepeatedField<int> AvailablePerkIds { get; }
 
         /// <summary>
         /// Input parameters: this (the caster), the ability.
