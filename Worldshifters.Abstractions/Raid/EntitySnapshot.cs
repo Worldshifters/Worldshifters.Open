@@ -9,6 +9,9 @@ namespace Worldshifters.Data.Raid
     using Google.Protobuf.Collections;
     using Hero = Worldshifters.Data.Inventory.Types.Hero;
 
+    /// <summary>
+    /// Represents a raid character (allie and enemies included).
+    /// </summary>
     public class EntitySnapshot
     {
         public enum AttackResult
@@ -20,21 +23,21 @@ namespace Worldshifters.Data.Raid
             SpecialAttack,
         }
 
-        public bool Attacked { get; set; }
-
         /// <summary>
-        /// Stores custom key-value pairs whose lifetime spans the course of an action, allowing data sharing between trigger callbacks.
+        /// Gets the hero encapsulated by this <see cref="EntitySnapshot"/>.
         /// </summary>
-        public Dictionary<string, object> ActionLocalDataStore { get; }
-
-        public Hero Hero { get; set; }
+        public Hero Hero { get; }
 
         public int NumHitsReceived { get; set; }
 
         public int NumSpecialAttacksUsedThisTurn { get; set; }
 
+        /// <remarks>0-indexed: the first ally/enemy has <see cref="PositionInFrontline"/> set to 0.</remarks>
         public int PositionInFrontline { get; set; }
 
+        /// <summary>
+        /// A snapshot of the raid this character belongs to. Example usages include getting raid data and interacting with other allies and enemies.
+        /// </summary>
         public RaidSnapshot Raid { get; }
 
         public Element Element { get; }
@@ -49,8 +52,17 @@ namespace Worldshifters.Data.Raid
 
         public int MaxChargeGauge { get; set; }
 
+        /// <remarks>1-1 mapping with <see cref="Inventory.Types.Hero.GetAbilities"/>.</remarks>
         public RepeatedField<int> AbilityCooldowns { get; }
 
+        /// <summary>
+        /// Stores custom key-value pairs whose lifetime spans the course of an action, allowing data sharing between trigger callbacks.
+        /// </summary>
+        public Dictionary<string, object> ActionLocalDataStore { get; }
+
+        /// <summary>
+        /// Dictionary of values whose lifetime spans the whole duration of a raid. Used to communicate events between different actions for instance.
+        /// </summary>
         public MapField<string, TypedValue> GlobalState { get; }
 
         /// <returns>Local and global status effects.</returns>

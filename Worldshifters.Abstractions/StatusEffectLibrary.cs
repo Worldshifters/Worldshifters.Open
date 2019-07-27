@@ -30,6 +30,7 @@ namespace Worldshifters.Data
         public static string CriticalHitRateBoostForLightAlliesWeapon;
         public static string CriticalHitRateBoostForWaterAlliesWeapon;
         public static string CriticalHitRateBoostForWindAlliesWeapon;
+        public static string DamageBoostedNpc;
         public static string DamageCapUpNpc;
         public static string DamageCapUpSummon;
         public static string DamageCapUpWeapon;

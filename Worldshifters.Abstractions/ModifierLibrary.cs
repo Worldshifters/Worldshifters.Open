@@ -129,5 +129,7 @@ namespace Worldshifters.Data
         /// Burn damage applies before refresh/revitalize effects.
         /// </summary>
         public static Modifier Burnt;
+
+        public static Modifier SupplementalDamage;
     }
 }

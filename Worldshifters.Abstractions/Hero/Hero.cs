@@ -64,6 +64,7 @@ namespace Worldshifters.Data.Hero
 
         /// <summary>
         /// The list of extended mastery perks that the hero can master.
+        /// Refer to <see cref="ExtendedMasteryPerks"/> for a list of perk IDs.
         /// </summary>
         public RepeatedField<int> AvailablePerkIds { get; }
 

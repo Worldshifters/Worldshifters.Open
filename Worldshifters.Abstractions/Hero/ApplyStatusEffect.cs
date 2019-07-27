@@ -15,8 +15,6 @@ namespace Worldshifters.Data.Hero
         /// </summary>
         public double BaseAccuracy { get; set; }
 
-        public int DurationInSeconds { get; set; }
-
         public ByteString ExtraData { get; set; }
 
         public string Id { get; set; }
@@ -41,6 +39,10 @@ namespace Worldshifters.Data.Hero
 
         public double Strength { get; set; }
 
+        /// <remarks>One and only one between <see cref="TurnDuration"/> and <see cref="DurationInSeconds"/> has to be greater than 0.</remarks>
+        public int DurationInSeconds { get; set; }
+
+        /// <remarks>One and only one between <see cref="TurnDuration"/> and <see cref="DurationInSeconds"/> has to be greater than 0.</remarks>
         public int TurnDuration { get; set; }
 
         /// <summary>
