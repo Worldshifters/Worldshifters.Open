@@ -6,7 +6,6 @@ namespace Worldshifters.Assets.Hero.Earth
 {
     using System;
     using System.Linq;
-    using System.Reflection.Metadata.Ecma335;
     using Google.Protobuf;
     using Worldshifters.Data;
     using Worldshifters.Data.Hero;
@@ -233,7 +232,13 @@ namespace Worldshifters.Assets.Hero.Earth
                     {
                         if (elen.PositionInFrontline < 4)
                         {
-                            raidActions.Add(elen.AddChargeGauge(10));
+                            elen.ApplyStatusEffect(
+                                new StatusEffectSnapshot
+                                {
+                                    Id = StatusEffectLibrary.ChargeGaugeBoost,
+                                    IsBuff = true,
+                                    Strength = 10,
+                                }, raidActions);
                         }
                         else
                         {
@@ -252,7 +257,13 @@ namespace Worldshifters.Assets.Hero.Earth
                             }
 
                             // +5 charge gauge at rank 1, +8 at rank 2, +10 at rank 3
-                            raidActions.Add(ally.AddChargeGauge((int)Math.Ceiling((supportSkillRank + 1) * 2.5)));
+                            ally.ApplyStatusEffect(
+                                new StatusEffectSnapshot
+                                {
+                                    Id = StatusEffectLibrary.ChargeGaugeBoost,
+                                    IsBuff = true,
+                                    Strength = (int)Math.Ceiling((supportSkillRank + 1) * 2.5),
+                                }, raidActions);
                         }
                     }
                 },
