@@ -2,6 +2,8 @@
 // Copyright (c) Worldshifters. All rights reserved.
 // </copyright>
 
+#pragma warning disable SA1615 // Element return value should be documented
+
 namespace Worldshifters.Data.Hero.Abilities
 {
     using System;
@@ -120,6 +122,24 @@ namespace Worldshifters.Data.Hero.Abilities
         /// <param name="stackingType">The frame on which the buff will apply (used to resolve stacking effects).</param>
         /// <param name="extraEffects">Optional list of additional effects which will be applied on top of the elemental attack up buff.</param>
         public static Ability DarkAttackUpForParty(uint strength, uint turnDuration, StackingType stackingType, params AbilityEffect[] extraEffects)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// An <see cref="Ability"/> with the attack up sprite animation (on a single character).
+        /// </summary>
+        /// <param name="extraEffects"></param>
+        public static Ability AttackUpForSelf(params AbilityEffect[] extraEffects)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// An <see cref="Ability"/> with the charge boost sprite animation (on a single character).
+        /// </summary>
+        /// <param name="extraEffects"></param>
+        public static Ability ChargeBarBoost(params AbilityEffect[] extraEffects)
         {
             throw new NotImplementedException();
         }

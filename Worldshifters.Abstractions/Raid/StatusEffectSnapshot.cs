@@ -4,6 +4,8 @@
 
 namespace Worldshifters.Data.Raid
 {
+    using Google.Protobuf;
+
     public class StatusEffectSnapshot
     {
         /// <summary>
@@ -58,5 +60,10 @@ namespace Worldshifters.Data.Raid
         /// Passive effects can't be dispelled and are not removed on death (effects are still removed when their remaining duration reaches 0).
         /// </summary>
         public bool IsPassiveEffect { get; set; }
+
+        /// <summary>
+        /// Additional status effect data depending on the effect.
+        /// </summary>
+        public ByteString ExtraData { get; set; }
     }
 }

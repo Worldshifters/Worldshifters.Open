@@ -195,5 +195,15 @@ namespace Worldshifters.Data.Raid
         {
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Override the total contribution of the equipment towards the party's <see cref="ModifierLibrary.DamageBoostWhenSuperiorElement"/> if
+        /// the value of <see cref="strength"/> is stronger.
+        /// </summary>
+        /// <param name="strength"></param>
+        public void OverrideWeaponSeraphicModifier(double strength)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

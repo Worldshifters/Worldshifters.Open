@@ -248,24 +248,7 @@ namespace Worldshifters.Assets.Hero.Dark
                     },
                 },
                 OnActionStart = (nier, raidActions) => ProcessLoveRedemptionEffects(nier),
-                OnSetup = (nier, allies, loadout) =>
-                {
-                    // Love redemption stacks are frozen when Nier is relegated to the backrow.
-                    // Nier starts with 13 stacks after being revived.
-                    if (nier.GetStatusEffectStacks(LoveRedemptionId) == 0)
-                    {
-                        nier.ApplyStatusEffect(new StatusEffectSnapshot
-                        {
-                            Id = $"{LoveRedemptionId}_13",
-                            Strength = 13,
-                            IsBuff = true,
-                            IsUndispellable = true,
-                            TurnDuration = int.MaxValue,
-                        });
-                    }
-
-                    ProcessLoveRedemptionEffects(nier);
-                },
+                OnSetup = (nier, allies, loadout) => SetupLoveRedemptionStacks(nier),
                 OnTurnEnd = (nier, raidActions) =>
                 {
                     if (!nier.IsAlive() || nier.PositionInFrontline >= 4)
@@ -296,6 +279,8 @@ namespace Worldshifters.Assets.Hero.Dark
                 },
                 OnEnteringFrontline = (nier, raidActions) =>
                 {
+                    SetupLoveRedemptionStacks(nier);
+
                     if (nier.GlobalState.ContainsKey("nonce"))
                     {
                         return;
@@ -536,6 +521,25 @@ namespace Worldshifters.Assets.Hero.Dark
                 ($"{LoveRedemptionId}/ca_up", ModifierLibrary.FlatChargeAttackDamageBoost, (14 - loveRedemptionStacks) * 10),
                 ($"{LoveRedemptionId}/ca_cap_up", ModifierLibrary.FlatChargeAttackDamageCapBoost, (14 - loveRedemptionStacks) * 5),
                 ($"{LoveRedemptionId}/dmg_reduction", ModifierLibrary.DamageReductionBoost, 90));
+        }
+
+        private static void SetupLoveRedemptionStacks(EntitySnapshot nier)
+        {
+            // Love redemption stacks are frozen when Nier is relegated to the backrow.
+            // Nier starts with 13 stacks after being revived.
+            if (nier.GetStatusEffectStacks(LoveRedemptionId) == 0)
+            {
+                nier.ApplyStatusEffect(new StatusEffectSnapshot
+                {
+                    Id = $"{LoveRedemptionId}_13",
+                    Strength = 13,
+                    IsBuff = true,
+                    IsUndispellable = true,
+                    TurnDuration = int.MaxValue,
+                });
+            }
+
+            ProcessLoveRedemptionEffects(nier);
         }
     }
 }

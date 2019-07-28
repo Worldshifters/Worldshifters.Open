@@ -1,10 +1,13 @@
 Worldshifters.Open
 ==================
 
+Worldshifters is a sandbox-like RPG experience where you can give life to characters drawn from the collective imagination, partake in PvE and PvP experiences, trade items and characters, or manipulate the in-game trends and economy to your benefit.
+
+Worldshifters.Open is the repository featuring some of the game assets used in Worldshifters, allowing external contributions.
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.com/Worldshifters/Worldshifters.Open.svg?branch=master)](https://travis-ci.com/Worldshifters/Worldshifters.Open)
 
-Worldshifters.Open is a repository featuring the game assets used in Worldshifters, allowing external contributions. 
 
 Installation
 ------------
@@ -14,6 +17,7 @@ Download and install the [.NET Core 2.2](https://dotnet.microsoft.com/download) 
 Open the `Worldshifters.Open.sln` solution file with [Visual Studio](https://visualstudio.microsoft.com/vs/older-downloads/) 2017 or [Visual Studio Code](https://code.visualstudio.com/).
 
 The provided code is not meant to be used on its own: it provides building blocks to describe how game assets such as characters should behave.
+
 
 Quick Start
 -----------

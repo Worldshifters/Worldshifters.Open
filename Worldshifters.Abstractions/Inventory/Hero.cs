@@ -13,13 +13,17 @@ namespace Worldshifters.Data.Inventory
     {
         public class Hero
         {
-            public Data.Hero.Hero HeroData { get; }
-
             public int Level { get; set; }
 
             public int Rank { get; set; }
 
             public Ability[] GetAbilities()
+            {
+                throw new NotImplementedException();
+            }
+
+            /// <returns>The rank of the hero's extended mastery perk support skill.</returns>
+            public int GetSupportSkillRank()
             {
                 throw new NotImplementedException();
             }

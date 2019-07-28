@@ -15,6 +15,9 @@ namespace Worldshifters.Data.Hero
         /// </summary>
         public double BaseAccuracy { get; set; }
 
+        /// <summary>
+        /// Additional status effect data depending on the effect.
+        /// </summary>
         public ByteString ExtraData { get; set; }
 
         public string Id { get; set; }

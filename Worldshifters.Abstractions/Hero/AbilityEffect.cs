@@ -12,6 +12,9 @@ namespace Worldshifters.Data.Hero
     {
         public Types.AbilityEffectType Type { get; set; }
 
+        /// <summary>
+        /// Additional ability effect data depending on the ability.
+        /// </summary>
         public ByteString ExtraData { get; set; }
 
         public static class Types
