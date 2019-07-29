@@ -104,7 +104,9 @@ namespace Worldshifters.Data
         public static string RefreshWeapon;
         public static string RepelNpc;
         public static string RevitalizeNpc;
+        public static string RevitalizeWeapon;
         public static string Shield;
+        public static string SkillDamageCapUpNpc;
         public static string StackableAttackDownNpc;
         public static string StackableChargeAttackDamageBoostWeapon;
         public static string StackableChargeAttackDamageCapBoostWeapon;

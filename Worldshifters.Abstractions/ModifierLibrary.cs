@@ -131,5 +131,10 @@ namespace Worldshifters.Data
         public static Modifier Burnt;
 
         public static Modifier SupplementalDamage;
+
+        /// <summary>
+        /// Strength values must be given in percentage.
+        /// </summary>
+        public static Modifier SkillDamageCap;
     }
 }
