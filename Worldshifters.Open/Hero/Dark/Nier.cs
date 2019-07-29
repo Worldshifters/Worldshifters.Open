@@ -210,6 +210,7 @@ namespace Worldshifters.Assets.Hero.Dark
                         {
                             IncrementLoveRedemption(nier, -1, raidActions);
                         },
+                        AnimationName = "ab_motion",
                     },
                 },
                 UpgradedAbilities =
@@ -385,6 +386,7 @@ namespace Worldshifters.Assets.Hero.Dark
                 {
                     nier.Raid.AddFieldEffect(WorldOfDeathAndLoveId);
                 },
+                AnimationName = "ab_motion",
             };
         }
 
@@ -477,6 +479,7 @@ namespace Worldshifters.Assets.Hero.Dark
 
                     IncrementLoveRedemption(nier, -2, raidActions);
                 },
+                AnimationName = "ab_motion",
             };
         }
 

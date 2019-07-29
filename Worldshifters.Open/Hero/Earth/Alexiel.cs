@@ -141,6 +141,7 @@ namespace Worldshifters.Assets.Hero.Earth
                         {
                             AddMirrorBlade(alexiel, raidActions);
                         },
+                        AnimationName = "ab_motion",
                     },
                 },
                 UpgradedAbilities =
@@ -208,6 +209,7 @@ namespace Worldshifters.Assets.Hero.Earth
                         }.ToByteString(),
                     },
                 },
+                AnimationName = "ab_motion_2",
             };
         }
 
@@ -269,6 +271,7 @@ namespace Worldshifters.Assets.Hero.Earth
                         }.ToByteString(),
                     },
                 },
+                AnimationName = "ab_motion",
             };
         }
 

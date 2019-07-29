@@ -216,6 +216,7 @@ namespace Worldshifters.Assets.Hero.Earth
                                 },
                             },
                             ShouldRepositionSpriteAnimation = true,
+                            AnimationName = "attack",
                         },
                         UpgradedAbilityIndex = 3,
                     },
@@ -321,6 +322,7 @@ namespace Worldshifters.Assets.Hero.Earth
 
             openSpirit.Name = "Open Spirit";
             openSpirit.Cooldown = (int)cooldown;
+            openSpirit.AnimationName = "attack";
             openSpirit.CanCast = (elen, targetIndex) =>
             {
                 if (elen.Hero.Level >= 85)
@@ -378,6 +380,7 @@ namespace Worldshifters.Assets.Hero.Earth
             var purgatory = SupportAbilities.ChargeBarBoost();
             purgatory.Name = "Purgatory";
             purgatory.Cooldown = (int)cooldown;
+            purgatory.AnimationName = "attack";
             purgatory.CanCast = (elen, targetIndex) =>
             {
                 if (elen.ChargeGauge < 30)
@@ -462,6 +465,7 @@ namespace Worldshifters.Assets.Hero.Earth
                         },
                         raidActions);
                 },
+                AnimationName = "attack",
             };
         }
 

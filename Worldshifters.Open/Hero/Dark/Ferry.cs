@@ -215,6 +215,7 @@ namespace Worldshifters.Assets.Hero.Dark
                                 },
                                 raidActions);
                         },
+                        AnimationName = "ab_motion",
                     },
                 },
                 UpgradedAbilities =
@@ -356,6 +357,7 @@ namespace Worldshifters.Assets.Hero.Dark
                         }.ToByteString(),
                     },
                 },
+                AnimationName = "ab_motion",
             };
         }
 
@@ -421,6 +423,7 @@ namespace Worldshifters.Assets.Hero.Dark
                         }.ToByteString(),
                     },
                 },
+                AnimationName = "ab_motion",
             };
         }
     }
