@@ -5,7 +5,9 @@
 namespace Worldshifters.Data.Hero
 {
     using System;
+    using System.Collections.Generic;
     using Google.Protobuf;
+    using Worldshifters.Data.Raid;
 
     public class MultihitDamage
     {
@@ -20,6 +22,11 @@ namespace Worldshifters.Data.Hero
         public int HitNumber { get; set; }
 
         public bool RandomTargets { get; set; }
+
+        public void ApplyEffect(EntitySnapshot caster, int targetPositionInFrontline, IList<RaidAction> raidActions)
+        {
+            throw new NotImplementedException();
+        }
 
         public ByteString ToByteString()
         {

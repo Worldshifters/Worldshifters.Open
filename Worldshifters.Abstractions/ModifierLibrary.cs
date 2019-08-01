@@ -87,6 +87,12 @@ namespace Worldshifters.Data
         public static Modifier FlatDebuffResistanceBoost;
 
         /// <summary>
+        /// Values are given as a percentage added to the base accuracy of debuff effects (percentage of chance to land a debuff).
+        /// A debuff success rate greater than 0 means that the chance to land the debuff is higher.
+        /// </summary>
+        public static Modifier FlatDebuffSuccessRateBoost;
+
+        /// <summary>
         /// Percentage based.
         /// </summary>
         public static Modifier HealingBoost;
@@ -136,5 +142,7 @@ namespace Worldshifters.Data
         /// Strength values must be given in percentage.
         /// </summary>
         public static Modifier SkillDamageCap;
+
+        public static Modifier NormalAttacksHitAllFoes;
     }
 }
