@@ -5,6 +5,7 @@
 namespace Worldshifters.Assets.Hero.Light
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using Google.Protobuf;
     using Worldshifters.Data;
@@ -455,15 +456,11 @@ namespace Worldshifters.Assets.Hero.Light
                         var target = tweyen.Raid.Enemies.AtPosition(targetPositionInFrontline);
                         damage.DamageModifier = 1.5 + (target.GetDebuffs().Count() * 0.5);
                         damage.DamageCap = 900_000;
+                        damage.ApplyEffect(tweyen, tweyen.Raid.SelectedTarget, raidActions);
+
                         if (tweyen.GetStatusEffects().Any(e => e.Id == BringTheThunderId))
                         {
-                            target.ApplyStatusEffect(
-                                new StatusEffectSnapshot
-                                {
-                                    Id = StatusEffectLibrary.Paralyzed,
-                                    BaseAccuracy = 100,
-                                    RemainingDurationInSeconds = 60,
-                                }, raidActions);
+                            TryParalyze(target, raidActions);
                         }
 
                         return;
@@ -474,6 +471,7 @@ namespace Worldshifters.Assets.Hero.Light
                     damage.DamageModifier = 1.5 + tweyen.Raid.Enemies
                                                 .Where(e => e.IsAlive() && e.PositionInFrontline < 4)
                                                 .Sum(e => e.GetDebuffs().Count() * 0.5);
+                    damage.ApplyEffect(tweyen, tweyen.Raid.SelectedTarget, raidActions);
 
                     foreach (var enemy in tweyen.Raid.Enemies)
                     {
@@ -482,13 +480,7 @@ namespace Worldshifters.Assets.Hero.Light
                             continue;
                         }
 
-                        enemy.ApplyStatusEffect(
-                            new StatusEffectSnapshot
-                            {
-                                Id = StatusEffectLibrary.Paralyzed,
-                                BaseAccuracy = 55,
-                                RemainingDurationInSeconds = 60,
-                            }, raidActions);
+                        TryParalyze(enemy, raidActions);
                     }
                 },
                 AnimationName = "attack",
@@ -527,6 +519,17 @@ namespace Worldshifters.Assets.Hero.Light
                     IsUsedInternally = true,
                 });
             }
+        }
+
+        private static void TryParalyze(EntitySnapshot target, IList<RaidAction> raidActions)
+        {
+            target.ApplyStatusEffect(
+                new StatusEffectSnapshot
+                {
+                    Id = StatusEffectLibrary.Paralyzed,
+                    BaseAccuracy = 55,
+                    RemainingDurationInSeconds = 60,
+                }, raidActions);
         }
     }
 }
