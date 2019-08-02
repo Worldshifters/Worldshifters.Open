@@ -37,7 +37,7 @@ namespace Worldshifters.Assets.Hero.Dark
                         },
                     },
                 },
-                ProcessEffects = (ferry, targetIndex, raidActions) =>
+                ProcessEffects = (ferry, targetPositionInFrontline, raidActions) =>
                 {
                     foreach (var enemy in ferry.Raid.Enemies)
                     {
@@ -159,9 +159,9 @@ namespace Worldshifters.Assets.Hero.Dark
                         ShouldRepositionSpriteAnimation = true,
                         AbilityTargetting = AbilityTargettingType.TargetSingleAliveFrontLineMemberExcludingSelf,
                         RepositionOnTarget = true,
-                        CanCast = (ferry, targetIndex) =>
+                        CanCast = (ferry, targetPositionInFrontline) =>
                         {
-                            var target = ferry.Raid.Allies.AtPosition(targetIndex);
+                            var target = ferry.Raid.Allies.AtPosition(targetPositionInFrontline);
                             if (!target.IsAlive())
                             {
                                 return (false, string.Empty);
@@ -174,9 +174,9 @@ namespace Worldshifters.Assets.Hero.Dark
 
                             return (true, string.Empty);
                         },
-                        ProcessEffects = (ferry, targetIndex, raidActions) =>
+                        ProcessEffects = (ferry, targetPositionInFrontline, raidActions) =>
                         {
-                            var target = ferry.Raid.Allies.AtPosition(targetIndex);
+                            var target = ferry.Raid.Allies.AtPosition(targetPositionInFrontline);
 
                             var buffs = new (string, Modifier, double)[]
                             {

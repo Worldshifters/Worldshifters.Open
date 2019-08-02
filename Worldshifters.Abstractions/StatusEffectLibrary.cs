@@ -100,6 +100,8 @@ namespace Worldshifters.Data
         public static string LightElementalAttackBoostAmplificationNpc;
         public static string LightSwitch;
         public static string MirrorImage;
+        public static string Paralyzed;
+        public static string PoisonedNpc;
         public static string RefreshNpc;
         public static string RefreshWeapon;
         public static string RepelNpc;

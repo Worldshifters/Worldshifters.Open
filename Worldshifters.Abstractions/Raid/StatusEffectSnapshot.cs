@@ -4,6 +4,7 @@
 
 namespace Worldshifters.Data.Raid
 {
+    using System;
     using Google.Protobuf;
 
     public class StatusEffectSnapshot
@@ -49,7 +50,15 @@ namespace Worldshifters.Data.Raid
 
         public double Strength { get; set; }
 
+        /// <summary>
+        /// Only one between <see cref="TurnDuration"/> and <see cref="InitialDurationInSeconds"/> should be implemented.
+        /// </summary>
         public int TurnDuration { get; set; }
+
+        /// <summary>
+        /// Only one between <see cref="TurnDuration"/> and <see cref="RemainingDurationInSeconds"/> should be implemented.
+        /// </summary>
+        public long RemainingDurationInSeconds { get; set; }
 
         /// <summary>
         /// The status effect modifier is automatically inferred from <see cref="Id"/> for IDs defined in <see cref="StatusEffectLibrary"/>.

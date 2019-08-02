@@ -71,6 +71,16 @@ namespace Worldshifters.Data.Raid
             throw new NotImplementedException();
         }
 
+        public IEnumerable<StatusEffectSnapshot> GetBuffs()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<StatusEffectSnapshot> GetDebuffs()
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Attacks <see cref="RaidSnapshot.SelectedTarget"/> and process side effects such as death, repel, and drain effects.
         /// </summary>

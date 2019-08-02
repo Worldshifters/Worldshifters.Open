@@ -137,7 +137,7 @@ namespace Worldshifters.Assets.Hero.Earth
                                 }.ToByteString(),
                             },
                         },
-                        ProcessEffects = (alexiel, targetIndex, raidActions) =>
+                        ProcessEffects = (alexiel, targetPositionInFrontline, raidActions) =>
                         {
                             AddMirrorBlade(alexiel, raidActions);
                         },

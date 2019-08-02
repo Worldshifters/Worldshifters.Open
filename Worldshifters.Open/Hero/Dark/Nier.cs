@@ -72,7 +72,7 @@ namespace Worldshifters.Assets.Hero.Dark
                         }.ToByteString(),
                     },
                 },
-                ProcessEffects = (nier, targetIndex, raidActions) =>
+                ProcessEffects = (nier, targetPositionInFrontline, raidActions) =>
                 {
                     foreach (var entity in nier.Raid.Allies.Concat(nier.Raid.Enemies))
                     {
@@ -382,7 +382,7 @@ namespace Worldshifters.Assets.Hero.Dark
                         },
                     },
                 },
-                ProcessEffects = (nier, targetIndex, raidActions) =>
+                ProcessEffects = (nier, targetPositionInFrontline, raidActions) =>
                 {
                     nier.Raid.AddFieldEffect(WorldOfDeathAndLoveId);
                 },

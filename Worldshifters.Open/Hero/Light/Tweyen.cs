@@ -9,12 +9,14 @@ namespace Worldshifters.Assets.Hero.Light
     using Google.Protobuf;
     using Worldshifters.Data;
     using Worldshifters.Data.Hero;
-    using Worldshifters.Data.Hero.Abilities;
     using Worldshifters.Data.Raid;
+    using Worldshifters.Data.Utils;
 
     public static class Tweyen
     {
         public static Guid Id = Guid.Parse("ea84d795-d699-4825-833c-82a8713bff52");
+
+        private const string BringTheThunderId = "tweyen/bring_the_thunder";
 
         public static Hero NewInstance()
         {
@@ -37,18 +39,18 @@ namespace Worldshifters.Assets.Hero.Light
                 {
                     ExtendedMasteryPerks.AttackBoost,
                     ExtendedMasteryPerks.DefenseBoost,
+                    ExtendedMasteryPerks.HpBoost,
                     ExtendedMasteryPerks.DoubleAttackRateBoost,
-                    ExtendedMasteryPerks.CriticalHitRateBoost,
-                    ExtendedMasteryPerks.ChargeAttackDamageBoost,
+                    ExtendedMasteryPerks.DebuffResistanceBoost,
                     ExtendedMasteryPerks.AttackBoost,
                     ExtendedMasteryPerks.DefenseBoost,
                     ExtendedMasteryPerks.HpBoost,
+                    ExtendedMasteryPerks.DoubleAttackRateBoost,
                     ExtendedMasteryPerks.CriticalHitRateBoost,
-                    ExtendedMasteryPerks.WaterDamageReduction,
                     ExtendedMasteryPerks.AttackBoost,
                     ExtendedMasteryPerks.CriticalHitRateBoost,
-                    ExtendedMasteryPerks.ChargeAttackDamageBoost,
-                    ExtendedMasteryPerks.ChargeAttackDamageBoost,
+                    ExtendedMasteryPerks.CriticalHitRateBoost,
+                    ExtendedMasteryPerks.DebuffSuccessRateBoost,
                     ExtendedMasteryPerks.SupportSkill,
                 },
                 ModelMetadata =
@@ -115,11 +117,11 @@ namespace Worldshifters.Assets.Hero.Light
                             Type = AbilityEffect.Types.AbilityEffectType.ApplyStatusEffect,
                             ExtraData = new ApplyStatusEffect
                             {
-                                Id = StatusEffectLibrary.DoubleAttackRateUpNpc,
-                                IsBuff = true,
-                                TurnDuration = 3,
+                                Id = BringTheThunderId,
                                 OnSelf = true,
-                                Strength = 50,
+                                IsBuff = true,
+                                IsUndispellable = true,
+                                TurnDuration = 3,
                             }.ToByteString(),
                         },
                     },
@@ -127,25 +129,32 @@ namespace Worldshifters.Assets.Hero.Light
                     {
                         if (tweyen.Hero.Rank >= 5)
                         {
-                            SupportAbilities.EarthAttackUpForParty(20, 3, SupportAbilities.StackingType.Npc, new AbilityEffect
+                            foreach (var ally in tweyen.Raid.Allies)
                             {
-                                Type = AbilityEffect.Types.AbilityEffectType.ApplyStatusEffect,
-                                ExtraData = new ApplyStatusEffect
+                                if (!ally.IsAlive() || ally.PositionInFrontline >= 4)
                                 {
-                                    Id = StatusEffectLibrary.TripleAttackRateUpNpc,
+                                    continue;
+                                }
+
+                                ally.ApplyStatusEffect(new StatusEffectSnapshot
+                                {
+                                    Id = StatusEffectLibrary.CriticalHitRateBoostNpc,
+                                    Strength = 100,
                                     IsBuff = true,
-                                    Strength = 50,
-                                    OnSelf = true,
-                                    TurnDuration = 3,
-                                }.ToByteString(),
-                            }).Cast(tweyen, tweyen.Raid.SelectedTarget, raidActions);
+                                    TurnDuration = 4,
+                                    ExtraData = new CriticalHit
+                                    {
+                                        DamageMultiplier = 0.5,
+                                    }.ToByteString(),
+                                });
+                            }
                         }
                     },
                 },
                 Abilities =
                 {
                     Merculight(cooldown: 6),
-                    Depravity(cooldown: 2),
+                    Depravity(cooldown: 8),
                     Clincher(cooldown: 6),
                 },
                 UpgradedAbilities =
@@ -159,7 +168,7 @@ namespace Worldshifters.Assets.Hero.Light
                     new AbilityUpgrade
                     {
                         RequiredLevel = 75,
-                        Ability = Depravity(cooldown: 1),
+                        Ability = Depravity(cooldown: 7),
                         UpgradedAbilityIndex = 1,
                     },
                     new AbilityUpgrade
@@ -195,11 +204,11 @@ namespace Worldshifters.Assets.Hero.Light
                                     },
                                 },
                             },
-                            ProcessEffects = (tweyen, targetIndex, raidActions) =>
+                            ProcessEffects = (tweyen, targetPositionInFrontline, raidActions) =>
                             {
                                 var numDebuffsOnFoes = tweyen.Raid.Enemies
                                     .Where(e => e.IsAlive() && e.PositionInFrontline < 4)
-                                    .Sum(e => e.GetStatusEffects().Count(d => !d.IsBuff));
+                                    .Sum(e => e.GetDebuffs().Count());
 
                                 var damageEffect = new MultihitDamage
                                 {
@@ -214,6 +223,14 @@ namespace Worldshifters.Assets.Hero.Light
                                 {
                                     if (enemy.IsAlive() && enemy.PositionInFrontline < 4)
                                     {
+                                        foreach (var debuff in enemy.GetDebuffs())
+                                        {
+                                            if (debuff.RemainingDurationInSeconds > 0)
+                                            {
+                                                debuff.RemainingDurationInSeconds += 90;
+                                            }
+                                        }
+
                                         damageEffect.ApplyEffect(tweyen, enemy.PositionInFrontline, raidActions);
                                     }
                                 }
@@ -281,7 +298,7 @@ namespace Worldshifters.Assets.Hero.Light
                         },
                     },
                 },
-                ProcessEffects = (tweyen, targetIndex, raidActions) =>
+                ProcessEffects = (tweyen, targetPositionInFrontline, raidActions) =>
                 {
                     if (tweyen.Hero.Level >= 85)
                     {
@@ -345,11 +362,58 @@ namespace Worldshifters.Assets.Hero.Light
                         },
                     },
                 },
-                ProcessEffects = (tweyen, targetIndex, raidActions) =>
+                ProcessEffects = (tweyen, targetPositionInFrontline, raidActions) =>
                 {
-                    if (tweyen.Hero.Level < 95)
+                    foreach (var enemy in tweyen.Raid.Enemies)
                     {
-                        return;
+                        if (!enemy.IsAlive() || enemy.PositionInFrontline >= 4)
+                        {
+                            continue;
+                        }
+
+                        enemy.ApplyStatusEffect(
+                            new StatusEffectSnapshot
+                            {
+                                Id = StatusEffectLibrary.DebuffResistanceDownNpc,
+                                BaseAccuracy = 100,
+                                RemainingDurationInSeconds = 180,
+                                Strength = -10,
+                            }, raidActions);
+
+                        enemy.ApplyStatusEffectsFromTemplate(
+                            new StatusEffectSnapshot
+                            {
+                                BaseAccuracy = 65,
+                                RemainingDurationInSeconds = 180,
+                                ExtraData = new Burn
+                                {
+                                    DamageCap = 2222,
+                                }.ToByteString(),
+                            },
+                            raidActions,
+                            (StatusEffectLibrary.BurntNpc, ModifierLibrary.Burnt, 2222),
+                            (StatusEffectLibrary.PoisonedNpc, ModifierLibrary.Burnt, 2222));
+
+                        enemy.ApplyStatusEffect(
+                            new StatusEffectSnapshot
+                            {
+                                Id = StatusEffectLibrary.Blind,
+                                BaseAccuracy = 50,
+                                RemainingDurationInSeconds = 180,
+                                Strength = 15,
+                            }, raidActions);
+
+                        enemy.ApplyStatusEffectsFromTemplate(
+                            new StatusEffectSnapshot
+                            {
+                                BaseAccuracy = 65,
+                                RemainingDurationInSeconds = 180,
+                            },
+                            raidActions,
+                            (StatusEffectLibrary.AttackDownNpc, ModifierLibrary.FlatAttackBoost, -15),
+                            (StatusEffectLibrary.DefenseDownNpc, ModifierLibrary.FlatDefenseBoost, -15),
+                            (StatusEffectLibrary.DoubleAttackRateDownNpc, ModifierLibrary.FlatDoubleAttackRateBoost, -15),
+                            (StatusEffectLibrary.TripleAttackRateDownNpc, ModifierLibrary.FlatTripleAttackRateBoost, -15));
                     }
                 },
                 AnimationName = "attack",
@@ -378,11 +442,53 @@ namespace Worldshifters.Assets.Hero.Light
                 },
                 ShouldRepositionSpriteAnimation = true,
                 RepositionOnTarget = true,
-                ProcessEffects = (tweyen, targetIndex, raidActions) =>
+                ProcessEffects = (tweyen, targetPositionInFrontline, raidActions) =>
                 {
+                    var damage = new MultihitDamage
+                    {
+                        Element = Element.Light,
+                        HitNumber = 1,
+                    };
+
                     if (tweyen.Hero.Level < 95)
                     {
+                        var target = tweyen.Raid.Enemies.AtPosition(targetPositionInFrontline);
+                        damage.DamageModifier = 1.5 + (target.GetDebuffs().Count() * 0.5);
+                        damage.DamageCap = 900_000;
+                        if (tweyen.GetStatusEffects().Any(e => e.Id == BringTheThunderId))
+                        {
+                            target.ApplyStatusEffect(
+                                new StatusEffectSnapshot
+                                {
+                                    Id = StatusEffectLibrary.Paralyzed,
+                                    BaseAccuracy = 100,
+                                    RemainingDurationInSeconds = 60,
+                                }, raidActions);
+                        }
+
                         return;
+                    }
+
+                    damage.DamageCap = 1_200_000;
+                    damage.HitAllTargets = true;
+                    damage.DamageModifier = 1.5 + tweyen.Raid.Enemies
+                                                .Where(e => e.IsAlive() && e.PositionInFrontline < 4)
+                                                .Sum(e => e.GetDebuffs().Count() * 0.5);
+
+                    foreach (var enemy in tweyen.Raid.Enemies)
+                    {
+                        if (!enemy.IsAlive() || enemy.PositionInFrontline >= 4)
+                        {
+                            continue;
+                        }
+
+                        enemy.ApplyStatusEffect(
+                            new StatusEffectSnapshot
+                            {
+                                Id = StatusEffectLibrary.Paralyzed,
+                                BaseAccuracy = 55,
+                                RemainingDurationInSeconds = 60,
+                            }, raidActions);
                     }
                 },
                 AnimationName = "attack",

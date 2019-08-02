@@ -144,5 +144,7 @@ namespace Worldshifters.Data
         public static Modifier SkillDamageCap;
 
         public static Modifier NormalAttacksHitAllFoes;
+
+        public static Modifier Paralyzed;
     }
 }

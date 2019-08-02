@@ -323,7 +323,7 @@ namespace Worldshifters.Assets.Hero.Earth
             openSpirit.Name = "Open Spirit";
             openSpirit.Cooldown = (int)cooldown;
             openSpirit.AnimationName = "attack";
-            openSpirit.CanCast = (elen, targetIndex) =>
+            openSpirit.CanCast = (elen, targetPositionInFrontline) =>
             {
                 if (elen.Hero.Level >= 85)
                 {
@@ -338,7 +338,7 @@ namespace Worldshifters.Assets.Hero.Earth
                 return (true, string.Empty);
             };
 
-            openSpirit.ProcessEffects = (elen, targetIndex, raidActions) =>
+            openSpirit.ProcessEffects = (elen, targetPositionInFrontline, raidActions) =>
             {
                 if (elen.Hero.Level >= 85)
                 {
@@ -381,7 +381,7 @@ namespace Worldshifters.Assets.Hero.Earth
             purgatory.Name = "Purgatory";
             purgatory.Cooldown = (int)cooldown;
             purgatory.AnimationName = "attack";
-            purgatory.CanCast = (elen, targetIndex) =>
+            purgatory.CanCast = (elen, targetPositionInFrontline) =>
             {
                 if (elen.ChargeGauge < 30)
                 {
@@ -391,7 +391,7 @@ namespace Worldshifters.Assets.Hero.Earth
                 return (true, string.Empty);
             };
 
-            purgatory.ProcessEffects = (elen, targetIndex, raidActions) =>
+            purgatory.ProcessEffects = (elen, targetPositionInFrontline, raidActions) =>
             {
                 elen.ChargeGauge -= 30;
                 foreach (var ally in elen.Raid.Allies)
@@ -439,7 +439,7 @@ namespace Worldshifters.Assets.Hero.Earth
                 },
                 ShouldRepositionSpriteAnimation = true,
                 RepositionOnTarget = true,
-                ProcessEffects = (elen, targetIndex, raidActions) =>
+                ProcessEffects = (elen, targetPositionInFrontline, raidActions) =>
                 {
                     if (elen.Hero.Level < 95)
                     {

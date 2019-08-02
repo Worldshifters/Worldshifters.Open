@@ -46,7 +46,7 @@ namespace Worldshifters.Data.Hero
         public Types.AbilityType Type { get; set; }
 
         /// <summary>
-        /// Input parameters: caster, target index.
+        /// Input parameters: caster, target position in frontline (0-indexed).
         /// </summary>
         public Action<EntitySnapshot, int, IList<RaidAction>> ProcessEffects { get; set; }
 
@@ -54,7 +54,7 @@ namespace Worldshifters.Data.Hero
         /// A delegate method which returns a pair where the first element is true if the ability can be used,
         /// and false otherwise. The second element of the pair is an optional (nullable) error message which will
         /// be displayed to the player when the ability can't be used.
-        /// Inputs: the caster, the target index.
+        /// Inputs: the caster, the target position in frontline (0-indexed).
         /// </summary>
         /// <remarks>
         /// Regardless whether <see cref="CanCast"/> is provided or not, the ability cooldown and selected target
@@ -62,7 +62,7 @@ namespace Worldshifters.Data.Hero
         /// </remarks>
         public Func<EntitySnapshot, int, (bool canUse, string errorMessage)> CanCast { get; set; }
 
-        public void Cast(EntitySnapshot caster, int targetIndex, IList<RaidAction> raidActions)
+        public void Cast(EntitySnapshot caster, int targetPositionInFrontline, IList<RaidAction> raidActions)
         {
             throw new NotImplementedException();
         }
