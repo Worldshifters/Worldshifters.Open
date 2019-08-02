@@ -52,6 +52,7 @@ namespace Worldshifters.Data
 
         /// <summary>
         /// Strength values must be given in percentage.
+        /// Negative values for <see cref="DamageReductionBoost"/> status effects decrease the damage dealt by the attacker.
         /// </summary>
         public static Modifier DamageReductionBoost;
 

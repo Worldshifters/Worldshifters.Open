@@ -137,9 +137,10 @@ namespace Worldshifters.Assets.Hero.Earth
                                     OnSelf = true,
                                     TurnDuration = 3,
                                 }.ToByteString(),
-                            }).Cast(elen, elen.Raid.SelectedTarget, raidActions);
+                            }).Cast(elen, raidActions);
                         }
                     },
+                    ShouldRepositionSpriteAnimationOnTarget = true,
                 },
                 Abilities =
                 {
@@ -411,7 +412,7 @@ namespace Worldshifters.Assets.Hero.Earth
                             IsBuff = true,
                             OnSelf = true,
                         }.ToByteString(),
-                    }).Cast(ally, elen.Raid.SelectedTarget, raidActions);
+                    }).Cast(ally, raidActions);
                 }
             };
 

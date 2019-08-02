@@ -62,6 +62,16 @@ namespace Worldshifters.Data.Hero
         /// </remarks>
         public Func<EntitySnapshot, int, (bool canUse, string errorMessage)> CanCast { get; set; }
 
+        /// <summary>
+        /// Cast an ability targetting the caster or with no target.
+        /// </summary>
+        /// <param name="caster">The ability caster.</param>
+        /// <param name="raidActions"></param>
+        public void Cast(EntitySnapshot caster, IList<RaidAction> raidActions)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Cast(EntitySnapshot caster, int targetPositionInFrontline, IList<RaidAction> raidActions)
         {
             throw new NotImplementedException();

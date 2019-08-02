@@ -21,6 +21,7 @@ namespace Worldshifters.Data
         public static string BurntNpc;
         public static string ChargeAttackReactivation;
         public static string ChargeGaugeBoost;
+        public static string Charmed;
         public static string Counter;
         public static string CriticalHitRateBoostNpc;
         public static string CriticalHitRateBoostWeapon;

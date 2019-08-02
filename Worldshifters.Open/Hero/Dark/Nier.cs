@@ -275,7 +275,7 @@ namespace Worldshifters.Assets.Hero.Dark
                 {
                     if (nier.GetStatusEffectStacks(LoveRedemptionId) > 0)
                     {
-                        unfinishedBusiness.Cast(nier, nier.Raid.SelectedTarget, raidActions);
+                        unfinishedBusiness.Cast(nier, raidActions);
                     }
                 },
                 OnEnteringFrontline = (nier, raidActions) =>
@@ -289,7 +289,7 @@ namespace Worldshifters.Assets.Hero.Dark
 
                     nier.GlobalState["nonce"] = TypedValue.FromBool(true);
 
-                    ability4Sprite.Cast(nier, nier.Raid.SelectedTarget, raidActions);
+                    ability4Sprite.Cast(nier, raidActions);
                     foreach (var hero in nier.Raid.Allies)
                     {
                         if (!hero.IsAlive() || hero.PositionInFrontline >= 4 || hero.Element != Element.Dark)

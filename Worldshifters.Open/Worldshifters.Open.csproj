@@ -22,4 +22,8 @@
     <ProjectReference Include="..\Worldshifters.Abstractions\Worldshifters.Abstractions.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Hero\Wind\" />
+  </ItemGroup>
+
 </Project>
