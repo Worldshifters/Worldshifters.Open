@@ -151,6 +151,7 @@ namespace Worldshifters.Assets.Hero.Light
                             }
                         }
                     },
+                    ShouldRepositionSpriteAnimationOnTarget = true,
                 },
                 Abilities =
                 {
@@ -472,6 +473,11 @@ namespace Worldshifters.Assets.Hero.Light
                                                 .Where(e => e.IsAlive() && e.PositionInFrontline < 4)
                                                 .Sum(e => e.GetDebuffs().Count() * 0.5);
                     damage.ApplyEffect(tweyen, tweyen.Raid.SelectedTarget, raidActions);
+
+                    if (tweyen.GetStatusEffects().All(e => e.Id != BringTheThunderId))
+                    {
+                        return;
+                    }
 
                     foreach (var enemy in tweyen.Raid.Enemies)
                     {

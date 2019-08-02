@@ -4,7 +4,6 @@
 
 namespace Worldshifters.Data.Raid
 {
-    using System;
     using Google.Protobuf;
 
     public class StatusEffectSnapshot
@@ -74,5 +73,25 @@ namespace Worldshifters.Data.Raid
         /// Additional status effect data depending on the effect.
         /// </summary>
         public ByteString ExtraData { get; set; }
+
+        public Types.TriggerCondition TriggerCondition { get; set; }
+
+        public static class Types
+        {
+            public class TriggerCondition
+            {
+                public Types.Type Type { get; set; }
+
+                public string Data { get; set; }
+
+                public static class Types
+                {
+                    public enum Type
+                    {
+                        HasStatusEffect = 0,
+                    }
+                }
+            }
+        }
     }
 }

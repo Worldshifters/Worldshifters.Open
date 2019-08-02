@@ -10,6 +10,8 @@ namespace Worldshifters.Data.Hero
 
         public int RequiredLevel { get; set; }
 
+        public int RequiredRank { get; set; }
+
         public int UpgradedPassiveAbilityIndex { get; set; }
     }
 }

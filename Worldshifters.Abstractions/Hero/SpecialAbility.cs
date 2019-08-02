@@ -19,13 +19,23 @@ namespace Worldshifters.Data.Hero
 
         public RepeatedField<int> HitCount { get; }
 
+        /// <summary>
+        /// One <see cref="ModelMetadata"/> per character outfit.
+        /// </summary>
         public RepeatedField<ModelMetadata> ModelMetadata { get; }
 
         public string Name { get; set; }
 
-        public bool ShouldRepositionSpriteAnimation { get; set; }
-
         public RepeatedField<AbilityEffectUpgrade> UpradedEffects { get; }
+
+        public bool ShouldRepositionSpriteAnimationOnTarget { get; set; }
+
+        /// <summary>
+        /// The frame to skip to when special attack animations are skipped. 1-1 match with <see cref="ModelMetadata"/>.
+        /// </summary>
+        public RepeatedField<int> FrameToSkipToOnAnimationSkip { get; }
+
+        public RepeatedField<string> ConstructorNameOnAnimationSkip { get; }
 
         /// <summary>
         /// Input parameters: current attacker.
