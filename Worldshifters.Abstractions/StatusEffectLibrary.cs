@@ -9,6 +9,7 @@ namespace Worldshifters.Data
         public static string AdditionalDamageNpc;
         public static string AdditionalDamageWeapon;
         public static string Armored;
+        public static string Asleep;
         public static string AssassinStrike;
         public static string AttackDownNpc;
         public static string AttackDownNpc2;
@@ -110,7 +111,6 @@ namespace Worldshifters.Data
         public static string RevitalizeWeapon;
         public static string Shield;
         public static string SkillDamageCapUpNpc;
-        public static string Sleep;
         public static string StackableAttackDownNpc;
         public static string StackableChargeAttackDamageBoostWeapon;
         public static string StackableChargeAttackDamageCapBoostWeapon;

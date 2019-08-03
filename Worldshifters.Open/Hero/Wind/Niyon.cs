@@ -285,10 +285,15 @@ namespace Worldshifters.Assets.Hero.Wind
                     niyon.Raid.Enemies.ApplyStatusEffects(
                         new StatusEffectSnapshot
                         {
-                            Id = StatusEffectLibrary.Sleep,
-                            BaseAccuracy = 100,
+                            Id = StatusEffectLibrary.Asleep,
+                            BaseAccuracy = 75,
                             TurnDuration = 4 + (int)(ThreadSafeRandom.NextDouble() * 3),
                             IsLocal = true,
+                            ExtraData = new Asleep
+                            {
+                                DamageTakenAmplification = 50,
+                                WakeUpPercentageChanceOnTakingDamage = 20,
+                            }.ToByteString(),
                         },
                         raidActions);
                 },
@@ -305,14 +310,14 @@ namespace Worldshifters.Assets.Hero.Wind
                 Type = Ability.Types.AbilityType.Support,
                 ModelMetadata = new ModelMetadata
                 {
-                    JsAssetPath = "npc/25a06a88-ac5a-45eb-9d1c-ca007f4ad82f/abilities/3/ab_all_3040038000_03.js",
-                    ConstructorName = "mc_ab_all_3040038000_03",
+                    ConstructorName = "mc_ab_all_0053",
+                    JsAssetPath = "special_effects/ab_all_0053.js",
                     ImageAssets =
                     {
                         new ImageAsset
                         {
-                            Name = "ab_all_3040038000_03",
-                            Path = "npc/25a06a88-ac5a-45eb-9d1c-ca007f4ad82f/abilities/3/ab_all_3040038000_03.png",
+                            Name = "ab_all_0053",
+                            Path = "special_effects/ab_all_0053.png",
                         },
                     },
                 },

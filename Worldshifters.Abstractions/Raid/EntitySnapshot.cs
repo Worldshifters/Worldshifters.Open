@@ -71,6 +71,12 @@ namespace Worldshifters.Data.Raid
             throw new NotImplementedException();
         }
 
+        /// <returns>The current <see cref="StatusEffectSnapshot"/> for <see cref="id"/> or null if no such status effect could be found.</returns>
+        public StatusEffectSnapshot GetStatusEffect(string id)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<StatusEffectSnapshot> GetBuffs()
         {
             throw new NotImplementedException();
@@ -201,7 +207,7 @@ namespace Worldshifters.Data.Raid
             StatusEffectSnapshot effect,
             string baseStatusEffectId,
             Func<StatusEffectSnapshot, StatusEffectSnapshot, bool> onPreviousStatusEffectOverride,
-            IList<RaidAction> raidActions)
+            IList<RaidAction> raidActions = null)
         {
             throw new NotImplementedException();
         }
