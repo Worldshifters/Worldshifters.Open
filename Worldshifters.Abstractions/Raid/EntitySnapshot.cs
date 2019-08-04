@@ -7,12 +7,13 @@ namespace Worldshifters.Data.Raid
     using System;
     using System.Collections.Generic;
     using Google.Protobuf.Collections;
+    using Worldshifters.Data.Hero;
     using Hero = Worldshifters.Data.Inventory.Types.Hero;
 
     /// <summary>
     /// Represents a raid character (allie and enemies included).
     /// </summary>
-    public class EntitySnapshot
+    public sealed class EntitySnapshot
     {
         public enum AttackResult
         {
@@ -133,6 +134,31 @@ namespace Worldshifters.Data.Raid
         /// <param name="raidActions"></param>
         /// <param name="caster">The source of the heals: the caster's healing boosts may increase the default healed amount.</param>
         public void Heal(long amount, IList<RaidAction> raidActions, EntitySnapshot caster = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Grants a status effect which will trigger an ability after <see cref="turnsBeforeActivation"/>.
+        /// </summary>
+        /// <param name="effectId">The ID of the status effect.</param>
+        /// <param name="ability">The <see cref="Ability"/> to trigger.</param>
+        /// <param name="turnsBeforeActivation">The number of turns before the ability is triggered.</param>
+        /// <param name="raidActions"></param>
+        /// <param name="isUsedInternally">Whether to render the status effect on the client side or not.</param>
+        /// <param name="isUndispellable"> Whether the status effect is undispellable or not.</param>
+        /// <param name="isPassiveEffect">
+        /// Whether the status effect should be treated as a passive effect or not.
+        /// Passive effects are undispellable and remain when the character dies.
+        /// </param>
+        public void PrepareDelayedAbility(
+            string effectId,
+            Ability ability,
+            int turnsBeforeActivation,
+            IList<RaidAction> raidActions,
+            bool isUsedInternally = false,
+            bool isUndispellable = false,
+            bool isPassiveEffect = false)
         {
             throw new NotImplementedException();
         }

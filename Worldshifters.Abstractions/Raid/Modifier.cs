@@ -4,7 +4,7 @@
 
 namespace Worldshifters.Data.Raid
 {
-    public class Modifier
+    public sealed class Modifier
     {
     }
 }
