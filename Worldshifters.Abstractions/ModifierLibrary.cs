@@ -142,10 +142,20 @@ namespace Worldshifters.Data
         /// <summary>
         /// Strength values must be given in percentage.
         /// </summary>
+        public static Modifier SkillDamage;
+
+        /// <summary>
+        /// Strength values must be given in percentage.
+        /// </summary>
         public static Modifier SkillDamageCap;
 
         public static Modifier NormalAttacksHitAllFoes;
 
         public static Modifier Paralyzed;
+
+        /// <summary>
+        /// The strength of <see cref="DodgeAndCounter"/> status effects is the bonus chance (in percentage) to dodge and counter a hit.
+        /// </summary>
+        public static Modifier DodgeAndCounter;
     }
 }

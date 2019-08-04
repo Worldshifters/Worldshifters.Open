@@ -115,7 +115,6 @@ namespace Worldshifters.Data.Hero
 
         /// <summary>
         /// Callback called whenever the hero enters the frontline, either from the backrow or after being revived.
-        /// When the hero is revived, <see cref="OnEnteringFrontline"/> will be called first, followed by <see cref="OnSetup"/>.
         /// Input parameters: this.
         /// </summary>
         public Action<EntitySnapshot, IList<RaidAction>> OnEnteringFrontline { get; set; }

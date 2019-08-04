@@ -8,9 +8,22 @@ namespace Worldshifters.Data
     {
         public static string AdditionalDamageNpc;
         public static string AdditionalDamageWeapon;
+
+        /// <summary>
+        /// <see cref="Armored"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Armored"/>.
+        /// </summary>
         public static string Armored;
+
+        /// <summary>
+        /// <see cref="Asleep"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Asleep"/>.
+        /// </summary>
         public static string Asleep;
+
+        /// <summary>
+        /// <see cref="AssassinStrike"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.AssassinStrike"/>.
+        /// </summary>
         public static string AssassinStrike;
+
         public static string AttackDownNpc;
         public static string AttackDownNpc2;
         public static string AttackDownWeapon;
@@ -18,20 +31,64 @@ namespace Worldshifters.Data
         public static string AttackUpSummon;
         public static string AttackUpWeapon;
         public static string AutoRevive;
+
         public static string Blind;
+        public static string BlindLocal;
+
+        /// <summary>
+        /// <see cref="BurntNpc"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Burn"/>.
+        /// </summary>
         public static string BurntNpc;
+
         public static string ChargeAttackReactivation;
         public static string ChargeGaugeBoost;
         public static string Charmed;
+
+        /// <summary>
+        /// <see cref="Counter"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Counter"/>.
+        /// </summary>
         public static string Counter;
+
+        /// <summary>
+        /// <see cref="CriticalHitRateBoostNpc"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.CriticalHit"/>.
+        /// </summary>
         public static string CriticalHitRateBoostNpc;
+
+        /// <summary>
+        /// <see cref="CriticalHitRateBoostWeapon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.CriticalHit"/>.
+        /// </summary>
         public static string CriticalHitRateBoostWeapon;
+
+        /// <summary>
+        /// <see cref="CriticalHitRateBoostForDarkAlliesWeapon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.CriticalHit"/>.
+        /// </summary>
         public static string CriticalHitRateBoostForDarkAlliesWeapon;
+
+        /// <summary>
+        /// <see cref="CriticalHitRateBoostForEarthAlliesWeapon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.CriticalHit"/>.
+        /// </summary>
         public static string CriticalHitRateBoostForEarthAlliesWeapon;
+
+        /// <summary>
+        /// <see cref="CriticalHitRateBoostForFireAlliesWeapon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.CriticalHit"/>.
+        /// </summary>
         public static string CriticalHitRateBoostForFireAlliesWeapon;
+
+        /// <summary>
+        /// <see cref="CriticalHitRateBoostForLightAlliesWeapon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.CriticalHit"/>.
+        /// </summary>
         public static string CriticalHitRateBoostForLightAlliesWeapon;
+
+        /// <summary>
+        /// <see cref="CriticalHitRateBoostForWaterAlliesWeapon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.CriticalHit"/>.
+        /// </summary>
         public static string CriticalHitRateBoostForWaterAlliesWeapon;
+
+        /// <summary>
+        /// <see cref="CriticalHitRateBoostForWindAlliesWeapon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.CriticalHit"/>.
+        /// </summary>
         public static string CriticalHitRateBoostForWindAlliesWeapon;
+
         public static string DamageBoostedNpc;
         public static string DamageCapUpNpc;
         public static string DamageCapUpSummon;
@@ -53,8 +110,10 @@ namespace Worldshifters.Data
         public static string DebuffResistanceUpWeapon;
         public static string DebuffResistanceUpSummon;
         public static string DebuffResistanceDownNpc;
-        public static string DebuffResistanceDownWeapon;
         public static string DebuffResistanceDownSummon;
+        public static string DebuffResistanceDownWeapon;
+        public static string DebuffSuccessRateUpSummon;
+        public static string DebuffSuccessRateUpWeapon;
         public static string DefenseDownNpc;
         public static string DefenseDownNpc2;
         public static string DefenseDownWeapon;
@@ -62,14 +121,28 @@ namespace Worldshifters.Data
         public static string DefenseUpSummon;
         public static string DefenseUpWeapon;
         public static string Dispel;
+
+        /// <summary>
+        /// The strength of <see cref="Dodge"/> status effects is the maximum number of turns in which attacks and/or debuffs will be dodged.
+        /// </summary>
         public static string Dodge;
+
         public static string DoubleAttackRateDownNpc;
         public static string DoubleAttackRateDownWeapon;
         public static string DoubleAttackRateUpNpc;
         public static string DoubleAttackRateUpWeapon;
         public static string DoubleStrike;
+
+        /// <summary>
+        /// <see cref="DrainNpc"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Drain"/>.
+        /// </summary>
         public static string DrainNpc;
+
+        /// <summary>
+        /// <see cref="DrainWeapon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Drain"/>.
+        /// </summary>
         public static string DrainWeapon;
+
         public static string EarthAttackUpNpc;
         public static string EarthAttackUpSummon;
         public static string EarthAttackUpWeapon;
@@ -90,8 +163,17 @@ namespace Worldshifters.Data
         public static string FireSwitch;
         public static string HostilityDown;
         public static string HostilityUp;
+
+        /// <summary>
+        /// <see cref="JammedNpc"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.LinearAttackBoost"/>.
+        /// </summary>
         public static string JammedNpc;
+
+        /// <summary>
+        /// <see cref="JammedWeapon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.LinearAttackBoost"/>.
+        /// </summary>
         public static string JammedWeapon;
+
         public static string LightAttackUpNpc;
         public static string LightAttackUpSummon;
         public static string LightAttackUpWeapon;
@@ -101,14 +183,42 @@ namespace Worldshifters.Data
         public static string LightDamageCutUpWeapon;
         public static string LightElementalAttackBoostAmplificationNpc;
         public static string LightSwitch;
+
+        /// <summary>
+        /// The strength of <see cref="MirrorImage"/> status effects is the maximum number of one-foe hits which will be dodged, until AoE damage is received or the status effect fades away.
+        /// </summary>
         public static string MirrorImage;
+
         public static string Paralyzed;
+
+        /// <summary>
+        /// <see cref="PoisonedNpc"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Burn"/>.
+        /// </summary>
         public static string PoisonedNpc;
+
+        /// <summary>
+        /// <see cref="RefreshNpc"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Revitalize"/>.
+        /// </summary>
         public static string RefreshNpc;
+
+        /// <summary>
+        /// <see cref="RefreshWeapon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Revitalize"/>.
+        /// </summary>
         public static string RefreshWeapon;
+
+        public static string RemoveDebuff;
         public static string RepelNpc;
+
+        /// <summary>
+        /// <see cref="RevitalizeNpc"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Revitalize"/>.
+        /// </summary>
         public static string RevitalizeNpc;
+
+        /// <summary>
+        /// <see cref="RevitalizeWeapon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Revitalize"/>.
+        /// </summary>
         public static string RevitalizeWeapon;
+
         public static string Shield;
         public static string SkillDamageCapUpNpc;
         public static string StackableAttackDownNpc;
@@ -116,8 +226,17 @@ namespace Worldshifters.Data
         public static string StackableChargeAttackDamageCapBoostWeapon;
         public static string StackableDefenseDownNpc;
         public static string StackableDebuffResistanceDownNpc;
+
+        /// <summary>
+        /// <see cref="StrengthNpc"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.LinearAttackBoost"/>.
+        /// </summary>
         public static string StrengthNpc;
+
+        /// <summary>
+        /// <see cref="StrengthWeapon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.LinearAttackBoost"/>.
+        /// </summary>
         public static string StrengthWeapon;
+
         public static string Substitute;
         public static string SubstituteAllAttacks;
         public static string TripleAttackRateDownNpc;
@@ -127,6 +246,7 @@ namespace Worldshifters.Data
         public static string TripleAttackRateUpSummon;
         public static string TripleStrike;
         public static string Unchallenged;
+        public static string Uplifted;
         public static string Veil;
         public static string WaterAttackUpNpc;
         public static string WaterAttackUpSummon;

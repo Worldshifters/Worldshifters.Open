@@ -50,7 +50,7 @@ namespace Worldshifters.Data.Raid
         public double Strength { get; set; }
 
         /// <summary>
-        /// Only one between <see cref="TurnDuration"/> and <see cref="InitialDurationInSeconds"/> should be implemented.
+        /// Only one between <see cref="TurnDuration"/> and <see cref="RemainingDurationInSeconds"/> should be implemented.
         /// </summary>
         public int TurnDuration { get; set; }
 
@@ -84,11 +84,17 @@ namespace Worldshifters.Data.Raid
 
                 public string Data { get; set; }
 
+                /// <summary>
+                /// Whether to remove the status effect when the parent dependency (a status effect for instance) is broken.
+                /// </summary>
+                public bool LinkToParentCondition { get; set; }
+
                 public static class Types
                 {
                     public enum Type
                     {
-                        HasStatusEffect = 0,
+                        HasStatusEffect,
+                        TargetHasStatusEffect,
                     }
                 }
             }
