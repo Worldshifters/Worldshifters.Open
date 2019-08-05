@@ -21,5 +21,10 @@ namespace Worldshifters.Data.Utils
         {
             throw new NotImplementedException();
         }
+
+        public static void ApplyStatusEffectsFromTemplate(this IEnumerable<EntitySnapshot> entities, StatusEffectSnapshot statusEffect, IList<RaidAction> raidActions = null, params (string, Modifier, double)[] idsAndModifiersAndStrength)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

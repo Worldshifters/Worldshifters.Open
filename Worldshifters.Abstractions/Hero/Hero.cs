@@ -80,6 +80,18 @@ namespace Worldshifters.Data.Hero
         public Action<EntitySnapshot, IList<RaidAction>> OnActionStart { get; set; }
 
         /// <summary>
+        /// Callback method called before casting an <see cref="Ability"/>. It won't be called for abilities instantiated explicitly and invoked with <see cref="Ability.Cast(EntitySnapshot, IList{Worldshifters.Data.Raid.RaidAction})"/>. Input parameters: this (the caster).
+        /// </summary>
+        /// <remarks>Called even if the character is dead.</remarks>
+        public Action<EntitySnapshot, IList<RaidAction>> OnAbilityStart { get; set; }
+
+        /// <summary>
+        /// Callback method called before performing an attack. It won't be called if the hero can't attack. Input parameters: this.
+        /// </summary>
+        /// <remarks>Called even if the character is dead.</remarks>
+        public Action<EntitySnapshot, IList<RaidAction>> OnAttackStart { get; set; }
+
+        /// <summary>
         /// Input parameters: this (the current attacker), the attack type.
         /// </summary>
         /// <remarks>Called before applying drain and repel effects.</remarks>

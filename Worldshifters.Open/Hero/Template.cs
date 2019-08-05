@@ -175,13 +175,13 @@ namespace Worldshifters.Assets.Hero
                     new AbilityUpgrade
                     {
                         RequiredLevel = 75,
-                        Ability = Ability2(cooldown: 7, baseStrengthBoost: 1.5),
+                        Ability = Ability2(cooldown: 7),
                         UpgradedAbilityIndex = 1,
                     },
                     new AbilityUpgrade
                     {
                         RequiredLevel = 95,
-                        Ability = Ability2(cooldown: 6, baseStrengthBoost: 1.5, applyHarmonicsAndSharping: true),
+                        Ability = Ability2(cooldown: 6),
                         UpgradedAbilityIndex = 1,
                     },
                     new AbilityUpgrade
@@ -249,20 +249,6 @@ namespace Worldshifters.Assets.Hero
             {
                 Name = "Ability 1",
                 Cooldown = (int)cooldown,
-                Effects =
-                {
-                    new AbilityEffect
-                    {
-                        Type = AbilityEffect.Types.AbilityEffectType.ApplyStatusEffect,
-                        ExtraData = new ApplyStatusEffect
-                        {
-                            Id = StatusEffectLibrary.Dodge,
-                            IsBuff = true,
-                            TurnDuration = 1,
-                            OnSelf = true,
-                        }.ToByteString(),
-                    },
-                },
                 ModelMetadata = new ModelMetadata
                 {
                     JsAssetPath = "npc/25a06a88-ac5a-45eb-9d1c-ca007f4ad82f/abilities/0/ab_all_3040038000_02.js",
@@ -276,6 +262,9 @@ namespace Worldshifters.Assets.Hero
                         },
                     },
                 },
+                Effects =
+                {
+                },
                 ProcessEffects = (template, targetPositionInFrontline, raidActions) =>
                 {
                 },
@@ -283,7 +272,7 @@ namespace Worldshifters.Assets.Hero
             };
         }
 
-        private static Ability Ability2(uint cooldown, double baseStrengthBoost = 1, bool applyHarmonicsAndSharping = false)
+        private static Ability Ability2(uint cooldown)
         {
             return new Ability
             {
