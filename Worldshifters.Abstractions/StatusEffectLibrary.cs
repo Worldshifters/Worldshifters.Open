@@ -72,6 +72,7 @@ namespace Worldshifters.Data
         public static string AttackUpNpc;
         public static string AttackUpSummon;
         public static string AttackUpWeapon;
+        public static string AuroraCrest;
         public static string AutoRevive;
 
         public static string Blind;
@@ -133,6 +134,7 @@ namespace Worldshifters.Data
 
         /// <summary>
         /// <see cref="DamageBoostedNpc"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.SupplementalDamage"/>.
+        /// The strength value of a status effect with this modifier is the supplemental damage dealt with each hit (attacks or abilities) as a percentage of the target max HP or as flat damage.
         /// </summary>
         public static string DamageBoostedNpc;
 
@@ -166,6 +168,7 @@ namespace Worldshifters.Data
         public static string DefenseUpNpc;
         public static string DefenseUpSummon;
         public static string DefenseUpWeapon;
+        public static string DelugeCrest;
         public static string Dispel;
 
         /// <summary>

@@ -253,13 +253,6 @@ namespace Worldshifters.Assets.Hero.Wind
                 },
                 OnSetup = (niyon, allies, loadout) =>
                 {
-                    if (niyon.Hero.Level >= 95)
-                    {
-                        niyon.OverrideWeaponSeraphicModifier(20);
-                    }
-                },
-                OnEnteringFrontline = (niyon, raidActions) =>
-                {
                     var supportSkillRank = niyon.Hero.GetSupportSkillRank();
                     if (supportSkillRank > 0)
                     {
@@ -280,6 +273,13 @@ namespace Worldshifters.Assets.Hero.Wind
                         });
                     }
 
+                    if (niyon.Hero.Level >= 95)
+                    {
+                        niyon.OverrideWeaponSeraphicModifier(20);
+                    }
+                },
+                OnEnteringFrontline = (niyon, raidActions) =>
+                {
                     ProcessPassiveEffects(niyon);
                 },
             };
