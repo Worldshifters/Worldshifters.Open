@@ -33,6 +33,11 @@ namespace Worldshifters.Data.Raid
 
         public int NumSpecialAttacksUsedThisTurn { get; set; }
 
+        /// <summary>
+        /// The value of <see cref="DodgedDamageOrDebuff"/> is reset at the beginning of each turn to false.
+        /// </summary>
+        public bool DodgedDamageOrDebuff { get; set; }
+
         /// <remarks>0-indexed: the first ally/enemy has <see cref="PositionInFrontline"/> set to 0.</remarks>
         public int PositionInFrontline { get; set; }
 
@@ -173,13 +178,7 @@ namespace Worldshifters.Data.Raid
             throw new NotImplementedException();
         }
 
-        /// <returns>
-        /// A <see cref="RaidAction"/> to queue to the list of raid updates for the current action, in order
-        /// to force a visual update of this <see cref="EntitySnapshot"/> charge bar before the action finishes
-        /// rendering on the player side.
-        /// Example scenario: updating charge bars of other party members after a charge attack.
-        /// </returns>
-        public RaidAction AddChargeGauge(int amount)
+        public void AddChargeGauge(int amount, IList<RaidAction> raidActions = null)
         {
             throw new NotImplementedException();
         }

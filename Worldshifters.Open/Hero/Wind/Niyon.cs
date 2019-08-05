@@ -11,6 +11,7 @@ namespace Worldshifters.Assets.Hero.Wind
     using Worldshifters.Data.Hero;
     using Worldshifters.Data.Raid;
     using Worldshifters.Data.Utils;
+    using static Data.Raid.StatusEffectSnapshot.Types;
 
     public static class Niyon
     {
@@ -257,7 +258,30 @@ namespace Worldshifters.Assets.Hero.Wind
                         niyon.OverrideWeaponSeraphicModifier(20);
                     }
                 },
-                OnEnteringFrontline = (niyon, raidActions) => ProcessPassiveEffects(niyon),
+                OnEnteringFrontline = (niyon, raidActions) =>
+                {
+                    var supportSkillRank = niyon.Hero.GetSupportSkillRank();
+                    if (supportSkillRank > 0)
+                    {
+                        niyon.ApplyStatusEffect(new StatusEffectSnapshot
+                        {
+                            Id = "niyon/emp",
+                            IsBuff = true,
+                            IsPassiveEffect = true,
+                            TurnDuration = int.MaxValue,
+                            IsUsedInternally = true,
+                            Modifier = ModifierLibrary.AdditionalDamage,
+                            TriggerCondition = new TriggerCondition
+                            {
+                                Type = TriggerCondition.Types.Type.TargetHasStatusEffect,
+                                Data = TuningId,
+                            },
+                            Strength = (long)Math.Ceiling(2.5 * (supportSkillRank + 1)),
+                        });
+                    }
+
+                    ProcessPassiveEffects(niyon);
+                },
             };
         }
 
@@ -282,12 +306,13 @@ namespace Worldshifters.Assets.Hero.Wind
                 },
                 ProcessEffects = (niyon, _, raidActions) =>
                 {
+                    var randomAsleepDuration = 4 + (int)(ThreadSafeRandom.NextDouble() * 3);
                     niyon.Raid.Enemies.ApplyStatusEffects(
                         new StatusEffectSnapshot
                         {
-                            Id = StatusEffectLibrary.Asleep,
+                            Id = $"{StatusEffectLibrary.AsleepLocal}_{randomAsleepDuration}",
                             BaseAccuracy = 75,
-                            TurnDuration = 4 + (int)(ThreadSafeRandom.NextDouble() * 3),
+                            TurnDuration = randomAsleepDuration,
                             IsLocal = true,
                             ExtraData = new Asleep
                             {
@@ -450,9 +475,8 @@ namespace Worldshifters.Assets.Hero.Wind
                 Strength = 10,
                 IsBuff = true,
                 Modifier = ModifierLibrary.FlatDebuffSuccessRateBoost,
-                IsUndispellable = true,
+                IsPassiveEffect = true,
                 IsUsedInternally = true,
-                TurnDuration = 1,
             });
 
             if (niyon.Hero.Level >= 90)
@@ -463,11 +487,11 @@ namespace Worldshifters.Assets.Hero.Wind
                     Strength = -20,
                     BaseAccuracy = double.MaxValue,
                     Modifier = ModifierLibrary.DamageReductionBoost,
-                    IsUndispellable = true,
+                    IsPassiveEffect = true,
                     IsUsedInternally = true,
-                    TriggerCondition = new StatusEffectSnapshot.Types.TriggerCondition
+                    TriggerCondition = new TriggerCondition
                     {
-                        Type = StatusEffectSnapshot.Types.TriggerCondition.Types.Type.HasStatusEffect,
+                        Type = TriggerCondition.Types.Type.HasStatusEffect,
                         Data = TuningId,
                     },
                 });

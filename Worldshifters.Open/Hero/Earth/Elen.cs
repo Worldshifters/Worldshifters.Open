@@ -412,7 +412,7 @@ namespace Worldshifters.Assets.Hero.Earth
                             IsBuff = true,
                             OnSelf = true,
                         }.ToByteString(),
-                    }).Cast(ally, raidActions);
+                    }).Cast(ally, raidActions, doNotRenderCastAbilityEffect: true);
                 }
             };
 
@@ -442,6 +442,7 @@ namespace Worldshifters.Assets.Hero.Earth
                 RepositionOnTarget = true,
                 ProcessEffects = (elen, targetPositionInFrontline, raidActions) =>
                 {
+                    elen.AddChargeGauge(30);
                     if (elen.Hero.Level < 95)
                     {
                         return;

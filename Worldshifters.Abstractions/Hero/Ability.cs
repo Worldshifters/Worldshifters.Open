@@ -67,12 +67,13 @@ namespace Worldshifters.Data.Hero
         /// </summary>
         /// <param name="caster">The ability caster.</param>
         /// <param name="raidActions"></param>
-        public void Cast(EntitySnapshot caster, IList<RaidAction> raidActions)
+        /// <param name="doNotRenderCastAbilityEffect">Optional boolean to toggle on or off the "cast ability" animation when this <see cref="Ability"/> is used.</param>
+        public void Cast(EntitySnapshot caster, IList<RaidAction> raidActions, bool? doNotRenderCastAbilityEffect = null)
         {
             throw new NotImplementedException();
         }
 
-        public void Cast(EntitySnapshot caster, int targetPositionInFrontline, IList<RaidAction> raidActions)
+        public void Cast(EntitySnapshot caster, int targetPositionInFrontline, IList<RaidAction> raidActions, bool? doNotRenderCastAbilityEffect = null)
         {
             throw new NotImplementedException();
         }

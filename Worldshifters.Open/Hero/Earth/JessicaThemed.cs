@@ -279,7 +279,7 @@ namespace Worldshifters.Assets.Hero.Earth
                         DamageModifier = 2.5 + (0.5 * fireSupportStack),
                         HitNumber = 1,
                         HitAllTargets = true,
-                    }.ApplyEffect(jessica, raidActions);
+                    }.ProcessEffects(jessica, raidActions);
                 },
                 AnimationName = "ab_motion",
             };

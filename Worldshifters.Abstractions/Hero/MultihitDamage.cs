@@ -23,12 +23,12 @@ namespace Worldshifters.Data.Hero
 
         public bool RandomTargets { get; set; }
 
-        public void ApplyEffect(EntitySnapshot caster, IList<RaidAction> raidActions)
+        public void ProcessEffects(EntitySnapshot caster, IList<RaidAction> raidActions)
         {
             throw new NotImplementedException();
         }
 
-        public void ApplyEffect(EntitySnapshot caster, int targetPositionInFrontline, IList<RaidAction> raidActions)
+        public void ProcessEffects(EntitySnapshot caster, int targetPositionInFrontline, IList<RaidAction> raidActions)
         {
             throw new NotImplementedException();
         }

@@ -151,8 +151,6 @@ namespace Worldshifters.Data
 
         public static Modifier NormalAttacksHitAllFoes;
 
-        public static Modifier Paralyzed;
-
         /// <summary>
         /// The strength of <see cref="DodgeAndCounter"/> status effects is the bonus chance (in percentage) to dodge and counter a hit.
         /// </summary>

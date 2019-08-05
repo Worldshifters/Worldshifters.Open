@@ -7,6 +7,13 @@ namespace Worldshifters.Data
     public static class StatusEffectLibrary
     {
         public static string AdditionalDamageNpc;
+        public static string AdditionalDarkDamageNpc;
+        public static string AdditionalEarthDamageNpc;
+        public static string AdditionalFireDamageNpc;
+        public static string AdditionalLightDamageNpc;
+        public static string AdditionalWaterDamageNpc;
+        public static string AdditionalWindDamageNpc;
+
         public static string AdditionalDamageWeapon;
 
         /// <summary>
@@ -18,6 +25,41 @@ namespace Worldshifters.Data
         /// <see cref="Asleep"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Asleep"/>.
         /// </summary>
         public static string Asleep;
+
+        /// <summary>
+        /// <see cref="AsleepLocal"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Asleep"/>.
+        /// </summary>
+        public static string AsleepLocal;
+
+        /// <summary>
+        /// <see cref="AsleepLocal1"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Asleep"/>.
+        /// </summary>
+        public static string AsleepLocal1;
+
+        /// <summary>
+        /// <see cref="AsleepLocal2"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Asleep"/>.
+        /// </summary>
+        public static string AsleepLocal2;
+
+        /// <summary>
+        /// <see cref="AsleepLocal3"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Asleep"/>.
+        /// </summary>
+        public static string AsleepLocal3;
+
+        /// <summary>
+        /// <see cref="AsleepLocal4"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Asleep"/>.
+        /// </summary>
+        public static string AsleepLocal4;
+
+        /// <summary>
+        /// <see cref="AsleepLocal5"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Asleep"/>.
+        /// </summary>
+        public static string AsleepLocal5;
+
+        /// <summary>
+        /// <see cref="AsleepLocal6"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Asleep"/>.
+        /// </summary>
+        public static string AsleepLocal6;
 
         /// <summary>
         /// <see cref="AssassinStrike"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.AssassinStrike"/>.
@@ -89,7 +131,11 @@ namespace Worldshifters.Data
         /// </summary>
         public static string CriticalHitRateBoostForWindAlliesWeapon;
 
+        /// <summary>
+        /// <see cref="DamageBoostedNpc"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.SupplementalDamage"/>.
+        /// </summary>
         public static string DamageBoostedNpc;
+
         public static string DamageCapUpNpc;
         public static string DamageCapUpSummon;
         public static string DamageCapUpWeapon;
@@ -191,10 +237,20 @@ namespace Worldshifters.Data
 
         public static string Paralyzed;
 
+        public static string ParalyzedLocal;
+        public static string ParalyzedLocal1;
+        public static string ParalyzedLocal2;
+        public static string ParalyzedLocal3;
+
         /// <summary>
         /// <see cref="PoisonedNpc"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Burn"/>.
         /// </summary>
         public static string PoisonedNpc;
+
+        /// <summary>
+        /// <see cref="PutrefiedNpc"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Burn"/>.
+        /// </summary>
+        public static string PutrefiedNpc;
 
         /// <summary>
         /// <see cref="RefreshNpc"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Revitalize"/>.
