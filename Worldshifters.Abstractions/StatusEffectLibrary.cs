@@ -7,14 +7,25 @@ namespace Worldshifters.Data
     public static class StatusEffectLibrary
     {
         public static string AdditionalDamageNpc;
-        public static string AdditionalDarkDamageNpc;
-        public static string AdditionalEarthDamageNpc;
-        public static string AdditionalFireDamageNpc;
-        public static string AdditionalLightDamageNpc;
-        public static string AdditionalWaterDamageNpc;
-        public static string AdditionalWindDamageNpc;
-
         public static string AdditionalDamageWeapon;
+        public static string AdditionalDarkDamageNpc;
+        public static string AdditionalDarkDamageNpc2;
+        public static string AdditionalDarkDamageWeapon;
+        public static string AdditionalEarthDamageNpc;
+        public static string AdditionalEarthDamageNpc2;
+        public static string AdditionalEarthDamageWeapon;
+        public static string AdditionalFireDamageNpc;
+        public static string AdditionalFireDamageNpc2;
+        public static string AdditionalFireDamageWeapon;
+        public static string AdditionalLightDamageNpc;
+        public static string AdditionalLightDamageNpc2;
+        public static string AdditionalLightDamageWeapon;
+        public static string AdditionalWaterDamageNpc;
+        public static string AdditionalWaterDamageNpc2;
+        public static string AdditionalWaterDamageWeapon;
+        public static string AdditionalWindDamageNpc;
+        public static string AdditionalWindDamageNpc2;
+        public static string AdditionalWindDamageWeapon;
 
         /// <summary>
         /// <see cref="Armored"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Armored"/>.

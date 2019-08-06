@@ -19,6 +19,9 @@ namespace Worldshifters.Assets.Hero.Dark
 
         private const string GhostCageId = "ferry/ghost_cage";
         private const string FreigeistId = "ferry/freigeist";
+        private const string OnTheBrinkLightDamageReductionId = "ferry/on_the_brink_l";
+        private const string OnTheBrinkDarkDamageReductionId = "ferry/on_the_brink_d";
+        private const string GhostlyCallId = "ferry/ghostly_call";
 
         public static Hero NewInstance()
         {
@@ -132,7 +135,7 @@ namespace Worldshifters.Assets.Hero.Dark
                                 TurnDuration = 4,
                                 OnAllPartyMembers = true,
                             }.ToByteString(),
-                        }).Cast(ferry, ferry.Raid.SelectedTarget, raidActions);
+                        }).Cast(ferry, raidActions);
                     },
                 },
                 Abilities =
@@ -263,7 +266,7 @@ namespace Worldshifters.Assets.Hero.Dark
                         ally.ApplyStatusEffect(
                             new StatusEffectSnapshot
                             {
-                                Id = "ferry/light_dmg_reduction",
+                                Id = OnTheBrinkLightDamageReductionId,
                                 IsBuff = true,
                                 IsPassiveEffect = true,
                                 IsUsedInternally = true,
@@ -275,13 +278,30 @@ namespace Worldshifters.Assets.Hero.Dark
                         ally.ApplyStatusEffect(
                             new StatusEffectSnapshot
                             {
-                                Id = "ferry/dark_dmg_reduction",
+                                Id = OnTheBrinkDarkDamageReductionId,
                                 IsBuff = true,
                                 IsPassiveEffect = true,
                                 IsUsedInternally = true,
                                 Strength = 10,
                                 Modifier = ModifierLibrary.DamageReductionBoost,
                                 AttackElementRestriction = Element.Dark,
+                            });
+
+                        ally.ApplyStatusEffect(
+                            new StatusEffectSnapshot
+                            {
+                                Id = GhostlyCallId,
+                                IsBuff = true,
+                                IsPassiveEffect = true,
+                                IsUsedInternally = true,
+                                Strength = 10,
+                                Modifier = ModifierLibrary.AdditionalDamage,
+                                AttackElementRestriction = Element.Dark,
+                                TriggerCondition = new StatusEffectSnapshot.Types.TriggerCondition
+                                {
+                                    Type = StatusEffectSnapshot.Types.TriggerCondition.Types.Type.TargetHasStatusEffect,
+                                    Data = GhostCageId,
+                                },
                             });
                     }
                 },
@@ -292,7 +312,7 @@ namespace Worldshifters.Assets.Hero.Dark
                         if (enemy.IsAlive() && enemy.NumSpecialAttacksUsedThisTurn > 0 &&
                             enemy.GetStatusEffects().Any(e => e.Id == GhostCageId))
                         {
-                            ghostCage.Cast(ferry, ferry.Raid.SelectedTarget, raidActions);
+                            ghostCage.Cast(ferry, raidActions);
                             enemy.RemoveStatusEffect(GhostCageId);
                             break;
                         }
@@ -307,7 +327,7 @@ namespace Worldshifters.Assets.Hero.Dark
                             continue;
                         }
 
-                        ally.RemoveStatusEffects(new[] { "ferry/light_dmg_reduction", "ferry/dark_dmg_reduction" });
+                        ally.RemoveStatusEffects(new[] { OnTheBrinkLightDamageReductionId, OnTheBrinkDarkDamageReductionId, GhostlyCallId });
                     }
                 },
                 OnEnteringFrontline = (ferry, raidActions) => { },
