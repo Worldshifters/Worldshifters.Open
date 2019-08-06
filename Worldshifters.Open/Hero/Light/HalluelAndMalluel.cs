@@ -108,21 +108,23 @@ namespace Worldshifters.Assets.Hero.Light
                         },
                         AnimationName = "ab_motion",
                         ShouldRepositionSpriteAnimation = true,
-                        Effects =
+                        ProcessEffects = (halluelAndMalluel, _, raidActions) =>
                         {
-                            new AbilityEffect
+                            var stacks = halluelAndMalluel.GetStatusEffectStacks(LimiterBreakId);
+                            if (stacks > 0)
                             {
-                                Type = AbilityEffect.Types.AbilityEffectType.ApplyStatusEffect,
-                                ExtraData = new ApplyStatusEffect
+                                halluelAndMalluel.RemoveStatusEffect($"{LimiterBreakId}_{stacks}");
+                            }
+
+                            halluelAndMalluel.ApplyStatusEffect(
+                                new StatusEffectSnapshot
                                 {
                                     Id = $"{LimiterBreakId}_3",
                                     Strength = 3,
                                     IsBuff = true,
                                     TurnDuration = int.MaxValue,
                                     IsUndispellable = true,
-                                    OnSelf = true,
-                                }.ToByteString(),
-                            },
+                                },raidActions);
                         },
                     },
                 },
