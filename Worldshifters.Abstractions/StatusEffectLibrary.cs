@@ -78,6 +78,7 @@ namespace Worldshifters.Data
         public static string AssassinStrike;
 
         public static string AttackDownNpc;
+        public static string AttackDownNpcLocal;
         public static string AttackDownNpc2;
         public static string AttackDownWeapon;
         public static string AttackUpNpc;
@@ -174,6 +175,7 @@ namespace Worldshifters.Data
         public static string DebuffSuccessRateUpSummon;
         public static string DebuffSuccessRateUpWeapon;
         public static string DefenseDownNpc;
+        public static string DefenseDownNpcLocal;
         public static string DefenseDownNpc2;
         public static string DefenseDownWeapon;
         public static string DefenseUpNpc;
@@ -202,6 +204,11 @@ namespace Worldshifters.Data
         /// <see cref="DrainWeapon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Drain"/>.
         /// </summary>
         public static string DrainWeapon;
+
+        /// <summary>
+        /// <see cref="DrainSummon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Drain"/>.
+        /// </summary>
+        public static string DrainSummon;
 
         public static string EarthAttackUpNpc;
         public static string EarthAttackUpSummon;
@@ -290,6 +297,12 @@ namespace Worldshifters.Data
         public static string RevitalizeWeapon;
 
         public static string Shield;
+
+        /// <summary>
+        /// Charge gauge is frozen.
+        /// </summary>
+        public static string Shorted;
+
         public static string SkillDamageCapUpNpc;
         public static string StackableAttackDownNpc;
         public static string StackableChargeAttackDamageBoostWeapon;

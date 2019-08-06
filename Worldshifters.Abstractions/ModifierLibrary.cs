@@ -159,5 +159,11 @@ namespace Worldshifters.Data
         /// The strength of <see cref="DodgeAndCounter"/> status effects is the bonus chance (in percentage) to dodge and counter a hit.
         /// </summary>
         public static Modifier DodgeAndCounter;
+
+        /// <summary>
+        /// <see cref="StatusEffectSnapshot"/>s with a <see cref="Drain"/> <see cref="StatusEffectSnapshot.Modifier"/> must have <see cref="StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Drain"/>.
+        /// Strength values of <see cref="Drain"/> effects are either a percentage of the damage dealt or a flat HP amount, depending on the <see cref="StatusEffectSnapshot.ExtraData"/> settings.
+        /// </summary>
+        public static Modifier Drain;
     }
 }

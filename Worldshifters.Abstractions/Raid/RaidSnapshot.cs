@@ -7,6 +7,7 @@
 namespace Worldshifters.Data.Raid
 {
     using System;
+    using System.Collections.Generic;
     using Google.Protobuf;
     using Google.Protobuf.Collections;
 
@@ -30,6 +31,11 @@ namespace Worldshifters.Data.Raid
         public int Turn { get; set; }
 
         public void AddFieldEffect(string fieldEffectId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ISet<string> GetActiveFieldEffectIds()
         {
             throw new NotImplementedException();
         }

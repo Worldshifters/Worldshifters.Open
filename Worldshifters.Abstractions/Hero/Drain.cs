@@ -9,11 +9,18 @@ namespace Worldshifters.Data.Hero
 
     public class Drain
     {
+        /// <summary>
+        /// Maximum healed amount. Only one between <see cref="HealingCap"/> and <see cref="HealingCapPercentage"/> must be provided.
+        /// </summary>
         public long HealingCap { get; set; }
 
         /// <summary>
-        /// Whether to treat the <see cref="Raid.StatusEffectSnapshot.Strength"/> of a <see cref="StatusEffectLibrary.DrainNpc"/>
-        /// or <see cref="StatusEffectLibrary.DrainWeapon"/> effect as a percentage or a flat HP amount.
+        /// Maximum healed amount as a percentage of the character max HP. Only one between <see cref="HealingCap"/> and <see cref="HealingCapPercentage"/> must be provided.
+        /// </summary>
+        public long HealingCapPercentage { get; set; }
+
+        /// <summary>
+        /// Whether to treat the <see cref="Raid.StatusEffectSnapshot.Strength"/> of a <see cref="ModifierLibrary.Drain"/> effect as a percentage or a flat HP amount.
         /// </summary>
         public bool IsPercentageBased { get; set; }
 

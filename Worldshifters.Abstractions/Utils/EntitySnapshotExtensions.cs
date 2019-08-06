@@ -17,12 +17,26 @@ namespace Worldshifters.Data.Utils
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Apply status effects to alive allies on the frontline.
+        /// </summary>
         public static void ApplyStatusEffects(this IEnumerable<EntitySnapshot> entities, StatusEffectSnapshot statusEffect, IList<RaidAction> raidActions = null)
         {
             throw new NotImplementedException();
         }
 
-        public static void ApplyStatusEffectsFromTemplate(this IEnumerable<EntitySnapshot> entities, StatusEffectSnapshot statusEffect, IList<RaidAction> raidActions = null, params (string, Modifier, double)[] idsAndModifiersAndStrength)
+        /// <summary>
+        /// Apply status effects to alive allies on the frontline.
+        /// </summary>
+        public static void ApplyStatusEffectsFromTemplate(this IEnumerable<EntitySnapshot> entities, StatusEffectSnapshot statusEffect, IList<RaidAction> raidActions, params (string, Modifier, double)[] idsAndModifiersAndStrength)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Apply status effects to alive allies on the frontline.
+        /// </summary>
+        public static void ApplyStatusEffectsFromTemplate(this IEnumerable<EntitySnapshot> entities, StatusEffectSnapshot statusEffect, params (string, Modifier, double)[] idsAndModifiersAndStrength)
         {
             throw new NotImplementedException();
         }

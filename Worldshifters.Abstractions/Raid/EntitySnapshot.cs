@@ -29,7 +29,15 @@ namespace Worldshifters.Data.Raid
         /// </summary>
         public Hero Hero { get; }
 
+        /// <summary>
+        /// The value of <see cref="NumHitsReceived"/> is reset at the beginning of each turn to 0.
+        /// </summary>
         public int NumHitsReceived { get; set; }
+
+        /// <summary>
+        /// The value of <see cref="NumDebuffsReceived"/> is reset at the beginning of each turn to 0.
+        /// </summary>
+        public int NumDebuffsReceived { get; set; }
 
         public int NumSpecialAttacksUsedThisTurn { get; set; }
 
@@ -37,6 +45,11 @@ namespace Worldshifters.Data.Raid
         /// The value of <see cref="DodgedDamageOrDebuff"/> is reset at the beginning of each turn to false.
         /// </summary>
         public bool DodgedDamageOrDebuff { get; set; }
+
+        /// <summary>
+        /// The value of <see cref="TookTurnBaseDamage"/> is reset at the beginning of each turn to false.
+        /// </summary>
+        public bool TookTurnBaseDamage { get; set; }
 
         /// <remarks>0-indexed: the first ally/enemy has <see cref="PositionInFrontline"/> set to 0.</remarks>
         public int PositionInFrontline { get; set; }
@@ -205,6 +218,11 @@ namespace Worldshifters.Data.Raid
         }
 
         public int GetStatusEffectStacks(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveDebuff()
         {
             throw new NotImplementedException();
         }
