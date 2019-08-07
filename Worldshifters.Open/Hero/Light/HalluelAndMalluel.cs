@@ -124,7 +124,7 @@ namespace Worldshifters.Assets.Hero.Light
                                     IsBuff = true,
                                     TurnDuration = int.MaxValue,
                                     IsUndispellable = true,
-                                },raidActions);
+                                }, raidActions);
                         },
                     },
                 },

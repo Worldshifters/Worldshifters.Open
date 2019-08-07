@@ -53,6 +53,7 @@ namespace Worldshifters.Assets.Hero.Wind
                         }.ToByteString(),
                     },
                 },
+                DoNotRenderAbilityCastEffect = true,
             };
 
             return new Hero
@@ -235,7 +236,7 @@ namespace Worldshifters.Assets.Hero.Wind
                                         TurnDuration = 4,
                                         OnAllPartyMembers = true,
                                     },
-                                    (StatusEffectLibrary.AdditionalDamageNpc, 50),
+                                    (StatusEffectLibrary.AdditionalWindDamageNpc, 50),
                                     (StatusEffectLibrary.TripleAttackRateUpNpc, double.MaxValue)),
                             },
                             AnimationName = "ab_motion",

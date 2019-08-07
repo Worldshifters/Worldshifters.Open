@@ -65,6 +65,24 @@ namespace Worldshifters.Assets.Hero.Dark
                 BaseTripleAttackRate = 4.5,
                 Element = Element.Dark,
                 WeaponProficiencies = { EquipmentType.Dagger },
+                AvailablePerkIds =
+                {
+                    ExtendedMasteryPerks.AttackBoost,
+                    ExtendedMasteryPerks.DefenseBoost,
+                    ExtendedMasteryPerks.DebuffResistanceBoost,
+                    ExtendedMasteryPerks.AttackBoostAgainstFoesInOverdriveMode,
+                    ExtendedMasteryPerks.AttackBoost,
+                    ExtendedMasteryPerks.AttackBoost,
+                    ExtendedMasteryPerks.DefenseBoost,
+                    ExtendedMasteryPerks.DoubleAttackRateBoost,
+                    ExtendedMasteryPerks.TripleAttackRateBoost,
+                    ExtendedMasteryPerks.DarkAttackBoost,
+                    ExtendedMasteryPerks.TripleAttackRateBoost,
+                    ExtendedMasteryPerks.CriticalHitRateBoost,
+                    ExtendedMasteryPerks.DebuffSuccessRateBoost,
+                    ExtendedMasteryPerks.HealingBoost,
+                    ExtendedMasteryPerks.SupportSkill,
+                },
                 ModelMetadata =
                 {
                     new ModelMetadata

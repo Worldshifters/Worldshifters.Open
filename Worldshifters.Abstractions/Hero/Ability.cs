@@ -43,6 +43,8 @@ namespace Worldshifters.Data.Hero
 
         public bool ShouldRepositionSpriteAnimation { get; set; }
 
+        public bool DoNotRenderAbilityCastEffect { get; set; }
+
         public Types.AbilityType Type { get; set; }
 
         /// <summary>

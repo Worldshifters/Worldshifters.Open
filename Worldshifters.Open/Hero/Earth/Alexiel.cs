@@ -33,6 +33,24 @@ namespace Worldshifters.Assets.Hero.Earth
                 BaseTripleAttackRate = 4.5,
                 Element = Element.Earth,
                 WeaponProficiencies = { EquipmentType.Sword, EquipmentType.Katana },
+                AvailablePerkIds =
+                {
+                    ExtendedMasteryPerks.AttackBoost,
+                    ExtendedMasteryPerks.DefenseBoost,
+                    ExtendedMasteryPerks.DefenseBoost,
+                    ExtendedMasteryPerks.HpBoost,
+                    ExtendedMasteryPerks.WaterDamageReduction,
+                    ExtendedMasteryPerks.AttackBoost,
+                    ExtendedMasteryPerks.DefenseBoost,
+                    ExtendedMasteryPerks.HpBoost,
+                    ExtendedMasteryPerks.EarthAttackBoost,
+                    ExtendedMasteryPerks.ChargeAttackDamageBoost,
+                    ExtendedMasteryPerks.DefenseBoost,
+                    ExtendedMasteryPerks.HpBoost,
+                    ExtendedMasteryPerks.EarthAttackBoost,
+                    ExtendedMasteryPerks.EarthAttackBoost,
+                    ExtendedMasteryPerks.SupportSkill,
+                },
                 ModelMetadata =
                 {
                     new ModelMetadata
@@ -90,7 +108,7 @@ namespace Worldshifters.Assets.Hero.Earth
                             ExtraData = new ApplyStatusEffect
                             {
                                 Id = StatusEffectLibrary.Dispel,
-                                BaseAccuracy = double.MaxValue,
+                                BaseAccuracy = 100,
                             }.ToByteString(),
                         },
                     },
