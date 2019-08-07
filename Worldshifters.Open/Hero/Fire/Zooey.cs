@@ -20,7 +20,7 @@ namespace Worldshifters.Assets.Hero.Fire
             zooey.Element = Element.Fire;
             zooey.Abilities[0] = Dark.Zooey.Resolution(cooldown: 9, damageModifier: 6, damageElement: Element.Fire);
             zooey.Abilities[2] = Dark.Zooey.Thunder(damageElement: Element.Fire);
-            zooey.UpgradedAbilities[0].Ability = Dark.Zooey.Resolution(cooldown: 8, damageModifier: 9, damageElement: Element.Dark);
+            zooey.UpgradedAbilities[0].Ability = Dark.Zooey.Resolution(cooldown: 8, damageModifier: 9, damageElement: Element.Fire);
             return zooey;
         }
     }
