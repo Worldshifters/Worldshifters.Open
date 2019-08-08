@@ -360,6 +360,7 @@ namespace Worldshifters.Assets.Hero.Fire
                             Strength = 20,
                             IsBuff = true,
                             TurnDuration = 3,
+                            OnAllPartyMembers = true,
                         }.ToByteString(),
                     },
                     ApplyStatusEffect.FromTemplate(
