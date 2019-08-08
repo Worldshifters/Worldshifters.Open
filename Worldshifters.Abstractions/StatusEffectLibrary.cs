@@ -228,6 +228,17 @@ namespace Worldshifters.Data
         public static string FireDamageCutUpWeapon;
         public static string FireElementalAttackBoostAmplificationNpc;
         public static string FireSwitch;
+
+        /// <summary>
+        /// Percentage based.
+        /// </summary>
+        public static string HealingBoost;
+
+        /// <summary>
+        /// Percentage based.
+        /// </summary>
+        public static string HealingCapBoost;
+
         public static string HostilityDown;
         public static string HostilityUp;
 
