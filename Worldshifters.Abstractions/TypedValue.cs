@@ -12,6 +12,14 @@ namespace Worldshifters.Data
         {
         }
 
+        public bool BooleanValue { get; set; }
+
+        public double DoubleValue { get; set; }
+
+        public long IntegerValue { get; set; }
+
+        public string StringValue { get; set; }
+
         public static TypedValue FromBool(bool b)
         {
             throw new NotImplementedException();
@@ -28,26 +36,6 @@ namespace Worldshifters.Data
         }
 
         public static TypedValue FromString(string b)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool AsBool()
-        {
-            throw new NotImplementedException();
-        }
-
-        public double AsDouble()
-        {
-            throw new NotImplementedException();
-        }
-
-        public long AsLong()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string AsString()
         {
             throw new NotImplementedException();
         }

@@ -42,9 +42,19 @@ namespace Worldshifters.Data.Raid
         public int NumSpecialAttacksUsedThisTurn { get; set; }
 
         /// <summary>
+        /// The value of <see cref="DodgedDamage"/> is reset at the beginning of each turn to false.
+        /// </summary>
+        public bool DodgedDamage { get; set; }
+
+        /// <summary>
         /// The value of <see cref="DodgedDamageOrDebuff"/> is reset at the beginning of each turn to false.
         /// </summary>
         public bool DodgedDamageOrDebuff { get; set; }
+
+        /// <summary>
+        /// The value of <see cref="TookDamageDuringTurn"/> is reset at the beginning of each turn to false.
+        /// </summary>
+        public bool TookDamageDuringTurn { get; set; }
 
         /// <summary>
         /// The value of <see cref="TookTurnBaseDamage"/> is reset at the beginning of each turn to false.

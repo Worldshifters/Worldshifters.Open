@@ -62,6 +62,12 @@ namespace Worldshifters.Data
         public static Modifier ElementalAttackBoostAmplification;
 
         /// <summary>
+        /// Status effects with a <see cref="FlatCriticalHitRateBoost"/> modifier must have <see cref="StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.CriticalHit"/>.
+        /// The strength value of a status effect with this modifier is the chance (as a percentage) of landing a critical hit.
+        /// </summary>
+        public static Modifier FlatCriticalHitRateBoost;
+
+        /// <summary>
         /// Strength values must be given in percentage.
         /// </summary>
         public static Modifier FlatDamageCapBoost;
