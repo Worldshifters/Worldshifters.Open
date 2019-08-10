@@ -46,15 +46,14 @@ namespace Worldshifters.Assets.Hero.Water
                         Cooldown = 7,
                         ModelMetadata = new ModelMetadata
                         {
-                            ConstructorName = "mc_ab_all_3040190000_03",
+                            ConstructorName = "mc_ab_all_3040190000_03_effect",
                             JsAssetPath = "npc/6da988da-cb06-4710-acd3-d8bd006ae7dd/abilities/2/ability.js",
                             ImageAssets =
                             {
                                 new ImageAsset
                                 {
                                     Name = "ab_all_3040190000_03",
-                                    Path =
-                                        "npc/6da988da-cb06-4710-acd3-d8bd006ae7dd/abilities/2/ab_all_3040190000_03.png",
+                                    Path = "npc/6da988da-cb06-4710-acd3-d8bd006ae7dd/abilities/2/ab_all_3040190000_03.png",
                                 },
                             },
                         },
@@ -239,24 +238,7 @@ namespace Worldshifters.Assets.Hero.Water
 
                     if (attackResult == EntitySnapshot.AttackResult.Triple)
                     {
-                        europa.OverrideStatusEffect(
-                            new StatusEffectSnapshot
-                            {
-                                Id = $"{FountainLotusId}_1",
-                                Strength = 1,
-                                IsBuff = true,
-                                IsUndispellable = true,
-                                TurnDuration = int.MaxValue,
-                            },
-                            FountainLotusId,
-                            (previousStatusEffect, newStatusEffect) =>
-                            {
-                                var stacks = Math.Min(5, (int)newStatusEffect.Strength + 1);
-                                newStatusEffect.Strength = stacks;
-                                newStatusEffect.Id = $"{FountainLotusId}_{stacks}";
-                                return stacks > 0;
-                            },
-                            raidActions);
+                        europa.ApplyOrOverrideStatusEffectStacks(FountainLotusId, initialStackCount: 1, increment: 1, maxStackCount: 5, raidActions: raidActions, isUndispellable: true);
                     }
 
                     ProcessEuropaPassiveEffects(europa);
@@ -275,7 +257,7 @@ namespace Worldshifters.Assets.Hero.Water
                 {
                     foreach (var ally in europa.Raid.Allies)
                     {
-                        if (!ally.IsAlive() || ally.PositionInFrontline >= 4 || ally.NumHitsReceived == 0)
+                        if (!ally.IsAlive() || ally.PositionInFrontline >= 4 || !ally.TookDamageDuringTurn)
                         {
                             continue;
                         }
@@ -283,25 +265,10 @@ namespace Worldshifters.Assets.Hero.Water
                         var stacks = ally.GetStatusEffectStacks(StarSanctuaryId);
                         if (stacks > 0)
                         {
-                            ally.RemoveStatusEffect($"{StarSanctuaryId}_{stacks}");
-                            if (stacks == 2)
-                            {
-                                ally.Raid.Allies.ApplyStatusEffects(
-                                    new StatusEffectSnapshot
-                                    {
-                                        Id = $"{StarSanctuaryId}_1",
-                                        TurnDuration = int.MaxValue,
-                                        IsBuff = true,
-                                        IsUndispellable = true,
-                                        Modifier = ModifierLibrary.DamageReductionBoost,
-                                        AttackElementRestriction = Element.Fire,
-                                        Strength = 50,
-                                    }, raidActions);
-                            }
-                            else
+                            if (!ally.OverrideStatusEffectStacks(StarSanctuaryId, increment: -1, maxStackCount: 2, raidActions: raidActions))
                             {
                                 // The amount of Star Sanctuary stacks reached 0
-                                ally.RemoveStatusEffects(new[] { $"{StarSanctuaryId}/atk_up", StatusEffectLibrary.FireSwitch });
+                                ally.RemoveStatusEffects(new[] { $"{StarSanctuaryId}/atk_up", $"{StarSanctuaryId}/dmg_reduction", StatusEffectLibrary.FireSwitch });
                             }
                         }
                     }
@@ -394,17 +361,19 @@ namespace Worldshifters.Assets.Hero.Water
                             ally.RemoveStatusEffect($"{StarSanctuaryId}_{stacks}");
                         }
 
-                        ally.Raid.Allies.ApplyStatusEffects(
+                        ally.ApplyStatusEffectStacks(StarSanctuaryId, 2, raidActions, isUndispellable: true);
+                        ally.ApplyStatusEffect(
                             new StatusEffectSnapshot
                             {
-                                Id = $"{StarSanctuaryId}_2",
+                                Id = $"{StarSanctuaryId}/dmg_reduction",
                                 TurnDuration = int.MaxValue,
                                 IsBuff = true,
                                 IsUndispellable = true,
+                                IsUsedInternally = true,
                                 Modifier = ModifierLibrary.DamageReductionBoost,
                                 AttackElementRestriction = Element.Fire,
                                 Strength = 50,
-                            }, raidActions);
+                            });
                     }
 
                     europa.Raid.Allies.ApplyStatusEffectsFromTemplate(

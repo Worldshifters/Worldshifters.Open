@@ -206,7 +206,7 @@ namespace Worldshifters.Assets.Hero.Earth
                             ModelMetadata = new ModelMetadata
                             {
                                 JsAssetPath = "npc/1fd2d3bf-ec70-4c97-9a02-4e08a941bd3a/abilities/3/ab_3040037000_01.js",
-                                ConstructorName = "mc_ab_3040037000_01",
+                                ConstructorName = "mc_ab_3040037000_01_effect",
                                 ImageAssets =
                                 {
                                     new ImageAsset
@@ -222,7 +222,6 @@ namespace Worldshifters.Assets.Hero.Earth
                         UpgradedAbilityIndex = 3,
                     },
                 },
-                OnActionStart = (elen, raidActions) => ProcessPassiveEffects(elen),
                 OnTurnEnd = (elen, raidActions) =>
                 {
                     if (!elen.IsAlive())
@@ -302,7 +301,6 @@ namespace Worldshifters.Assets.Hero.Earth
                         TurnDuration = int.MaxValue,
                     });
                 },
-                OnEnteringFrontline = (elen, raidActions) => ProcessPassiveEffects(elen),
             };
         }
 
@@ -402,17 +400,14 @@ namespace Worldshifters.Assets.Hero.Earth
                         continue;
                     }
 
-                    SupportAbilities.ChargeBarBoost(new AbilityEffect
-                    {
-                        Type = AbilityEffect.Types.AbilityEffectType.ApplyStatusEffect,
-                        ExtraData = new ApplyStatusEffect
+                    ally.ApplyStatusEffect(
+                        new StatusEffectSnapshot
                         {
                             Id = StatusEffectLibrary.ChargeGaugeBoost,
                             Strength = 10,
                             IsBuff = true,
-                            OnSelf = true,
-                        }.ToByteString(),
-                    }).Cast(ally, raidActions, doNotRenderCastAbilityEffect: true);
+                        },
+                        raidActions);
                 }
             };
 
@@ -428,7 +423,7 @@ namespace Worldshifters.Assets.Hero.Earth
                 ModelMetadata = new ModelMetadata
                 {
                     JsAssetPath = "npc/1fd2d3bf-ec70-4c97-9a02-4e08a941bd3a/abilities/2/ab_3040025000_01.js",
-                    ConstructorName = "mc_ab_3040025000_01",
+                    ConstructorName = "mc_ab_3040025000_01_effect",
                     ImageAssets =
                     {
                         new ImageAsset
@@ -442,42 +437,21 @@ namespace Worldshifters.Assets.Hero.Earth
                 RepositionOnTarget = true,
                 ProcessEffects = (elen, targetPositionInFrontline, raidActions) =>
                 {
-                    elen.AddChargeGauge(30);
+                    elen.AddChargeGauge(15);
                     if (elen.Hero.Level < 95)
                     {
                         return;
                     }
 
-                    elen.OverrideStatusEffect(
-                        new StatusEffectSnapshot
-                        {
-                            Id = $"{AikiId}_1",
-                            Strength = 1,
-                            IsBuff = true,
-                            IsUndispellable = true,
-                            TurnDuration = int.MaxValue,
-                        },
-                        AikiId,
-                        (previousStatusEffect, newStatusEffect) =>
-                        {
-                            var aikiStacks = Math.Min(3, (int)previousStatusEffect.Strength + 1);
-                            newStatusEffect.Strength = aikiStacks;
-                            newStatusEffect.Id = $"{AikiId}_{aikiStacks}";
-                            return aikiStacks > 0;
-                        },
-                        raidActions);
+                    elen.ApplyOrOverrideStatusEffectStacks(AikiId, initialStackCount: 1, increment: 1, maxStackCount: 3, raidActions: raidActions, isUndispellable: true);
+                    ProcessAikiEffects(elen);
                 },
                 AnimationName = "attack",
             };
         }
 
-        private static void ProcessPassiveEffects(EntitySnapshot elen)
+        private static void ProcessAikiEffects(EntitySnapshot elen)
         {
-            if (!elen.IsAlive() || elen.PositionInFrontline >= 4)
-            {
-                return;
-            }
-
             switch (elen.GetStatusEffectStacks(AikiId))
             {
                 case 1:

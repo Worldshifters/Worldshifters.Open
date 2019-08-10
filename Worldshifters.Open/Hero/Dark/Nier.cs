@@ -179,7 +179,7 @@ namespace Worldshifters.Assets.Hero.Dark
                         ModelMetadata = new ModelMetadata
                         {
                             JsAssetPath = "npc/0269f30f-3c61-45ac-9c75-9290516e8985/abilities/2/ab_3040169000_02.js",
-                            ConstructorName = "mc_ab_3040169000_02",
+                            ConstructorName = "mc_ab_3040169000_02_effect",
                             ImageAssets =
                             {
                                 new ImageAsset
@@ -399,7 +399,7 @@ namespace Worldshifters.Assets.Hero.Dark
                 ModelMetadata = new ModelMetadata
                 {
                     JsAssetPath = "npc/0269f30f-3c61-45ac-9c75-9290516e8985/abilities/1/ab_3040169000_01.js",
-                    ConstructorName = "mc_ab_3040169000_01",
+                    ConstructorName = "mc_ab_3040169000_01_effect",
                     ImageAssets =
                     {
                         new ImageAsset
@@ -485,24 +485,7 @@ namespace Worldshifters.Assets.Hero.Dark
 
         private static void IncrementLoveRedemption(EntitySnapshot nier, int count, IList<RaidAction> raidActions)
         {
-            nier.OverrideStatusEffect(
-                new StatusEffectSnapshot
-                {
-                    Id = $"{LoveRedemptionId}_13",
-                    Strength = 13,
-                    IsBuff = true,
-                    IsUndispellable = true,
-                    TurnDuration = int.MaxValue,
-                },
-                LoveRedemptionId,
-                (previousStatusEffect, newStatusEffect) =>
-                {
-                    var remainingStacks = (int)previousStatusEffect.Strength + count;
-                    newStatusEffect.Strength = remainingStacks;
-                    newStatusEffect.Id = $"{LoveRedemptionId}_{remainingStacks}";
-                    return remainingStacks > 0;
-                },
-                raidActions);
+            nier.ApplyOrOverrideStatusEffectStacks(LoveRedemptionId, initialStackCount: 13, increment: count, maxStackCount: 13, raidActions: raidActions, isUndispellable: true);
         }
 
         private static void ProcessLoveRedemptionEffects(EntitySnapshot nier)

@@ -96,7 +96,7 @@ namespace Worldshifters.Assets.Hero.Light
                         ModelMetadata = new ModelMetadata
                         {
                             JsAssetPath = "npc/f7d1ac97-7348-4de9-ba3a-0e433ffc94dc/abilities/2/ab_3040223000_01.js",
-                            ConstructorName = "mc_ab_3040223000_01",
+                            ConstructorName = "mc_ab_3040223000_01_effect",
                             ImageAssets =
                             {
                                 new ImageAsset
@@ -259,7 +259,7 @@ namespace Worldshifters.Assets.Hero.Light
                 ModelMetadata = new ModelMetadata
                 {
                     JsAssetPath = "npc/f7d1ac97-7348-4de9-ba3a-0e433ffc94dc/abilities/0/ab_3040223000_02.js",
-                    ConstructorName = "mc_ab_3040223000_02",
+                    ConstructorName = "mc_ab_3040223000_02_effect",
                     ImageAssets =
                     {
                         new ImageAsset
@@ -366,23 +366,7 @@ namespace Worldshifters.Assets.Hero.Light
 
         private static void AddAuroraCrest(EntitySnapshot character, IList<RaidAction> raidActions)
         {
-            character.OverrideStatusEffect(
-                new StatusEffectSnapshot
-                {
-                    Id = $"{StatusEffectLibrary.AuroraCrest}_1",
-                    IsBuff = true,
-                    IsUndispellable = true,
-                    TurnDuration = int.MaxValue,
-                    Strength = 1,
-                }, StatusEffectLibrary.AuroraCrest,
-                (previousStatusEffect, newStatusEffect) =>
-                {
-                    var strength = Math.Min(5, (int)previousStatusEffect.Strength + 1);
-                    newStatusEffect.Id = $"{StatusEffectLibrary.AuroraCrest}_{strength}";
-                    newStatusEffect.Strength = strength;
-                    return true;
-                },
-                raidActions);
+            character.ApplyOrOverrideStatusEffectStacks(StatusEffectLibrary.AuroraCrest, initialStackCount: 1, increment: 1, maxStackCount: 5, raidActions: raidActions, isUndispellable: true);
         }
     }
 }

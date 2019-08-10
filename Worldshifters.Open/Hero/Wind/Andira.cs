@@ -5,11 +5,13 @@
 namespace Worldshifters.Assets.Hero.Wind
 {
     using System;
+    using System.Collections.Generic;
     using Google.Protobuf;
     using Worldshifters.Data;
     using Worldshifters.Data.Hero;
     using Worldshifters.Data.Raid;
     using Worldshifters.Data.Utils;
+    using static Data.Raid.StatusEffectSnapshot.Types;
 
     public static class Andira
     {
@@ -192,9 +194,9 @@ namespace Worldshifters.Assets.Hero.Wind
                                 IsBuff = true,
                                 IsUndispellable = true,
                                 IsUsedInternally = true,
-                                TriggerCondition = new StatusEffectSnapshot.Types.TriggerCondition
+                                TriggerCondition = new TriggerCondition
                                 {
-                                    Type = StatusEffectSnapshot.Types.TriggerCondition.Types.Type.HasStatusEffect,
+                                    Type = TriggerCondition.Types.Type.HasStatusEffect,
                                     Data = InfiniteDiversityId,
                                     LinkToParentCondition = true,
                                 },
@@ -213,9 +215,9 @@ namespace Worldshifters.Assets.Hero.Wind
                                 Strength = 20,
                                 Modifier = ModifierLibrary.AdditionalDamage,
                                 AttackElementRestriction = Element.Wind,
-                                TriggerCondition = new StatusEffectSnapshot.Types.TriggerCondition
+                                TriggerCondition = new TriggerCondition
                                 {
-                                    Type = StatusEffectSnapshot.Types.TriggerCondition.Types.Type.HasStatusEffect,
+                                    Type = TriggerCondition.Types.Type.HasStatusEffect,
                                     Data = InfiniteDiversityId,
                                     LinkToParentCondition = true,
                                 },
@@ -301,14 +303,6 @@ namespace Worldshifters.Assets.Hero.Wind
                                         continue;
                                     }
 
-                                    if (stacks > 0)
-                                    {
-                                        enemy.RemoveStatusEffects(new[]
-                                        {
-                                            $"{MizaruId}_{stacks}", $"{IwazaruId}_{stacks}", $"{KikazaruId}_{stacks}",
-                                        });
-                                    }
-
                                     enemy.ApplyStatusEffectsFromTemplate(
                                         new StatusEffectSnapshot
                                         {
@@ -321,6 +315,16 @@ namespace Worldshifters.Assets.Hero.Wind
                                         ($"{MizaruId}_{newStackCount}", ModifierLibrary.FlatAttackBoost, -5 * newStackCount),
                                         ($"{IwazaruId}_{newStackCount}", ModifierLibrary.FlatDefenseBoost, -5 * stacks),
                                         ($"{KikazaruId}_{newStackCount}", ModifierLibrary.None, 0));
+
+                                    var statusEffectsToRemove = new HashSet<string>();
+                                    for (var oldStackCount = 1; oldStackCount < newStackCount; ++oldStackCount)
+                                    {
+                                        statusEffectsToRemove.Add($"{MizaruId}_{oldStackCount}");
+                                        statusEffectsToRemove.Add($"{IwazaruId}_{oldStackCount}");
+                                        statusEffectsToRemove.Add($"{KikazaruId}_{oldStackCount}");
+                                    }
+
+                                    enemy.RemoveStatusEffects(statusEffectsToRemove);
                                 }
 
                                 andira.Raid.Allies.ApplyStatusEffectsFromTemplate(
@@ -330,9 +334,9 @@ namespace Worldshifters.Assets.Hero.Wind
                                         IsPassiveEffect = true,
                                         IsUsedInternally = true,
                                         TurnDuration = int.MaxValue,
-                                        TriggerCondition = new StatusEffectSnapshot.Types.TriggerCondition
+                                        TriggerCondition = new TriggerCondition
                                         {
-                                            Type = StatusEffectSnapshot.Types.TriggerCondition.Types.Type.HasStatusEffect,
+                                            Type = TriggerCondition.Types.Type.HasStatusEffect,
                                             Data = $"{KikazaruId}_{newStackCount}",
                                         },
                                     },
@@ -430,7 +434,7 @@ namespace Worldshifters.Assets.Hero.Wind
                 ModelMetadata = new ModelMetadata
                 {
                     JsAssetPath = "npc/e0db0d71-c148-49af-8f86-9d403136e311/abilities/1/ab_3040071000_01.js",
-                    ConstructorName = "mc_ab_3040071000_01",
+                    ConstructorName = "mc_ab_3040071000_01_effect",
                     ImageAssets =
                     {
                         new ImageAsset

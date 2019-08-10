@@ -312,7 +312,6 @@ namespace Worldshifters.Assets.Hero.Earth
                             IsUsedInternally = true,
                             Modifier = ModifierLibrary.ElementalAttackBoostAmplification,
                             Strength = 30,
-                            TurnDuration = 1,
                             IsPassiveEffect = true,
                         });
                 }
@@ -350,25 +349,7 @@ namespace Worldshifters.Assets.Hero.Earth
 
         private static void AddMirrorBlade(EntitySnapshot alexiel, IList<RaidAction> raidActions)
         {
-            alexiel.OverrideStatusEffect(
-                new StatusEffectSnapshot
-                {
-                    Id = $"{MirrorBladeId}_1",
-                    Strength = 1,
-                    IsBuff = true,
-                    IsUndispellable = true,
-                    TurnDuration = int.MaxValue,
-                },
-                MirrorBladeId,
-                (previousStatusEffect, newStatusEffect) =>
-                {
-                    var bladeCount = Math.Min(5, (int)previousStatusEffect.Strength + 1);
-                    newStatusEffect.Strength = bladeCount;
-                    newStatusEffect.Id = $"{MirrorBladeId}_{bladeCount}";
-                    return bladeCount > 0;
-                },
-                raidActions);
-
+            alexiel.ApplyOrOverrideStatusEffectStacks(MirrorBladeId, initialStackCount: 1, increment: 1, maxStackCount: 5, raidActions: raidActions, isUndispellable: true);
             ProcessMirrorBladeEffects(alexiel);
         }
     }

@@ -66,7 +66,7 @@ namespace Worldshifters.Assets.Hero.Fire
                         Cooldown = 12,
                         ModelMetadata = new ModelMetadata
                         {
-                            ConstructorName = "mc_ab_3040167000_01",
+                            ConstructorName = "mc_ab_3040167000_01_effect",
                             JsAssetPath = "npc/7605ff24-e980-4deb-bafd-0a64ff2f2d08/abilities/2/ability.js",
                             ImageAssets =
                             {
@@ -368,7 +368,7 @@ namespace Worldshifters.Assets.Hero.Fire
                 Cooldown = (int)cooldown,
                 ModelMetadata = new ModelMetadata
                 {
-                    ConstructorName = "mc_ab_all_3040167000_01",
+                    ConstructorName = "mc_ab_all_3040167000_01_effect",
                     JsAssetPath = "npc/7605ff24-e980-4deb-bafd-0a64ff2f2d08/abilities/0/ability.js",
                     ImageAssets =
                     {

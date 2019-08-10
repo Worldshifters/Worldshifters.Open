@@ -167,7 +167,7 @@ namespace Worldshifters.Assets.Hero.Dark
                         ModelMetadata = new ModelMetadata
                         {
                             JsAssetPath = "npc/82b4e629-4cda-481a-8b81-f45f2ce7db19/abilities/2/ab_3040209000_03.js",
-                            ConstructorName = "mc_ab_3040209000_03",
+                            ConstructorName = "mc_ab_3040209000_03_effect",
                             ImageAssets =
                             {
                                 new ImageAsset
@@ -361,7 +361,7 @@ namespace Worldshifters.Assets.Hero.Dark
                 ModelMetadata = new ModelMetadata
                 {
                     JsAssetPath = "npc/82b4e629-4cda-481a-8b81-f45f2ce7db19/abilities/0/ab_3040209000_01.js",
-                    ConstructorName = "mc_ab_3040209000_01",
+                    ConstructorName = "mc_ab_3040209000_01_effect",
                     ImageAssets =
                     {
                         new ImageAsset
@@ -408,7 +408,7 @@ namespace Worldshifters.Assets.Hero.Dark
                 ModelMetadata = new ModelMetadata
                 {
                     JsAssetPath = "npc/82b4e629-4cda-481a-8b81-f45f2ce7db19/abilities/1/ab_3040209000_02.js",
-                    ConstructorName = "mc_ab_3040209000_02",
+                    ConstructorName = "mc_ab_3040209000_02_effect",
                     ImageAssets =
                     {
                         new ImageAsset

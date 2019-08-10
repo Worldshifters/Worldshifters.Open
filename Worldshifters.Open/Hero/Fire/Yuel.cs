@@ -223,7 +223,7 @@ namespace Worldshifters.Assets.Hero.Fire
                 ModelMetadata = new ModelMetadata
                 {
                     JsAssetPath = "npc/9d021476-1276-4cf9-aafd-7ad321b67142/abilities/0/ab_4110.js",
-                    ConstructorName = "mc_ab_4110",
+                    ConstructorName = "mc_ab_4110_effect",
                     ImageAssets =
                     {
                         new ImageAsset
@@ -244,6 +244,7 @@ namespace Worldshifters.Assets.Hero.Fire
                             Strength = upgradedEffects ? 75 : 50,
                             IsBuff = true,
                             TurnDuration = 3,
+                            OnSelf = true,
                         }.ToByteString(),
                     },
                 },
@@ -257,6 +258,7 @@ namespace Worldshifters.Assets.Hero.Fire
                     }.ProcessEffects(yuel, targetPositionInFrontline, raidActions);
                 },
                 ShouldRepositionSpriteAnimation = true,
+                RepositionOnTarget = true,
                 AnimationName = "short_attack",
             };
         }
@@ -373,7 +375,7 @@ namespace Worldshifters.Assets.Hero.Fire
                         (StatusEffectLibrary.HealingBoost, 50),
                         (StatusEffectLibrary.HealingCapBoost, 100)),
                 },
-                AnimationName = "short_attack",
+                AnimationName = "hide",
             };
         }
     }

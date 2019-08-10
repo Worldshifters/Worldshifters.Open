@@ -151,7 +151,6 @@ namespace Worldshifters.Assets.Hero.Light
                             }
                         }
                     },
-                    ShouldRepositionSpriteAnimationOnTarget = true,
                 },
                 Abilities =
                 {
@@ -505,7 +504,7 @@ namespace Worldshifters.Assets.Hero.Light
                 ModelMetadata = new ModelMetadata
                 {
                     JsAssetPath = "npc/ea84d795-d699-4825-833c-82a8713bff52/abilities/2/ab_3040031000_01.js",
-                    ConstructorName = "mc_ab_3040031000_01",
+                    ConstructorName = "mc_ab_3040031000_01_effect",
                     ImageAssets =
                     {
                         new ImageAsset

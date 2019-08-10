@@ -149,8 +149,16 @@ namespace Worldshifters.Assets.Hero.Earth
                             }.ToByteString(),
                         },
                     },
-                    ProcessEffects = (jessica, raidActions) => { },
-                    ConstructorNameOnAnimationSkip = { "mc_nsp_3040038000_03_special" },
+                    ProcessEffects = (jessica, raidActions) =>
+                    {
+                        var godsendTrigger = jessica.GetStatusEffect(GodsendTriggerId);
+                        if (godsendTrigger != null)
+                        {
+                            godsendTrigger.TurnDuration += 2;
+                        }
+
+                        jessica.ApplyOrOverrideStatusEffectStacks(FireSupportId, initialStackCount: 1, increment: 1, maxStackCount: 2, raidActions: raidActions, isUndispellable: true);
+                    },
                 },
                 Abilities =
                 {
@@ -199,38 +207,6 @@ namespace Worldshifters.Assets.Hero.Earth
                 OnAbilityStart = (jessica, raidActions) =>
                 {
                     TryProcessUnforgettableSummerHealingBoost(jessica);
-                },
-                OnAttackEnd = (jessica, attackResult, raidActions) =>
-                {
-                    if (!jessica.IsAlive() || attackResult != EntitySnapshot.AttackResult.SpecialAttack)
-                    {
-                        return;
-                    }
-
-                    var godsendTrigger = jessica.GetStatusEffect(GodsendTriggerId);
-                    if (godsendTrigger != null)
-                    {
-                        godsendTrigger.TurnDuration += 2;
-                    }
-
-                    jessica.OverrideStatusEffect(
-                        new StatusEffectSnapshot
-                        {
-                            Id = $"{FireSupportId}_1",
-                            Strength = 1,
-                            IsBuff = true,
-                            IsUndispellable = true,
-                            TurnDuration = int.MaxValue,
-                        },
-                        FireSupportId,
-                        (previousStatusEffect, newStatusEffect) =>
-                        {
-                            var bladeCount = Math.Min(5, (int)previousStatusEffect.Strength + 1);
-                            newStatusEffect.Strength = bladeCount;
-                            newStatusEffect.Id = $"{FireSupportId}_{bladeCount}";
-                            return bladeCount > 0;
-                        },
-                        raidActions);
                 },
                 OnAttackActionEnd = (jessica, raidActions) => { },
                 OnTargettedByEnemy = (jessica, enemy, raidActions) => { },
@@ -373,7 +349,7 @@ namespace Worldshifters.Assets.Hero.Earth
                 ModelMetadata = new ModelMetadata
                 {
                     JsAssetPath = "npc/5f1f772e-6f69-497f-bd5c-a1a7a575fbad/abilities/2/ab_3030241000_03.js",
-                    ConstructorName = "mc_ab_3030241000_03",
+                    ConstructorName = "mc_ab_3030241000_03_effect",
                     ImageAssets =
                     {
                         new ImageAsset

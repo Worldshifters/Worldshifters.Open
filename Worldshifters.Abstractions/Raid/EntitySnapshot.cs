@@ -138,6 +138,45 @@ namespace Worldshifters.Data.Raid
         }
 
         /// <summary>
+        /// Apply a status effect buff to the character with a stack count (for instance, Dark Opus weapon crests).
+        /// </summary>
+        public void ApplyStatusEffectStacks(string id, uint numStacks, IList<RaidAction> raidActions, int turnDuration = int.MaxValue, bool isUndispellable = false)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Apply a status effect buff to the character with a stack count (for instance, Dark Opus weapon crests).
+        /// </summary>
+        /// <param name="id">The base ID of the status effect.</param>
+        /// <param name="initialStackCount">The initial number of stacks of the status effect if no previous instance exists.</param>
+        /// <param name="increment">The number of stacks (signed integer) to add to the existing status effect, if any.</param>
+        /// <param name="maxStackCount">The maximum number of stacks.</param>
+        /// <param name="raidActions"></param>
+        /// <param name="turnDuration">The duration of the status effect in number of turns.</param>
+        /// <param name="isUndispellable">Whether the status effect can be dispelled or not.</param>
+        /// <returns>False if the effect was removed due to its stack count reaching 0, true otherwise.</returns>
+        public bool ApplyOrOverrideStatusEffectStacks(string id, uint initialStackCount, int increment, uint maxStackCount, IList<RaidAction> raidActions, int turnDuration = int.MaxValue, bool isUndispellable = false)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Override a status effect buff to the character with a stack count (for instance, Dark Opus weapon crests).
+        /// </summary>
+        /// <param name="id">The base ID of the status effect.</param>
+        /// <param name="increment">The number of stacks (signed integer) to add to the existing status effect, if any.</param>
+        /// <param name="maxStackCount">The maximum number of stacks.</param>
+        /// <param name="raidActions"></param>
+        /// <param name="turnDuration">The duration of the status effect in number of turns.</param>
+        /// <param name="isUndispellable">Whether the status effect can be dispelled or not.</param>
+        /// <returns>False if the effect was removed due to its stack count reaching 0 or if no existing status effect was found, true otherwise.</returns>
+        public bool OverrideStatusEffectStacks(string id, int increment, uint maxStackCount, IList<RaidAction> raidActions, int turnDuration = int.MaxValue, bool isUndispellable = false)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
         /// Apply <see cref="StatusEffectSnapshot"/>s matching a template <see cref="StatusEffectSnapshot"/>.
         /// </summary>
         /// <param name="template">A template <see cref="ApplyStatusEffect"/>.</param>
