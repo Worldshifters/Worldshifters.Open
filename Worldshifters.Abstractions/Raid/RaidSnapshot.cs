@@ -10,6 +10,7 @@ namespace Worldshifters.Data.Raid
     using System.Collections.Generic;
     using Google.Protobuf;
     using Google.Protobuf.Collections;
+    using Worldshifters.Data.Hero;
 
     public class RaidSnapshot
     {
@@ -41,6 +42,16 @@ namespace Worldshifters.Data.Raid
         }
 
         public int GetNumSpecialAttacksUsedThisTurn()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Get the last ability used.
+        /// </summary>
+        /// <param name="heroIdToExclude">If the last ability used was cast by a hero with <see cref="Inventory.Types.Hero.Id"/> different from <see cref="heroIdToExclude"/>, return null.</param>
+        /// <returns>null if no ability matching the search criteria was found.</returns>
+        public Ability GetLastAbilityUsed(ByteString heroIdToExclude = null)
         {
             throw new NotImplementedException();
         }

@@ -303,6 +303,11 @@ namespace Worldshifters.Data
         public static string RevitalizeNpc;
 
         /// <summary>
+        /// <see cref="RevitalizeSummon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Revitalize"/>.
+        /// </summary>
+        public static string RevitalizeSummon;
+
+        /// <summary>
         /// <see cref="RevitalizeWeapon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Revitalize"/>.
         /// </summary>
         public static string RevitalizeWeapon;

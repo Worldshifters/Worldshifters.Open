@@ -74,6 +74,11 @@ namespace Worldshifters.Data.Hero
         public Action<EntitySnapshot, Ability, IList<RaidAction>> OnAbilityEnd { get; set; }
 
         /// <summary>
+        /// Callback method called after another ally cast an ability. Input parameters: this, the caster (different from this), the ability which was cast.
+        /// </summary>
+        public Action<EntitySnapshot, EntitySnapshot, Ability, IList<RaidAction>> OnOtherAllyAbilityEnd { get; set; }
+
+        /// <summary>
         /// The first method called before processing an action. Input parameters: this.
         /// </summary>
         /// <remarks>Called even if the character is dead.</remarks>

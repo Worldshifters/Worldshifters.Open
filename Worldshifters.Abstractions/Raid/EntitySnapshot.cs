@@ -6,6 +6,7 @@ namespace Worldshifters.Data.Raid
 {
     using System;
     using System.Collections.Generic;
+    using Google.Protobuf;
     using Google.Protobuf.Collections;
     using Worldshifters.Data.Hero;
     using Hero = Worldshifters.Data.Inventory.Types.Hero;
