@@ -69,6 +69,11 @@ namespace Worldshifters.Data.Hero
             throw new NotImplementedException();
         }
 
+        public static ApplyStatusEffect ParseFrom(ByteString data)
+        {
+            throw new NotImplementedException();
+        }
+
         public ByteString ToByteString()
         {
             throw new NotImplementedException();
