@@ -162,7 +162,8 @@ namespace Worldshifters.Data
         public static Modifier NormalAttacksHitAllFoes;
 
         /// <summary>
-        /// The strength of <see cref="DodgeAndCounter"/> status effects is the bonus chance (in percentage) to dodge and counter a hit.
+        /// Dodge and counter a one-foe attack.
+        /// <see cref="StatusEffectSnapshot"/>s with a <see cref="DodgeAndCounter"/> <see cref="StatusEffectSnapshot.Modifier"/> must have <see cref="StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Counter"/>.
         /// </summary>
         public static Modifier DodgeAndCounter;
 

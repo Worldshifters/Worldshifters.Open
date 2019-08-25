@@ -5,6 +5,7 @@
 namespace Worldshifters.Assets.Hero.Water
 {
     using System;
+    using System.Collections.Generic;
     using Google.Protobuf;
     using Worldshifters.Data;
     using Worldshifters.Data.Hero;
@@ -242,7 +243,7 @@ namespace Worldshifters.Assets.Hero.Water
                         europa.ApplyOrOverrideStatusEffectStacks(FountainLotusId, initialStackCount: 1, increment: 1, maxStackCount: 5, raidActions: raidActions, isUndispellable: true);
                     }
 
-                    ProcessEuropaPassiveEffects(europa);
+                    TryProcessFountainLotusEffects(europa);
                 },
                 OnDeath = (europa, raidActions) =>
                 {
@@ -269,7 +270,7 @@ namespace Worldshifters.Assets.Hero.Water
                             if (!ally.OverrideStatusEffectStacks(StarSanctuaryId, increment: -1, maxStackCount: 2, raidActions: raidActions))
                             {
                                 // The amount of Star Sanctuary stacks reached 0
-                                ally.RemoveStatusEffects(new[] { $"{StarSanctuaryId}/atk_up", $"{StarSanctuaryId}/dmg_reduction", StatusEffectLibrary.FireSwitch });
+                                ally.RemoveStatusEffects(new HashSet<string> { $"{StarSanctuaryId}/atk_up", $"{StarSanctuaryId}/dmg_reduction", StatusEffectLibrary.FireSwitch });
                             }
                         }
                     }
@@ -394,7 +395,7 @@ namespace Worldshifters.Assets.Hero.Water
             };
         }
 
-        private static void ProcessEuropaPassiveEffects(EntitySnapshot europa)
+        private static void TryProcessFountainLotusEffects(EntitySnapshot europa)
         {
             if (!europa.IsAlive() || europa.PositionInFrontline >= 4)
             {
@@ -412,6 +413,16 @@ namespace Worldshifters.Assets.Hero.Water
                 ($"{FountainLotusId}/atk_up", ModifierLibrary.FlatAttackBoost, fountainLotusStacks * 10),
                 ($"{FountainLotusId}/healing_up", ModifierLibrary.HealingBoost, fountainLotusStacks * 20),
                 ($"{FountainLotusId}/healing_cap_up", ModifierLibrary.HealingCapBoost, fountainLotusStacks * 20));
+        }
+
+        private static void ProcessEuropaPassiveEffects(EntitySnapshot europa)
+        {
+            if (!europa.IsAlive() || europa.PositionInFrontline >= 4)
+            {
+                return;
+            }
+
+            TryProcessFountainLotusEffects(europa);
 
             foreach (var hero in europa.Raid.Allies)
             {

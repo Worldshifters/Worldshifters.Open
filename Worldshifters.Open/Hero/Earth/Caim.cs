@@ -14,9 +14,9 @@ namespace Worldshifters.Assets.Hero.Earth
 
     public static class Caim
     {
-        public static Guid Id = Guid.Parse("411f6619-d3f5-4044-b290-34c39cbef856");
-
         public const string DoubleDealId = "caim/double_deal";
+
+        public static Guid Id = Guid.Parse("411f6619-d3f5-4044-b290-34c39cbef856");
 
         private const string TheHangedManReversedId = "caim/sub_aura";
         private const string ClubsId = "caim/clubs";
@@ -184,7 +184,7 @@ namespace Worldshifters.Assets.Hero.Earth
                 OnAttackActionEnd = (caim, raidActions) => { },
                 OnOtherAllyAbilityEnd = (caim, caster, ability, raidActions) =>
                 {
-                    BlankFace(caim, ability, raidActions);
+                    BlankFace(caim, raidActions);
                 },
                 OnDeath = (caim, raidActions) => { },
             };
@@ -224,7 +224,7 @@ namespace Worldshifters.Assets.Hero.Earth
             };
         }
 
-        private static void BlankFace(EntitySnapshot caim, Ability ability, IList<RaidAction> raidActions)
+        private static void BlankFace(EntitySnapshot caim, IList<RaidAction> raidActions)
         {
             var lastAbility = caim.Raid.GetLastAbilityUsed();
             if (lastAbility != null)

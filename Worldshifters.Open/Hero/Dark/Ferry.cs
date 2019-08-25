@@ -5,6 +5,7 @@
 namespace Worldshifters.Assets.Hero.Dark
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using Google.Protobuf;
     using Worldshifters.Data;
@@ -346,7 +347,7 @@ namespace Worldshifters.Assets.Hero.Dark
                             continue;
                         }
 
-                        ally.RemoveStatusEffects(new[] { OnTheBrinkLightDamageReductionId, OnTheBrinkDarkDamageReductionId, GhostlyCallId });
+                        ally.RemoveStatusEffects(new HashSet<string> { OnTheBrinkLightDamageReductionId, OnTheBrinkDarkDamageReductionId, GhostlyCallId });
                     }
                 },
                 OnEnteringFrontline = (ferry, raidActions) => { },

@@ -105,6 +105,16 @@ namespace Worldshifters.Data
         public static string Counter;
 
         /// <summary>
+        /// <see cref="CounterOnDodge"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Counter"/>.
+        /// </summary>
+        public static string CounterOnDodge;
+
+        /// <summary>
+        /// <see cref="CounterOnDodgeOrDamage"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Counter"/>.
+        /// </summary>
+        public static string CounterOnDodgeOrDamage;
+
+        /// <summary>
         /// <see cref="CriticalHitRateBoostNpc"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.CriticalHit"/>.
         /// </summary>
         public static string CriticalHitRateBoostNpc;
@@ -157,6 +167,7 @@ namespace Worldshifters.Data
         public static string DamageCutUpSummon;
         public static string DamageCutUpWeapon;
         public static string DamageReductionUpNpc;
+        public static string DamageReductionUpWeapon;
         public static string DarkAttackUpNpc;
         public static string DarkAttackUpSummon;
         public static string DarkAttackUpWeapon;
@@ -164,6 +175,7 @@ namespace Worldshifters.Data
         public static string DarkDamageCutUpNpc;
         public static string DarkDamageCutUpSummon;
         public static string DarkDamageCutUpWeapon;
+        public static string DarkDamageReductionUpNpc;
         public static string DarkElementalAttackBoostAmplificationNpc;
         public static string DarkSwitch;
         public static string DebuffResistanceUpNpc;
@@ -217,6 +229,7 @@ namespace Worldshifters.Data
         public static string EarthDamageCutUpNpc;
         public static string EarthDamageCutUpSummon;
         public static string EarthDamageCutUpWeapon;
+        public static string EarthDamageReductionUpNpc;
         public static string EarthElementalAttackBoostAmplificationNpc;
         public static string EarthSwitch;
         public static string FireAttackUpNpc;
@@ -226,6 +239,7 @@ namespace Worldshifters.Data
         public static string FireDamageCutUpNpc;
         public static string FireDamageCutUpSummon;
         public static string FireDamageCutUpWeapon;
+        public static string FireDamageReductionUpNpc;
         public static string FireElementalAttackBoostAmplificationNpc;
         public static string FireSwitch;
 
@@ -259,6 +273,7 @@ namespace Worldshifters.Data
         public static string LightDamageCutUpNpc;
         public static string LightDamageCutUpSummon;
         public static string LightDamageCutUpWeapon;
+        public static string LightDamageReductionUpNpc;
         public static string LightElementalAttackBoostAmplificationNpc;
         public static string LightSwitch;
 
@@ -266,6 +281,9 @@ namespace Worldshifters.Data
         /// The strength of <see cref="MirrorImage"/> status effects is the maximum number of one-foe hits which will be dodged, until AoE damage is received or the status effect fades away.
         /// </summary>
         public static string MirrorImage;
+
+        public static string NextChargeAttackDamageBoost;
+        public static string NextChargeAttackDamageCapBoost;
 
         public static string Paralyzed;
 
@@ -336,6 +354,7 @@ namespace Worldshifters.Data
         /// </summary>
         public static string StrengthWeapon;
 
+        public static string Stun;
         public static string Substitute;
         public static string SubstituteAllAttacks;
         public static string TripleAttackRateDownNpc;
@@ -354,6 +373,7 @@ namespace Worldshifters.Data
         public static string WaterDamageCutUpNpc;
         public static string WaterDamageCutUpSummon;
         public static string WaterDamageCutUpWeapon;
+        public static string WaterDamageReductionUpNpc;
         public static string WaterElementalAttackBoostAmplificationNpc;
         public static string WaterSwitch;
         public static string WindAttackUpNpc;
@@ -363,6 +383,7 @@ namespace Worldshifters.Data
         public static string WindDamageCutUpNpc;
         public static string WindDamageCutUpSummon;
         public static string WindDamageCutUpWeapon;
+        public static string WindDamageReductionUpNpc;
         public static string WindElementalAttackBoostAmplificationNpc;
         public static string WindSwitch;
     }

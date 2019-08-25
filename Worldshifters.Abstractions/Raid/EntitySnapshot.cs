@@ -277,7 +277,7 @@ namespace Worldshifters.Data.Raid
             throw new NotImplementedException();
         }
 
-        public void RemoveStatusEffects(IEnumerable<string> ids)
+        public void RemoveStatusEffects(ISet<string> ids)
         {
             throw new NotImplementedException();
         }

@@ -608,7 +608,7 @@ namespace Worldshifters.Assets.Hero.Wind
                     continue;
                 }
 
-                ally.RemoveStatusEffects(new[]
+                ally.RemoveStatusEffects(new HashSet<string>
                 {
                     $"{LoopId}_atk_up",
                     $"{LoopId}_def_up",

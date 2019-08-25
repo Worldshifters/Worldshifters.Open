@@ -239,7 +239,7 @@ namespace Worldshifters.Assets.Hero.Dark
                                             : StatusEffectLibrary.StackableDebuffResistanceDownNpc),
                                     Strength = -10,
                                     IsStackable = true,
-                                    StackingCap = -30,
+                                    StackingCap = random <= 1.0 / 3 ? -25 : -30,
                                     BaseAccuracy = 100,
                                     RemainingDurationInSeconds = 180,
                                 },

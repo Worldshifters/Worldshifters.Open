@@ -5,6 +5,7 @@
 namespace Worldshifters.Assets.Hero.Fire
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using Google.Protobuf;
     using Worldshifters.Data;
@@ -272,7 +273,7 @@ namespace Worldshifters.Assets.Hero.Fire
                             continue;
                         }
 
-                        ally.RemoveStatusEffects(new[]
+                        ally.RemoveStatusEffects(new HashSet<string>
                         {
                             $"{TheSunReversedId}_healing_boost",
                             $"{TheSunReversedId}_healing_cap_boost",
