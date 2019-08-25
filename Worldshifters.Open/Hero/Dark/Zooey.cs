@@ -21,7 +21,7 @@ namespace Worldshifters.Assets.Hero.Dark
             {
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Zooey",
-                Race = Race.Unknow,
+                Race = Race.Primal,
                 Gender = Gender.Female,
                 MaxAttack = 9200,
                 MaxHp = 1180,
@@ -135,6 +135,7 @@ namespace Worldshifters.Assets.Hero.Dark
                 Description = string.Empty,
                 Cooldown = (int)cooldown,
                 AnimationName = "ab_motion",
+                Type = Ability.Types.AbilityType.Offensive,
                 ModelMetadata = new ModelMetadata
                 {
                     ConstructorName = "mc_ab_3040092000_01_effect",
@@ -191,6 +192,7 @@ namespace Worldshifters.Assets.Hero.Dark
                 Name = "Thunder",
                 Description = string.Empty,
                 Cooldown = 6,
+                Type = Ability.Types.AbilityType.Offensive,
                 ModelMetadata = new ModelMetadata
                 {
                     ConstructorName = "mc_ab_all_3040078000_03",
@@ -255,6 +257,7 @@ namespace Worldshifters.Assets.Hero.Dark
                 Name = "Conjunction",
                 Description = "Set all allies' HP to 1. All allies gain Unchallenged and Drain.",
                 Cooldown = (int)cooldown,
+                Type = Ability.Types.AbilityType.Support,
                 ModelMetadata = new ModelMetadata
                 {
                     ConstructorName = "mc_ab_all_3040092000_02",

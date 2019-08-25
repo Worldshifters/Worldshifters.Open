@@ -176,6 +176,7 @@ namespace Worldshifters.Assets.Hero.Dark
                     {
                         Name = "Last Love",
                         Cooldown = 4,
+                        Type = Ability.Types.AbilityType.Support,
                         ModelMetadata = new ModelMetadata
                         {
                             JsAssetPath = "npc/0269f30f-3c61-45ac-9c75-9290516e8985/abilities/2/ab_3040169000_02.js",
@@ -368,6 +369,7 @@ namespace Worldshifters.Assets.Hero.Dark
             {
                 Name = "World of Death and Love",
                 Cooldown = (int)cooldown,
+                Type = Ability.Types.AbilityType.Support,
                 ModelMetadata = new ModelMetadata
                 {
                     JsAssetPath =
@@ -396,6 +398,7 @@ namespace Worldshifters.Assets.Hero.Dark
             {
                 Name = "Beloved",
                 Cooldown = (int)cooldown,
+                Type = Ability.Types.AbilityType.Support,
                 ModelMetadata = new ModelMetadata
                 {
                     JsAssetPath = "npc/0269f30f-3c61-45ac-9c75-9290516e8985/abilities/1/ab_3040169000_01.js",

@@ -56,7 +56,7 @@ namespace Worldshifters.Assets.Hero.Dark
             {
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Ferry",
-                Race = Race.Unknow,
+                Race = Race.Erune,
                 Gender = Gender.Female,
                 MaxAttack = 7100,
                 MaxHp = 1550,
@@ -164,6 +164,7 @@ namespace Worldshifters.Assets.Hero.Dark
                     {
                         Name = string.Empty,
                         Cooldown = 9,
+                        Type = Ability.Types.AbilityType.Support,
                         ModelMetadata = new ModelMetadata
                         {
                             JsAssetPath = "npc/82b4e629-4cda-481a-8b81-f45f2ce7db19/abilities/2/ab_3040209000_03.js",
@@ -358,6 +359,7 @@ namespace Worldshifters.Assets.Hero.Dark
             {
                 Name = "Blau Gespenst",
                 Cooldown = (int)cooldown,
+                Type = Ability.Types.AbilityType.Support,
                 ModelMetadata = new ModelMetadata
                 {
                     JsAssetPath = "npc/82b4e629-4cda-481a-8b81-f45f2ce7db19/abilities/0/ab_3040209000_01.js",
@@ -405,6 +407,7 @@ namespace Worldshifters.Assets.Hero.Dark
             {
                 Name = "Benediction",
                 Cooldown = (int)cooldown,
+                Type = Ability.Types.AbilityType.Healing,
                 ModelMetadata = new ModelMetadata
                 {
                     JsAssetPath = "npc/82b4e629-4cda-481a-8b81-f45f2ce7db19/abilities/1/ab_3040209000_02.js",

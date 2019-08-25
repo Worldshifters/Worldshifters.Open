@@ -125,18 +125,17 @@ namespace Worldshifters.Assets.Hero.Earth
                     {
                         Name = "Lagulf",
                         Cooldown = 7,
+                        Type = Ability.Types.AbilityType.Offensive,
                         ModelMetadata = new ModelMetadata
                         {
-                            JsAssetPath =
-                                "npc/7d3a79da-c92d-4c5a-be19-ab507b8320c7/abilities/2/ab_all_3040158000_03.js",
+                            JsAssetPath = "npc/7d3a79da-c92d-4c5a-be19-ab507b8320c7/abilities/2/ab_all_3040158000_03.js",
                             ConstructorName = "mc_ab_all_3040158000_03",
                             ImageAssets =
                             {
                                 new ImageAsset
                                 {
                                     Name = "ab_all_3040158000_03",
-                                    Path =
-                                        "npc/7d3a79da-c92d-4c5a-be19-ab507b8320c7/abilities/2/ab_all_3040158000_03.png",
+                                    Path = "npc/7d3a79da-c92d-4c5a-be19-ab507b8320c7/abilities/2/ab_all_3040158000_03.png",
                                 },
                             },
                         },
@@ -197,19 +196,18 @@ namespace Worldshifters.Assets.Hero.Earth
             return new Ability
             {
                 Name = "Uncrossable Realm",
+                Type = Ability.Types.AbilityType.Defensive,
                 Cooldown = (int)cooldown,
                 ModelMetadata = new ModelMetadata
                 {
-                    JsAssetPath =
-                        "npc/7d3a79da-c92d-4c5a-be19-ab507b8320c7/abilities/0/ab_all_3040158000_01.js",
+                    JsAssetPath = "npc/7d3a79da-c92d-4c5a-be19-ab507b8320c7/abilities/0/ab_all_3040158000_01.js",
                     ConstructorName = "mc_ab_all_3040158000_01",
                     ImageAssets =
                     {
                         new ImageAsset
                         {
                             Name = "ab_all_3040158000_01",
-                            Path =
-                                "npc/7d3a79da-c92d-4c5a-be19-ab507b8320c7/abilities/0/ab_all_3040158000_01.png",
+                            Path = "npc/7d3a79da-c92d-4c5a-be19-ab507b8320c7/abilities/0/ab_all_3040158000_01.png",
                         },
                     },
                 },
@@ -235,20 +233,19 @@ namespace Worldshifters.Assets.Hero.Earth
         {
             return new Ability
             {
-                Name = string.Empty,
+                Name = "Nibelung Silt",
                 Cooldown = (int)cooldown,
+                Type = Ability.Types.AbilityType.Offensive,
                 ModelMetadata = new ModelMetadata
                 {
-                    JsAssetPath =
-                        "npc/7d3a79da-c92d-4c5a-be19-ab507b8320c7/abilities/1/ab_all_3040158000_02.js",
+                    JsAssetPath = "npc/7d3a79da-c92d-4c5a-be19-ab507b8320c7/abilities/1/ab_all_3040158000_02.js",
                     ConstructorName = "mc_ab_all_3040158000_02",
                     ImageAssets =
                     {
                         new ImageAsset
                         {
                             Name = "ab_all_3040158000_02",
-                            Path =
-                                "npc/7d3a79da-c92d-4c5a-be19-ab507b8320c7/abilities/1/ab_all_3040158000_02.png",
+                            Path = "npc/7d3a79da-c92d-4c5a-be19-ab507b8320c7/abilities/1/ab_all_3040158000_02.png",
                         },
                     },
                 },

@@ -64,6 +64,7 @@ namespace Worldshifters.Assets.Hero.Fire
                         Name = "Wrath of the Goddess",
                         Description = "Inflict Immaculate Sunlight to party members and enemies.",
                         Cooldown = 12,
+                        Type = Ability.Types.AbilityType.Offensive,
                         ModelMetadata = new ModelMetadata
                         {
                             ConstructorName = "mc_ab_3040167000_01_effect",
@@ -366,6 +367,7 @@ namespace Worldshifters.Assets.Hero.Fire
                 Name = "Sun-Touched Paradise",
                 Description = "Bathe the battlefield in the blazing heat of the sun.",
                 Cooldown = (int)cooldown,
+                Type = Ability.Types.AbilityType.Support,
                 ModelMetadata = new ModelMetadata
                 {
                     ConstructorName = "mc_ab_all_3040167000_01_effect",
@@ -394,6 +396,7 @@ namespace Worldshifters.Assets.Hero.Fire
                 Name = "Renatian Creed",
                 Description = "All allies deal triple attacks and deal bonus fire damage. Charge bar is frozen.",
                 Cooldown = (int)cooldown,
+                Type = Ability.Types.AbilityType.Support,
                 ModelMetadata = new ModelMetadata
                 {
                     ConstructorName = "mc_ab_all_3040167000_02",

@@ -26,7 +26,7 @@ namespace Worldshifters.Assets.Hero.Light
             {
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Halluel and Malluel",
-                Race = Race.Unknow,
+                Race = Race.Primal,
                 Gender = Gender.Female,
                 MaxAttack = 4000,
                 MaxHp = 1600,
@@ -93,6 +93,7 @@ namespace Worldshifters.Assets.Hero.Light
                     {
                         Name = "Geminis",
                         Cooldown = 7,
+                        Type = Ability.Types.AbilityType.Support,
                         ModelMetadata = new ModelMetadata
                         {
                             JsAssetPath = "npc/f7d1ac97-7348-4de9-ba3a-0e433ffc94dc/abilities/2/ab_3040223000_01.js",
@@ -256,6 +257,7 @@ namespace Worldshifters.Assets.Hero.Light
             {
                 Name = "Eterno",
                 Cooldown = (int)cooldown,
+                Type = Ability.Types.AbilityType.Offensive,
                 ModelMetadata = new ModelMetadata
                 {
                     JsAssetPath = "npc/f7d1ac97-7348-4de9-ba3a-0e433ffc94dc/abilities/0/ab_3040223000_02.js",
@@ -297,6 +299,7 @@ namespace Worldshifters.Assets.Hero.Light
             {
                 Name = "Perpetuo",
                 Cooldown = (int)cooldown,
+                Type = Ability.Types.AbilityType.Support,
                 ModelMetadata = new ModelMetadata
                 {
                     JsAssetPath = "npc/f7d1ac97-7348-4de9-ba3a-0e433ffc94dc/abilities/1/ab_all_3040223000_01.js",

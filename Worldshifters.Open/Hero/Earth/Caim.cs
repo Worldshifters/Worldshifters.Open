@@ -232,22 +232,34 @@ namespace Worldshifters.Assets.Hero.Earth
                 if (lastAbility.Type == Ability.Types.AbilityType.Offensive)
                 {
                     caim.GlobalState["blank_face"] = TypedValue.FromString("spades");
-                    SpadesPreparation().Cast(caim, raidActions);
+                    if (caim.PositionInFrontline < 4)
+                    {
+                        SpadesPreparation().Cast(caim, raidActions);
+                    }
                 }
                 else if (lastAbility.Type == Ability.Types.AbilityType.Healing)
                 {
                     caim.GlobalState["blank_face"] = TypedValue.FromString("hearts");
-                    HeartsPreparation().Cast(caim, raidActions);
+                    if (caim.PositionInFrontline < 4)
+                    {
+                        HeartsPreparation().Cast(caim, raidActions);
+                    }
                 }
                 else if (lastAbility.Type == Ability.Types.AbilityType.Support)
                 {
                     caim.GlobalState["blank_face"] = TypedValue.FromString("diamonds");
-                    DiamondsPreparation().Cast(caim, raidActions);
+                    if (caim.PositionInFrontline < 4)
+                    {
+                        DiamondsPreparation().Cast(caim, raidActions);
+                    }
                 }
                 else if (lastAbility.Type == Ability.Types.AbilityType.Defensive)
                 {
                     caim.GlobalState["blank_face"] = TypedValue.FromString("clubs");
-                    ClubsPreparation().Cast(caim, raidActions);
+                    if (caim.PositionInFrontline < 4)
+                    {
+                        ClubsPreparation().Cast(caim, raidActions);
+                    }
                 }
             }
         }
@@ -296,7 +308,7 @@ namespace Worldshifters.Assets.Hero.Earth
             return new Ability
             {
                 Name = string.Empty,
-                Cooldown = 0,
+                Cooldown = (int)cooldown,
                 Type = Ability.Types.AbilityType.Support,
                 ProcessEffects = (caim, targetIndex, raidActions) =>
                 {

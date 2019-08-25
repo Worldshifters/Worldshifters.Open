@@ -25,7 +25,7 @@ namespace Worldshifters.Assets.Hero.Water
             {
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Europa",
-                Race = Race.Unknow,
+                Race = Race.Primal,
                 Gender = Gender.Female,
                 MaxAttack = 6800,
                 MaxHp = 2000,
@@ -44,6 +44,7 @@ namespace Worldshifters.Assets.Hero.Water
                         Name = "Pleiades",
                         Description = "Water damage to a foe. Deals triple attacks and additional Water DMG.",
                         Cooldown = 7,
+                        Type = Ability.Types.AbilityType.Offensive,
                         ModelMetadata = new ModelMetadata
                         {
                             ConstructorName = "mc_ab_all_3040190000_03_effect",
@@ -282,6 +283,7 @@ namespace Worldshifters.Assets.Hero.Water
             {
                 Name = "Mana Blast",
                 Description = "3-hit Water damage to random foes. Restore all allies' HP and remove 1 debuff.",
+                Type = Ability.Types.AbilityType.Offensive,
                 Cooldown = (int)cooldown,
                 ModelMetadata = new ModelMetadata
                 {
@@ -332,6 +334,7 @@ namespace Worldshifters.Assets.Hero.Water
             {
                 Name = "Tyros Aggeris",
                 Description = "All allies gain Star Sanctuary.",
+                Type = Ability.Types.AbilityType.Defensive,
                 Cooldown = (int)cooldown,
                 ModelMetadata = new ModelMetadata
                 {

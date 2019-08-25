@@ -22,7 +22,7 @@ namespace Worldshifters.Assets.Hero.Fire
             {
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Yuel",
-                Race = Race.Unknow,
+                Race = Race.Erune,
                 Gender = Gender.Female,
                 MaxAttack = 8550 + 360,
                 AttackLevels = { 7200 + 360 },
@@ -220,6 +220,7 @@ namespace Worldshifters.Assets.Hero.Fire
             {
                 Name = "Eye of the Sparrow",
                 Cooldown = (int)cooldown,
+                Type = Ability.Types.AbilityType.Offensive,
                 ModelMetadata = new ModelMetadata
                 {
                     JsAssetPath = "npc/9d021476-1276-4cf9-aafd-7ad321b67142/abilities/0/ab_4110.js",
@@ -269,6 +270,7 @@ namespace Worldshifters.Assets.Hero.Fire
             {
                 Name = "Gurren",
                 Cooldown = (int)cooldown,
+                Type = Ability.Types.AbilityType.Offensive,
                 ModelMetadata = new ModelMetadata
                 {
                     JsAssetPath = "npc/9d021476-1276-4cf9-aafd-7ad321b67142/abilities/1/ab_all_3040015000_02.js",
@@ -315,6 +317,7 @@ namespace Worldshifters.Assets.Hero.Fire
             ability.Description = "Remove 1 debuff from all allies and restore all allies' HP";
             ability.Cooldown = 6;
             ability.AnimationName = "short_attack";
+            ability.Type = Ability.Types.AbilityType.Healing;
 
             // Clear debuffs first (default ClearAll effect) then heal
             ability.Effects.Add(new AbilityEffect
@@ -338,6 +341,7 @@ namespace Worldshifters.Assets.Hero.Fire
             {
                 Name = "Third Dance: Jinka",
                 Cooldown = 6,
+                Type = Ability.Types.AbilityType.Support,
                 ModelMetadata = new ModelMetadata
                 {
                     JsAssetPath = "npc/9d021476-1276-4cf9-aafd-7ad321b67142/abilities/3/ab_all_3040006000_01.js",

@@ -18,6 +18,7 @@ namespace Worldshifters.Assets.Hero.Earth
 
         private const string EightLifePilgrimageId = "elen/8_life_pilgrimage";
         private const string AikiId = "elen/aiki";
+        private const string ArdaFravaId = "elen/arda_fravra";
 
         public static Hero NewInstance()
         {
@@ -301,6 +302,31 @@ namespace Worldshifters.Assets.Hero.Earth
                         TurnDuration = int.MaxValue,
                     });
                 },
+                OnAttackStart = (elen, raidActions) =>
+                {
+                    if (elen.GetStatusEffect(ArdaFravaId) == null)
+                    {
+                        return;
+                    }
+
+                    bool canPerformMoreThan2ChargeAttacksInARow =
+                        elen.ChargeGauge >= 200 ||
+                        elen.GetStatusEffect(StatusEffectLibrary.ChargeAttackReactivation) != null;
+                    elen.ApplyStatusEffectsFromTemplate(
+                        new StatusEffectSnapshot
+                        {
+                            TurnDuration = 1,
+                            IsBuff = true,
+                            IsUsedInternally = true,
+                            TriggerCondition = new StatusEffectSnapshot.Types.TriggerCondition
+                            {
+                                Type = StatusEffectSnapshot.Types.TriggerCondition.Types.Type.HasStatusEffect,
+                                Data = ArdaFravaId,
+                            },
+                        },
+                        ($"{ArdaFravaId}/ca_dmg_up", ModifierLibrary.FlatChargeAttackDamageBoost, canPerformMoreThan2ChargeAttacksInARow ? 20 : 4),
+                        ($"{ArdaFravaId}/ca_dmg_cap_up", ModifierLibrary.FlatChainBurstDamageCapBoost, canPerformMoreThan2ChargeAttacksInARow ? 30 : 10));
+                },
             };
         }
 
@@ -322,6 +348,7 @@ namespace Worldshifters.Assets.Hero.Earth
             openSpirit.Name = "Open Spirit";
             openSpirit.Cooldown = (int)cooldown;
             openSpirit.AnimationName = "attack";
+            openSpirit.Type = Ability.Types.AbilityType.Support;
             openSpirit.CanCast = (elen, targetPositionInFrontline) =>
             {
                 if (elen.Hero.Level >= 85)
@@ -353,6 +380,14 @@ namespace Worldshifters.Assets.Hero.Earth
                                 DamageMultiplier = 1,
                             }.ToByteString(),
                         }, raidActions);
+
+                    elen.ApplyStatusEffect(
+                        new StatusEffectSnapshot
+                        {
+                            Id = ArdaFravaId,
+                            IsBuff = true,
+                            TurnDuration = 3,
+                        }, raidActions);
                 }
                 else
                 {
@@ -380,6 +415,7 @@ namespace Worldshifters.Assets.Hero.Earth
             purgatory.Name = "Purgatory";
             purgatory.Cooldown = (int)cooldown;
             purgatory.AnimationName = "attack";
+            purgatory.Type = Ability.Types.AbilityType.Support;
             purgatory.CanCast = (elen, targetPositionInFrontline) =>
             {
                 if (elen.ChargeGauge < 30)
@@ -420,6 +456,7 @@ namespace Worldshifters.Assets.Hero.Earth
             {
                 Name = "Dance of the Gods",
                 Cooldown = (int)cooldown,
+                Type = Ability.Types.AbilityType.Support,
                 ModelMetadata = new ModelMetadata
                 {
                     JsAssetPath = "npc/1fd2d3bf-ec70-4c97-9a02-4e08a941bd3a/abilities/2/ab_3040025000_01.js",

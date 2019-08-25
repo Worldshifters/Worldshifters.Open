@@ -60,7 +60,7 @@ namespace Worldshifters.Assets.Hero.Wind
             {
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Niyon",
-                Race = Race.Unknow,
+                Race = Race.Harvin,
                 Gender = Gender.Female,
                 MaxAttack = 11222,
                 AttackLevels = { 9522 },
@@ -292,6 +292,7 @@ namespace Worldshifters.Assets.Hero.Wind
             {
                 Name = "Ninanana",
                 Cooldown = (int)cooldown,
+                Type = Ability.Types.AbilityType.Support,
                 ModelMetadata = new ModelMetadata
                 {
                     JsAssetPath = "npc/25a06a88-ac5a-45eb-9d1c-ca007f4ad82f/abilities/0/ab_all_3040038000_02.js",
@@ -396,7 +397,7 @@ namespace Worldshifters.Assets.Hero.Wind
             {
                 Name = "Defandue",
                 Cooldown = (int)cooldown,
-                Type = Ability.Types.AbilityType.Offensive,
+                Type = Ability.Types.AbilityType.Defensive,
                 ModelMetadata = new ModelMetadata
                 {
                     JsAssetPath = "npc/25a06a88-ac5a-45eb-9d1c-ca007f4ad82f/abilities/2/ab_all_3040038000_01.js",

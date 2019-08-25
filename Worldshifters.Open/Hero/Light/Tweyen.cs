@@ -25,7 +25,7 @@ namespace Worldshifters.Assets.Hero.Light
             {
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Tweyen",
-                Race = Race.Unknow,
+                Race = Race.Human,
                 Gender = Gender.Female,
                 MaxAttack = 11222,
                 AttackLevels = { 9522 },
@@ -311,6 +311,7 @@ namespace Worldshifters.Assets.Hero.Light
             {
                 Name = "Merculight",
                 Cooldown = (int)cooldown,
+                Type = Ability.Types.AbilityType.Support,
                 Effects =
                 {
                     new AbilityEffect

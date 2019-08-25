@@ -208,10 +208,6 @@ namespace Worldshifters.Assets.Hero.Earth
                 {
                     TryProcessUnforgettableSummerHealingBoost(jessica);
                 },
-                OnAttackActionEnd = (jessica, raidActions) => { },
-                OnTargettedByEnemy = (jessica, enemy, raidActions) => { },
-                OnAbilityEnd = (jessica, ability, raidActions) => { },
-                OnDeath = (jessica, raidActions) => { },
             };
         }
 
@@ -219,6 +215,7 @@ namespace Worldshifters.Assets.Hero.Earth
         {
             return new Ability
             {
+                Type = Ability.Types.AbilityType.Offensive,
                 Effects =
                 {
                     new AbilityEffect

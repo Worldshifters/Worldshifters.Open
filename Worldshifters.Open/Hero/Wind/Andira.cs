@@ -31,7 +31,7 @@ namespace Worldshifters.Assets.Hero.Wind
             {
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Andira",
-                Race = Race.Unknow,
+                Race = Race.Erune,
                 Gender = Gender.Female,
                 MaxAttack = 7560 + 360,
                 MaxHp = 1400 + 270,
@@ -395,6 +395,7 @@ namespace Worldshifters.Assets.Hero.Wind
             {
                 Name = "Unborn, Undying",
                 Cooldown = (int)cooldown,
+                Type = Ability.Types.AbilityType.Healing,
                 Effects =
                 {
                     ApplyStatusEffect.FromTemplate(
@@ -522,7 +523,7 @@ namespace Worldshifters.Assets.Hero.Wind
             {
                 Name = "Tricumulo",
                 Cooldown = (int)cooldown,
-                Type = Ability.Types.AbilityType.Offensive,
+                Type = Ability.Types.AbilityType.Support,
                 ModelMetadata = new ModelMetadata
                 {
                     JsAssetPath = "npc/e0db0d71-c148-49af-8f86-9d403136e311/abilities/2/ab_all_3040071000_02.js",

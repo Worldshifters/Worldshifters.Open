@@ -33,6 +33,10 @@ namespace Worldshifters.Data
     public enum Race
     {
         Human,
+        Harvin,
+        Erune,
+        Primal,
+        Draph,
         Unknow,
     }
 
