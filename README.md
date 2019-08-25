@@ -14,7 +14,7 @@ Installation
 
 Download and install the [.NET Core 2.2](https://dotnet.microsoft.com/download) SDK.
 
-Open the `Worldshifters.Open.sln` solution file with [Visual Studio](https://visualstudio.microsoft.com/vs/older-downloads/) 2017 or [Visual Studio Code](https://code.visualstudio.com/).
+Open the `Worldshifters.Open.sln` solution file with [Visual Studio](https://visualstudio.microsoft.com/vs/older-downloads/) 2017 (or more recent) or [Visual Studio Code](https://code.visualstudio.com/).
 
 The provided code is not meant to be used on its own: it provides building blocks to describe how game assets such as characters should behave.
 
