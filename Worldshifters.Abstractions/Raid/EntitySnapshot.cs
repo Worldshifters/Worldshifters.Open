@@ -306,6 +306,15 @@ namespace Worldshifters.Data.Raid
         }
 
         /// <summary>
+        /// Return the enemy at position <see cref="targetPositionInFrontline"/> if it is alive or else the first other enemy still alive.
+        /// </summary>
+        /// <returns>A resolved enemy target or null if there are no enemies left.</returns>
+        public EntitySnapshot ResolveEnemyTarget(int targetPositionInFrontline)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
         /// Override the total contribution of the equipment towards the party's <see cref="ModifierLibrary.DamageBoostWhenSuperiorElement"/> if
         /// the value of <see cref="strength"/> is stronger.
         /// </summary>
