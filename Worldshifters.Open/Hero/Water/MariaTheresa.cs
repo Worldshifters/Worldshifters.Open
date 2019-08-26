@@ -34,7 +34,7 @@ namespace Worldshifters.Assets.Hero.Water
                 BaseDoubleAttackRate = 6,
                 BaseTripleAttackRate = 4.5,
                 Element = Element.Water,
-                WeaponProficiencies = {EquipmentType.Staff, EquipmentType.Sword},
+                WeaponProficiencies = { EquipmentType.Staff, EquipmentType.Sword },
                 AvailablePerkIds =
                 {
                     ExtendedMasteryPerks.AttackBoost,
@@ -118,7 +118,7 @@ namespace Worldshifters.Assets.Hero.Water
                 {
                     Name = string.Empty,
 
-                    HitCount = {4},
+                    HitCount = { 4 },
 
                     ModelMetadata =
                     {
@@ -223,7 +223,7 @@ namespace Worldshifters.Assets.Hero.Water
             return new Ability
             {
                 Name = "Abraxas",
-                Cooldown = (int) cooldown,
+                Cooldown = (int)cooldown,
                 Type = Ability.Types.AbilityType.Offensive,
                 ModelMetadata = new ModelMetadata
                 {
@@ -247,7 +247,7 @@ namespace Worldshifters.Assets.Hero.Water
                         {
                             Element = Element.Water,
                             HitNumber = 2,
-                            DamageCap = 700_000,
+                            DamageCap = 420_000,
                             DamageModifier = 3.5,
                         }.ToByteString(),
                     },
@@ -270,7 +270,7 @@ namespace Worldshifters.Assets.Hero.Water
             return new Ability
             {
                 Name = "Uguale",
-                Cooldown = (int) cooldown,
+                Cooldown = (int)cooldown,
                 Type = Ability.Types.AbilityType.Healing,
                 AbilityTargetting = AbilityTargettingType.TargetSingleAliveFrontLineMember,
                 ModelMetadata = new ModelMetadata
@@ -307,7 +307,7 @@ namespace Worldshifters.Assets.Hero.Water
             return new Ability
             {
                 Name = "Fedelta",
-                Cooldown = (int) cooldown,
+                Cooldown = (int)cooldown,
                 Type = Ability.Types.AbilityType.Offensive,
                 ModelMetadata = new ModelMetadata
                 {
@@ -350,7 +350,7 @@ namespace Worldshifters.Assets.Hero.Water
                     {
                         if (hero.IsAlive() && hero.PositionInFrontline < 4 && hero.HpPercentage >= 25)
                         {
-                            return (false, "All allies must be in critical condition.");
+                            return (false, "All allies must be in critical condition");
                         }
                     }
 
@@ -367,15 +367,15 @@ namespace Worldshifters.Assets.Hero.Water
                         },
                         raidActions,
                         (DevotionToJusticeId, ModifierLibrary.None, 0),
-                        (DevotionToJusticeId + "_def_up", ModifierLibrary.FlatDefenseBoost, 100),
-                        (DevotionToJusticeId + "_da_up", ModifierLibrary.FlatDoubleAttackRateBoost, 45),
-                        (DevotionToJusticeId + "_ta_up", ModifierLibrary.FlatTripleAttackRateBoost, 30),
-                        (DevotionToJusticeId + "_dmg_cap_up", ModifierLibrary.FlatDamageCapBoost, 20));
+                        (DevotionToJusticeId + "/def_up", ModifierLibrary.FlatDefenseBoost, 100),
+                        (DevotionToJusticeId + "/da_up", ModifierLibrary.FlatDoubleAttackRateBoost, 45),
+                        (DevotionToJusticeId + "/ta_up", ModifierLibrary.FlatTripleAttackRateBoost, 30),
+                        (DevotionToJusticeId + "/dmg_cap_up", ModifierLibrary.FlatDamageCapBoost, 20));
 
                     mariaTheresa.Raid.Allies.ApplyStatusEffects(
                         new StatusEffectSnapshot
                         {
-                            Id = DevotionToJusticeId + "_crit_rate_up",
+                            Id = DevotionToJusticeId + "/crit_rate_up",
                             IsBuff = true,
                             TurnDuration = 5,
                             IsUndispellable = true,
@@ -413,6 +413,17 @@ namespace Worldshifters.Assets.Hero.Water
                 {
                     new AbilityEffect
                     {
+                        Type = AbilityEffect.Types.AbilityEffectType.MultihitDamage,
+                        ExtraData = new MultihitDamage
+                        {
+                            Element = Element.Water,
+                            HitNumber = 1,
+                            DamageCap = 630_000,
+                            DamageModifier = 3.5,
+                        }.ToByteString(),
+                    },
+                    new AbilityEffect
+                    {
                         Type = AbilityEffect.Types.AbilityEffectType.ApplyStatusEffect,
                         ExtraData = new ApplyStatusEffect
                         {
@@ -439,8 +450,8 @@ namespace Worldshifters.Assets.Hero.Water
                                 Data = UnrighteousnessId,
                             },
                         },
-                        (UnrighteousnessId + "_def_down", ModifierLibrary.FlatDefenseBoost, -10),
-                        (UnrighteousnessId + "_atk_down", ModifierLibrary.FlatAttackBoost, -10));
+                        (UnrighteousnessId + "/def_down", ModifierLibrary.FlatDefenseBoost, -10),
+                        (UnrighteousnessId + "/atk_down", ModifierLibrary.FlatAttackBoost, -10));
                 },
                 AnimationName = "ab_motion",
             };
@@ -465,6 +476,17 @@ namespace Worldshifters.Assets.Hero.Water
                 },
                 Effects =
                 {
+                    new AbilityEffect
+                    {
+                        Type = AbilityEffect.Types.AbilityEffectType.MultihitDamage,
+                        ExtraData = new MultihitDamage
+                        {
+                            Element = Element.Water,
+                            HitNumber = 1,
+                            DamageCap = 630_000,
+                            DamageModifier = 3.5,
+                        }.ToByteString(),
+                    },
                     ApplyStatusEffect.FromTemplate(
                         new ApplyStatusEffect
                         {
@@ -512,7 +534,7 @@ namespace Worldshifters.Assets.Hero.Water
                     mariaTheresa.Raid.Allies.ApplyStatusEffects(
                         new StatusEffectSnapshot
                         {
-                            Id = RighteousIndignationId + "_atk_up",
+                            Id = RighteousIndignationId + "/atk_up",
                             IsBuff = true,
                             TurnDuration = int.MaxValue,
                             IsUndispellable = true,
@@ -525,7 +547,7 @@ namespace Worldshifters.Assets.Hero.Water
                     mariaTheresa.Raid.Allies.ApplyStatusEffects(
                         new StatusEffectSnapshot
                         {
-                            Id = RighteousIndignationId + "_echo",
+                            Id = RighteousIndignationId + "/echo",
                             IsBuff = true,
                             TurnDuration = int.MaxValue,
                             IsUndispellable = true,
