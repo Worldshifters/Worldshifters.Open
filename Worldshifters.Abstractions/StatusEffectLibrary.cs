@@ -95,7 +95,20 @@ namespace Worldshifters.Data
         /// </summary>
         public static string BurntNpc;
 
+        /// <summary>
+        /// <see cref="BurntSummon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Burn"/>.
+        /// </summary>
+        public static string BurntSummon;
+
+        /// <summary>
+        /// <see cref="BurntWeapon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Burn"/>.
+        /// </summary>
+        public static string BurntWeapon;
+
         public static string ChargeAttackReactivation;
+        public static string ChargeBarSpedUpNpc;
+        public static string ChargeBarSpedUpSummon;
+        public static string ChargeBarSpedUpWeapon;
         public static string ChargeGaugeBoost;
         public static string Charmed;
 
@@ -168,6 +181,9 @@ namespace Worldshifters.Data
         public static string DamageCutUpWeapon;
         public static string DamageReductionUpNpc;
         public static string DamageReductionUpWeapon;
+        public static string DarkAttackDownNpc;
+        public static string DarkAttackDownSummon;
+        public static string DarkAttackDownWeapon;
         public static string DarkAttackUpNpc;
         public static string DarkAttackUpSummon;
         public static string DarkAttackUpWeapon;
@@ -222,6 +238,9 @@ namespace Worldshifters.Data
         /// </summary>
         public static string DrainSummon;
 
+        public static string EarthAttackDownNpc;
+        public static string EarthAttackDownSummon;
+        public static string EarthAttackDownWeapon;
         public static string EarthAttackUpNpc;
         public static string EarthAttackUpSummon;
         public static string EarthAttackUpWeapon;
@@ -232,6 +251,9 @@ namespace Worldshifters.Data
         public static string EarthDamageReductionUpNpc;
         public static string EarthElementalAttackBoostAmplificationNpc;
         public static string EarthSwitch;
+        public static string FireAttackDownNpc;
+        public static string FireAttackDownSummon;
+        public static string FireAttackDownWeapon;
         public static string FireAttackUpNpc;
         public static string FireAttackUpSummon;
         public static string FireAttackUpWeapon;
@@ -262,10 +284,18 @@ namespace Worldshifters.Data
         public static string JammedNpc;
 
         /// <summary>
+        /// <see cref="JammedSummon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.LinearAttackBoost"/>.
+        /// </summary>
+        public static string JammedSummon;
+
+        /// <summary>
         /// <see cref="JammedWeapon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.LinearAttackBoost"/>.
         /// </summary>
         public static string JammedWeapon;
 
+        public static string LightAttackDownNpc;
+        public static string LightAttackDownSummon;
+        public static string LightAttackDownWeapon;
         public static string LightAttackUpNpc;
         public static string LightAttackUpSummon;
         public static string LightAttackUpWeapon;
@@ -303,6 +333,11 @@ namespace Worldshifters.Data
         public static string PutrefiedNpc;
 
         /// <summary>
+        /// <see cref="PutrefiedSummon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Burn"/>.
+        /// </summary>
+        public static string PutrefiedSummon;
+
+        /// <summary>
         /// <see cref="RefreshNpc"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Revitalize"/>.
         /// </summary>
         public static string RefreshNpc;
@@ -312,6 +347,7 @@ namespace Worldshifters.Data
         /// </summary>
         public static string RefreshWeapon;
 
+        public static string RemoveAllDebuffs;
         public static string RemoveDebuff;
         public static string RepelNpc;
 
@@ -357,6 +393,7 @@ namespace Worldshifters.Data
         public static string Stun;
         public static string Substitute;
         public static string SubstituteAllAttacks;
+        public static string Tenacity;
         public static string TripleAttackRateDownNpc;
         public static string TripleAttackRateDownWeapon;
         public static string TripleAttackRateUpNpc;
@@ -366,6 +403,9 @@ namespace Worldshifters.Data
         public static string Unchallenged;
         public static string Uplifted;
         public static string Veil;
+        public static string WaterAttackDownNpc;
+        public static string WaterAttackDownSummon;
+        public static string WaterAttackDownWeapon;
         public static string WaterAttackUpNpc;
         public static string WaterAttackUpSummon;
         public static string WaterAttackUpWeapon;
@@ -376,6 +416,9 @@ namespace Worldshifters.Data
         public static string WaterDamageReductionUpNpc;
         public static string WaterElementalAttackBoostAmplificationNpc;
         public static string WaterSwitch;
+        public static string WindAttackDownNpc;
+        public static string WindAttackDownSummon;
+        public static string WindAttackDownWeapon;
         public static string WindAttackUpNpc;
         public static string WindAttackUpSummon;
         public static string WindAttackUpWeapon;

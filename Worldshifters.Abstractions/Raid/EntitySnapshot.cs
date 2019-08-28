@@ -315,6 +315,14 @@ namespace Worldshifters.Data.Raid
         }
 
         /// <summary>
+        /// Replace the current sprite of the character with a new one.
+        /// </summary>
+        public void ChangeForm(ModelMetadata newModel, IList<RaidAction> raidActions)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
         /// Override the total contribution of the equipment towards the party's <see cref="ModifierLibrary.DamageBoostWhenSuperiorElement"/> if
         /// the value of <see cref="strength"/> is stronger.
         /// </summary>
