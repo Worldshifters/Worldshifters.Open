@@ -7,6 +7,7 @@ namespace Worldshifters.Data
     public static class StatusEffectLibrary
     {
         public static string AdditionalDamageNpc;
+        public static string AdditionalDamageSummon;
         public static string AdditionalDamageWeapon;
         public static string AdditionalDarkDamageNpc;
         public static string AdditionalDarkDamageNpc2;
@@ -80,6 +81,7 @@ namespace Worldshifters.Data
         public static string AttackDownNpc;
         public static string AttackDownNpcLocal;
         public static string AttackDownNpc2;
+        public static string AttackDownSummon;
         public static string AttackDownWeapon;
         public static string AttackUpNpc;
         public static string AttackUpSummon;
@@ -106,6 +108,7 @@ namespace Worldshifters.Data
         public static string BurntWeapon;
 
         public static string ChargeAttackReactivation;
+        public static string ChargeAttackSealed;
         public static string ChargeBarSpedUpNpc;
         public static string ChargeBarSpedUpSummon;
         public static string ChargeBarSpedUpWeapon;
@@ -131,6 +134,11 @@ namespace Worldshifters.Data
         /// <see cref="CriticalHitRateBoostNpc"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.CriticalHit"/>.
         /// </summary>
         public static string CriticalHitRateBoostNpc;
+
+        /// <summary>
+        /// <see cref="CriticalHitRateBoostSummon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.CriticalHit"/>.
+        /// </summary>
+        public static string CriticalHitRateBoostSummon;
 
         /// <summary>
         /// <see cref="CriticalHitRateBoostWeapon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.CriticalHit"/>.
@@ -166,6 +174,11 @@ namespace Worldshifters.Data
         /// <see cref="CriticalHitRateBoostForWindAlliesWeapon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.CriticalHit"/>.
         /// </summary>
         public static string CriticalHitRateBoostForWindAlliesWeapon;
+
+        /// <summary>
+        /// Can't be healed.
+        /// </summary>
+        public static string Cursed;
 
         /// <summary>
         /// <see cref="DamageBoostedNpc"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.SupplementalDamage"/>.
@@ -205,6 +218,7 @@ namespace Worldshifters.Data
         public static string DefenseDownNpc;
         public static string DefenseDownNpcLocal;
         public static string DefenseDownNpc2;
+        public static string DefenseDownSummon;
         public static string DefenseDownWeapon;
         public static string DefenseUpNpc;
         public static string DefenseUpSummon;
@@ -218,6 +232,7 @@ namespace Worldshifters.Data
         public static string Dodge;
 
         public static string DoubleAttackRateDownNpc;
+        public static string DoubleAttackRateDownSummon;
         public static string DoubleAttackRateDownWeapon;
         public static string DoubleAttackRateUpNpc;
         public static string DoubleAttackRateUpWeapon;
@@ -264,6 +279,7 @@ namespace Worldshifters.Data
         public static string FireDamageReductionUpNpc;
         public static string FireElementalAttackBoostAmplificationNpc;
         public static string FireSwitch;
+        public static string Glaciate;
 
         /// <summary>
         /// Percentage based.
@@ -275,6 +291,7 @@ namespace Worldshifters.Data
         /// </summary>
         public static string HealingCapBoost;
 
+        public static string HellfireCrest;
         public static string HostilityDown;
         public static string HostilityUp;
 
@@ -343,6 +360,11 @@ namespace Worldshifters.Data
         public static string RefreshNpc;
 
         /// <summary>
+        /// <see cref="RefreshSummon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Revitalize"/>.
+        /// </summary>
+        public static string RefreshSummon;
+
+        /// <summary>
         /// <see cref="RefreshWeapon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Revitalize"/>.
         /// </summary>
         public static string RefreshWeapon;
@@ -374,10 +396,13 @@ namespace Worldshifters.Data
         public static string Shorted;
 
         public static string SkillDamageCapUpNpc;
+        public static string SkillSealed;
         public static string StackableAttackDownNpc;
+        public static string StackableAttackUpNpc;
         public static string StackableChargeAttackDamageBoostWeapon;
         public static string StackableChargeAttackDamageCapBoostWeapon;
         public static string StackableDefenseDownNpc;
+        public static string StackableDefenseUpNpc;
         public static string StackableDebuffResistanceDownNpc;
 
         /// <summary>
@@ -393,7 +418,12 @@ namespace Worldshifters.Data
         public static string Stun;
         public static string Substitute;
         public static string SubstituteAllAttacks;
+
+        /// <summary>
+        /// The strength of <see cref="Tenacity"/> status effects is the minimum HP percentage required for the effect to take effect.
+        /// </summary>
         public static string Tenacity;
+
         public static string TripleAttackRateDownNpc;
         public static string TripleAttackRateDownWeapon;
         public static string TripleAttackRateUpNpc;

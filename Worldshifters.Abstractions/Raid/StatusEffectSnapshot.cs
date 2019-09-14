@@ -54,6 +54,8 @@ namespace Worldshifters.Data.Raid
         /// </summary>
         public int TurnDuration { get; set; }
 
+        public int InitialTurnDuration { get; }
+
         /// <summary>
         /// Only one between <see cref="TurnDuration"/> and <see cref="RemainingDurationInSeconds"/> should be implemented.
         /// </summary>

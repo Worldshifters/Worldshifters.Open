@@ -13,5 +13,9 @@ namespace Worldshifters.Data
         public RepeatedField<ImageAsset> ImageAssets { get; }
 
         public string JsAssetPath { get; set; }
+
+        public int DisplayRegistrationPointX { get; set; }
+
+        public int DisplayRegistrationPointY { get; set; }
     }
 }

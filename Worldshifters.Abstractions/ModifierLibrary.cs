@@ -172,5 +172,21 @@ namespace Worldshifters.Data
         /// Strength values of <see cref="Drain"/> effects are either a percentage of the damage dealt or a flat HP amount, depending on the <see cref="StatusEffectSnapshot.ExtraData"/> settings.
         /// </summary>
         public static Modifier Drain;
+
+        /// <summary>
+        /// The strength of <see cref="Tenacity"/> status effects is the minimum HP percentage required for the effect to take effect.
+        /// </summary>
+        public static Modifier Tenacity;
+
+        public static Modifier CantBeHealed;
+
+        public static Modifier CantUseChargeAttack;
+
+        public static Modifier CantUseSkills;
+
+        /// <summary>
+        /// <see cref="StatusEffectSnapshot"/>s with a <see cref="StatusEffectImmunity"/> <see cref="StatusEffectSnapshot.Modifier"/> must have <see cref="StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.StatusEffectImmunity"/>.
+        /// </summary>
+        public static Modifier StatusEffectImmunity;
     }
 }

@@ -6,7 +6,6 @@ namespace Worldshifters.Data.Raid
 {
     using System;
     using System.Collections.Generic;
-    using Google.Protobuf;
     using Google.Protobuf.Collections;
     using Worldshifters.Data.Hero;
     using Hero = Worldshifters.Data.Inventory.Types.Hero;
@@ -18,6 +17,7 @@ namespace Worldshifters.Data.Raid
     {
         public enum AttackResult
         {
+            None,
             Single,
             Double,
             Triple,
@@ -70,7 +70,7 @@ namespace Worldshifters.Data.Raid
         /// </summary>
         public RaidSnapshot Raid { get; }
 
-        public Element Element { get; }
+        public Element Element { get; set; }
 
         public long Hp { get; set; }
 
@@ -81,6 +81,15 @@ namespace Worldshifters.Data.Raid
         public int ChargeGauge { get; set; }
 
         public int MaxChargeGauge { get; set; }
+
+        /// <remarks>Only applicable to npcs.</remarks>
+        public int ChargeDiamonds { get; set; }
+
+        /// <remarks>Only applicable to npcs.</remarks>
+        public int MaxChargeDiamonds { get; set; }
+
+        /// <remarks>Only applicable to npcs. Automatically reset to false at the beginning of each turn.</remarks>
+        public bool NoChargeDiamondGainThisTurn { get; set; }
 
         /// <remarks>1-1 mapping with <see cref="Inventory.Types.Hero.GetAbilities"/>.</remarks>
         public RepeatedField<int> AbilityCooldowns { get; }
@@ -121,6 +130,30 @@ namespace Worldshifters.Data.Raid
         /// Attacks <see cref="RaidSnapshot.SelectedTarget"/> and process side effects such as death, repel, and drain effects.
         /// </summary>
         public void Attack(IList<RaidAction> raidActions, double customDamageModifier = 1, bool forceSingleAttack = false, bool disableSpecialAttack = false)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// <remarks>For npcs only.</remarks>
+        /// </summary>
+        /// <param name="totalHitCount">The number of hits of the charge attack.</param>
+        /// <param name="modelMetadata">The sprite of the charge attack, if any.</param>
+        /// <param name="damageModifier"></param>
+        /// <param name="raidActions"></param>
+        /// <param name="onAllEnemies">Whether each hit of the charge attack should hit all the enemies or not.</param>
+        /// <param name="isFlatDamage">If true, the damage won't be affected by attack and defense status effects and will be equal to <see cref="damageModifier"/>. Damage cuts still apply.</param>
+        /// <param name="attackElement">Optional attack element override.</param>
+        /// <param name="isMultiElement">If true, each hit will be of a random element taken from a uniform distribution.</param>
+        public void PerformChargeAttack(
+            uint totalHitCount,
+            ModelMetadata modelMetadata,
+            double damageModifier,
+            IList<RaidAction> raidActions,
+            bool onAllEnemies = false,
+            bool isFlatDamage = false,
+            Element? attackElement = null,
+            bool isMultiElement = false)
         {
             throw new NotImplementedException();
         }
@@ -241,6 +274,16 @@ namespace Worldshifters.Data.Raid
             throw new NotImplementedException();
         }
 
+        public bool IsInBreakMode()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsInOverdriveMode()
+        {
+            throw new NotImplementedException();
+        }
+
         public void AddChargeGauge(int amount, IList<RaidAction> raidActions = null)
         {
             throw new NotImplementedException();
@@ -317,7 +360,7 @@ namespace Worldshifters.Data.Raid
         /// <summary>
         /// Replace the current sprite of the character with a new one.
         /// </summary>
-        public void ChangeForm(ModelMetadata newModel, IList<RaidAction> raidActions)
+        public void ChangeForm(ModelMetadata newModel, IList<RaidAction> raidActions, ModelMetadata onHitEffectModel = null)
         {
             throw new NotImplementedException();
         }
@@ -328,6 +371,11 @@ namespace Worldshifters.Data.Raid
         /// </summary>
         /// <param name="strength"></param>
         public void OverrideWeaponSeraphicModifier(double strength)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PlayAnimation(string animationName, IList<RaidAction> raidActions)
         {
             throw new NotImplementedException();
         }
