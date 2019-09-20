@@ -91,6 +91,7 @@ namespace Worldshifters.Data
 
         public static string Blind;
         public static string BlindLocal;
+        public static string Break;
 
         /// <summary>
         /// <see cref="BurntNpc"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Burn"/>.
@@ -425,6 +426,7 @@ namespace Worldshifters.Data
         public static string Tenacity;
 
         public static string TripleAttackRateDownNpc;
+        public static string TripleAttackRateDownSummon;
         public static string TripleAttackRateDownWeapon;
         public static string TripleAttackRateUpNpc;
         public static string TripleAttackRateUpWeapon;

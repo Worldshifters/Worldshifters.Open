@@ -161,6 +161,25 @@ namespace Worldshifters.Data
 
         public static Modifier NormalAttacksHitAllFoes;
 
+        public static Modifier Paralyzed;
+
+        /// <summary>
+        /// The strength value of a <see cref="Blind"/> status effect is the percentage of chance for normal attacks to miss.
+        /// </summary>
+        public static Modifier Blind;
+
+        /// <summary>
+        /// <see cref="StatusEffectSnapshot"/>s with a <see cref="DelayedAbility"/> <see cref="StatusEffectSnapshot.Modifier"/> must have <see cref="StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.DelayedAbility"/>.
+        /// </summary>
+        public static Modifier DelayedAbility;
+
+        /// <summary>
+        /// When the effect source is a weapon: flat 3% change to dodge and counter per counter effect, unmodified by summon auras.
+        /// When applied to a character: counter attacks on turn end.
+        /// <see cref="StatusEffectSnapshot"/>s with a <see cref="Counter"/> <see cref="StatusEffectSnapshot.Modifier"/> must have <see cref="StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Counter"/>.
+        /// </summary>
+        public static Modifier Counter;
+
         /// <summary>
         /// Dodge and counter a one-foe attack.
         /// <see cref="StatusEffectSnapshot"/>s with a <see cref="DodgeAndCounter"/> <see cref="StatusEffectSnapshot.Modifier"/> must have <see cref="StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Counter"/>.
@@ -188,5 +207,7 @@ namespace Worldshifters.Data
         /// <see cref="StatusEffectSnapshot"/>s with a <see cref="StatusEffectImmunity"/> <see cref="StatusEffectSnapshot.Modifier"/> must have <see cref="StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.StatusEffectImmunity"/>.
         /// </summary>
         public static Modifier StatusEffectImmunity;
+
+        public static Modifier CanDealCriticalHitsRegardlessOfElement;
     }
 }
