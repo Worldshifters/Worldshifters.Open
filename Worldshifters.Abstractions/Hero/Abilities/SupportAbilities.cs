@@ -143,5 +143,13 @@ namespace Worldshifters.Data.Hero.Abilities
         {
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// An <see cref="Ability"/> with the charmed sprite animation.
+        /// </summary>
+        public static Ability Charmed()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

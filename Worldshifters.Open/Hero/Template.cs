@@ -225,13 +225,20 @@ namespace Worldshifters.Assets.Hero
                 {
                 },
                 OnEnteringFrontline = (template, raidActions) => ProcessPassiveEffects(template),
+                BeforeNormalAttackHit = (template, raidActions) =>
+                {
+                    double customDamageModifier = 1.0;
+                    bool continueProcessintAttack = true;
+                    bool shoulHitAllFoes = false;
+                    return (customDamageModifier, continueProcessintAttack, shoulHitAllFoes);
+                },
                 OnAttackEnd = (template, attackResult, raidActions) =>
                 {
                 },
                 OnAttackActionEnd = (template, raidActions) =>
                 {
                 },
-                OnTargettedByEnemy = (template, enemy, raidActions) =>
+                OnReceiveDamageFromEnemy = (template, enemy, raidActions) =>
                 {
                 },
                 OnAbilityEnd = (template, ability, raidActions) =>
@@ -249,6 +256,7 @@ namespace Worldshifters.Assets.Hero
             {
                 Name = "Ability 1",
                 Cooldown = (int)cooldown,
+                Type = Ability.Types.AbilityType.Defensive,
                 ModelMetadata = new ModelMetadata
                 {
                     JsAssetPath = "npc/25a06a88-ac5a-45eb-9d1c-ca007f4ad82f/abilities/0/ab_all_3040038000_02.js",

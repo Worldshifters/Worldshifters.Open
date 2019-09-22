@@ -225,9 +225,6 @@ namespace Worldshifters.Assets.Hero.Water
                 {
                     Torah().Cast(haaselia, raidActions);
                 },
-                OnAttackEnd = (haaselia, attackResult, raidActions) => { },
-                OnAttackActionEnd = (haaselia, raidActions) => { },
-                OnTargettedByEnemy = (haaselia, enemy, raidActions) => { },
                 OnAbilityEnd = (haaselia, ability, raidActions) =>
                 {
                     if (haaselia.GetStatusEffect(TorahId) != null)

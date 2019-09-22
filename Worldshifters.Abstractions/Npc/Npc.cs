@@ -34,19 +34,19 @@ namespace Worldshifters.Data.Npc
 
         public double Defense { get; set; }
 
-        public double BaseDoubleAttackRate { get; set; }
+        public double BaseDoubleAttackRate { get; }
 
-        public double BaseTripleAttackRate { get; set; }
+        public double BaseTripleAttackRate { get; }
 
         /// <summary>
         /// Scaling factor applied to the duration of the normal attack animation.
         /// </summary>
-        public double AttackAnimationScaling { get; set; }
+        public double AttackAnimationScaling { get; }
 
         /// <summary>
         /// Delay between the attack animation start and the rendering of the on-hit effect. Defaults to no delay.
         /// </summary>
-        public RepeatedField<int> OnHitEffectDelaysInMs { get; set; }
+        public RepeatedField<int> OnHitEffectDelaysInMs { get; }
 
         public int MaxChargeDiamonds { get; set; }
 

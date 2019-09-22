@@ -33,37 +33,42 @@ namespace Worldshifters.Data.Raid
         /// <summary>
         /// The value of <see cref="NumHitsReceived"/> is reset at the beginning of each turn to 0.
         /// </summary>
-        public int NumHitsReceived { get; set; }
+        public int NumHitsReceived { get; }
 
         /// <summary>
         /// The value of <see cref="NumDebuffsReceived"/> is reset at the beginning of each turn to 0.
         /// </summary>
-        public int NumDebuffsReceived { get; set; }
+        public int NumDebuffsReceived { get; }
 
-        public int NumSpecialAttacksUsedThisTurn { get; set; }
+        public int NumSpecialAttacksUsedThisTurn { get; }
 
         /// <summary>
         /// The value of <see cref="DodgedDamage"/> is reset at the beginning of each turn to false.
         /// </summary>
-        public bool DodgedDamage { get; set; }
+        public bool DodgedDamage { get; }
 
         /// <summary>
         /// The value of <see cref="DodgedDamageOrDebuff"/> is reset at the beginning of each turn to false.
         /// </summary>
-        public bool DodgedDamageOrDebuff { get; set; }
+        public bool DodgedDamageOrDebuff { get; }
 
         /// <summary>
         /// The value of <see cref="TookDamageDuringTurn"/> is reset at the beginning of each turn to false.
         /// </summary>
-        public bool TookDamageDuringTurn { get; set; }
+        public bool TookDamageDuringTurn { get; }
 
         /// <summary>
         /// The value of <see cref="TookTurnBaseDamage"/> is reset at the beginning of each turn to false.
         /// </summary>
-        public bool TookTurnBaseDamage { get; set; }
+        public bool TookTurnBaseDamage { get; }
 
         /// <remarks>0-indexed: the first ally/enemy has <see cref="PositionInFrontline"/> set to 0.</remarks>
-        public int PositionInFrontline { get; set; }
+        public int PositionInFrontline { get; }
+
+        /// <summary>
+        /// Position in the frontline of the enemy target for the character who is currently performing an action.
+        /// </summary>
+        public int CurrentTargetPositionInFrontline { get; }
 
         /// <summary>
         /// A snapshot of the raid this character belongs to. Example usages include getting raid data and interacting with other allies and enemies.

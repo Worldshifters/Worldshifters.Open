@@ -96,7 +96,12 @@ namespace Worldshifters.Data.Raid
                     public enum Type
                     {
                         HasStatusEffect,
+                        HasModifier,
+                        TargetInBreakMode,
+                        TargetInOverdriveMode,
                         TargetHasStatusEffect,
+                        TargetHasDebuff,
+                        TargetHasModifier,
                     }
                 }
             }

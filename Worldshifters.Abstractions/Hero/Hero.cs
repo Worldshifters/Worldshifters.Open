@@ -69,17 +69,13 @@ namespace Worldshifters.Data.Hero
         public RepeatedField<int> AvailablePerkIds { get; }
 
         /// <summary>
-        /// Input parameters: this (the caster), the ability.
+        /// The first method called after creating or joining a raid. It will run only once.
+        /// Invoked with 'this', the other party members, the party loadout chosen when joining the raid.
         /// </summary>
-        public Action<EntitySnapshot, Ability, IList<RaidAction>> OnAbilityEnd { get; set; }
+        public Action<EntitySnapshot, IEnumerable<EntitySnapshot>, RaidSnapshot.Types.Loadout> OnSetup { get; set; }
 
         /// <summary>
-        /// Callback method called after another ally cast an ability. Input parameters: this, the caster (different from this), the ability which was cast.
-        /// </summary>
-        public Action<EntitySnapshot, EntitySnapshot, Ability, IList<RaidAction>> OnOtherAllyAbilityEnd { get; set; }
-
-        /// <summary>
-        /// The first method called before processing an action. Input parameters: this.
+        /// The first method called before processing an action. Input parameters: this (the current attacker).
         /// </summary>
         /// <remarks>Called even if the character is dead.</remarks>
         public Action<EntitySnapshot, IList<RaidAction>> OnActionStart { get; set; }
@@ -97,6 +93,15 @@ namespace Worldshifters.Data.Hero
         public Action<EntitySnapshot, IList<RaidAction>> OnAttackStart { get; set; }
 
         /// <summary>
+        /// Input parameters: this (the current attacker).
+        /// Returns a triplet (damage multiplier applied on top of the current damage, false if the attack should be aborted or true otherwise, true if the attack should hit all the foes or false otherwise).
+        /// 1: no damage change. Greater than 1: damage increase. Less than 1: damage reduction.
+        /// </summary>
+        /// <example>Mercenary class where each hit depends on the remaining loaded bullets.</example>
+        /// <remarks>Called before applying drain and repel effects.</remarks>
+        public Func<EntitySnapshot, IList<RaidAction>, (double, bool, bool)> BeforeNormalAttackHit { get; set; }
+
+        /// <summary>
         /// Input parameters: this (the current attacker), the attack type.
         /// </summary>
         /// <remarks>Called before applying drain and repel effects.</remarks>
@@ -105,25 +110,29 @@ namespace Worldshifters.Data.Hero
         /// <summary>
         /// While <see cref="OnAttackEnd"/> is called after each single/double/triple/charge attack (once for each time the character attacks, which can be
         /// several times during a same turn for characters affected by Double/Triple strike effects for instance or who use their special attacks more than once
-        /// in the same turn, <see cref="OnAttackActionEnd"/> is called once the character finished all his attacks. Input parameters: this (the current attacker).
+        /// in the same turn, <see cref="OnAttackActionEnd"/> is called once the character finished all his attacks. Input parameters: this (the current attacker), the attack type.
         /// </summary>
         public Action<EntitySnapshot, IList<RaidAction>> OnAttackActionEnd { get; set; }
-
-        /// <summary>
-        /// The first method called after creating or joining a raid. It will run only once.
-        /// Invoked with 'this', the other party members, the party loadout chosen when joining the raid.
-        /// </summary>
-        public Action<EntitySnapshot, IEnumerable<EntitySnapshot>, RaidSnapshot.Types.Loadout> OnSetup { get; set; }
-
-        /// <summary>
-        /// Input parameters: this, the enemy who targetted 'this'.
-        /// </summary>
-        public Action<EntitySnapshot, EntitySnapshot, IList<RaidAction>> OnTargettedByEnemy { get; set; }
 
         /// <summary>
         /// Input parameters: this.
         /// </summary>
         public Action<EntitySnapshot, IList<RaidAction>> OnTurnEnd { get; set; }
+
+        /// <summary>
+        /// Input parameters: this (the caster), the ability.
+        /// </summary>
+        public Action<EntitySnapshot, Ability, IList<RaidAction>> OnAbilityEnd { get; set; }
+
+        /// <summary>
+        /// Callback method called after another ally cast an ability. Input parameters: this, the caster (different from this), the ability which was cast.
+        /// </summary>
+        public Action<EntitySnapshot, EntitySnapshot, Ability, IList<RaidAction>> OnOtherAllyAbilityEnd { get; set; }
+
+        /// <summary>
+        /// Input parameters: this, the enemy who targetted 'this'.
+        /// </summary>
+        public Action<EntitySnapshot, EntitySnapshot, IList<RaidAction>> OnReceiveDamageFromEnemy { get; set; }
 
         /// <summary>
         /// Input parameters: this.
