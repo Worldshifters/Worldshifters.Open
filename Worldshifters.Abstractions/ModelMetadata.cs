@@ -14,6 +14,8 @@ namespace Worldshifters.Data
 
         public string JsAssetPath { get; set; }
 
+        public bool IsAbsolutePath { get; set; }
+
         public int DisplayRegistrationPointX { get; set; }
 
         public int DisplayRegistrationPointY { get; set; }

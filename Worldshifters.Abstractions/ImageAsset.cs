@@ -9,5 +9,7 @@ namespace Worldshifters.Data
         public string Name { get; set; }
 
         public string Path { get; set; }
+
+        public bool IsAbsolutePath { get; set; }
     }
 }
