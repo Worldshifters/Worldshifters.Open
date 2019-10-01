@@ -15,14 +15,7 @@ namespace Worldshifters.Data.Hero
 
         public long HpRecovered { get; set; }
 
-        /// <remarks>One and only one between <see cref="OnAllPartyMembers"/>, <see cref="OnSelf"/> and <see cref="OnSelectedTarget"/> has to be greater set to true.</remarks>
-        public bool OnAllPartyMembers { get; set; }
-
-        /// <remarks>One and only one between <see cref="OnAllPartyMembers"/>, <see cref="OnSelf"/> and <see cref="OnSelectedTarget"/> has to be greater set to true.</remarks>
-        public bool OnSelectedTarget { get; set; }
-
-        /// <remarks>One and only one between <see cref="OnAllPartyMembers"/>, <see cref="OnSelf"/> and <see cref="OnSelectedTarget"/> has to be greater set to true.</remarks>
-        public bool OnSelf { get; set; }
+        public EffectTargettingType EffectTargettingType { get; set; }
 
         public ByteString ToByteString()
         {

@@ -150,6 +150,12 @@ namespace Worldshifters.Data
         public static Modifier SupplementalDamage;
 
         /// <summary>
+        /// Status effects with a <see cref="SupplementalDamageOnCriticalHit"/> modifier must have <see cref="StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.SupplementalDamage"/>.
+        /// The strength value of a status effect with this modifier is the supplemental damage dealt with each hit (attacks or abilities) as a percentage of the target max HP or as flat damage.
+        /// </summary>
+        public static Modifier SupplementalDamageOnCriticalHit;
+
+        /// <summary>
         /// Strength values must be given in percentage.
         /// </summary>
         public static Modifier SkillDamage;

@@ -430,7 +430,7 @@ namespace Worldshifters.Assets.Hero.Dark
                         Type = AbilityEffect.Types.AbilityEffectType.Healing,
                         ExtraData = new Heal
                         {
-                            OnAllPartyMembers = true,
+                            EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                             HealingCap = 1500,
                             HpPercentageRecovered = 15,
                         }.ToByteString(),

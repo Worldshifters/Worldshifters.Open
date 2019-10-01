@@ -322,7 +322,7 @@ namespace Worldshifters.Assets.Hero.Water
                         {
                             HpPercentageRecovered = 30,
                             HealingCap = 2000,
-                            OnAllPartyMembers = true,
+                            EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                         }.ToByteString(),
                     },
                 },

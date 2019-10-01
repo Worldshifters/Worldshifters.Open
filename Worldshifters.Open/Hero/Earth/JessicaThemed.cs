@@ -225,7 +225,7 @@ namespace Worldshifters.Assets.Hero.Earth
                         {
                             HpRecovered = 800,
                             HealingCap = 800,
-                            OnAllPartyMembers = true,
+                            EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                         }.ToByteString(),
                     },
                 },

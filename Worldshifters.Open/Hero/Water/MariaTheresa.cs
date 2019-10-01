@@ -339,7 +339,7 @@ namespace Worldshifters.Assets.Hero.Water
                         ExtraData = new Heal
                         {
                             HealingCap = long.MaxValue,
-                            OnAllPartyMembers = true,
+                            EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                             HpRecovered = long.MaxValue,
                         }.ToByteString(),
                     },

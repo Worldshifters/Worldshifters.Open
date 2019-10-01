@@ -328,7 +328,7 @@ namespace Worldshifters.Assets.Hero.Fire
                     HealingCap = 1500,
                     HpRecovered = 150,
                     HpPercentageRecovered = 20,
-                    OnAllPartyMembers = true,
+                    EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                 }.ToByteString(),
             });
 

@@ -244,6 +244,14 @@ namespace Worldshifters.Data.Raid
             throw new NotImplementedException();
         }
 
+        /// <param name="effect"></param>
+        /// <param name="raidActions"></param>
+        /// <param name="caster">The source of the heals: the caster's healing boosts may increase the default healed amount.</param>
+        public void Heal(Heal effect, IList<RaidAction> raidActions, EntitySnapshot caster = null)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Grants a status effect which will trigger an ability after <see cref="turnsBeforeActivation"/>.
         /// </summary>
