@@ -23,6 +23,7 @@ Testing characters in Worldshifter's sandbox
 
 Head to http://sandbox.worldshifters.co/ to get started.
 
+[Quick showcase](https://www.youtube.com/watch?v=D0NoMtO0XKE)
 
 Quick Start
 -----------
