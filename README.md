@@ -21,7 +21,7 @@ The provided code is not meant to be used on its own: it provides building block
 Testing characters in Worldshifter's sandbox
 --------------------------------------------
 
-Head to http://sandbox.worldshifters.co/ to get started.
+Head to https://sandbox.worldshifters.co/ to get started.
 
 [Quick showcase](https://www.youtube.com/watch?v=D0NoMtO0XKE)
 
