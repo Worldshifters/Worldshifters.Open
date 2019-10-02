@@ -213,7 +213,8 @@ namespace Worldshifters.Assets.Hero.Wind
                             TurnDuration = duration,
                             IsBuff = true,
                             Strength = echoStrength,
-                        });
+                        },
+                        raidActions);
 
                     for (var i = 0; i < monika.AbilityCooldowns.Count; ++i)
                     {
@@ -329,9 +330,10 @@ namespace Worldshifters.Assets.Hero.Wind
                             {
                                 DamageMultiplier = 0.3,
                             }.ToByteString(),
-                        });
+                        },
+                        raidActions);
 
-                    if (monika.GlobalState["monika/ab_3/cast_count"].IntegerValue == 2)
+                    if (monika.GlobalState["monika/ab_3/cast_count"].IntegerValue >= 2)
                     {
                         monika.Raid.Allies.ApplyStatusEffects(
                             new StatusEffectSnapshot
@@ -345,9 +347,11 @@ namespace Worldshifters.Assets.Hero.Wind
                                     DamageCap = 50000,
                                     IsPercentageBased = true,
                                 }.ToByteString(),
-                            });
+                            },
+                            raidActions);
                     }
-                    else if (monika.GlobalState["monika/ab_3/cast_count"].IntegerValue >= 3)
+
+                    if (monika.GlobalState["monika/ab_3/cast_count"].IntegerValue >= 3)
                     {
                         monika.Raid.Allies.ApplyStatusEffects(
                             new StatusEffectSnapshot
@@ -356,7 +360,8 @@ namespace Worldshifters.Assets.Hero.Wind
                                 Strength = 10,
                                 IsBuff = true,
                                 TurnDuration = 3,
-                            });
+                            },
+                            raidActions);
                     }
 
                     for (var i = 0; i < monika.AbilityCooldowns.Count; ++i)
@@ -415,7 +420,8 @@ namespace Worldshifters.Assets.Hero.Wind
                             {
                                 Id = StatusEffectLibrary.Delay,
                                 BaseAccuracy = 100,
-                            });
+                            },
+                            raidActions);
                     }
                     else if (monika.GlobalState["monika/ab_4/cast_count"].IntegerValue >= 3)
                     {
@@ -426,7 +432,8 @@ namespace Worldshifters.Assets.Hero.Wind
                                 Id = twoTurns ? StatusEffectLibrary.ParalyzedLocal2 : StatusEffectLibrary.ParalyzedLocal1,
                                 BaseAccuracy = 50,
                                 TurnDuration = twoTurns ? 2 : 1,
-                            });
+                            },
+                            raidActions);
                     }
 
                     for (var i = 0; i < monika.AbilityCooldowns.Count; ++i)
