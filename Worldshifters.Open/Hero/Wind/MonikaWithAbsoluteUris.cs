@@ -1,4 +1,8 @@
-﻿namespace Worldshifters.Assets.Hero.Wind
+﻿// <copyright file="MonikaWithAbsoluteUris.cs" company="Worldshifters">
+// Copyright (c) Worldshifters. All rights reserved.
+// </copyright>
+
+namespace Worldshifters.Assets.Hero.Wind
 {
     using System;
     using Google.Protobuf;
@@ -7,7 +11,7 @@
     using Worldshifters.Data.Raid;
     using Worldshifters.Data.Utils;
 
-    public static class MonikaWithAbsolutePaths
+    public static class MonikaWithAbsoluteUris
     {
         public static Guid Id = Guid.Parse("557e49c1-bedb-46e0-bb73-b0f2594e32e7");
 

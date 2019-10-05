@@ -12,7 +12,7 @@ Worldshifters.Open is the repository featuring some of the game assets used in W
 Installation
 ------------
 
-Download and install the [.NET Core 2.2](https://dotnet.microsoft.com/download) SDK.
+Download and install the [.NET Core 3.0](https://dotnet.microsoft.com/download) **SDK**.
 
 Open the `Worldshifters.Open.sln` solution file with [Visual Studio](https://visualstudio.microsoft.com/vs/older-downloads/) 2017 (or more recent) or [Visual Studio Code](https://code.visualstudio.com/).
 
