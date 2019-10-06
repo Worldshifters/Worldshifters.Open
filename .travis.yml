@@ -3,7 +3,7 @@ sudo: required
 mono: none
 language: csharp
 solution: Worldshifters.Open.sln
-dotnet: 2.2
+dotnet: 3.0
 script:
   - dotnet restore
   - dotnet build 
