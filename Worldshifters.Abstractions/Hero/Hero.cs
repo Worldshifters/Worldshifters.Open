@@ -81,8 +81,9 @@ namespace Worldshifters.Data.Hero
         public Action<EntitySnapshot, IList<RaidAction>> OnActionStart { get; set; }
 
         /// <summary>
-        /// Callback method called before casting an <see cref="Ability"/>. It won't be called for abilities instantiated explicitly and invoked with <see cref="Ability.Cast(EntitySnapshot, IList{Worldshifters.Data.Raid.RaidAction})"/>. Input parameters: this (the caster).
+        /// Callback method called before casting an <see cref="Ability"/>. It won't be called for abilities instantiated explicitly and invoked with <see cref="Ability.Cast"/>. Input parameters: this (the caster).
         /// </summary>
+        /// <remarks>The ability cooldown is updated before <see cref="OnAbilityStart"/> is called. <see cref="OnAbilityStart"/> won't be called if the ability can't be cast.</remarks>
         /// <remarks>Called even if the character is dead.</remarks>
         public Action<EntitySnapshot, IList<RaidAction>> OnAbilityStart { get; set; }
 

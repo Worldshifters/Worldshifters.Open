@@ -310,7 +310,11 @@ namespace Worldshifters.Data.Raid
         /// <summary>
         /// Deal raw damage to the character without taking into account damage mitigation. Charge bar won't be gained either fro, the damage received.
         /// </summary>
-        public void DealRawDamage(long amount, Element element, IList<RaidAction> raidActions)
+        /// <param name="amount"></param>
+        /// <param name="element"></param>
+        /// <param name="raidActions"></param>
+        /// <param name="countAsDamage">If set to false, the damage dealt won't count towards <see cref="EntitySnapshot.TookDamageDuringTurn"/>.</param>
+        public void DealRawDamage(long amount, Element element, IList<RaidAction> raidActions, bool countAsDamage = true)
         {
             throw new NotImplementedException();
         }

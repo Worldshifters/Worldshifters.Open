@@ -229,7 +229,7 @@ namespace Worldshifters.Assets.Hero.Water
                 {
                     if (haaselia.GetStatusEffect(TorahId) != null)
                     {
-                        for (var abilityIndex = 0; abilityIndex < 3; ++abilityIndex)
+                        for (var abilityIndex = 0; abilityIndex < haaselia.AbilityCooldowns.Count; ++abilityIndex)
                         {
                             if (haaselia.AbilityCooldowns[abilityIndex] == ability.Cooldown && !haaselia.GlobalState[TorahId + "/" + (abilityIndex + 1)].BooleanValue)
                             {
@@ -241,6 +241,7 @@ namespace Worldshifters.Assets.Hero.Water
                                 {
                                     haaselia.AbilityCooldowns[0] = 0;
                                     haaselia.AbilityCooldowns[1] = 0;
+                                    haaselia.GlobalState[TorahId + "/1"].BooleanValue = true;
                                     haaselia.GlobalState[TorahId + "/2"].BooleanValue = true;
                                 }
 
@@ -445,7 +446,8 @@ namespace Worldshifters.Assets.Hero.Water
                         var moonStrength = ally.GetStatusEffectStacks(MoonId);
                         if (moonStrength > 0)
                         {
-                            UpdatePhaseOfTheMoon(ally, moonStrength, Math.Min(5, moonStrength + 1), raidActions);
+                            // Moon phases update when moonStrength reaches 3 or 5
+                            UpdatePhaseOfTheMoon(ally, moonStrength, moonStrength < 3 ? 3 : 5, raidActions);
                         }
                     }
                 },

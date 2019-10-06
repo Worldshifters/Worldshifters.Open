@@ -281,7 +281,7 @@ namespace Worldshifters.Assets.Hero.Dark
                             continue;
                         }
 
-                        hero.DealRawDamage(hero.Hp - 1, Element.Null, raidActions);
+                        hero.DealRawDamage(hero.Hp - 1, Element.Null, raidActions, countAsDamage: false);
 
                         hero.ApplyStatusEffect(
                             new StatusEffectSnapshot
@@ -300,6 +300,7 @@ namespace Worldshifters.Assets.Hero.Dark
                                 IsBuff = true,
                                 ExtraData = new Drain
                                 {
+                                    HealingCap = long.MaxValue,
                                     HealingCapPercentage = 15,
                                     IsPercentageBased = true,
                                 }.ToByteString(),
