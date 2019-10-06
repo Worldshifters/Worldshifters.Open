@@ -18,6 +18,12 @@ Open the `Worldshifters.Open.sln` solution file with [Visual Studio](https://vis
 
 The provided code is not meant to be used on its own: it provides building blocks to describe how game assets such as characters should behave.
 
+Testing characters in Worldshifter's sandbox
+--------------------------------------------
+
+Head to https://sandbox.worldshifters.co/ to get started.
+
+[Quick showcase](https://www.youtube.com/watch?v=D0NoMtO0XKE)
 
 Quick Start
 -----------
