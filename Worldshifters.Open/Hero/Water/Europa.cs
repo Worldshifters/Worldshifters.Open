@@ -16,7 +16,6 @@ namespace Worldshifters.Assets.Hero.Water
     {
         public static Guid Id = Guid.Parse("6da988da-cb06-4710-acd3-d8bd006ae7dd");
 
-        private const string HeavenlyAllureId = "europa/water_dmg_boost";
         private const string FountainLotusId = "europa/fountain_lotus";
         private const string StarSanctuaryId = "europa/star_sanctuary";
 
@@ -76,9 +75,8 @@ namespace Worldshifters.Assets.Hero.Water
                             ApplyStatusEffect.FromTemplate(
                                 new ApplyStatusEffect
                                 {
-                                    OnSelf = true,
+                                    EffectTargettingType = EffectTargettingType.OnSelf,
                                     TurnDuration = 1,
-                                    IsBuff = true,
                                 },
                                 (StatusEffectLibrary.TripleAttackRateUpNpc, 100),
                                 (StatusEffectLibrary.AdditionalWaterDamageNpc, 70)),
@@ -162,7 +160,6 @@ namespace Worldshifters.Assets.Hero.Water
                             new StatusEffectSnapshot
                             {
                                 Id = "europa/aldebaran_afterglow",
-                                IsBuff = true,
                                 TurnDuration = 4,
                                 Modifier = ModifierLibrary.FlatTripleAttackRateBoost,
                                 Strength = 20,
@@ -251,7 +248,7 @@ namespace Worldshifters.Assets.Hero.Water
                     {
                         if (hero.PositionInFrontline < 4)
                         {
-                            hero.RemoveStatusEffect(HeavenlyAllureId);
+                            hero.RemoveStatusEffect(StatusEffectLibrary.WaterElementalAttackBoostAmplificationNpc);
                         }
                     }
                 },
@@ -371,7 +368,6 @@ namespace Worldshifters.Assets.Hero.Water
                             {
                                 Id = $"{StarSanctuaryId}/dmg_reduction",
                                 TurnDuration = int.MaxValue,
-                                IsBuff = true,
                                 IsUndispellable = true,
                                 IsUsedInternally = true,
                                 Modifier = ModifierLibrary.DamageReductionBoost,
@@ -384,7 +380,6 @@ namespace Worldshifters.Assets.Hero.Water
                         new StatusEffectSnapshot
                         {
                             TurnDuration = int.MaxValue,
-                            IsBuff = true,
                             IsUndispellable = true,
                             IsUsedInternally = true,
                         },
@@ -406,7 +401,6 @@ namespace Worldshifters.Assets.Hero.Water
             europa.ApplyStatusEffectsFromTemplate(
                 new StatusEffectSnapshot
                 {
-                    IsBuff = true,
                     IsUndispellable = true,
                     IsUsedInternally = true,
                 },
@@ -431,12 +425,10 @@ namespace Worldshifters.Assets.Hero.Water
                     hero.ApplyStatusEffect(new StatusEffectSnapshot
                     {
                         Strength = 30,
-                        Id = HeavenlyAllureId,
-                        IsBuff = true,
+                        Id = StatusEffectLibrary.WaterElementalAttackBoostAmplificationNpc,
                         IsPassiveEffect = true,
                         IsUsedInternally = true,
-                        Modifier = ModifierLibrary.ElementalAttackBoostAmplification,
-                        AttackElementRestriction = Element.Water,
+                        TurnDuration = 1,
                     });
                 }
             }

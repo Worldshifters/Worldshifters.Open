@@ -150,9 +150,8 @@ namespace Worldshifters.Assets.Hero.Dark
                             {
                                 Id = StatusEffectLibrary.DoubleAttackRateUpNpc,
                                 Strength = 30,
-                                IsBuff = true,
                                 TurnDuration = 4,
-                                OnAllPartyMembers = true,
+                                EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                             }.ToByteString(),
                         }).Cast(ferry, raidActions);
                     },
@@ -219,9 +218,8 @@ namespace Worldshifters.Assets.Hero.Dark
                             target.ApplyStatusEffectsFromTemplate(
                                 new StatusEffectSnapshot
                                 {
-                                    IsBuff = true,
-                                    TurnDuration = 5,
-                                    IsUndispellable = true,
+                                                                        TurnDuration = 5,
+                                                                        IsUndispellable = true,
                                 },
                                 raidActions,
                                 buffs);
@@ -287,7 +285,6 @@ namespace Worldshifters.Assets.Hero.Dark
                             new StatusEffectSnapshot
                             {
                                 Id = OnTheBrinkLightDamageReductionId,
-                                IsBuff = true,
                                 IsPassiveEffect = true,
                                 IsUsedInternally = true,
                                 Strength = 10,
@@ -299,7 +296,6 @@ namespace Worldshifters.Assets.Hero.Dark
                             new StatusEffectSnapshot
                             {
                                 Id = OnTheBrinkDarkDamageReductionId,
-                                IsBuff = true,
                                 IsPassiveEffect = true,
                                 IsUsedInternally = true,
                                 Strength = 10,
@@ -311,7 +307,6 @@ namespace Worldshifters.Assets.Hero.Dark
                             new StatusEffectSnapshot
                             {
                                 Id = GhostlyCallId,
-                                IsBuff = true,
                                 IsPassiveEffect = true,
                                 IsUsedInternally = true,
                                 Strength = 10,
@@ -441,8 +436,7 @@ namespace Worldshifters.Assets.Hero.Dark
                         ExtraData = new ApplyStatusEffect
                         {
                             Id = StatusEffectLibrary.ChargeGaugeBoost,
-                            OnAllPartyMembers = true,
-                            IsBuff = true,
+                            EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                             Strength = 20,
                         }.ToByteString(),
                     },
@@ -452,8 +446,7 @@ namespace Worldshifters.Assets.Hero.Dark
                         ExtraData = new ApplyStatusEffect
                         {
                             Id = StatusEffectLibrary.RevitalizeNpc,
-                            OnAllPartyMembers = true,
-                            IsBuff = true,
+                            EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                             Strength = 5,
                             TurnDuration = 3,
                             ExtraData = new Revitalize

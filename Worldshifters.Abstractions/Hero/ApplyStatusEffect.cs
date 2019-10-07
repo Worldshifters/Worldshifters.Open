@@ -11,9 +11,10 @@ namespace Worldshifters.Data.Hero
     public class ApplyStatusEffect
     {
         /// <summary>
-        /// The percentage of chance to land a debuff.
+        /// The percentage of chance to land a debuff. Buffs should leave <see cref="BaseAccuracy"/> to the default value 'null'.
+        /// Debuffs with <see cref="BaseAccuracy"/> set to <see cref="double.MaxValue"/> will bypass <see cref="StatusEffectLibrary.Dodge"/> and <see cref="StatusEffectLibrary.Veil"/>.
         /// </summary>
-        public double BaseAccuracy { get; set; }
+        public double? BaseAccuracy { get; set; }
 
         /// <summary>
         /// Additional status effect data depending on the effect.
@@ -22,21 +23,11 @@ namespace Worldshifters.Data.Hero
 
         public string Id { get; set; }
 
-        public bool IsBuff { get; set; }
-
         public bool IsLocal { get; set; }
 
         public bool IsStackable { get; set; }
 
         public bool IsUndispellable { get; set; }
-
-        public bool OnAllEnemies { get; set; }
-
-        public bool OnAllPartyMembers { get; set; }
-
-        public bool OnSelectedTarget { get; set; }
-
-        public bool OnSelf { get; set; }
 
         public double StackingCap { get; set; }
 
@@ -57,6 +48,11 @@ namespace Worldshifters.Data.Hero
         /// Passive effects can't be dispelled and are not removed on death (effects are still removed when their remaining duration reaches 0).
         /// </summary>
         public bool IsPassiveEffect { get; set; }
+
+        /// <summary>
+        /// Defines the targets of the status effect. Defaults to <see cref="EffectTargettingType.OnCurrentEnemyTarget"/>.
+        /// </summary>
+        public EffectTargettingType EffectTargettingType { get; set; }
 
         /// <summary>
         /// Build a list of <see cref="AbilityEffect"/>s matching a template <see cref="ApplyStatusEffect"/>.

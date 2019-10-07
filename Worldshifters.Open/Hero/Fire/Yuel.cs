@@ -158,7 +158,6 @@ namespace Worldshifters.Assets.Hero.Fire
                                 new StatusEffectSnapshot
                                 {
                                     Id = StatusEffectLibrary.DamageCapUpNpc,
-                                    IsBuff = true,
                                     Strength = 15,
                                     TurnDuration = 4,
                                 });
@@ -203,7 +202,6 @@ namespace Worldshifters.Assets.Hero.Fire
                     yuel.ApplyStatusEffect(new StatusEffectSnapshot
                     {
                         Id = "yuel/passive",
-                        IsBuff = true,
                         TurnDuration = int.MaxValue,
                         Strength = 5,
                         Modifier = ModifierLibrary.FlatDoubleAttackRateBoost,
@@ -243,9 +241,8 @@ namespace Worldshifters.Assets.Hero.Fire
                         {
                             Id = StatusEffectLibrary.DoubleAttackRateUpNpc,
                             Strength = upgradedEffects ? 75 : 50,
-                            IsBuff = true,
                             TurnDuration = 3,
-                            OnSelf = true,
+                            EffectTargettingType = EffectTargettingType.OnSelf,
                         }.ToByteString(),
                     },
                 },
@@ -301,7 +298,6 @@ namespace Worldshifters.Assets.Hero.Fire
                             {
                                 Id = StatusEffectLibrary.AdditionalFireDamageNpc2,
                                 Strength = 20,
-                                IsBuff = true,
                                 TurnDuration = 3,
                             }, raidActions);
                     }
@@ -364,17 +360,15 @@ namespace Worldshifters.Assets.Hero.Fire
                         {
                             Id = StatusEffectLibrary.FireAttackUpNpc,
                             Strength = 20,
-                            IsBuff = true,
                             TurnDuration = 3,
-                            OnAllPartyMembers = true,
+                            EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                         }.ToByteString(),
                     },
                     ApplyStatusEffect.FromTemplate(
                         new ApplyStatusEffect
                         {
-                            IsBuff = true,
                             TurnDuration = 3,
-                            OnSelf = true,
+                            EffectTargettingType = EffectTargettingType.OnSelf,
                         },
                         (StatusEffectLibrary.HealingBoost, 50),
                         (StatusEffectLibrary.HealingCapBoost, 100)),

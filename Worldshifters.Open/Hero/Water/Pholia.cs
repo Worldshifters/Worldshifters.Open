@@ -26,7 +26,7 @@ namespace Worldshifters.Assets.Hero.Water
             {
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Pholia",
-                Race = Race.Unknow,
+                Race = Race.Erune,
                 Gender = Gender.Female,
                 MaxAttack = 7899,
                 MaxHp = 1166,
@@ -34,7 +34,25 @@ namespace Worldshifters.Assets.Hero.Water
                 BaseDoubleAttackRate = 6,
                 BaseTripleAttackRate = 4.5,
                 Element = Element.Water,
-                WeaponProficiencies = { EquipmentType.Staff },
+                WeaponProficiencies = { EquipmentType.Staff, EquipmentType.Melee },
+                AvailablePerkIds =
+                {
+                    ExtendedMasteryPerks.AttackBoost,
+                    ExtendedMasteryPerks.DefenseBoost,
+                    ExtendedMasteryPerks.DebuffResistanceBoost,
+                    ExtendedMasteryPerks.AttackBoostAgainstFoesInOverdriveMode,
+                    ExtendedMasteryPerks.AttackBoost,
+                    ExtendedMasteryPerks.AttackBoost,
+                    ExtendedMasteryPerks.DefenseBoost,
+                    ExtendedMasteryPerks.DoubleAttackRateBoost,
+                    ExtendedMasteryPerks.TripleAttackRateBoost,
+                    ExtendedMasteryPerks.WaterAttackBoost,
+                    ExtendedMasteryPerks.HpBoost,
+                    ExtendedMasteryPerks.TripleAttackRateBoost,
+                    ExtendedMasteryPerks.DebuffSuccessRateBoost,
+                    ExtendedMasteryPerks.FireDamageReduction,
+                    ExtendedMasteryPerks.SupportSkill,
+                },
                 ModelMetadata =
                 {
                     new ModelMetadata
@@ -146,9 +164,8 @@ namespace Worldshifters.Assets.Hero.Water
                             {
                                 Id = StatusEffectLibrary.Shield,
                                 Strength = 2000,
-                                OnAllPartyMembers = true,
+                                EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                                 TurnDuration = 4,
-                                IsBuff = true,
                             }.ToByteString(),
                         },
                     },
@@ -168,7 +185,6 @@ namespace Worldshifters.Assets.Hero.Water
                             Id = "pholia/recognition/crit_rate_up",
                             IsUndispellable = true,
                             IsUsedInternally = true,
-                            IsBuff = true,
                             Modifier = ModifierLibrary.FlatCriticalHitRateBoost,
                             TurnDuration = 1,
                             ExtraData = new CriticalHit
@@ -182,7 +198,6 @@ namespace Worldshifters.Assets.Hero.Water
                             {
                                 IsUndispellable = true,
                                 IsUsedInternally = true,
-                                IsBuff = true,
                                 TurnDuration = 1,
                             },
                             ("pholia/recognition/da_up", ModifierLibrary.FlatDoubleAttackRateBoost, double.PositiveInfinity),
@@ -274,7 +289,6 @@ namespace Worldshifters.Assets.Hero.Water
                         IsUndispellable = true,
                         IsUsedInternally = true,
                         TurnDuration = 1,
-                        IsBuff = true,
                         TriggerCondition = new StatusEffectSnapshot.Types.TriggerCondition
                         {
                             Type = StatusEffectSnapshot.Types.TriggerCondition.Types.Type.HasStatusEffect,
@@ -292,7 +306,6 @@ namespace Worldshifters.Assets.Hero.Water
                         IsUndispellable = true,
                         IsUsedInternally = true,
                         TurnDuration = 1,
-                        IsBuff = true,
                         Strength = 100,
                         Modifier = ModifierLibrary.FlatCriticalHitRateBoost,
                         ExtraData = new CriticalHit
@@ -362,7 +375,6 @@ namespace Worldshifters.Assets.Hero.Water
                             Id = WhiteVeilId,
                             Strength = (long)Math.Min(pholia.MaxHp * 0.4, 8000),
                             TurnDuration = int.MaxValue,
-                            IsBuff = true,
                             Modifier = ModifierLibrary.Shield,
                             IsUndispellable = true,
                         },
@@ -402,9 +414,8 @@ namespace Worldshifters.Assets.Hero.Water
                         ExtraData = new ApplyStatusEffect
                         {
                             Id = RecognitionId,
-                            OnSelectedTarget = true,
+                            EffectTargettingType = EffectTargettingType.OnSelectedAlly,
                             TurnDuration = 5,
-                            IsBuff = true,
                             IsUndispellable = true,
                         }.ToByteString(),
                     },

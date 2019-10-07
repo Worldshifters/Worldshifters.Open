@@ -116,9 +116,8 @@ namespace Worldshifters.Assets.Hero.Earth
                             ExtraData = new ApplyStatusEffect
                             {
                                 Id = StatusEffectLibrary.DoubleAttackRateUpNpc,
-                                IsBuff = true,
                                 TurnDuration = 3,
-                                OnSelf = true,
+                                EffectTargettingType = EffectTargettingType.OnSelf,
                                 Strength = 50,
                             }.ToByteString(),
                         },
@@ -133,9 +132,8 @@ namespace Worldshifters.Assets.Hero.Earth
                                 ExtraData = new ApplyStatusEffect
                                 {
                                     Id = StatusEffectLibrary.TripleAttackRateUpNpc,
-                                    IsBuff = true,
                                     Strength = 50,
-                                    OnSelf = true,
+                                    EffectTargettingType = EffectTargettingType.OnSelf,
                                     TurnDuration = 3,
                                 }.ToByteString(),
                             }).Cast(elen, raidActions);
@@ -187,8 +185,7 @@ namespace Worldshifters.Assets.Hero.Earth
                                     {
                                         Id = StatusEffectLibrary.ChargeGaugeBoost,
                                         Strength = 200,
-                                        IsBuff = true,
-                                        OnSelf = true,
+                                        EffectTargettingType = EffectTargettingType.OnSelf,
                                     }.ToByteString(),
                                 },
                                 new AbilityEffect
@@ -197,8 +194,7 @@ namespace Worldshifters.Assets.Hero.Earth
                                     ExtraData = new ApplyStatusEffect
                                     {
                                         Id = EightLifePilgrimageId,
-                                        IsBuff = true,
-                                        OnSelf = true,
+                                        EffectTargettingType = EffectTargettingType.OnSelf,
                                         IsPassiveEffect = true,
                                         TurnDuration = int.MaxValue,
                                     }.ToByteString(),
@@ -238,7 +234,6 @@ namespace Worldshifters.Assets.Hero.Earth
                                 new StatusEffectSnapshot
                                 {
                                     Id = StatusEffectLibrary.ChargeGaugeBoost,
-                                    IsBuff = true,
                                     Strength = 10,
                                 }, raidActions);
                         }
@@ -263,7 +258,6 @@ namespace Worldshifters.Assets.Hero.Earth
                                 new StatusEffectSnapshot
                                 {
                                     Id = StatusEffectLibrary.ChargeGaugeBoost,
-                                    IsBuff = true,
                                     Strength = (int)Math.Ceiling((supportSkillRank + 1) * 2.5),
                                 }, raidActions);
                         }
@@ -284,7 +278,6 @@ namespace Worldshifters.Assets.Hero.Earth
                             Id = "elen/blade_god_da_up",
                             Modifier = ModifierLibrary.FlatDoubleAttackRateBoost,
                             Strength = 20,
-                            IsBuff = true,
                             IsPassiveEffect = true,
                             IsUsedInternally = true,
                             TurnDuration = int.MaxValue,
@@ -296,7 +289,6 @@ namespace Worldshifters.Assets.Hero.Earth
                         Id = "elen/blade_god",
                         Modifier = ModifierLibrary.ChargeBarSpedUp,
                         Strength = 100,
-                        IsBuff = true,
                         IsPassiveEffect = true,
                         IsUsedInternally = true,
                         TurnDuration = int.MaxValue,
@@ -316,7 +308,6 @@ namespace Worldshifters.Assets.Hero.Earth
                         new StatusEffectSnapshot
                         {
                             TurnDuration = 1,
-                            IsBuff = true,
                             IsUsedInternally = true,
                             TriggerCondition = new StatusEffectSnapshot.Types.TriggerCondition
                             {
@@ -338,8 +329,7 @@ namespace Worldshifters.Assets.Hero.Earth
                 ExtraData = new ApplyStatusEffect
                 {
                     Id = StatusEffectLibrary.AttackUpNpc,
-                    IsBuff = true,
-                    OnSelf = true,
+                    EffectTargettingType = EffectTargettingType.OnSelf,
                     TurnDuration = 3,
                     Strength = 50,
                 }.ToByteString(),
@@ -373,7 +363,6 @@ namespace Worldshifters.Assets.Hero.Earth
                         {
                             Id = StatusEffectLibrary.CriticalHitRateBoostNpc,
                             Strength = 75,
-                            IsBuff = true,
                             TurnDuration = 3,
                             ExtraData = new CriticalHit
                             {
@@ -385,7 +374,6 @@ namespace Worldshifters.Assets.Hero.Earth
                         new StatusEffectSnapshot
                         {
                             Id = ArdaFravaId,
-                            IsBuff = true,
                             TurnDuration = 3,
                         }, raidActions);
                 }
@@ -396,7 +384,6 @@ namespace Worldshifters.Assets.Hero.Earth
                         {
                             Id = StatusEffectLibrary.CriticalHitRateBoostNpc,
                             Strength = 30,
-                            IsBuff = true,
                             TurnDuration = 3,
                             ExtraData = new CriticalHit
                             {
@@ -441,7 +428,6 @@ namespace Worldshifters.Assets.Hero.Earth
                         {
                             Id = StatusEffectLibrary.ChargeGaugeBoost,
                             Strength = 10,
-                            IsBuff = true,
                         },
                         raidActions);
                 }
@@ -495,7 +481,6 @@ namespace Worldshifters.Assets.Hero.Earth
                     elen.ApplyStatusEffectsFromTemplate(
                         new StatusEffectSnapshot
                         {
-                            IsBuff = true,
                             IsUsedInternally = true,
                             IsUndispellable = true,
                             TurnDuration = int.MaxValue,
@@ -508,7 +493,6 @@ namespace Worldshifters.Assets.Hero.Earth
                     elen.ApplyStatusEffectsFromTemplate(
                         new StatusEffectSnapshot
                         {
-                            IsBuff = true,
                             IsUsedInternally = true,
                             IsUndispellable = true,
                             TurnDuration = int.MaxValue,
@@ -523,7 +507,6 @@ namespace Worldshifters.Assets.Hero.Earth
                     elen.ApplyStatusEffectsFromTemplate(
                         new StatusEffectSnapshot
                         {
-                            IsBuff = true,
                             IsUsedInternally = true,
                             IsUndispellable = true,
                             TurnDuration = int.MaxValue,

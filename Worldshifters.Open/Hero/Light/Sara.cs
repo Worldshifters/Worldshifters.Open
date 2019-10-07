@@ -161,7 +161,6 @@ namespace Worldshifters.Assets.Hero.Light
                             sara.ApplyStatusEffect(new StatusEffectSnapshot
                             {
                                 Id = StatusEffectLibrary.RemoveAllDebuffs,
-                                IsBuff = true,
                             });
                         }
                     },
@@ -245,10 +244,9 @@ namespace Worldshifters.Assets.Hero.Light
                         ExtraData = new ApplyStatusEffect
                         {
                             Id = StatusEffectLibrary.DarkDamageCutUpNpc,
-                            IsBuff = true,
                             Strength = 60,
                             TurnDuration = 1,
-                            OnAllPartyMembers = true,
+                            EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                         }.ToByteString(),
                     },
                 },
@@ -307,7 +305,6 @@ namespace Worldshifters.Assets.Hero.Light
                             new StatusEffectSnapshot
                             {
                                 Id = StatusEffectLibrary.Shield,
-                                IsBuff = true,
                                 TurnDuration = int.MaxValue,
                                 Strength = hammerOfGraphosStacks == 5 ? 2000 : 1000,
                             },
@@ -346,8 +343,7 @@ namespace Worldshifters.Assets.Hero.Light
                         ExtraData = new ApplyStatusEffect
                         {
                             Id = StatusEffectLibrary.Substitute,
-                            IsBuff = true,
-                            OnSelf = true,
+                            EffectTargettingType = EffectTargettingType.OnSelf,
                             TurnDuration = 1,
                         }.ToByteString(),
                     },
@@ -361,7 +357,6 @@ namespace Worldshifters.Assets.Hero.Light
                             new StatusEffectSnapshot
                             {
                                 Id = AfflatusId,
-                                IsBuff = true,
                                 TurnDuration = 1,
                                 IsUndispellable = true,
                             },
@@ -370,7 +365,6 @@ namespace Worldshifters.Assets.Hero.Light
                         sara.ApplyStatusEffect(new StatusEffectSnapshot
                         {
                             Id = StatusEffectLibrary.AssassinStrike,
-                            IsBuff = true,
                             TurnDuration = 1,
                             IsUndispellable = true,
                             IsUsedInternally = true,
@@ -398,7 +392,6 @@ namespace Worldshifters.Assets.Hero.Light
                     Id = "passive_counter",
                     Strength = 2,
                     Modifier = ModifierLibrary.Counter,
-                    IsBuff = true,
                     IsUsedInternally = true,
                     IsPassiveEffect = true,
                     TurnDuration = 1,
@@ -413,7 +406,6 @@ namespace Worldshifters.Assets.Hero.Light
             sara.ApplyStatusEffectsFromTemplate(
                 new StatusEffectSnapshot
                 {
-                    IsBuff = true,
                     TurnDuration = 1,
                     IsUsedInternally = true,
                     IsUndispellable = true,

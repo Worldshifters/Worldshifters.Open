@@ -99,7 +99,7 @@ namespace Worldshifters.Assets.Hero.Fire
                                     BaseAccuracy = 200,
                                     IsLocal = true,
                                     TurnDuration = 4,
-                                    OnAllEnemies = true,
+                                    EffectTargettingType = EffectTargettingType.OnAllEnemies,
                                 },
                                 (StatusEffectLibrary.DefenseDownNpcLocal, -25),
                                 (StatusEffectLibrary.AttackDownNpcLocal, -25),
@@ -297,7 +297,6 @@ namespace Worldshifters.Assets.Hero.Fire
                             new StatusEffectSnapshot
                             {
                                 Id = BlessedRadianceId,
-                                IsBuff = true,
                                 TurnDuration = int.MaxValue,
                                 IsUndispellable = true,
                             }, raidActions);
@@ -306,7 +305,6 @@ namespace Worldshifters.Assets.Hero.Fire
                             new StatusEffectSnapshot
                             {
                                 Id = $"{BlessedRadianceId}_drain",
-                                IsBuff = true,
                                 TurnDuration = int.MaxValue,
                                 IsUndispellable = true,
                                 IsUsedInternally = true,
@@ -316,6 +314,7 @@ namespace Worldshifters.Assets.Hero.Fire
                                 {
                                     HealingCap = 800,
                                     IsPercentageBased = true,
+                                    HealingCapPercentage = long.MaxValue,
                                 }.ToByteString(),
                             });
 
@@ -323,7 +322,6 @@ namespace Worldshifters.Assets.Hero.Fire
                             new StatusEffectSnapshot
                             {
                                 Id = $"{BlessedRadianceId}_def_up",
-                                IsBuff = true,
                                 TurnDuration = int.MaxValue,
                                 IsUndispellable = true,
                                 IsUsedInternally = true,
@@ -349,7 +347,6 @@ namespace Worldshifters.Assets.Hero.Fire
                         entity.ApplyStatusEffectsFromTemplate(
                             new StatusEffectSnapshot
                             {
-                                IsBuff = true,
                                 IsUsedInternally = true,
                                 Strength = 20,
                                 IsPassiveEffect = true,
@@ -426,10 +423,9 @@ namespace Worldshifters.Assets.Hero.Fire
                         new ApplyStatusEffect
                         {
                             TurnDuration = 4,
-                            OnAllPartyMembers = true,
-                            IsBuff = true,
+                            EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                         },
-                        (StatusEffectLibrary.TripleAttackRateUpNpc, double.MaxValue),
+                        (StatusEffectLibrary.TripleAttackRateUpNpc, double.PositiveInfinity),
                         (StatusEffectLibrary.AdditionalFireDamageNpc, 30)),
                     new AbilityEffect
                     {
@@ -438,7 +434,7 @@ namespace Worldshifters.Assets.Hero.Fire
                         {
                             Id = StatusEffectLibrary.Shorted,
                             TurnDuration = 4,
-                            OnAllPartyMembers = true,
+                            EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                             BaseAccuracy = double.MaxValue,
                         }.ToByteString(),
                     },
@@ -469,7 +465,6 @@ namespace Worldshifters.Assets.Hero.Fire
                 naya.Raid.Allies.Where(a => a.Element == Element.Fire).ApplyStatusEffectsFromTemplate(
                     new StatusEffectSnapshot
                     {
-                        IsBuff = true,
                         IsPassiveEffect = true,
                         IsUsedInternally = true,
                     },
@@ -484,7 +479,6 @@ namespace Worldshifters.Assets.Hero.Fire
                 naya.Raid.Allies.Where(a => a.Element == Element.Fire).ApplyStatusEffectsFromTemplate(
                     new StatusEffectSnapshot
                     {
-                        IsBuff = true,
                         IsPassiveEffect = true,
                         IsUsedInternally = true,
                     },

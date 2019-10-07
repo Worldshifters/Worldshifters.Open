@@ -119,8 +119,7 @@ namespace Worldshifters.Assets.Hero.Light
                             ExtraData = new ApplyStatusEffect
                             {
                                 Id = BringTheThunderId,
-                                OnSelf = true,
-                                IsBuff = true,
+                                EffectTargettingType = EffectTargettingType.OnSelf,
                                 IsUndispellable = true,
                                 TurnDuration = 3,
                             }.ToByteString(),
@@ -141,7 +140,6 @@ namespace Worldshifters.Assets.Hero.Light
                                 {
                                     Id = StatusEffectLibrary.CriticalHitRateBoostNpc,
                                     Strength = 100,
-                                    IsBuff = true,
                                     TurnDuration = 4,
                                     ExtraData = new CriticalHit
                                     {
@@ -151,6 +149,7 @@ namespace Worldshifters.Assets.Hero.Light
                             }
                         }
                     },
+                    ShouldRepositionSpriteAnimationOnTarget = true,
                 },
                 Abilities =
                 {
@@ -273,7 +272,6 @@ namespace Worldshifters.Assets.Hero.Light
                     tweyen.ApplyStatusEffect(new StatusEffectSnapshot
                     {
                         Id = "tweyen/dark_huntress_aoe_attacks",
-                        IsBuff = true,
                         Modifier = ModifierLibrary.NormalAttacksHitAllFoes,
                         IsPassiveEffect = true,
                         IsUsedInternally = true,
@@ -321,9 +319,8 @@ namespace Worldshifters.Assets.Hero.Light
                         {
                             Id = StatusEffectLibrary.Dodge,
                             Strength = 1,
-                            IsBuff = true,
                             TurnDuration = 1,
-                            OnSelf = true,
+                            EffectTargettingType = EffectTargettingType.OnSelf,
                         }.ToByteString(),
                     },
                 },
@@ -348,7 +345,6 @@ namespace Worldshifters.Assets.Hero.Light
                             new StatusEffectSnapshot
                             {
                                 Id = StatusEffectLibrary.SkillDamageCapUpNpc,
-                                IsBuff = true,
                                 TurnDuration = 3,
                                 Strength = 30,
                             }, raidActions);
@@ -360,7 +356,6 @@ namespace Worldshifters.Assets.Hero.Light
                             new StatusEffectSnapshot
                             {
                                 Id = "tweyen/merculight_atk_up",
-                                IsBuff = true,
                                 TurnDuration = 3,
                                 Strength = 50,
                                 Modifier = ModifierLibrary.FlatAttackBoost,
@@ -372,7 +367,6 @@ namespace Worldshifters.Assets.Hero.Light
                             new StatusEffectSnapshot
                             {
                                 Id = "tweyen/merculight_atk_up",
-                                IsBuff = true,
                                 TurnDuration = 3,
                                 Strength = 33,
                                 Modifier = ModifierLibrary.FlatAttackBoost,
@@ -579,7 +573,6 @@ namespace Worldshifters.Assets.Hero.Light
                 {
                     Id = "tweyen/lone_archer",
                     Strength = 5 * (4 - tweyen.Raid.Enemies.Count(e => e.PositionInFrontline < 4 && e.IsAlive())),
-                    IsBuff = true,
                     Modifier = ModifierLibrary.FlatDebuffSuccessRateBoost,
                     IsPassiveEffect = true,
                     IsUsedInternally = true,
@@ -592,7 +585,6 @@ namespace Worldshifters.Assets.Hero.Light
                 {
                     Id = "tweyen/dark_huntress",
                     Strength = 5 * (4 - tweyen.Raid.Enemies.Count(e => e.PositionInFrontline < 4 && e.IsAlive())),
-                    IsBuff = true,
                     Modifier = ModifierLibrary.FlatAttackBoost,
                     IsPassiveEffect = true,
                     IsUsedInternally = true,

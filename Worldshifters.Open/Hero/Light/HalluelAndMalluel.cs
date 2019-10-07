@@ -122,7 +122,6 @@ namespace Worldshifters.Assets.Hero.Light
                                 {
                                     Id = $"{LimiterBreakId}_3",
                                     Strength = 3,
-                                    IsBuff = true,
                                     TurnDuration = int.MaxValue,
                                     IsUndispellable = true,
                                 }, raidActions);
@@ -164,7 +163,6 @@ namespace Worldshifters.Assets.Hero.Light
                                 {
                                     Id = StatusEffectLibrary.Shield,
                                     Strength = 2000,
-                                    IsBuff = true,
                                     TurnDuration = int.MaxValue,
                                 }, raidActions);
                         }
@@ -187,7 +185,6 @@ namespace Worldshifters.Assets.Hero.Light
                             ally.ApplyStatusEffect(new StatusEffectSnapshot
                             {
                                 Id = AdventurousTwinsId,
-                                IsBuff = true,
                                 IsPassiveEffect = true,
                                 IsUsedInternally = true,
                                 Modifier = ModifierLibrary.SupplementalDamage,
@@ -209,14 +206,13 @@ namespace Worldshifters.Assets.Hero.Light
                     halluelAndMalluel.ApplyStatusEffectsFromTemplate(
                         new StatusEffectSnapshot
                         {
-                            IsBuff = true,
                             IsUndispellable = true,
                             IsUsedInternally = true,
                         },
                         ("halluel_and_malluel/geminis_atk_up", ModifierLibrary.FlatAttackBoost, 40),
                         ("halluel_and_malluel/geminis_dmg_cap_up", ModifierLibrary.FlatDamageCapBoost, 20),
                         ("halluel_and_malluel/geminis_dodge_rate_up", ModifierLibrary.DodgeRateBoost, 40),
-                        ("halluel_and_malluel/geminis_da_rate_up", ModifierLibrary.FlatDoubleAttackRateBoost, double.MaxValue),
+                        ("halluel_and_malluel/geminis_da_rate_up", ModifierLibrary.FlatDoubleAttackRateBoost, double.PositiveInfinity),
                         ("halluel_and_malluel/geminis_ta_rate_up", ModifierLibrary.FlatTripleAttackRateBoost, 30));
                 },
                 OnTurnEnd = (halluelAndMalluel, raidActions) =>
@@ -322,9 +318,8 @@ namespace Worldshifters.Assets.Hero.Light
                         {
                             Id = StatusEffectLibrary.LightAttackUpNpc,
                             Strength = 30,
-                            IsBuff = true,
                             TurnDuration = 3,
-                            OnAllPartyMembers = true,
+                            EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                         }.ToByteString(),
                     },
                     new AbilityEffect
@@ -334,9 +329,8 @@ namespace Worldshifters.Assets.Hero.Light
                         {
                             Id = StatusEffectLibrary.DarkDamageCutUpNpc,
                             Strength = 20,
-                            IsBuff = true,
                             TurnDuration = 3,
-                            OnAllPartyMembers = true,
+                            EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                         }.ToByteString(),
                     },
                 },
@@ -357,7 +351,6 @@ namespace Worldshifters.Assets.Hero.Light
                             new StatusEffectSnapshot
                             {
                                 Id = StatusEffectLibrary.AdditionalLightDamageNpc,
-                                IsBuff = true,
                                 TurnDuration = 3,
                                 Strength = 20,
                             },

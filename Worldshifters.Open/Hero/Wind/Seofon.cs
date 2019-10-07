@@ -162,9 +162,8 @@ namespace Worldshifters.Assets.Hero.Wind
                             {
                                 Id = StatusEffectLibrary.AttackUpNpc,
                                 TurnDuration = 3,
-                                IsBuff = true,
                                 Strength = 30,
-                                OnAllPartyMembers = true,
+                                EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                             }.ToByteString(),
                         },
                     },
@@ -177,7 +176,6 @@ namespace Worldshifters.Assets.Hero.Wind
                                 {
                                     Id = StatusEffectLibrary.Unchallenged,
                                     Strength = 1,
-                                    IsBuff = true,
                                     TurnDuration = 3,
                                 });
                         }
@@ -244,8 +242,7 @@ namespace Worldshifters.Assets.Hero.Wind
                                 seofon.Raid.Allies.ApplyStatusEffectsFromTemplate(
                                     new StatusEffectSnapshot
                                     {
-                                        IsBuff = true,
-                                        TurnDuration = 1,
+                                                                                TurnDuration = 1,
                                     },
                                     raidActions,
                                     ("seofon/ca_up", ModifierLibrary.FlatChargeAttackDamageBoost, 150),
@@ -275,11 +272,11 @@ namespace Worldshifters.Assets.Hero.Wind
                     {
                         if (seofon.Hero.Level >= 85)
                         {
-                            seofon.ApplyOrOverrideStatusEffectStacks(SwordshineId, (uint) stacks, -2, 5, raidActions, seofon.GetStatusEffect(SwordshineId + "_" + stacks).TurnDuration);
+                            seofon.ApplyOrOverrideStatusEffectStacks(SwordshineId, (uint)stacks, -2, 5, raidActions, seofon.GetStatusEffect(SwordshineId + "_" + stacks).TurnDuration);
                         }
                         else
                         {
-                            seofon.ApplyOrOverrideStatusEffectStacks(SwordshineId, (uint) stacks, -stacks, 3, raidActions);
+                            seofon.ApplyOrOverrideStatusEffectStacks(SwordshineId, (uint)stacks, -stacks, 3, raidActions);
                         }
 
                         ProcessSwordshineEffects(seofon);
@@ -366,7 +363,6 @@ namespace Worldshifters.Assets.Hero.Wind
                             new StatusEffectSnapshot
                             {
                                 Id = StatusEffectLibrary.ChargeGaugeBoost,
-                                IsBuff = true,
                                 Strength = 30,
                             }, raidActions);
                     }
@@ -434,7 +430,6 @@ namespace Worldshifters.Assets.Hero.Wind
                 {
                     Id = "seofon/passive",
                     TurnDuration = 1,
-                    IsBuff = true,
                     IsUsedInternally = true,
                     IsUndispellable = true,
                     Strength = 50,
@@ -448,7 +443,6 @@ namespace Worldshifters.Assets.Hero.Wind
                     {
                         Id = "seofon/passive_2",
                         TurnDuration = 1,
-                        IsBuff = true,
                         IsUsedInternally = true,
                         IsUndispellable = true,
                         Strength = 10,
@@ -479,7 +473,6 @@ namespace Worldshifters.Assets.Hero.Wind
                 seofon.ApplyStatusEffectsFromTemplate(
                     new StatusEffectSnapshot
                     {
-                        IsBuff = true,
                         IsUsedInternally = true,
                         TurnDuration = 1,
                     },
@@ -493,7 +486,6 @@ namespace Worldshifters.Assets.Hero.Wind
                 seofon.ApplyStatusEffectsFromTemplate(
                     new StatusEffectSnapshot
                     {
-                        IsBuff = true,
                         IsUsedInternally = true,
                         TurnDuration = 1,
                     },
@@ -507,7 +499,6 @@ namespace Worldshifters.Assets.Hero.Wind
                 seofon.ApplyStatusEffectsFromTemplate(
                     new StatusEffectSnapshot
                     {
-                        IsBuff = true,
                         IsUsedInternally = true,
                         TurnDuration = 1,
                     },
@@ -518,7 +509,6 @@ namespace Worldshifters.Assets.Hero.Wind
                     new StatusEffectSnapshot
                     {
                         Id = SwordshineId + "/crit_up",
-                        IsBuff = true,
                         TurnDuration = 1,
                         IsUsedInternally = true,
                         Strength = 100,
@@ -534,7 +524,6 @@ namespace Worldshifters.Assets.Hero.Wind
                 seofon.ApplyStatusEffectsFromTemplate(
                     new StatusEffectSnapshot
                     {
-                        IsBuff = true,
                         IsUsedInternally = true,
                         TurnDuration = 1,
                     },
@@ -545,7 +534,6 @@ namespace Worldshifters.Assets.Hero.Wind
                     new StatusEffectSnapshot
                     {
                         Id = SwordshineId + "/crit_up",
-                        IsBuff = true,
                         TurnDuration = 1,
                         IsUsedInternally = true,
                         Strength = 100,
@@ -561,7 +549,6 @@ namespace Worldshifters.Assets.Hero.Wind
                 seofon.ApplyStatusEffectsFromTemplate(
                     new StatusEffectSnapshot
                     {
-                        IsBuff = true,
                         IsUsedInternally = true,
                         TurnDuration = 1,
                     },
@@ -572,7 +559,6 @@ namespace Worldshifters.Assets.Hero.Wind
                     new StatusEffectSnapshot
                     {
                         Id = SwordshineId + "/crit_up",
-                        IsBuff = true,
                         TurnDuration = 1,
                         IsUsedInternally = true,
                         Strength = 100,

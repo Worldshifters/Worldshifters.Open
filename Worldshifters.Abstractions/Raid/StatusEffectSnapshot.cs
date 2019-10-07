@@ -14,9 +14,10 @@ namespace Worldshifters.Data.Raid
         public Element AttackElementRestriction { get; set; }
 
         /// <summary>
-        /// The percentage of chance to land a debuff.
+        /// Gets or sets the percentage of chance to land the debuff. Buffs should leave <see cref="BaseAccuracy"/> to the default value 'null'.
+        /// Debuffs with <see cref="BaseAccuracy"/> set to <see cref="double.MaxValue"/> will bypass <see cref="StatusEffectLibrary.Dodge"/> and <see cref="StatusEffectLibrary.Veil"/>.
         /// </summary>
-        public double BaseAccuracy { get; set; }
+        public double? BaseAccuracy { get; set; }
 
         /// <summary>
         /// Restricts the effect to characters with the given element. No element restriction by default.
@@ -28,8 +29,6 @@ namespace Worldshifters.Data.Raid
         /// See <see cref="IsStackable"/>.
         /// </summary>
         public string Id { get; set; }
-
-        public bool IsBuff { get; set; }
 
         public bool IsLocal { get; set; }
 

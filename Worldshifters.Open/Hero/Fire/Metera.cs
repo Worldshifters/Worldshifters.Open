@@ -14,9 +14,9 @@ namespace Worldshifters.Assets.Hero.Fire
 
     public static class Metera
     {
-        public static Guid Id = Guid.Parse("161daf6a-56c0-4cf1-ad23-8fb88a804475");
+        public const string AetherialSealId = "metera/aetherial_seal";
 
-        private const string AetherialSealId = "metera/aetherial_seal";
+        public static Guid Id = Guid.Parse("161daf6a-56c0-4cf1-ad23-8fb88a804475");
 
         public static Hero NewInstance()
         {
@@ -149,7 +149,6 @@ namespace Worldshifters.Assets.Hero.Fire
                         {
                             Id = "metera/passive",
                             Strength = 10,
-                            IsBuff = true,
                             IsPassiveEffect = true,
                             IsUsedInternally = true,
                             TurnDuration = int.MaxValue,
@@ -172,7 +171,6 @@ namespace Worldshifters.Assets.Hero.Fire
                         new StatusEffectSnapshot
                         {
                             Id = "metera/echo",
-                            IsBuff = true,
                             TurnDuration = 1,
                             Strength = 80,
                             Modifier = ModifierLibrary.AdditionalDamage,
@@ -276,7 +274,6 @@ namespace Worldshifters.Assets.Hero.Fire
                             Id = $"{AetherialSealId}_5",
                             Strength = 5,
                             TurnDuration = int.MaxValue,
-                            IsBuff = true,
                         },
                         raidActions);
                 },

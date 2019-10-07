@@ -293,8 +293,7 @@ namespace Worldshifters.Assets.Hero.Earth
                         ExtraData = new ApplyStatusEffect
                         {
                             Id = DoubleDealId,
-                            OnAllPartyMembers = true,
-                            IsBuff = true,
+                            EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                             IsUndispellable = true,
                             TurnDuration = int.MaxValue,
                         }.ToByteString(),
@@ -319,7 +318,6 @@ namespace Worldshifters.Assets.Hero.Earth
                         caim.Raid.Allies.ApplyStatusEffectsFromTemplate(
                             new StatusEffectSnapshot
                             {
-                                IsBuff = true,
                                 TurnDuration = 3,
                             },
                             raidActions,
@@ -333,7 +331,6 @@ namespace Worldshifters.Assets.Hero.Earth
                             new StatusEffectSnapshot
                             {
                                 Id = StatusEffectLibrary.RevitalizeSummon,
-                                IsBuff = true,
                                 Strength = 500,
                                 TurnDuration = 3,
                                 ExtraData = new Revitalize
@@ -348,7 +345,6 @@ namespace Worldshifters.Assets.Hero.Earth
                             new StatusEffectSnapshot
                             {
                                 Id = StatusEffectLibrary.Veil,
-                                IsBuff = true,
                                 TurnDuration = int.MaxValue,
                             },
                             raidActions);
@@ -387,7 +383,7 @@ namespace Worldshifters.Assets.Hero.Earth
                         new ApplyStatusEffect
                         {
                             IsStackable = true,
-                            OnAllEnemies = true,
+                            EffectTargettingType = EffectTargettingType.OnAllEnemies,
                             BaseAccuracy = 100,
                             DurationInSeconds = 180,
                             StackingCap = -40,
@@ -631,7 +627,6 @@ namespace Worldshifters.Assets.Hero.Earth
                 caim.Raid.Allies.ApplyStatusEffectsFromTemplate(
                     new StatusEffectSnapshot
                     {
-                        IsBuff = true,
                         TurnDuration = 1,
                         ElementRestriction = Element.Earth,
                         IsPassiveEffect = true,
@@ -650,7 +645,6 @@ namespace Worldshifters.Assets.Hero.Earth
                 caim.ApplyStatusEffectsFromTemplate(
                     new StatusEffectSnapshot
                     {
-                        IsBuff = true,
                         IsUsedInternally = true,
                         IsUndispellable = true,
                         TurnDuration = 1,
@@ -666,7 +660,6 @@ namespace Worldshifters.Assets.Hero.Earth
                     caim.ApplyStatusEffect(new StatusEffectSnapshot
                     {
                         Id = $"{HeartsId}/drain",
-                        IsBuff = true,
                         TurnDuration = 1,
                         Modifier = ModifierLibrary.Drain,
                         Strength = 10,
@@ -686,7 +679,6 @@ namespace Worldshifters.Assets.Hero.Earth
                     caim.ApplyStatusEffect(new StatusEffectSnapshot
                     {
                         Id = StatusEffectLibrary.WaterSwitch,
-                        IsBuff = true,
                         TurnDuration = 1,
                         IsUsedInternally = true,
                         IsUndispellable = true,
@@ -698,7 +690,6 @@ namespace Worldshifters.Assets.Hero.Earth
                     caim.ApplyStatusEffect(new StatusEffectSnapshot
                     {
                         Id = $"{ClubsId}/echo",
-                        IsBuff = true,
                         TurnDuration = 1,
                         IsUsedInternally = true,
                         IsUndispellable = true,

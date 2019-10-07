@@ -151,7 +151,6 @@ namespace Worldshifters.Assets.Hero.Water
                                 {
                                     Id = MoonId,
                                     TurnDuration = 5,
-                                    IsBuff = true,
                                     IsUndispellable = true,
                                     IsUsedInternally = true,
                                 });
@@ -363,8 +362,7 @@ namespace Worldshifters.Assets.Hero.Water
                     ApplyStatusEffect.FromTemplate(
                         new ApplyStatusEffect
                         {
-                            OnSelectedTarget = true,
-                            IsBuff = true,
+                            EffectTargettingType = EffectTargettingType.OnSelectedAlly,
                             TurnDuration = int.MaxValue,
                         },
                         (StatusEffectLibrary.Unchallenged, 1),
@@ -380,7 +378,6 @@ namespace Worldshifters.Assets.Hero.Water
                             {
                                 Id = StatusEffectLibrary.Shield,
                                 Strength = 3000,
-                                IsBuff = true,
                                 TurnDuration = int.MaxValue,
                             }, raidActions);
                     }
@@ -420,7 +417,6 @@ namespace Worldshifters.Assets.Hero.Water
                         new StatusEffectSnapshot
                         {
                             ElementRestriction = Element.Water,
-                            IsBuff = true,
                             TurnDuration = 2,
                         },
                         raidActions,
@@ -438,7 +434,6 @@ namespace Worldshifters.Assets.Hero.Water
                             new StatusEffectSnapshot
                             {
                                 Id = StatusEffectLibrary.ChargeGaugeBoost,
-                                IsBuff = true,
                                 Strength = 15,
                             }, raidActions);
 
@@ -480,8 +475,7 @@ namespace Worldshifters.Assets.Hero.Water
                         ExtraData = new ApplyStatusEffect
                         {
                             Id = TorahId,
-                            IsBuff = true,
-                            OnSelf = true,
+                            EffectTargettingType = EffectTargettingType.OnSelf,
                             TurnDuration = int.MaxValue,
                             IsUndispellable = true,
                         }.ToByteString(),
@@ -499,7 +493,6 @@ namespace Worldshifters.Assets.Hero.Water
                 haaselia.Raid.Allies.ApplyStatusEffectsFromTemplate(
                     new StatusEffectSnapshot
                     {
-                        IsBuff = true,
                         TurnDuration = 1,
                         ElementRestriction = Element.Water,
                         IsPassiveEffect = true,
@@ -526,7 +519,6 @@ namespace Worldshifters.Assets.Hero.Water
                         new StatusEffectSnapshot
                         {
                             TurnDuration = 1,
-                            IsBuff = true,
                             IsUndispellable = true,
                             IsUsedInternally = true,
                         },
@@ -541,7 +533,6 @@ namespace Worldshifters.Assets.Hero.Water
                         {
                             Id = MoonId + "/fire_dmg_reduced",
                             TurnDuration = 1,
-                            IsBuff = true,
                             IsUndispellable = true,
                             IsUsedInternally = true,
                             Modifier = ModifierLibrary.DamageReductionBoost,
@@ -557,7 +548,6 @@ namespace Worldshifters.Assets.Hero.Water
                         {
                             Id = MoonId + "/fire_dmg_cut",
                             TurnDuration = 1,
-                            IsBuff = true,
                             IsUndispellable = true,
                             IsUsedInternally = true,
                             Modifier = ModifierLibrary.DamageCutBoost,
@@ -573,7 +563,6 @@ namespace Worldshifters.Assets.Hero.Water
                         {
                             Id = MoonId + "/da_up",
                             TurnDuration = 1,
-                            IsBuff = true,
                             IsUndispellable = true,
                             IsUsedInternally = true,
                             Modifier = ModifierLibrary.FlatDoubleAttackRateBoost,
@@ -587,7 +576,6 @@ namespace Worldshifters.Assets.Hero.Water
                             {
                                 Id = MoonId + "/echo",
                                 TurnDuration = 1,
-                                IsBuff = true,
                                 IsUndispellable = true,
                                 IsUsedInternally = true,
                                 Modifier = ModifierLibrary.AdditionalDamage,
@@ -602,7 +590,6 @@ namespace Worldshifters.Assets.Hero.Water
                             {
                                 Id = MoonId + "/dmg_cap_up",
                                 TurnDuration = 1,
-                                IsBuff = true,
                                 IsUndispellable = true,
                                 IsUsedInternally = true,
                                 Modifier = ModifierLibrary.FlatDamageCapBoost,
@@ -624,7 +611,6 @@ namespace Worldshifters.Assets.Hero.Water
                 new StatusEffectSnapshot
                 {
                     Id = MoonId + "_" + moonStrength,
-                    IsBuff = true,
                     TurnDuration = 2,
                     Strength = moonStrength,
                     IsUndispellable = true,

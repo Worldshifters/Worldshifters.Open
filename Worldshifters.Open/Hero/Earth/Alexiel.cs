@@ -16,7 +16,6 @@ namespace Worldshifters.Assets.Hero.Earth
         public static Guid Id = Guid.Parse("7d3a79da-c92d-4c5a-be19-ab507b8320c7");
 
         private const string MirrorBladeId = "alexiel/mirror_blade";
-        private const string GuardianOfTheRealmId = "alexiel/earth_dmg_boost";
 
         public static Hero NewInstance()
         {
@@ -184,7 +183,7 @@ namespace Worldshifters.Assets.Hero.Earth
                     {
                         if (ally.PositionInFrontline < 4)
                         {
-                            ally.RemoveStatusEffect(GuardianOfTheRealmId);
+                            ally.RemoveStatusEffect(StatusEffectLibrary.EarthElementalAttackBoostAmplificationNpc);
                         }
                     }
                 },
@@ -219,9 +218,8 @@ namespace Worldshifters.Assets.Hero.Earth
                         ExtraData = new ApplyStatusEffect
                         {
                             Id = StatusEffectLibrary.DamageCutUpNpc,
-                            IsBuff = true,
                             TurnDuration = 1,
-                            OnAllPartyMembers = true,
+                            EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                         }.ToByteString(),
                     },
                 },
@@ -269,8 +267,7 @@ namespace Worldshifters.Assets.Hero.Earth
                         ExtraData = new ApplyStatusEffect
                         {
                             Id = StatusEffectLibrary.Unchallenged,
-                            IsBuff = true,
-                            OnAllPartyMembers = true,
+                            EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                             TurnDuration = int.MaxValue,
                         }.ToByteString(),
                     },
@@ -280,8 +277,7 @@ namespace Worldshifters.Assets.Hero.Earth
                         ExtraData = new ApplyStatusEffect
                         {
                             Id = StatusEffectLibrary.Veil,
-                            IsBuff = true,
-                            OnAllPartyMembers = true,
+                            EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                             TurnDuration = int.MaxValue,
                         }.ToByteString(),
                     },
@@ -304,12 +300,11 @@ namespace Worldshifters.Assets.Hero.Earth
                     ally.ApplyStatusEffect(
                         new StatusEffectSnapshot
                         {
-                            Id = GuardianOfTheRealmId,
-                            IsBuff = true,
+                            Id = StatusEffectLibrary.EarthElementalAttackBoostAmplificationNpc,
                             IsUsedInternally = true,
-                            Modifier = ModifierLibrary.ElementalAttackBoostAmplification,
                             Strength = 30,
                             IsPassiveEffect = true,
+                            TurnDuration = 1,
                         });
                 }
             }
@@ -333,7 +328,6 @@ namespace Worldshifters.Assets.Hero.Earth
             alexiel.ApplyStatusEffectsFromTemplate(
                 new StatusEffectSnapshot
                 {
-                    IsBuff = true,
                     IsUndispellable = true,
                     IsUsedInternally = true,
                     TurnDuration = int.MaxValue,

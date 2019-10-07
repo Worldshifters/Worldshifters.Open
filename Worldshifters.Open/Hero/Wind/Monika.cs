@@ -139,7 +139,6 @@ namespace Worldshifters.Assets.Hero.Wind
                     monika.ApplyStatusEffectsFromTemplate(
                         new StatusEffectSnapshot
                         {
-                            IsBuff = true,
                             TurnDuration = 1,
                         },
                         raidActions,
@@ -211,10 +210,8 @@ namespace Worldshifters.Assets.Hero.Wind
                         {
                             Id = StatusEffectLibrary.AdditionalSuperiorDamageNpc,
                             TurnDuration = duration,
-                            IsBuff = true,
                             Strength = echoStrength,
-                        },
-                        raidActions);
+                        });
 
                     for (var i = 0; i < monika.AbilityCooldowns.Count; ++i)
                     {
@@ -324,44 +321,37 @@ namespace Worldshifters.Assets.Hero.Wind
                         {
                             Id = StatusEffectLibrary.CriticalHitRateBoostForWindAlliesNpc,
                             Strength = 70,
-                            IsBuff = true,
                             TurnDuration = 3,
                             ExtraData = new CriticalHit
                             {
                                 DamageMultiplier = 0.3,
                             }.ToByteString(),
-                        },
-                        raidActions);
+                        });
 
-                    if (monika.GlobalState["monika/ab_3/cast_count"].IntegerValue >= 2)
+                    if (monika.GlobalState["monika/ab_3/cast_count"].IntegerValue == 2)
                     {
                         monika.Raid.Allies.ApplyStatusEffects(
                             new StatusEffectSnapshot
                             {
                                 Id = StatusEffectLibrary.DamageBoostedOnCriticalHitNpc,
                                 Strength = 1,
-                                IsBuff = true,
                                 TurnDuration = 3,
                                 ExtraData = new SupplementalDamage
                                 {
                                     DamageCap = 50000,
                                     IsPercentageBased = true,
                                 }.ToByteString(),
-                            },
-                            raidActions);
+                            });
                     }
-
-                    if (monika.GlobalState["monika/ab_3/cast_count"].IntegerValue >= 3)
+                    else if (monika.GlobalState["monika/ab_3/cast_count"].IntegerValue >= 3)
                     {
                         monika.Raid.Allies.ApplyStatusEffects(
                             new StatusEffectSnapshot
                             {
                                 Id = StatusEffectLibrary.DamageCapUpNpc,
                                 Strength = 10,
-                                IsBuff = true,
                                 TurnDuration = 3,
-                            },
-                            raidActions);
+                            });
                     }
 
                     for (var i = 0; i < monika.AbilityCooldowns.Count; ++i)
@@ -420,8 +410,7 @@ namespace Worldshifters.Assets.Hero.Wind
                             {
                                 Id = StatusEffectLibrary.Delay,
                                 BaseAccuracy = 100,
-                            },
-                            raidActions);
+                            });
                     }
                     else if (monika.GlobalState["monika/ab_4/cast_count"].IntegerValue >= 3)
                     {
@@ -432,8 +421,7 @@ namespace Worldshifters.Assets.Hero.Wind
                                 Id = twoTurns ? StatusEffectLibrary.ParalyzedLocal2 : StatusEffectLibrary.ParalyzedLocal1,
                                 BaseAccuracy = 50,
                                 TurnDuration = twoTurns ? 2 : 1,
-                            },
-                            raidActions);
+                            });
                     }
 
                     for (var i = 0; i < monika.AbilityCooldowns.Count; ++i)
@@ -482,9 +470,8 @@ namespace Worldshifters.Assets.Hero.Wind
                         ExtraData = new ApplyStatusEffect
                         {
                             Id = StatusEffectLibrary.ChargeGaugeBoost,
-                            IsBuff = true,
                             Strength = 20,
-                            OnSelf = true,
+                            EffectTargettingType = EffectTargettingType.OnSelf,
                         }.ToByteString(),
                     },
                     ApplyStatusEffect.FromTemplate(
@@ -492,7 +479,7 @@ namespace Worldshifters.Assets.Hero.Wind
                         {
                             BaseAccuracy = 90,
                             DurationInSeconds = 180,
-                            OnAllEnemies = true,
+                            EffectTargettingType = EffectTargettingType.OnAllEnemies,
                             IsStackable = true,
                             StackingCap = -30,
                         },

@@ -180,7 +180,6 @@ namespace Worldshifters.Assets.Hero.Wind
                             {
                                 Id = InfiniteDiversityId,
                                 TurnDuration = int.MaxValue,
-                                IsBuff = true,
                                 Modifier = ModifierLibrary.DodgeRateBoost,
                                 Strength = 100,
                                 IsUndispellable = true,
@@ -191,7 +190,6 @@ namespace Worldshifters.Assets.Hero.Wind
                             new StatusEffectSnapshot
                             {
                                 TurnDuration = int.MaxValue,
-                                IsBuff = true,
                                 IsUndispellable = true,
                                 IsUsedInternally = true,
                                 TriggerCondition = new TriggerCondition
@@ -210,7 +208,6 @@ namespace Worldshifters.Assets.Hero.Wind
                             {
                                 Id = $"{InfiniteDiversityId}_echo",
                                 TurnDuration = int.MaxValue,
-                                IsBuff = true,
                                 IsUndispellable = true,
                                 Strength = 20,
                                 Modifier = ModifierLibrary.AdditionalDamage,
@@ -330,11 +327,10 @@ namespace Worldshifters.Assets.Hero.Wind
                                 andira.Raid.Allies.ApplyStatusEffectsFromTemplate(
                                     new StatusEffectSnapshot
                                     {
-                                        IsBuff = true,
-                                        IsPassiveEffect = true,
-                                        IsUsedInternally = true,
-                                        TurnDuration = int.MaxValue,
-                                        TriggerCondition = new TriggerCondition
+                                                                                IsPassiveEffect = true,
+                                                                                IsUsedInternally = true,
+                                                                                TurnDuration = int.MaxValue,
+                                                                                TriggerCondition = new TriggerCondition
                                         {
                                             Type = TriggerCondition.Types.Type.HasStatusEffect,
                                             Data = $"{KikazaruId}_{newStackCount}",
@@ -403,7 +399,7 @@ namespace Worldshifters.Assets.Hero.Wind
                         {
                             BaseAccuracy = double.MaxValue,
                             TurnDuration = upgraded ? 2 : 3,
-                            OnAllPartyMembers = true,
+                            EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                         },
                         (StatusEffectLibrary.DefenseDownNpc, upgraded ? 25 : 30),
                         (StatusEffectLibrary.DebuffResistanceDownNpc, upgraded ? 25 : 30)),
@@ -453,9 +449,8 @@ namespace Worldshifters.Assets.Hero.Wind
                         ExtraData = new ApplyStatusEffect
                         {
                             Id = StatusEffectLibrary.Substitute,
-                            OnSelectedTarget = true,
+                            EffectTargettingType = EffectTargettingType.OnSelectedAlly,
                             TurnDuration = 1,
-                            IsBuff = true,
                         }.ToByteString(),
                     },
                 },
@@ -470,7 +465,6 @@ namespace Worldshifters.Assets.Hero.Wind
                                 Id = StatusEffectLibrary.Shield,
                                 TurnDuration = 3,
                                 Strength = 2500,
-                                IsBuff = true,
                             },
                             raidActions);
                     }
@@ -482,7 +476,6 @@ namespace Worldshifters.Assets.Hero.Wind
                                 Id = StatusEffectLibrary.Shield,
                                 TurnDuration = 3,
                                 Strength = 3500,
-                                IsBuff = true,
                             },
                             raidActions);
                     }
@@ -494,7 +487,6 @@ namespace Worldshifters.Assets.Hero.Wind
                                 Id = StatusEffectLibrary.Shield,
                                 TurnDuration = int.MaxValue,
                                 Strength = 4500,
-                                IsBuff = true,
                             },
                             raidActions);
                         target.ApplyStatusEffect(
@@ -505,7 +497,6 @@ namespace Worldshifters.Assets.Hero.Wind
                                 Strength = 30,
                                 Modifier = ModifierLibrary.AdditionalDamage,
                                 AttackElementRestriction = Element.Wind,
-                                IsBuff = true,
                             },
                             raidActions);
                     }
@@ -545,8 +536,7 @@ namespace Worldshifters.Assets.Hero.Wind
                         ExtraData = new ApplyStatusEffect
                         {
                             Id = LoopId,
-                            OnAllPartyMembers = true,
-                            IsBuff = true,
+                            EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                             TurnDuration = 6,
                             IsUndispellable = true,
                         }.ToByteString(),
@@ -566,7 +556,6 @@ namespace Worldshifters.Assets.Hero.Wind
                             {
                                 Id = $"{LoopId}_crit_rate_up",
                                 Strength = 50,
-                                IsBuff = true,
                                 TurnDuration = 6,
                                 Modifier = ModifierLibrary.FlatCriticalHitRateBoost,
                                 ExtraData = new CriticalHit
@@ -584,7 +573,6 @@ namespace Worldshifters.Assets.Hero.Wind
                             {
                                 Id = $"{LoopId}_dmg_cap_boost",
                                 Strength = 10,
-                                IsBuff = true,
                                 TurnDuration = 6,
                                 Modifier = ModifierLibrary.FlatDamageCapBoost,
                             },
@@ -622,7 +610,6 @@ namespace Worldshifters.Assets.Hero.Wind
                     ally.ApplyStatusEffectsFromTemplate(
                         new StatusEffectSnapshot
                         {
-                            IsBuff = true,
                             IsUndispellable = true,
                             TurnDuration = loop.TurnDuration,
                         },
@@ -659,7 +646,6 @@ namespace Worldshifters.Assets.Hero.Wind
                     ally.ApplyStatusEffectsFromTemplate(
                         new StatusEffectSnapshot
                         {
-                            IsBuff = true,
                             IsUndispellable = true,
                             TurnDuration = loop.TurnDuration,
                         },
@@ -684,7 +670,6 @@ namespace Worldshifters.Assets.Hero.Wind
             andira.ApplyStatusEffect(new StatusEffectSnapshot
             {
                 Id = QueenOfMonkeysId,
-                IsBuff = true,
                 Modifier = ModifierLibrary.DodgeRateBoost,
                 Strength = 5,
                 IsPassiveEffect = true,

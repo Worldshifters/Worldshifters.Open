@@ -145,7 +145,7 @@ namespace Worldshifters.Assets.Hero.Earth
                             ExtraData = new ApplyStatusEffect
                             {
                                 Id = StatusEffectLibrary.RemoveDebuff,
-                                OnAllPartyMembers = true,
+                                EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                             }.ToByteString(),
                         },
                     },
@@ -198,9 +198,8 @@ namespace Worldshifters.Assets.Hero.Earth
                             {
                                 Id = "jessica/passive_ta_up",
                                 Modifier = ModifierLibrary.FlatTripleAttackRateBoost,
-                                IsBuff = true,
                                 IsUsedInternally = true,
-                                Strength = double.MaxValue,
+                                Strength = double.PositiveInfinity,
                             });
                     }
                 },
@@ -269,10 +268,9 @@ namespace Worldshifters.Assets.Hero.Earth
                 ExtraData = new ApplyStatusEffect
                 {
                     Id = GodsendTriggerId,
-                    IsBuff = true,
                     TurnDuration = 3,
                     IsUndispellable = true,
-                    OnSelf = true,
+                    EffectTargettingType = EffectTargettingType.OnSelf,
                 }.ToByteString(),
             });
             return ability;
@@ -306,7 +304,6 @@ namespace Worldshifters.Assets.Hero.Earth
                     jessica.Raid.Allies.ApplyStatusEffectsFromTemplate(
                         new StatusEffectSnapshot
                         {
-                            IsBuff = true,
                             IsUndispellable = true,
                             TurnDuration = 3,
                         },
@@ -323,7 +320,6 @@ namespace Worldshifters.Assets.Hero.Earth
                             {
                                 Id = StatusEffectLibrary.DamageBoostedNpc,
                                 Strength = 20_000,
-                                IsBuff = true,
                                 TurnDuration = 3,
                             },
                             raidActions);
@@ -380,7 +376,6 @@ namespace Worldshifters.Assets.Hero.Earth
                             Id = StatusEffectLibrary.Shield,
                             Strength = (long)Math.Min(target.MaxHp * 0.7, 4000),
                             TurnDuration = int.MaxValue,
-                            IsBuff = true,
                             IsUndispellable = true,
                         },
                         raidActions);
@@ -389,7 +384,6 @@ namespace Worldshifters.Assets.Hero.Earth
                         {
                             Id = StatusEffectLibrary.AdditionalDamageNpc,
                             Strength = 30,
-                            IsBuff = true,
                             TurnDuration = int.MaxValue,
                             IsUndispellable = true,
                             TriggerCondition = new TriggerCondition
@@ -412,7 +406,6 @@ namespace Worldshifters.Assets.Hero.Earth
                 jessica.ApplyStatusEffectsFromTemplate(
                     new StatusEffectSnapshot
                     {
-                        IsBuff = true,
                         IsUsedInternally = true,
                         IsPassiveEffect = true,
                     },

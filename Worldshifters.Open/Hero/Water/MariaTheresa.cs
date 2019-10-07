@@ -330,7 +330,7 @@ namespace Worldshifters.Assets.Hero.Water
                         ExtraData = new ApplyStatusEffect
                         {
                             Id = StatusEffectLibrary.RemoveDebuff,
-                            OnAllPartyMembers = true,
+                            EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                         }.ToByteString(),
                     },
                     new AbilityEffect
@@ -361,7 +361,6 @@ namespace Worldshifters.Assets.Hero.Water
                     mariaTheresa.Raid.Allies.ApplyStatusEffectsFromTemplate(
                         new StatusEffectSnapshot
                         {
-                            IsBuff = true,
                             TurnDuration = 5,
                             IsUndispellable = true,
                         },
@@ -376,7 +375,6 @@ namespace Worldshifters.Assets.Hero.Water
                         new StatusEffectSnapshot
                         {
                             Id = DevotionToJusticeId + "/crit_rate_up",
-                            IsBuff = true,
                             TurnDuration = 5,
                             IsUndispellable = true,
                             Strength = 100,
@@ -431,7 +429,7 @@ namespace Worldshifters.Assets.Hero.Water
                             BaseAccuracy = 100,
                             TurnDuration = 3,
                             IsLocal = true,
-                            OnAllEnemies = true,
+                            EffectTargettingType = EffectTargettingType.OnAllEnemies,
                         }.ToByteString(),
                     },
                 },
@@ -494,7 +492,7 @@ namespace Worldshifters.Assets.Hero.Water
                             TurnDuration = 3,
                             IsStackable = true,
                             StackingCap = -30,
-                            OnAllEnemies = true,
+                            EffectTargettingType = EffectTargettingType.OnAllEnemies,
                         },
                         (StatusEffectLibrary.StackableAttackDownNpc, -10),
                         (StatusEffectLibrary.StackableDefenseDownNpc, -10)),
@@ -525,7 +523,6 @@ namespace Worldshifters.Assets.Hero.Water
                         new StatusEffectSnapshot
                         {
                             Id = RighteousIndignationId,
-                            IsBuff = true,
                             TurnDuration = int.MaxValue,
                             IsUndispellable = true,
                             ElementRestriction = Element.Water,
@@ -535,7 +532,6 @@ namespace Worldshifters.Assets.Hero.Water
                         new StatusEffectSnapshot
                         {
                             Id = RighteousIndignationId + "/atk_up",
-                            IsBuff = true,
                             TurnDuration = int.MaxValue,
                             IsUndispellable = true,
                             IsUsedInternally = true,
@@ -548,7 +544,6 @@ namespace Worldshifters.Assets.Hero.Water
                         new StatusEffectSnapshot
                         {
                             Id = RighteousIndignationId + "/echo",
-                            IsBuff = true,
                             TurnDuration = int.MaxValue,
                             IsUndispellable = true,
                             IsUsedInternally = true,

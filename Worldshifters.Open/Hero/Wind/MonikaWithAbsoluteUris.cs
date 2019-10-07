@@ -149,7 +149,6 @@ namespace Worldshifters.Assets.Hero.Wind
                     monika.ApplyStatusEffectsFromTemplate(
                         new StatusEffectSnapshot
                         {
-                            IsBuff = true,
                             TurnDuration = 1,
                         },
                         raidActions,
@@ -223,7 +222,6 @@ namespace Worldshifters.Assets.Hero.Wind
                         {
                             Id = StatusEffectLibrary.AdditionalSuperiorDamageNpc,
                             TurnDuration = duration,
-                            IsBuff = true,
                             Strength = echoStrength,
                         },
                         raidActions);
@@ -340,7 +338,6 @@ namespace Worldshifters.Assets.Hero.Wind
                         {
                             Id = StatusEffectLibrary.CriticalHitRateBoostForWindAlliesNpc,
                             Strength = 70,
-                            IsBuff = true,
                             TurnDuration = 3,
                             ExtraData = new CriticalHit
                             {
@@ -356,7 +353,6 @@ namespace Worldshifters.Assets.Hero.Wind
                             {
                                 Id = StatusEffectLibrary.DamageBoostedOnCriticalHitNpc,
                                 Strength = 1,
-                                IsBuff = true,
                                 TurnDuration = 3,
                                 ExtraData = new SupplementalDamage
                                 {
@@ -374,7 +370,6 @@ namespace Worldshifters.Assets.Hero.Wind
                             {
                                 Id = StatusEffectLibrary.DamageCapUpNpc,
                                 Strength = 10,
-                                IsBuff = true,
                                 TurnDuration = 3,
                             },
                             raidActions);
@@ -502,9 +497,8 @@ namespace Worldshifters.Assets.Hero.Wind
                         ExtraData = new ApplyStatusEffect
                         {
                             Id = StatusEffectLibrary.ChargeGaugeBoost,
-                            IsBuff = true,
                             Strength = 20,
-                            OnSelf = true,
+                            EffectTargettingType = EffectTargettingType.OnSelf,
                         }.ToByteString(),
                     },
                     ApplyStatusEffect.FromTemplate(
@@ -512,7 +506,7 @@ namespace Worldshifters.Assets.Hero.Wind
                         {
                             BaseAccuracy = 90,
                             DurationInSeconds = 180,
-                            OnAllEnemies = true,
+                            EffectTargettingType = EffectTargettingType.OnAllEnemies,
                             IsStackable = true,
                             StackingCap = -30,
                         },

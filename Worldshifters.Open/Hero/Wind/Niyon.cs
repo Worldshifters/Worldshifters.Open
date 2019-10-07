@@ -156,7 +156,7 @@ namespace Worldshifters.Assets.Hero.Wind
                                 Id = StatusEffectLibrary.Charmed,
                                 Strength = 20,
                                 BaseAccuracy = 75,
-                                OnAllEnemies = true,
+                                EffectTargettingType = EffectTargettingType.OnAllEnemies,
                                 DurationInSeconds = 180,
                             }.ToByteString(),
                         },
@@ -232,12 +232,11 @@ namespace Worldshifters.Assets.Hero.Wind
                                 ApplyStatusEffect.FromTemplate(
                                     new ApplyStatusEffect
                                     {
-                                        IsBuff = true,
-                                        TurnDuration = 4,
-                                        OnAllPartyMembers = true,
+                                                                                TurnDuration = 4,
+                                                                                EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                                     },
                                     (StatusEffectLibrary.AdditionalWindDamageNpc, 50),
-                                    (StatusEffectLibrary.TripleAttackRateUpNpc, double.MaxValue)),
+                                    (StatusEffectLibrary.TripleAttackRateUpNpc, double.PositiveInfinity)),
                             },
                             AnimationName = "ab_motion",
                         },
@@ -260,7 +259,6 @@ namespace Worldshifters.Assets.Hero.Wind
                         niyon.ApplyStatusEffect(new StatusEffectSnapshot
                         {
                             Id = "niyon/emp",
-                            IsBuff = true,
                             IsPassiveEffect = true,
                             TurnDuration = int.MaxValue,
                             IsUsedInternally = true,
@@ -353,9 +351,8 @@ namespace Worldshifters.Assets.Hero.Wind
                     ApplyStatusEffect.FromTemplate(
                         new ApplyStatusEffect
                         {
-                            IsBuff = true,
-                            TurnDuration = 3,
-                            OnAllPartyMembers = true,
+                                                        TurnDuration = 3,
+                                                        EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                         },
                         (StatusEffectLibrary.DoubleAttackRateUpNpc, 30 * baseStrengthBoost),
                         (StatusEffectLibrary.AttackUpNpc, 20 * baseStrengthBoost),
@@ -378,7 +375,6 @@ namespace Worldshifters.Assets.Hero.Wind
                         ally.ApplyStatusEffectsFromTemplate(
                             new StatusEffectSnapshot
                             {
-                                IsBuff = true,
                                 TurnDuration = 3,
                             },
                             raidActions,
@@ -420,8 +416,7 @@ namespace Worldshifters.Assets.Hero.Wind
                         {
                             Id = StatusEffectLibrary.CriticalHitRateBoostNpc,
                             Strength = 30,
-                            IsBuff = true,
-                            OnAllPartyMembers = true,
+                            EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                             TurnDuration = 3,
                             ExtraData = new CriticalHit
                             {
@@ -438,7 +433,6 @@ namespace Worldshifters.Assets.Hero.Wind
                             new StatusEffectSnapshot
                             {
                                 Id = StatusEffectLibrary.Shield,
-                                IsBuff = true,
                                 TurnDuration = 3,
                                 Strength = 2000,
                             },
@@ -475,7 +469,6 @@ namespace Worldshifters.Assets.Hero.Wind
             {
                 Id = "niyon/mystic_musician",
                 Strength = 10,
-                IsBuff = true,
                 Modifier = ModifierLibrary.FlatDebuffSuccessRateBoost,
                 IsPassiveEffect = true,
                 IsUsedInternally = true,
@@ -487,7 +480,7 @@ namespace Worldshifters.Assets.Hero.Wind
                 {
                     Id = $"{TuningId}_dmg_reduction",
                     Strength = -20,
-                    BaseAccuracy = double.MaxValue,
+                    BaseAccuracy = double.PositiveInfinity,
                     Modifier = ModifierLibrary.DamageReductionBoost,
                     IsPassiveEffect = true,
                     IsUsedInternally = true,

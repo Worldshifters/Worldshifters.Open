@@ -53,10 +53,10 @@ namespace Worldshifters.Assets.Hero.Dark
                         ExtraData = new ApplyStatusEffect
                         {
                             Id = UnfinishedBusinessId,
-                            OnAllPartyMembers = true,
+                            EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                             IsUndispellable = true,
                             TurnDuration = 4,
-                            BaseAccuracy = double.MaxValue,
+                            BaseAccuracy = double.PositiveInfinity,
                         }.ToByteString(),
                     },
                     new AbilityEffect
@@ -65,10 +65,10 @@ namespace Worldshifters.Assets.Hero.Dark
                         ExtraData = new ApplyStatusEffect
                         {
                             Id = UnfinishedBusinessId,
-                            OnAllEnemies = true,
+                            EffectTargettingType = EffectTargettingType.OnAllEnemies,
                             IsUndispellable = true,
                             TurnDuration = 4,
-                            BaseAccuracy = double.MaxValue,
+                            BaseAccuracy = double.PositiveInfinity,
                         }.ToByteString(),
                     },
                 },
@@ -84,7 +84,7 @@ namespace Worldshifters.Assets.Hero.Dark
                         entity.ApplyStatusEffectsFromTemplate(
                             new StatusEffectSnapshot
                             {
-                                BaseAccuracy = double.MaxValue,
+                                BaseAccuracy = double.PositiveInfinity,
                                 IsUndispellable = true,
                                 IsUsedInternally = true,
                                 TurnDuration = 4,
@@ -201,8 +201,7 @@ namespace Worldshifters.Assets.Hero.Dark
                                 ExtraData = new ApplyStatusEffect
                                 {
                                     Id = StatusEffectLibrary.ChargeAttackReactivation,
-                                    IsBuff = true,
-                                    OnSelectedTarget = true,
+                                    EffectTargettingType = EffectTargettingType.OnSelectedAlly,
                                     TurnDuration = int.MaxValue,
                                 }.ToByteString(),
                             },
@@ -302,7 +301,6 @@ namespace Worldshifters.Assets.Hero.Dark
                             new StatusEffectSnapshot
                             {
                                 Id = ThirstingId,
-                                IsBuff = true,
                                 IsUndispellable = true,
                                 TurnDuration = int.MaxValue,
                             },
@@ -311,7 +309,6 @@ namespace Worldshifters.Assets.Hero.Dark
                         hero.ApplyStatusEffectsFromTemplate(
                             new StatusEffectSnapshot
                             {
-                                IsBuff = true,
                                 IsUndispellable = true,
                                 TurnDuration = int.MaxValue,
                                 IsUsedInternally = true,
@@ -338,7 +335,6 @@ namespace Worldshifters.Assets.Hero.Dark
                         {
                             Id = $"{WorldOfDeathAndLoveId}/atk_up",
                             TurnDuration = 1,
-                            IsBuff = true,
                             IsUsedInternally = true,
                             Modifier = ModifierLibrary.FlatAttackBoost,
                             Strength = 20,
@@ -352,7 +348,6 @@ namespace Worldshifters.Assets.Hero.Dark
                         {
                             Id = $"{WorldOfDeathAndLoveId}/echo",
                             TurnDuration = 1,
-                            IsBuff = true,
                             IsUsedInternally = true,
                             Modifier = ModifierLibrary.AdditionalDamage,
                             Strength = 30,
@@ -423,9 +418,8 @@ namespace Worldshifters.Assets.Hero.Dark
                         ExtraData = new ApplyStatusEffect
                         {
                             Id = BelovedId,
-                            IsBuff = true,
                             IsUndispellable = true,
-                            OnSelf = true,
+                            EffectTargettingType = EffectTargettingType.OnSelf,
                             TurnDuration = 4,
                         }.ToByteString(),
                     },
@@ -435,33 +429,30 @@ namespace Worldshifters.Assets.Hero.Dark
                         ExtraData = new ApplyStatusEffect
                         {
                             Id = BelovedId,
-                            IsBuff = true,
                             IsUndispellable = true,
-                            OnSelectedTarget = true,
+                            EffectTargettingType = EffectTargettingType.OnSelectedAlly,
                             TurnDuration = 4,
                         }.ToByteString(),
                     },
                     ApplyStatusEffect.FromTemplate(
                         new ApplyStatusEffect
                         {
-                            IsBuff = true,
-                            IsUndispellable = true,
-                            OnSelf = true,
-                            TurnDuration = 4,
-                            IsUsedInternally = true,
+                                                        IsUndispellable = true,
+                                                        EffectTargettingType = EffectTargettingType.OnSelf,
+                                                        TurnDuration = 4,
+                                                        IsUsedInternally = true,
                         },
-                        (StatusEffectLibrary.TripleAttackRateUpNpc, double.MaxValue),
+                        (StatusEffectLibrary.TripleAttackRateUpNpc, double.PositiveInfinity),
                         (StatusEffectLibrary.DamageReductionUpNpc, 50)),
                     ApplyStatusEffect.FromTemplate(
                         new ApplyStatusEffect
                         {
-                            IsBuff = true,
-                            IsUndispellable = true,
-                            OnSelectedTarget = true,
-                            TurnDuration = 4,
-                            IsUsedInternally = true,
+                                                        IsUndispellable = true,
+                                                        EffectTargettingType = EffectTargettingType.OnSelectedAlly,
+                                                        TurnDuration = 4,
+                                                        IsUsedInternally = true,
                         },
-                        (StatusEffectLibrary.TripleAttackRateUpNpc, double.MaxValue),
+                        (StatusEffectLibrary.TripleAttackRateUpNpc, double.PositiveInfinity),
                         (StatusEffectLibrary.DamageReductionUpNpc, 50)),
                 },
                 ProcessEffects = (nier, target, raidActions) =>
@@ -502,7 +493,6 @@ namespace Worldshifters.Assets.Hero.Dark
             nier.ApplyStatusEffectsFromTemplate(
                 new StatusEffectSnapshot
                 {
-                    IsBuff = true,
                     IsUsedInternally = true,
                     IsUndispellable = true,
                     TurnDuration = 1,
@@ -522,7 +512,6 @@ namespace Worldshifters.Assets.Hero.Dark
                 {
                     Id = $"{LoveRedemptionId}_13",
                     Strength = 13,
-                    IsBuff = true,
                     IsUndispellable = true,
                     TurnDuration = int.MaxValue,
                 });

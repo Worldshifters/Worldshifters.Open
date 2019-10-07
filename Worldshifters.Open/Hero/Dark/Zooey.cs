@@ -169,9 +169,8 @@ namespace Worldshifters.Assets.Hero.Dark
                         {
                             Strength = 53.3,
                             Id = StatusEffectLibrary.JammedNpc,
-                            IsBuff = true,
                             TurnDuration = 3,
-                            OnSelf = true,
+                            EffectTargettingType = EffectTargettingType.OnSelf,
                             ExtraData = new LinearAttackBoost
                             {
                                 StrengthAt1Hp = 80,
@@ -288,7 +287,6 @@ namespace Worldshifters.Assets.Hero.Dark
                             {
                                 Id = StatusEffectLibrary.Unchallenged,
                                 TurnDuration = 1,
-                                IsBuff = true,
                             }, raidActions);
 
                         hero.ApplyStatusEffect(
@@ -297,7 +295,6 @@ namespace Worldshifters.Assets.Hero.Dark
                                 Strength = 100,
                                 Id = StatusEffectLibrary.DrainNpc,
                                 TurnDuration = 4,
-                                IsBuff = true,
                                 ExtraData = new Drain
                                 {
                                     HealingCap = long.MaxValue,
