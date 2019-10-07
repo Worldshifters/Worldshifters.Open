@@ -191,7 +191,7 @@ namespace Worldshifters.Assets.Hero.Water
                     if (ability.Effects.Where(e => e.Type == AbilityEffect.Types.AbilityEffectType.ApplyStatusEffect)
                         .Any(e => ApplyStatusEffect.ParseFrom(e.ExtraData).Id == StatusEffectLibrary.Dispel))
                     {
-                        AurumSword().Cast(mariaTheresa, raidActions);
+                        AurumSword().Cast(mariaTheresa, mariaTheresa.CurrentTargetPositionInFrontline, raidActions);
                     }
                 },
                 OnOtherAllyAbilityEnd = (mariaTheresa, caster, ability, raidActions) =>
