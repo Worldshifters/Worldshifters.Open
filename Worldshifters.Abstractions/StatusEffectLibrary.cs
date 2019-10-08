@@ -278,6 +278,7 @@ namespace Worldshifters.Data
         public static string DebuffResistanceDownNpc;
         public static string DebuffResistanceDownSummon;
         public static string DebuffResistanceDownWeapon;
+        public static string DebuffSuccessRateUpNpc;
         public static string DebuffSuccessRateUpSummon;
         public static string DebuffSuccessRateUpWeapon;
         public static string DefenseDownNpc;
@@ -497,6 +498,16 @@ namespace Worldshifters.Data
         public static string StackableDefenseDownNpc;
         public static string StackableDefenseUpNpc;
         public static string StackableDebuffResistanceDownNpc;
+
+        /// <summary>
+        /// Percentage based.
+        /// </summary>
+        public static string StackableHealingBoost;
+
+        /// <summary>
+        /// Percentage based.
+        /// </summary>
+        public static string StackableHealingCapBoost;
 
         /// <summary>
         /// <see cref="StrengthNpc"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.LinearAttackBoost"/>.

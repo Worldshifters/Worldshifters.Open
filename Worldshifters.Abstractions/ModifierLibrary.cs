@@ -24,6 +24,11 @@ namespace Worldshifters.Data
         public static Modifier FlatAttackBoost;
 
         /// <summary>
+        /// Grants additional damage for attacks of the superior element, ignoring any damage cap. Strength values must be given in percentage.
+        /// </summary>
+        public static Modifier Seraphic;
+
+        /// <summary>
         /// Strength values must be given in percentage.
         /// </summary>
         public static Modifier ElementalAttackBoost;
@@ -215,5 +220,7 @@ namespace Worldshifters.Data
         public static Modifier StatusEffectImmunity;
 
         public static Modifier CanDealCriticalHitsRegardlessOfElement;
+
+        public static Modifier FrozenChargeDiamonds;
     }
 }

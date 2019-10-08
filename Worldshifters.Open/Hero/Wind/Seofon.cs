@@ -351,7 +351,7 @@ namespace Worldshifters.Assets.Hero.Wind
                     new MultihitDamage
                     {
                         Element = Element.Wind,
-                        DamageModifier = (seofon.Hero.Level >= 75 ? 0.9 : 0.6) + ThreadSafeRandom.NextDouble() * 0.1,
+                        DamageModifier = (seofon.Hero.Level >= 75 ? 0.9 : 0.6) + (ThreadSafeRandom.NextDouble() * 0.1),
                         HitNumber = 10,
                         RandomTargets = true,
                         DamageCap = 70_000,

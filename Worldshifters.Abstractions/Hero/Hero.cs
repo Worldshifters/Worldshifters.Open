@@ -116,7 +116,7 @@ namespace Worldshifters.Data.Hero
         public Action<EntitySnapshot, IList<RaidAction>> OnAttackActionEnd { get; set; }
 
         /// <summary>
-        /// Input parameters: this.
+        /// Input parameters: this. Ability and summon cooldowns are updated after <see cref="OnTurnEnd"/> is called.
         /// </summary>
         public Action<EntitySnapshot, IList<RaidAction>> OnTurnEnd { get; set; }
 
