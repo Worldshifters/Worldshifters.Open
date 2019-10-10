@@ -96,6 +96,11 @@ namespace Worldshifters.Data.Raid
         /// <remarks>Only applicable to npcs. Automatically reset to false at the beginning of each turn.</remarks>
         public bool NoChargeDiamondGainThisTurn { get; set; }
 
+        /// <summary>
+        /// Reset to false at the beginning of a new action, whether it is an attack, an ability or a summon.
+        /// </summary>
+        public bool WasTargettedByStatusEffect { get; set; }
+
         /// <remarks>1-1 mapping with <see cref="Inventory.Types.Hero.GetAbilities"/>.</remarks>
         public RepeatedField<int> AbilityCooldowns { get; }
 
