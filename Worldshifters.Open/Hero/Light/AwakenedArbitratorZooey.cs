@@ -32,9 +32,8 @@ namespace Worldshifters.Assets.Hero.Light
                 BaseDoubleAttackRate = 6,
                 BaseTripleAttackRate = 4.5,
                 Element = Element.Light,
-                Description =
-                    "The fragments of consciousness all hoping to protect this world enveloped in stars and skies gathered together to give birth to this young girl as the arbitrator of the skies. With a legion of dragons by her side, she brandishes an azure sword ready to destroy any foe who dares to disturb the balance of the world.",
-                WeaponProficiencies = { EquipmentType.Sword },
+                Description = "The world is in the midst of impending jeopardy—a disaster that only this arbitrator's true form can stop. But will her excessive empathy for the people interfere with her duty?",
+                WeaponProficiencies = { EquipmentType.Gun },
                 AvailablePerkIds =
                 {
                     ExtendedMasteryPerks.AttackBoost,
@@ -58,8 +57,14 @@ namespace Worldshifters.Assets.Hero.Light
                     new PassiveAbility
                     {
                         Type = PassiveAbility.Types.PassiveAbilityType.SupportSkill,
-                        Name = "Envoy of Mediation",
-                        Description = "Increases stats for each element among allies in the front line.",
+                        Name = "Peacemaker's Tears",
+                        Description = "1-turn cut to skill standby and cooldown for Last Wish upon being targeted by an ally's buff skill or healing skill",
+                    },
+                    new PassiveAbility
+                    {
+                        Type = PassiveAbility.Types.PassiveAbilityType.SupportSkill,
+                        Name = "Primal Pulse",
+                        Description = "Boost to critical hit rate and dodge rate based on number of turns passed",
                     },
                 },
                 ModelMetadata =
