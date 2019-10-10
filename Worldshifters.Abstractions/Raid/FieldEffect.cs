@@ -15,7 +15,7 @@ namespace Worldshifters.Data.Raid
 
         public Action<RaidSnapshot, IList<RaidAction>> ProcessEffects { get; set; }
 
-        public long RemainingDurationInSeconds { get; set; }
+        public long DurationInSeconds { get; set; }
 
         public int TurnDuration { get; set; }
     }
