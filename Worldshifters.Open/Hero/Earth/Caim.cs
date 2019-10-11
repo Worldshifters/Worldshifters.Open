@@ -269,7 +269,7 @@ namespace Worldshifters.Assets.Hero.Earth
             return new Ability
             {
                 Name = "Double Deal",
-                Cooldown = 0,
+                Cooldown = int.MaxValue,
                 InitialCooldown = (int)initialCooldown,
                 Type = Ability.Types.AbilityType.Support,
                 ModelMetadata = new ModelMetadata
