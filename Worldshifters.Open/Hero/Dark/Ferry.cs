@@ -200,29 +200,19 @@ namespace Worldshifters.Assets.Hero.Dark
                         {
                             var target = ferry.Raid.Allies.AtPosition(targetPositionInFrontline);
 
-                            var buffs = new (string, Modifier, double)[]
-                            {
+                            target.ApplyStatusEffectsFromTemplate(
+                                new StatusEffectSnapshot
+                                {
+                                    TurnDuration = 5,
+                                    IsUndispellable = true,
+                                },
+                                raidActions,
                                 ($"{FreigeistId}_da_up", ModifierLibrary.FlatDoubleAttackRateBoost, 100),
                                 ($"{FreigeistId}_ta_up", ModifierLibrary.FlatTripleAttackRateBoost, 20),
                                 ($"{FreigeistId}_ca_up", ModifierLibrary.FlatChargeAttackDamageBoost, 50),
                                 ($"{FreigeistId}_ca_cap_up", ModifierLibrary.FlatChargeAttackDamageCapBoost, 10),
                                 ($"{FreigeistId}_gauge_boost", ModifierLibrary.ChargeBarSpedUp, 20),
-                                ($"{FreigeistId}_autorevive", ModifierLibrary.AutoRevive, 50),
-                            };
-
-                            if (ferry.Raid.Turn >= 10)
-                            {
-                                buffs = buffs.Append((StatusEffectLibrary.TripleStrike, ModifierLibrary.None, 0)).ToArray();
-                            }
-
-                            target.ApplyStatusEffectsFromTemplate(
-                                new StatusEffectSnapshot
-                                {
-                                                                        TurnDuration = 5,
-                                                                        IsUndispellable = true,
-                                },
-                                raidActions,
-                                buffs);
+                                ($"{FreigeistId}_autorevive", ModifierLibrary.AutoRevive, 50));
 
                             target.ApplyStatusEffect(
                                 new StatusEffectSnapshot
@@ -235,6 +225,17 @@ namespace Worldshifters.Assets.Hero.Dark
                                     IsUndispellable = true,
                                 },
                                 raidActions);
+
+                            if (ferry.Raid.Turn >= 10)
+                            {
+                                target.ApplyStatusEffect(
+                                    new StatusEffectSnapshot
+                                    {
+                                        Id = StatusEffectLibrary.TripleStrike,
+                                        TurnDuration = 1,
+                                    },
+                                    raidActions);
+                            }
                         },
                         AnimationName = "ab_motion",
                     },
