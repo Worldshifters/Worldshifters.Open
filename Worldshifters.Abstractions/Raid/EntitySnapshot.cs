@@ -382,7 +382,14 @@ namespace Worldshifters.Data.Raid
         /// <summary>
         /// Replace the current sprite of the character with a new one.
         /// </summary>
-        public void ChangeForm(ModelMetadata newModel, IList<RaidAction> raidActions, ModelMetadata onHitEffectModel = null)
+        /// <param name="newModel">The new character sprite after his or her form changed.</param>
+        /// <param name="raidActions">Required parameter to render the updated character sprite on the client side.</param>
+        /// <param name="onHitEffectModel">Optional new on hit effect sprite of the character after his or her form changed.</param>
+        /// <param name="specialAbility">
+        /// Optional new special attack sprite of the character after his or her form changed.
+        /// <remarks>The <see cref="SpecialAbility.ProcessEffects"/> value of <see cref="specialAbility"/> will be ignored. Only the <see cref="SpecialAbility.ProcessEffects"/> value of <see cref="Hero.SpecialAbility"/> is used.></remarks>
+        /// </param>
+        public void ChangeForm(ModelMetadata newModel, IList<RaidAction> raidActions, ModelMetadata onHitEffectModel = null, SpecialAbility specialAbility = null)
         {
             throw new NotImplementedException();
         }

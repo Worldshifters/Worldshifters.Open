@@ -14,6 +14,7 @@ namespace Worldshifters.Data
         Light,
         Dark,
         Null,
+        Superior,
     }
 
     public enum EquipmentType

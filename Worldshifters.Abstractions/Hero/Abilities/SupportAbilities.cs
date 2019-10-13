@@ -151,5 +151,10 @@ namespace Worldshifters.Data.Hero.Abilities
         {
             throw new NotImplementedException();
         }
+
+        public static Ability Delay(double baseAccuracy)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -537,7 +537,12 @@ namespace Worldshifters.Data
         public static string TripleStrike;
         public static string TyphoonCrest;
         public static string Unchallenged;
+
+        /// <summary>
+        /// Charge bar is boosted by the strength of <see cref="Uplifted"/> effects on every turn.
+        /// </summary>
         public static string Uplifted;
+
         public static string Veil;
         public static string WastelandCrest;
         public static string WaterAttackDownNpc;

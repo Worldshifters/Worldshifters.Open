@@ -19,9 +19,11 @@ namespace Worldshifters.Data.Inventory
             /// </summary>
             public ByteString Id { get; }
 
-            public int Level { get; set; }
+            public int Level { get; }
 
-            public int Rank { get; set; }
+            public int Rank { get; }
+
+            public Race Race { get; }
 
             public Ability[] GetAbilities()
             {
