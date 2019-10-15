@@ -24,84 +24,12 @@ namespace Worldshifters.Assets.Hero.Dark
 
         public static Hero NewInstance()
         {
-            var ability4Sprite = new Ability
-            {
-                ModelMetadata = new ModelMetadata
-                {
-                    JsAssetPath = "npc/0269f30f-3c61-45ac-9c75-9290516e8985/abilities/3/ab_all_3040169000_02.js",
-                    ConstructorName = "mc_ab_all_3040169000_02",
-                    ImageAssets =
-                    {
-                        new ImageAsset
-                        {
-                            Name = "ab_all_3040169000_02",
-                            Path =
-                                "npc/0269f30f-3c61-45ac-9c75-9290516e8985/abilities/3/ab_all_3040169000_02.png",
-                        },
-                    },
-                },
-            };
-
-            var unfinishedBusiness = new Ability
-            {
-                ModelMetadata = ability4Sprite.ModelMetadata,
-                Effects =
-                {
-                    new AbilityEffect
-                    {
-                        Type = AbilityEffect.Types.AbilityEffectType.ApplyStatusEffect,
-                        ExtraData = new ApplyStatusEffect
-                        {
-                            Id = UnfinishedBusinessId,
-                            EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
-                            IsUndispellable = true,
-                            TurnDuration = 4,
-                            BaseAccuracy = double.PositiveInfinity,
-                        }.ToByteString(),
-                    },
-                    new AbilityEffect
-                    {
-                        Type = AbilityEffect.Types.AbilityEffectType.ApplyStatusEffect,
-                        ExtraData = new ApplyStatusEffect
-                        {
-                            Id = UnfinishedBusinessId,
-                            EffectTargettingType = EffectTargettingType.OnAllEnemies,
-                            IsUndispellable = true,
-                            TurnDuration = 4,
-                            BaseAccuracy = double.PositiveInfinity,
-                        }.ToByteString(),
-                    },
-                },
-                ProcessEffects = (nier, targetPositionInFrontline, raidActions) =>
-                {
-                    foreach (var entity in nier.Raid.Allies.Concat(nier.Raid.Enemies))
-                    {
-                        if (!entity.IsAlive() || entity.PositionInFrontline >= 4)
-                        {
-                            continue;
-                        }
-
-                        entity.ApplyStatusEffectsFromTemplate(
-                            new StatusEffectSnapshot
-                            {
-                                BaseAccuracy = double.PositiveInfinity,
-                                IsUndispellable = true,
-                                IsUsedInternally = true,
-                                TurnDuration = 4,
-                            },
-                            ($"{UnfinishedBusinessId}/def_down", ModifierLibrary.FlatDefenseBoost, -50),
-                            ($"{UnfinishedBusinessId}/da_down", ModifierLibrary.FlatDoubleAttackRateBoost, -100),
-                            ($"{UnfinishedBusinessId}/ta_down", ModifierLibrary.FlatTripleAttackRateBoost, -100),
-                            ($"{UnfinishedBusinessId}/no_healing", ModifierLibrary.FlatHealingCapBoost, double.MinValue));
-                    }
-                },
-            };
-
             return new Hero
             {
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Nier",
-                Race = Race.Unknow,
+                Description = "A young woman who had her existence denied at every turn, thus leading to an overwhelming desire for love and acceptance which gradually warped the very fabric of her being. As her sense of morality began to wane, she came upon the Arcarum grim reaper who grants death to all. The two now stand together like lovers, hell-bent on creating a new world that will fully acknowledge them.",
+                Race = Race.Erune,
                 Gender = Gender.Female,
                 MaxAttack = 8906,
                 MaxHp = 1313,
@@ -109,7 +37,25 @@ namespace Worldshifters.Assets.Hero.Dark
                 BaseDoubleAttackRate = 6,
                 BaseTripleAttackRate = 4.5,
                 Element = Element.Dark,
-                WeaponProficiencies = { EquipmentType.Dagger },
+                WeaponProficiencies = { EquipmentType.Axe, EquipmentType.Dagger },
+                AvailablePerkIds =
+                {
+                    ExtendedMasteryPerks.AttackBoost,
+                    ExtendedMasteryPerks.DefenseBoost,
+                    ExtendedMasteryPerks.DebuffResistanceBoost,
+                    ExtendedMasteryPerks.AttackBoostAgainstFoesInOverdriveMode,
+                    ExtendedMasteryPerks.AttackBoost,
+                    ExtendedMasteryPerks.AttackBoost,
+                    ExtendedMasteryPerks.DefenseBoost,
+                    ExtendedMasteryPerks.DoubleAttackRateBoost,
+                    ExtendedMasteryPerks.TripleAttackRateBoost,
+                    ExtendedMasteryPerks.DarkAttackBoost,
+                    ExtendedMasteryPerks.CriticalHitRateBoost,
+                    ExtendedMasteryPerks.CriticalHitRateBoost,
+                    ExtendedMasteryPerks.ChargeAttackDamageCapBoost,
+                    ExtendedMasteryPerks.ChargeAttackDamageCapBoost,
+                    ExtendedMasteryPerks.SupportSkill,
+                },
                 ModelMetadata =
                 {
                     new ModelMetadata
@@ -275,7 +221,7 @@ namespace Worldshifters.Assets.Hero.Dark
                 {
                     if (nier.GetStatusEffectStacks(LoveRedemptionId) > 0)
                     {
-                        unfinishedBusiness.Cast(nier, raidActions);
+                        UnfinishedBusiness().Cast(nier, raidActions);
                     }
                 },
                 OnEnteringFrontline = (nier, raidActions) =>
@@ -289,33 +235,7 @@ namespace Worldshifters.Assets.Hero.Dark
 
                     nier.GlobalState["nonce"] = TypedValue.FromBool(true);
 
-                    ability4Sprite.Cast(nier, raidActions);
-                    foreach (var hero in nier.Raid.Allies)
-                    {
-                        if (!hero.IsAlive() || hero.PositionInFrontline >= 4 || hero.Element != Element.Dark)
-                        {
-                            continue;
-                        }
-
-                        hero.ApplyStatusEffect(
-                            new StatusEffectSnapshot
-                            {
-                                Id = ThirstingId,
-                                IsUndispellable = true,
-                                TurnDuration = int.MaxValue,
-                            },
-                            raidActions);
-
-                        hero.ApplyStatusEffectsFromTemplate(
-                            new StatusEffectSnapshot
-                            {
-                                IsUndispellable = true,
-                                TurnDuration = int.MaxValue,
-                                IsUsedInternally = true,
-                            },
-                            ($"{ThirstingId}/auto_revive", ModifierLibrary.AutoRevive, 50),
-                            ($"{ThirstingId}/absorb", ModifierLibrary.DamageAbsorption, 30));
-                    }
+                    Thirsting().Cast(nier, raidActions);
                 },
             };
         }
@@ -474,6 +394,125 @@ namespace Worldshifters.Assets.Hero.Dark
                     IncrementLoveRedemption(nier, -2, raidActions);
                 },
                 AnimationName = "ab_motion",
+            };
+        }
+
+        private static Ability Thirsting()
+        {
+            return new Ability
+            {
+                ModelMetadata = new ModelMetadata
+                {
+                    JsAssetPath = "npc/0269f30f-3c61-45ac-9c75-9290516e8985/abilities/3/ab_all_3040169000_02.js",
+                    ConstructorName = "mc_ab_all_3040169000_02",
+                    ImageAssets =
+                    {
+                        new ImageAsset
+                        {
+                            Name = "ab_all_3040169000_02",
+                            Path = "npc/0269f30f-3c61-45ac-9c75-9290516e8985/abilities/3/ab_all_3040169000_02.png",
+                        },
+                    },
+                },
+                ProcessEffects = (nier, _, raidActions) =>
+                {
+                    foreach (var hero in nier.Raid.Allies)
+                    {
+                        if (!hero.IsAlive() || hero.PositionInFrontline >= 4 || hero.Element != Element.Dark)
+                        {
+                            continue;
+                        }
+
+                        hero.ApplyStatusEffect(
+                            new StatusEffectSnapshot
+                            {
+                                Id = ThirstingId,
+                                IsUndispellable = true,
+                                TurnDuration = int.MaxValue,
+                            },
+                            raidActions);
+
+                        hero.ApplyStatusEffectsFromTemplate(
+                            new StatusEffectSnapshot
+                            {
+                                IsUndispellable = true,
+                                TurnDuration = int.MaxValue,
+                                IsUsedInternally = true,
+                            },
+                            ($"{ThirstingId}/auto_revive", ModifierLibrary.AutoRevive, 50),
+                            ($"{ThirstingId}/absorb", ModifierLibrary.DamageAbsorption, 30));
+                    }
+                },
+            };
+        }
+
+        private static Ability UnfinishedBusiness()
+        {
+            return new Ability
+            {
+                ModelMetadata = new ModelMetadata
+                {
+                    JsAssetPath = "npc/0269f30f-3c61-45ac-9c75-9290516e8985/abilities/3/ab_all_3040169000_02.js",
+                    ConstructorName = "mc_ab_all_3040169000_02",
+                    ImageAssets =
+                    {
+                        new ImageAsset
+                        {
+                            Name = "ab_all_3040169000_02",
+                            Path = "npc/0269f30f-3c61-45ac-9c75-9290516e8985/abilities/3/ab_all_3040169000_02.png",
+                        },
+                    },
+                },
+                Effects =
+                {
+                    new AbilityEffect
+                    {
+                        Type = AbilityEffect.Types.AbilityEffectType.ApplyStatusEffect,
+                        ExtraData = new ApplyStatusEffect
+                        {
+                            Id = UnfinishedBusinessId,
+                            EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
+                            IsUndispellable = true,
+                            TurnDuration = 4,
+                            BaseAccuracy = double.PositiveInfinity,
+                        }.ToByteString(),
+                    },
+                    new AbilityEffect
+                    {
+                        Type = AbilityEffect.Types.AbilityEffectType.ApplyStatusEffect,
+                        ExtraData = new ApplyStatusEffect
+                        {
+                            Id = UnfinishedBusinessId,
+                            EffectTargettingType = EffectTargettingType.OnAllEnemies,
+                            IsUndispellable = true,
+                            TurnDuration = 4,
+                            BaseAccuracy = double.PositiveInfinity,
+                        }.ToByteString(),
+                    },
+                },
+                ProcessEffects = (nier, targetPositionInFrontline, raidActions) =>
+                {
+                    foreach (var entity in nier.Raid.Allies.Concat(nier.Raid.Enemies))
+                    {
+                        if (!entity.IsAlive() || entity.PositionInFrontline >= 4)
+                        {
+                            continue;
+                        }
+
+                        entity.ApplyStatusEffectsFromTemplate(
+                            new StatusEffectSnapshot
+                            {
+                                BaseAccuracy = double.PositiveInfinity,
+                                IsUndispellable = true,
+                                IsUsedInternally = true,
+                                TurnDuration = 4,
+                            },
+                            ($"{UnfinishedBusinessId}/def_down", ModifierLibrary.FlatDefenseBoost, -50),
+                            ($"{UnfinishedBusinessId}/da_down", ModifierLibrary.FlatDoubleAttackRateBoost, -100),
+                            ($"{UnfinishedBusinessId}/ta_down", ModifierLibrary.FlatTripleAttackRateBoost, -100),
+                            ($"{UnfinishedBusinessId}/no_healing", ModifierLibrary.FlatHealingCapBoost, double.MinValue));
+                    }
+                },
             };
         }
 
