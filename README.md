@@ -24,6 +24,7 @@ Testing characters in Worldshifter's sandbox
 Head to https://sandbox.worldshifters.co/ to get started.
 
 [Quick showcase](https://www.youtube.com/watch?v=D0NoMtO0XKE)
+[Demonstration with character interactions](https://www.youtube.com/watch?v=TjFLRYBW1RQ)
 
 Quick Start
 -----------
