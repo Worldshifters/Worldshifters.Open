@@ -24,7 +24,7 @@ namespace Worldshifters.Assets.Hero.Wind
             {
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Seofon",
-                Race = Race.Human,
+                Races = { Race.Human },
                 Gender = Gender.Male,
                 MaxAttack = 12777,
                 AttackLevels = { 10777 },

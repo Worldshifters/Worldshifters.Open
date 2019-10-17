@@ -25,7 +25,7 @@ namespace Worldshifters.Assets.Hero.Light
             {
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Tweyen",
-                Race = Race.Human,
+                Races = { Race.Human },
                 Gender = Gender.Female,
                 MaxAttack = 11222,
                 AttackLevels = { 9522 },

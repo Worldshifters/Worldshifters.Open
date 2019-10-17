@@ -25,7 +25,7 @@ namespace Worldshifters.Assets.Hero.Dark
             {
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Olivia",
-                Race = Race.Primal,
+                Races = { Race.Primal },
                 Gender = Gender.Female,
                 MaxAttack = 7800,
                 MaxHp = 1480,

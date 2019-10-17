@@ -31,7 +31,7 @@ namespace Worldshifters.Assets.Hero.Wind
             {
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Andira",
-                Race = Race.Erune,
+                Races = { Race.Erune },
                 Gender = Gender.Female,
                 MaxAttack = 7560 + 360,
                 MaxHp = 1400 + 270,

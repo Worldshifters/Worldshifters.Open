@@ -5,6 +5,8 @@
 namespace Worldshifters.Assets.Hero.Dark
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using Google.Protobuf;
     using Worldshifters.Data;
     using Worldshifters.Data.Hero;
@@ -29,7 +31,7 @@ namespace Worldshifters.Assets.Hero.Dark
             {
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Narmaya",
-                Race = Race.Draph,
+                Races = { Race.Draph },
                 Gender = Gender.Female,
                 MaxAttack = 12200,
                 AttackLevels = { 10240 },
@@ -609,6 +611,11 @@ namespace Worldshifters.Assets.Hero.Dark
             };
         }
 
+        private static ISet<Race> BoostedRaces = new HashSet<Race>
+        {
+            Race.Draph, Race.Primal, Race.Unknow,
+        };
+
         private static void ProcessPassiveEffects(EntitySnapshot narmaya)
         {
             if (!narmaya.IsAlive() || narmaya.PositionInFrontline >= 4)
@@ -618,7 +625,7 @@ namespace Worldshifters.Assets.Hero.Dark
 
             foreach (var ally in narmaya.Raid.Allies)
             {
-                if (!ally.IsAlive() || ally.PositionInFrontline >= 4 || ally.Hero.Race != Race.Draph || ally.Hero.Race != Race.Primal || ally.Hero.Race != Race.Unknow)
+                if (!ally.IsAlive() || ally.PositionInFrontline >= 4 || !BoostedRaces.Intersect(ally.Hero.Races).Any())
                 {
                     continue;
                 }

@@ -29,7 +29,7 @@ namespace Worldshifters.Assets.Hero.Dark
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Nier",
                 Description = "A young woman who had her existence denied at every turn, thus leading to an overwhelming desire for love and acceptance which gradually warped the very fabric of her being. As her sense of morality began to wane, she came upon the Arcarum grim reaper who grants death to all. The two now stand together like lovers, hell-bent on creating a new world that will fully acknowledge them.",
-                Race = Race.Erune,
+                Races = { Race.Erune },
                 Gender = Gender.Female,
                 MaxAttack = 8906,
                 MaxHp = 1313,

@@ -24,7 +24,7 @@ namespace Worldshifters.Assets.Hero.Fire
             {
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Metera",
-                Race = Race.Erune,
+                Races = { Race.Erune },
                 Gender = Gender.Female,
                 Description = "The exquisitely charming archer is full of excitement in this bustling town. Finding it unbearable to see her little sister with such poor fashion sense, she quietly coordinates a new outfit for her. This enchantingly beautiful flower of an archer soars the skies with her sister.",
                 MaxAttack = 8400 + 540,

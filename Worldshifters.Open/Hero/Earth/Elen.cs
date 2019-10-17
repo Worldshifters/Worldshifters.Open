@@ -26,7 +26,7 @@ namespace Worldshifters.Assets.Hero.Earth
             {
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Elen",
-                Race = Race.Unknow,
+                Races = { Race.Draph },
                 Gender = Gender.Female,
                 MaxAttack = 12888,
                 AttackLevels = { 10788 },

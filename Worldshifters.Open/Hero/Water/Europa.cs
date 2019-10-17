@@ -25,7 +25,7 @@ namespace Worldshifters.Assets.Hero.Water
             {
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Europa",
-                Race = Race.Primal,
+                Races = { Race.Primal },
                 Gender = Gender.Female,
                 MaxAttack = 6800,
                 MaxHp = 2000,

@@ -27,7 +27,7 @@ namespace Worldshifters.Assets.Hero.Water
             {
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Haaselia",
-                Race = Race.Harvin,
+                Races = { Race.Harvin },
                 Gender = Gender.Female,
                 MaxAttack = 10402,
                 MaxHp = 1318,

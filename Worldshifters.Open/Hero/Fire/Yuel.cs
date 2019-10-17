@@ -22,7 +22,7 @@ namespace Worldshifters.Assets.Hero.Fire
             {
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Yuel",
-                Race = Race.Erune,
+                Races = { Race.Erune },
                 Gender = Gender.Female,
                 MaxAttack = 8550 + 360,
                 AttackLevels = { 7200 + 360 },

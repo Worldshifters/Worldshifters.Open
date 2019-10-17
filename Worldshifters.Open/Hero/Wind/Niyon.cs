@@ -60,7 +60,7 @@ namespace Worldshifters.Assets.Hero.Wind
             {
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Niyon",
-                Race = Race.Harvin,
+                Races = { Race.Harvin },
                 Gender = Gender.Female,
                 MaxAttack = 11222,
                 AttackLevels = { 9522 },

@@ -57,7 +57,7 @@ namespace Worldshifters.Assets.Hero.Dark
             {
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Ferry",
-                Race = Race.Erune,
+                Races = { Race.Erune },
                 Gender = Gender.Female,
                 MaxAttack = 7100,
                 MaxHp = 1550,

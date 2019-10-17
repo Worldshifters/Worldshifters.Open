@@ -30,7 +30,7 @@ namespace Worldshifters.Assets.Hero.Earth
             {
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Caim",
-                Race = Race.Human,
+                Races = { Race.Human },
                 Gender = Gender.Male,
                 MaxAttack = 10000,
                 MaxHp = 1412,

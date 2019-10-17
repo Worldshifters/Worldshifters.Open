@@ -52,7 +52,7 @@ namespace Worldshifters.Data.Hero
 
         public RepeatedField<PassiveAbility> PassiveAbilities { get; }
 
-        public Race Race { get; set; }
+        public RepeatedField<Race> Races { get; set; }
 
         public SpecialAbility SpecialAbility { get; set; }
 

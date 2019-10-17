@@ -20,7 +20,7 @@ namespace Worldshifters.Assets.Hero
             {
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Template Hero",
-                Race = Race.Unknow,
+                Races = { Race.Unknow },
                 Gender = Gender.Female,
                 MaxAttack = 11222,
                 AttackLevels = { 9522 },

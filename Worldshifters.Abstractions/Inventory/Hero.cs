@@ -8,6 +8,7 @@ namespace Worldshifters.Data.Inventory
 {
     using System;
     using Google.Protobuf;
+    using Google.Protobuf.Collections;
     using Worldshifters.Data.Hero;
 
     public static partial class Types
@@ -23,7 +24,7 @@ namespace Worldshifters.Data.Inventory
 
             public int Rank { get; }
 
-            public Race Race { get; }
+            public RepeatedField<Race> Races { get; }
 
             public Ability[] GetAbilities()
             {

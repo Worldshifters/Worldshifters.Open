@@ -28,7 +28,7 @@ namespace Worldshifters.Assets.Hero.Fire
             {
                 Id = ByteString.CopyFrom(Id.ToByteArray()),
                 Name = "Naya",
-                Race = Race.Unknow,
+                Races = { Race.Erune },
                 Gender = Gender.Female,
                 MaxAttack = 9808,
                 MaxHp = 1315,
