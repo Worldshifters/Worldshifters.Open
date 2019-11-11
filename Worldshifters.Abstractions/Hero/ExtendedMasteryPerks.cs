@@ -12,6 +12,7 @@ namespace Worldshifters.Data.Hero
         public static int AttackBoost;
         public static int AttackBoostAgainstFoesInOverdriveMode;
         public static int AttackBoostAgainstFoesInBreakMode;
+        public static int AttackBoostAndDefenseDown;
         public static int ChargeAttackDamageBoost;
         public static int ChargeAttackDamageCapBoost;
         public static int ChargeBarSpeedBoost;

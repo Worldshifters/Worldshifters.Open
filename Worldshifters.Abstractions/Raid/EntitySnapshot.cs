@@ -395,6 +395,14 @@ namespace Worldshifters.Data.Raid
         }
 
         /// <summary>
+        /// Replace the (<see cref="abilityIndex"/> + 1)-th ability icon with <see cref="imageUrl"/>.
+        /// </summary>
+        public void ChangeAbilityIcon(int abilityIndex, string imageUrl)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
         /// Override the total contribution of the equipment towards the party's <see cref="ModifierLibrary.DamageBoostWhenSuperiorElement"/> if
         /// the value of <see cref="strength"/> is stronger.
         /// </summary>

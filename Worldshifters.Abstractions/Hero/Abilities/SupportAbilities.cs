@@ -156,5 +156,14 @@ namespace Worldshifters.Data.Hero.Abilities
         {
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Instantly grant the caster <see cref="chargeBarGain"/> charge bar, ignoring any active charge gauge speed buffs and/or debuffs.
+        /// </summary>
+        /// <param name="chargeBarGain"></param>
+        public static Ability Ignition(int chargeBarGain)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
