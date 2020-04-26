@@ -8,7 +8,6 @@ namespace Worldshifters.Bots.Strategy
     using System.Collections.Generic;
     using System.Linq;
     using Worldshifters.Bots.Strategy.RaidAction;
-    using Worldshifters.Data.Bots.Strategy.RaidAction;
     using Worldshifters.Data.Raid;
 
     public class HighLevelBahamutFireTrailblazerStrategy : RaidStrategy

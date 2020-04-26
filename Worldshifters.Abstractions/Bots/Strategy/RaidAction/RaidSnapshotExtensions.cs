@@ -2,10 +2,9 @@
 // Copyright (c) Worldshifters. All rights reserved.
 // </copyright>
 
-namespace Worldshifters.Data.Bots.Strategy.RaidAction
+namespace Worldshifters.Bots.Strategy.RaidAction
 {
     using System;
-    using Worldshifters.Bots.Strategy.RaidAction;
     using Worldshifters.Data.Raid;
 
     public static class RaidSnapshotExtensions
