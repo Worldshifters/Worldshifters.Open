@@ -31,6 +31,27 @@ namespace Worldshifters.Data.Raid
 
         public int Turn { get; set; }
 
+        public EntitySnapshot GetHeroById(Guid heroId)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <returns>The index of the first summon matching <see cref="summonId"/>. If multiple such matches exist, return the one with the smallest cooldown.</returns>
+        public int GetSummonIndex(Guid summonId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CanSummon(Guid summonId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CanSummon(int summonIndex)
+        {
+            throw new NotImplementedException();
+        }
+
         public void AddFieldEffect(string fieldEffectId)
         {
             throw new NotImplementedException();
