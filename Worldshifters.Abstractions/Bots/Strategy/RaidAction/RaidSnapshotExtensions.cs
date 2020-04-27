@@ -14,7 +14,7 @@ namespace Worldshifters.Bots.Strategy.RaidAction
             throw new NotImplementedException();
         }
 
-        public static UseSummon UseSummon(this RaidSnapshot raidSnapshot, Guid summonId)
+        public static NextRaidAction UseSummon(this RaidSnapshot raidSnapshot, Guid summonId)
         {
             throw new NotImplementedException();
         }
