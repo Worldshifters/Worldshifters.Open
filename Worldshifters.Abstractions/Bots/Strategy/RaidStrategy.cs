@@ -4,6 +4,8 @@
 
 namespace Worldshifters.Bots.Strategy
 {
+    using System;
+    using System.Collections.Generic;
     using Worldshifters.Bots.Strategy.RaidAction;
     using Worldshifters.Data.Raid;
 
@@ -12,6 +14,24 @@ namespace Worldshifters.Bots.Strategy
     /// </summary>
     public abstract class RaidStrategy
     {
-        public abstract NextRaidAction GetNextRaidAction(RaidSnapshot raidSnapshot);
+        /// <summary>
+        /// Return the equipment IDs to use in the raid to join. Exactly 10 values are expected to be returned.
+        /// </summary>
+        protected abstract IReadOnlyList<Guid> GetEquipmentLoadout();
+
+        /// <summary>
+        /// Return the avatar class and up to 5 party members who to join the raid with.
+        /// </summary>
+        protected abstract (int classId, IReadOnlyList<Guid> heroIds) GetHeroLayout();
+
+        /// <summary>
+        /// Return the summons to use in the raid join. Exactly 6 values are expected to be returned: main summon, 4 sub-summons, support summon.
+        /// </summary>
+        protected abstract IReadOnlyList<Guid> GetSummonLoadout();
+
+        /// <summary>
+        /// <remarks>Any raised exception will terminate the strategy.</remarks>
+        /// </summary>
+        protected abstract NextRaidAction GetNextRaidAction(RaidSnapshot raidSnapshot);
     }
 }

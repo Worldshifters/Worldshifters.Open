@@ -327,6 +327,11 @@ namespace Worldshifters.Assets.Hero.Water
                         ($"{BewitchingId}/def_down", ModifierLibrary.FlatDefenseBoost, -5 * stacks),
                         ($"{BewitchingId}/dr_down", ModifierLibrary.FlatDebuffResistanceBoost, -5 * stacks));
 
+                    if (upgradeEffect)
+                    {
+                        target.ApplyStatusEffect(new StatusEffectSnapshot { Id = StatusEffectLibrary.Delay, BaseAccuracy = 150 });
+                    }
+
                     // Skill linked to Jachin
                     haaselia.AbilityCooldowns[1] = 5;
                 },
