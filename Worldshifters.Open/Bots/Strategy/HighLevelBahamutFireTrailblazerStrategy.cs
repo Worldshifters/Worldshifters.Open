@@ -17,6 +17,7 @@ namespace Worldshifters.Bots.Strategy
         private static readonly Guid NayaId = Assets.Hero.Fire.Naya.Id;
         private static readonly Guid ShivaId = Guid.Empty;
         private static readonly Guid TienId = Guid.Empty;
+        private static readonly Guid JeanneDArcId = Guid.Empty;
 
         private static readonly Guid ColossusCaneOmega = Guid.Empty;
         private static readonly Guid IxabaId = Guid.Empty;
@@ -54,7 +55,7 @@ namespace Worldshifters.Bots.Strategy
         /// </summary>
         protected override (int classId, IReadOnlyList<Guid> heroIds) GetHeroLayout()
         {
-            return (NekomancerJobId, new[] { NayaId, ShivaId, TienId });
+            return (NekomancerJobId, new[] { ShivaId, TienId, JeanneDArcId, NayaId });
         }
 
         protected override IReadOnlyList<Guid> GetSummonLoadout()
@@ -65,26 +66,27 @@ namespace Worldshifters.Bots.Strategy
 
         protected override NextRaidAction GetNextRaidAction(RaidSnapshot raidSnapshot)
         {
-            if (raidSnapshot.Turn == 1)
+            if (raidSnapshot.Turn == 0)
             {
                 return DisableChargeAttack.Action.ContinueWith(_1 =>
-                    _1.GetHeroById(ShivaId).UseAbility(0).ContinueWith(_2 =>
-                    _2.GetHeroById(NayaId).UseAbility(2).ContinueWith(_3 =>
-                    _3.UseSummon(TheSunSummonId).ContinueWith(_4 =>
-                    _4.Attack()))));
+                    _1.GetHeroById(JeanneDArcId).UseAbility(3).ContinueWith(_2 =>
+                    _2.GetHeroById(ShivaId).UseAbility(0).ContinueWith(_3 =>
+                    _3.GetHeroById(NayaId).UseAbility(2).ContinueWith(_4 =>
+                    _4.UseSummon(TheSunSummonId).ContinueWith(_5 =>
+                    _5.Attack())))));
             }
 
-            if (raidSnapshot.Turn <= 11 && ShouldLeaveRaid(raidSnapshot))
+            if (raidSnapshot.Turn <= 10 && ShouldLeaveRaid(raidSnapshot))
             {
                 return Terminate.Action;
             }
 
-            if (raidSnapshot.Turn == 7)
+            if (raidSnapshot.Turn == 6)
             {
                 return raidSnapshot.GetHeroById(NayaId).UseAbility(0).ContinueWith(_ => _.Attack());
             }
 
-            if (raidSnapshot.Turn == 10)
+            if (raidSnapshot.Turn == 9)
             {
                 // Shiva party buff -> Triple attack burst time
                 return raidSnapshot.GetHeroById(ShivaId).UseAbility(1).ContinueWith(_1 =>
@@ -93,7 +95,7 @@ namespace Worldshifters.Bots.Strategy
                     _3.Attack())));
             }
 
-            if (raidSnapshot.Turn == 11)
+            if (raidSnapshot.Turn == 10)
             {
                 // Tien assassin break burst time
                 raidSnapshot.GetHeroById(TienId).UseAbility(1).ContinueWith(_1 =>
@@ -103,12 +105,12 @@ namespace Worldshifters.Bots.Strategy
                     _3.Enemies[0].HpPercentage > 60 ? (NextRaidAction)Wait.For(50) : _3.Attack())));
             }
 
-            if (raidSnapshot.Turn == 12)
+            if (raidSnapshot.Turn == 11)
             {
                 return raidSnapshot.UseSummon(ShivaSummonId).ContinueWith(_ => _.Attack());
             }
 
-            if (raidSnapshot.Turn == 13)
+            if (raidSnapshot.Turn == 12)
             {
                 // Stack up Tien's ability 2 echoes
                 raidSnapshot.GetHeroById(TienId).UseAbility(1).ContinueWith(_1 =>

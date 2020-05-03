@@ -129,7 +129,7 @@ namespace Worldshifters.Assets.Hero.Wind
                         UpgradedAbilityIndex = 3,
                     },
                 },
-                OnActionStart = (monika, raidActions) =>
+                OnActionStart = (monika, _, raidActions) =>
                 {
                 },
                 OnTurnEnd = (monika, raidActions) =>

@@ -170,7 +170,7 @@ namespace Worldshifters.Assets.Hero.Water
                         },
                     },
                 },
-                OnActionStart = (pholia, raidActions) =>
+                OnActionStart = (pholia, _, raidActions) =>
                 {
                     foreach (var hero in pholia.Raid.Allies)
                     {

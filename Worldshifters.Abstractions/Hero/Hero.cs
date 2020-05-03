@@ -8,6 +8,7 @@ namespace Worldshifters.Data.Hero
     using System.Collections.Generic;
     using Google.Protobuf;
     using Google.Protobuf.Collections;
+    using Worldshifters.Bots.Strategy.RaidAction;
     using Worldshifters.Data.Raid;
 
     public sealed class Hero
@@ -78,7 +79,7 @@ namespace Worldshifters.Data.Hero
         /// The first method called before processing an action. Input parameters: this (the current attacker).
         /// </summary>
         /// <remarks>Called even if the character is dead.</remarks>
-        public Action<EntitySnapshot, IList<RaidAction>> OnActionStart { get; set; }
+        public Action<EntitySnapshot, NextRaidAction, IList<RaidAction>> OnActionStart { get; set; }
 
         /// <summary>
         /// Callback method called before casting an <see cref="Ability"/>. It won't be called for abilities instantiated explicitly and invoked with <see cref="Ability.Cast"/>. Input parameters: this (the caster).

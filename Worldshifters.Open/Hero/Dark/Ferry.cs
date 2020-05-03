@@ -268,7 +268,7 @@ namespace Worldshifters.Assets.Hero.Dark
                         Description = "10% Bonus Dark DMG effect to all allies against foes with Ghost Cage.",
                     },
                 },
-                OnActionStart = (ferry, raidActions) =>
+                OnActionStart = (ferry, _, raidActions) =>
                 {
                     if (!ferry.IsAlive() || ferry.PositionInFrontline >= 4)
                     {

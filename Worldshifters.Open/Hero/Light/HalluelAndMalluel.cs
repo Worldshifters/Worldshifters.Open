@@ -170,7 +170,7 @@ namespace Worldshifters.Assets.Hero.Light
                     ConstructorNameOnAnimationSkip = { "moA_Cutin" },
                     FrameToSkipToOnAnimationSkip = { 106 },
                 },
-                OnActionStart = (halluelAndMalluel, raidActions) =>
+                OnActionStart = (halluelAndMalluel, _, raidActions) =>
                 {
                     if (!halluelAndMalluel.IsAlive())
                     {

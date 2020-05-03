@@ -243,7 +243,7 @@ namespace Worldshifters.Assets.Hero.Wind
                         UpgradedAbilityIndex = 3,
                     },
                 },
-                OnActionStart = (niyon, raidActions) => ProcessPassiveEffects(niyon),
+                OnActionStart = (niyon, _, raidActions) => ProcessPassiveEffects(niyon),
                 OnTurnEnd = (niyon, raidActions) =>
                 {
                     if (!niyon.IsAlive())

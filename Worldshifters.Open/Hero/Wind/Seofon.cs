@@ -254,7 +254,7 @@ namespace Worldshifters.Assets.Hero.Wind
                         UpgradedAbilityIndex = 3,
                     },
                 },
-                OnActionStart = (seofon, raidActions) => ProcessPassiveEffects(seofon),
+                OnActionStart = (seofon, _, raidActions) => ProcessPassiveEffects(seofon),
                 OnTurnEnd = (seofon, raidActions) =>
                 {
                     if (!seofon.IsAlive() || seofon.PositionInFrontline >= 4)

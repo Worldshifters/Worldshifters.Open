@@ -226,7 +226,7 @@ namespace Worldshifters.Assets.Hero.Water
                         },
                     },
                 },
-                OnActionStart = (europa, raidActions) => ProcessEuropaPassiveEffects(europa),
+                OnActionStart = (europa, _, raidActions) => ProcessEuropaPassiveEffects(europa),
                 OnEnteringFrontline = (europa, raidActions) => ProcessEuropaPassiveEffects(europa),
                 OnAttackEnd = (europa, attackResult, raidActions) =>
                 {

@@ -217,7 +217,7 @@ namespace Worldshifters.Assets.Hero
                         UpgradedAbilityIndex = 3,
                     },
                 },
-                OnActionStart = (template, raidActions) => ProcessPassiveEffects(template),
+                OnActionStart = (template, _, raidActions) => ProcessPassiveEffects(template),
                 OnTurnEnd = (template, raidActions) =>
                 {
                 },

@@ -188,7 +188,7 @@ namespace Worldshifters.Assets.Hero.Water
                         UpgradedAbilityIndex = 1,
                     },
                 },
-                OnActionStart = (haaselia, raidActions) => ProcessPassiveEffects(haaselia),
+                OnActionStart = (haaselia, _, raidActions) => ProcessPassiveEffects(haaselia),
                 OnTurnEnd = (haaselia, raidActions) =>
                 {
                     haaselia.GlobalState[TorahId + "/1"].BooleanValue = false;

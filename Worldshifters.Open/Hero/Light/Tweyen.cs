@@ -240,7 +240,7 @@ namespace Worldshifters.Assets.Hero.Light
                         UpgradedAbilityIndex = 3,
                     },
                 },
-                OnActionStart = (tweyen, raidActions) => ProcessPassiveEffects(tweyen),
+                OnActionStart = (tweyen, _, raidActions) => ProcessPassiveEffects(tweyen),
                 OnTurnEnd = (tweyen, raidActions) =>
                 {
                     if (!tweyen.IsAlive())

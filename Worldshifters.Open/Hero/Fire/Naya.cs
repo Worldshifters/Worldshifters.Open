@@ -251,7 +251,7 @@ namespace Worldshifters.Assets.Hero.Fire
                         },
                     },
                 },
-                OnActionStart = (naya, raidActions) => ProcessPassiveEffects(naya),
+                OnActionStart = (naya, _, raidActions) => ProcessPassiveEffects(naya),
                 OnTurnEnd = (naya, raidActions) =>
                 {
                     foreach (var ally in naya.Raid.Allies)

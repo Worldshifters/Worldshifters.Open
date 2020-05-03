@@ -189,7 +189,7 @@ namespace Worldshifters.Assets.Hero.Dark
                         UpgradedAbilityIndex = 3,
                     },
                 },
-                OnActionStart = (narmaya, raidActions) => ProcessPassiveEffects(narmaya),
+                OnActionStart = (narmaya, _, raidActions) => ProcessPassiveEffects(narmaya),
                 OnSetup = (narmaya, allies, loadout) =>
                 {
                     narmaya.GlobalState.Add(DawnflyDance, TypedValue.FromBool(true));

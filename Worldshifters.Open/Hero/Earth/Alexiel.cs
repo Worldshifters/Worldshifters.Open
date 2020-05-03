@@ -175,7 +175,7 @@ namespace Worldshifters.Assets.Hero.Earth
                         UpgradedAbilityIndex = 1,
                     },
                 },
-                OnActionStart = (alexiel, raidActions) => ProcessPassiveEffects(alexiel),
+                OnActionStart = (alexiel, _, raidActions) => ProcessPassiveEffects(alexiel),
                 OnEnteringFrontline = (alexiel, raidActions) => ProcessPassiveEffects(alexiel),
                 OnDeath = (alexiel, raidActions) =>
                 {

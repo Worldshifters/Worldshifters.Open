@@ -156,7 +156,7 @@ namespace Worldshifters.Assets.Hero.Dark
                         UpgradedAbilityIndex = 1,
                     },
                 },
-                OnActionStart = (olivia, raidActions) => ProcessPassiveEffects(olivia),
+                OnActionStart = (olivia, _, raidActions) => ProcessPassiveEffects(olivia),
                 OnTurnEnd = (olivia, raidActions) =>
                 {
                     foreach (var enemy in olivia.Raid.Enemies)

@@ -142,7 +142,7 @@ namespace Worldshifters.Assets.Hero.Light
                         UpgradedAbilityIndex = 3,
                     },
                 },
-                OnActionStart = (zooey, raidActions) => ProcessPassiveEffects(zooey),
+                OnActionStart = (zooey, _, raidActions) => ProcessPassiveEffects(zooey),
                 OnEnteringFrontline = (zooey, raidActions) => ProcessPassiveEffects(zooey),
             };
         }

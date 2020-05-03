@@ -194,7 +194,7 @@ namespace Worldshifters.Assets.Hero.Dark
                         Type = PassiveAbility.Types.PassiveAbilityType.TriggerOnEnteringFrontline,
                     },
                 },
-                OnActionStart = (nier, raidActions) => ProcessLoveRedemptionEffects(nier),
+                OnActionStart = (nier, _, raidActions) => ProcessLoveRedemptionEffects(nier),
                 OnSetup = (nier, allies, loadout) => SetupLoveRedemptionStacks(nier),
                 OnTurnEnd = (nier, raidActions) =>
                 {

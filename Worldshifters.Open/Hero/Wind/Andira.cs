@@ -352,7 +352,7 @@ namespace Worldshifters.Assets.Hero.Wind
                         UpgradedAbilityIndex = 2,
                     },
                 },
-                OnActionStart = (andira, raidActions) => ProcessEffects(andira),
+                OnActionStart = (andira, _, raidActions) => ProcessEffects(andira),
                 OnTurnEnd = (andira, raidActions) =>
                 {
                     if (andira.DodgedDamage)

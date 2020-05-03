@@ -186,7 +186,7 @@ namespace Worldshifters.Assets.Hero.Light
                         UpgradedAbilityIndex = 1,
                     },
                 },
-                OnActionStart = (sara, raidActions) => ProcessPassiveEffects(sara),
+                OnActionStart = (sara, _, raidActions) => ProcessPassiveEffects(sara),
                 OnTurnEnd = (sara, raidActions) =>
                 {
                     foreach (var enemy in sara.Raid.Enemies)

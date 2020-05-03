@@ -164,7 +164,7 @@ namespace Worldshifters.Assets.Hero.Earth
                         UpgradedAbilityIndex = 1,
                     },
                 },
-                OnActionStart = (caim, raidActions) => ProcessPassiveEffects(caim),
+                OnActionStart = (caim, _, raidActions) => ProcessPassiveEffects(caim),
                 OnTurnEnd = (caim, raidActions) => { },
                 OnSetup = (caim, allies, loadout) =>
                 {
