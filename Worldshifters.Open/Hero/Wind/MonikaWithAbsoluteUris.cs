@@ -442,7 +442,7 @@ namespace Worldshifters.Assets.Hero.Wind
                         monika.Raid.Allies.ApplyStatusEffects(
                             new StatusEffectSnapshot
                             {
-                                Id = twoTurns ? StatusEffectLibrary.ParalyzedLocal2 : StatusEffectLibrary.ParalyzedLocal1,
+                                Id = StatusEffectLibrary.ParalyzedLocal,
                                 BaseAccuracy = 50,
                                 TurnDuration = twoTurns ? 2 : 1,
                             },

@@ -51,51 +51,6 @@ namespace Worldshifters.Data
         public static string AsleepLocal;
 
         /// <summary>
-        /// <see cref="AsleepLocal1"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Asleep"/>.
-        /// </summary>
-        public static string AsleepLocal1;
-
-        /// <summary>
-        /// <see cref="AsleepLocal2"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Asleep"/>.
-        /// </summary>
-        public static string AsleepLocal2;
-
-        /// <summary>
-        /// <see cref="AsleepLocal3"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Asleep"/>.
-        /// </summary>
-        public static string AsleepLocal3;
-
-        /// <summary>
-        /// <see cref="AsleepLocal4"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Asleep"/>.
-        /// </summary>
-        public static string AsleepLocal4;
-
-        /// <summary>
-        /// <see cref="AsleepLocal5"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Asleep"/>.
-        /// </summary>
-        public static string AsleepLocal5;
-
-        /// <summary>
-        /// <see cref="AsleepLocal6"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Asleep"/>.
-        /// </summary>
-        public static string AsleepLocal6;
-
-        /// <summary>
-        /// <see cref="AsleepLocal7"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Asleep"/>.
-        /// </summary>
-        public static string AsleepLocal7;
-
-        /// <summary>
-        /// <see cref="AsleepLocal8"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Asleep"/>.
-        /// </summary>
-        public static string AsleepLocal8;
-
-        /// <summary>
-        /// <see cref="AsleepLocal9"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Asleep"/>.
-        /// </summary>
-        public static string AsleepLocal9;
-
-        /// <summary>
         /// <see cref="AssassinStrike"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.AssassinStrike"/>.
         /// </summary>
         public static string AssassinStrike;
@@ -116,15 +71,6 @@ namespace Worldshifters.Data
         public static string BahamutChargeAttackDamageCapBoost;
         public static string Blind;
         public static string BlindLocal;
-        public static string BlindLocal1;
-        public static string BlindLocal2;
-        public static string BlindLocal3;
-        public static string BlindLocal4;
-        public static string BlindLocal5;
-        public static string BlindLocal6;
-        public static string BlindLocal7;
-        public static string BlindLocal8;
-        public static string BlindLocal9;
         public static string Break;
 
         /// <summary>
@@ -442,15 +388,6 @@ namespace Worldshifters.Data
         public static string MirrorImage;
 
         public static string MirrorImageLocal;
-        public static string MirrorImageLocal1;
-        public static string MirrorImageLocal2;
-        public static string MirrorImageLocal3;
-        public static string MirrorImageLocal4;
-        public static string MirrorImageLocal5;
-        public static string MirrorImageLocal6;
-        public static string MirrorImageLocal7;
-        public static string MirrorImageLocal8;
-        public static string MirrorImageLocal9;
 
         public static string Moon;
 
@@ -461,15 +398,6 @@ namespace Worldshifters.Data
         public static string Paralyzed;
 
         public static string ParalyzedLocal;
-        public static string ParalyzedLocal1;
-        public static string ParalyzedLocal2;
-        public static string ParalyzedLocal3;
-        public static string ParalyzedLocal4;
-        public static string ParalyzedLocal5;
-        public static string ParalyzedLocal6;
-        public static string ParalyzedLocal7;
-        public static string ParalyzedLocal8;
-        public static string ParalyzedLocal9;
         public static string Petrified;
 
         /// <summary>

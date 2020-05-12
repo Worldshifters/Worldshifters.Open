@@ -464,7 +464,7 @@ namespace Worldshifters.Assets.Hero.Light
                         enemy.ApplyStatusEffect(
                             new StatusEffectSnapshot
                             {
-                                Id = StatusEffectLibrary.ParalyzedLocal3,
+                                Id = StatusEffectLibrary.ParalyzedLocal,
                                 BaseAccuracy = 20,
                                 TurnDuration = 3,
                                 IsLocal = true,
@@ -473,7 +473,7 @@ namespace Worldshifters.Assets.Hero.Light
                         enemy.ApplyStatusEffect(
                             new StatusEffectSnapshot
                             {
-                                Id = StatusEffectLibrary.AsleepLocal3,
+                                Id = StatusEffectLibrary.AsleepLocal,
                                 BaseAccuracy = 20,
                                 TurnDuration = 3,
                                 IsLocal = true,
