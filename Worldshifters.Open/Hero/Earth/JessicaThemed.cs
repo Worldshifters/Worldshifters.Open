@@ -189,9 +189,9 @@ namespace Worldshifters.Assets.Hero.Earth
                         GodsendTrigger().Cast(jessica, raidActions);
                     }
                 },
-                OnAttackStart = (jessica, raidActions) =>
+                OnAttackStart = (jessica, isAboutToPerformSpecialAttack, raidActions) =>
                 {
-                    if (jessica.Raid.Allies.Any(e => e.HpPercentage < 25))
+                    if (isAboutToPerformSpecialAttack && jessica.Raid.Allies.Any(e => e.HpPercentage < 25))
                     {
                         jessica.ApplyStatusEffect(
                             new StatusEffectSnapshot
@@ -202,6 +202,8 @@ namespace Worldshifters.Assets.Hero.Earth
                                 Strength = double.PositiveInfinity,
                             });
                     }
+
+                    return true;
                 },
                 OnAbilityStart = (jessica, raidActions) =>
                 {

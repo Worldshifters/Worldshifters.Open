@@ -510,7 +510,7 @@ namespace Worldshifters.Assets.Hero.Dark
                             ($"{UnfinishedBusinessId}/def_down", ModifierLibrary.FlatDefenseBoost, -50),
                             ($"{UnfinishedBusinessId}/da_down", ModifierLibrary.FlatDoubleAttackRateBoost, -100),
                             ($"{UnfinishedBusinessId}/ta_down", ModifierLibrary.FlatTripleAttackRateBoost, -100),
-                            ($"{UnfinishedBusinessId}/no_healing", ModifierLibrary.FlatHealingCapBoost, double.MinValue));
+                            ($"{UnfinishedBusinessId}/no_healing", ModifierLibrary.CantBeHealed, 0));
                     }
                 },
             };

@@ -15,10 +15,10 @@ namespace Worldshifters.Assets.Hero.Earth
 
     public static class Threo
     {
+        public static Guid Id = Guid.Parse("612d0c88-d7ef-43ec-bf20-7d630c7c5200");
+
         private const string Wrath = "threo/wrath";
         private const string Agitation = "threo/agitation";
-
-        public static Guid Id = Guid.Parse("612d0c88-d7ef-43ec-bf20-7d630c7c5200");
 
         private static readonly ModelMetadata AxeFormModel = new ModelMetadata
         {
@@ -155,9 +155,6 @@ namespace Worldshifters.Assets.Hero.Earth
                     {
                         AxeFormChargeAttackModel,
                     },
-                    Effects =
-                    {
-                    },
                     ProcessEffects = (threo, raidActions) =>
                     {
                         if (threo.GlobalState["::axe_form"].BooleanValue)
@@ -228,7 +225,12 @@ namespace Worldshifters.Assets.Hero.Earth
                         else
                         {
                             threo.GlobalState["::axe_form"].BooleanValue = true;
-                            MeteorThrust().Cast(threo, raidActions);
+                            var currentTarget = threo.ResolveEnemyTarget(threo.CurrentTargetPositionInFrontline);
+                            if (currentTarget.IsAlive())
+                            {
+                                MeteorThrust().Cast(threo, currentTarget.PositionInFrontline, raidActions);
+                            }
+
                             threo.PlayAnimation("change_2", raidActions);
                             threo.ChangeForm(
                                 AxeFormModel,
@@ -383,6 +385,7 @@ namespace Worldshifters.Assets.Hero.Earth
                                 Id = StatusEffectLibrary.EarthDefenseDownNpc,
                                 Strength = -25,
                                 BaseAccuracy = 100,
+                                RemainingDurationInSeconds = 180,
                             },
                             raidActions);
                     }
@@ -612,7 +615,7 @@ namespace Worldshifters.Assets.Hero.Earth
                         threo.ApplyStatusEffect(
                             new StatusEffectSnapshot
                             {
-                                Id = StatusEffectLibrary.CounterOnDodge,
+                                Id = StatusEffectLibrary.DodgeAndCounter,
                                 TurnDuration = 3,
                                 Strength = 3,
                                 ExtraData = new Counter

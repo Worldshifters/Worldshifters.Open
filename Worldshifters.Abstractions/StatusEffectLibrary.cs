@@ -2,10 +2,16 @@
 // Copyright (c) Worldshifters. All rights reserved.
 // </copyright>
 
+using System;
+using System.Collections.Generic;
+using Worldshifters.Data.Raid;
+
 namespace Worldshifters.Data
 {
     public static class StatusEffectLibrary
     {
+        public static string AccuracyDownNpcLocal;
+        public static string AccuracyDownSummonLocal;
         public static string AdditionalDamageNpc;
         public static string AdditionalDamageSummon;
         public static string AdditionalDamageWeapon;
@@ -98,6 +104,7 @@ namespace Worldshifters.Data
         public static string AttackDownNpcLocal;
         public static string AttackDownNpc2;
         public static string AttackDownSummon;
+        public static string AttackDownSummonLocal;
         public static string AttackDownWeapon;
         public static string AttackUpNpc;
         public static string AttackUpSummon;
@@ -105,6 +112,8 @@ namespace Worldshifters.Data
         public static string AuroraCrest;
         public static string AutoRevive;
 
+        public static string BahamutChargeAttackBoost;
+        public static string BahamutChargeAttackDamageCapBoost;
         public static string Blind;
         public static string BlindLocal;
         public static string BlindLocal1;
@@ -133,7 +142,14 @@ namespace Worldshifters.Data
         /// </summary>
         public static string BurntWeapon;
 
+        public static string ChainBurstDamageCapUpNpc;
+        public static string ChainBurstDamageCapUpSummon;
+        public static string ChainBurstDamageCapUpWeapon;
         public static string ChainBurstDamageUpNpc;
+        public static string ChainBurstDamageUpSummon;
+        public static string ChargeAttackDamageBoostNpc;
+        public static string ChargeAttackDamageBoostSummon;
+        public static string ChargeAttackDamageBoostWeapon;
         public static string ChargeAttackReactivation;
         public static string ChargeAttackSealed;
         public static string ChargeBarSlowedNpc;
@@ -144,14 +160,9 @@ namespace Worldshifters.Data
         public static string Charmed;
 
         /// <summary>
-        /// <see cref="Counter"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Counter"/>.
+        /// <see cref="DodgeAndCounter"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Counter"/>.
         /// </summary>
-        public static string Counter;
-
-        /// <summary>
-        /// <see cref="CounterOnDodge"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Counter"/>.
-        /// </summary>
-        public static string CounterOnDodge;
+        public static string DodgeAndCounter;
 
         /// <summary>
         /// <see cref="CounterOnDodgeOrDamage"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Counter"/>.
@@ -245,6 +256,18 @@ namespace Worldshifters.Data
         public static string DamageBoostedNpc;
 
         /// <summary>
+        /// <see cref="DamageBoostedSummon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.SupplementalDamage"/>.
+        /// The strength value of a status effect with this modifier is the supplemental damage dealt with each hit (attacks or abilities) as a percentage of the target max HP or as flat damage.
+        /// </summary>
+        public static string DamageBoostedSummon;
+
+        /// <summary>
+        /// <see cref="DamageBoostedWeapon"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.SupplementalDamage"/>.
+        /// The strength value of a status effect with this modifier is the supplemental damage dealt with each hit (attacks or abilities) as a percentage of the target max HP or as flat damage.
+        /// </summary>
+        public static string DamageBoostedWeapon;
+
+        /// <summary>
         /// <see cref="DamageBoostedOnCriticalHitNpc"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.SupplementalDamage"/>.
         /// The strength value of a status effect with this modifier is the supplemental damage dealt with each hit (attacks or abilities) as a percentage of the target max HP or as flat damage.
         /// </summary>
@@ -285,6 +308,7 @@ namespace Worldshifters.Data
         public static string DefenseDownNpcLocal;
         public static string DefenseDownNpc2;
         public static string DefenseDownSummon;
+        public static string DefenseDownSummonLocal;
         public static string DefenseDownWeapon;
         public static string DefenseUpNpc;
         public static string DefenseUpSummon;
@@ -304,10 +328,16 @@ namespace Worldshifters.Data
         /// </summary>
         public static string DodgeRateBoostNpc;
 
+        /// <summary>
+        /// The strength of <see cref="DodgeRateBoostSummon"/> status effects is the percentage of change attacks and/or debuffs will be dodged.
+        /// </summary>
+        public static string DodgeRateBoostSummon;
+
         public static string DoubleAttackRateDownNpc;
         public static string DoubleAttackRateDownSummon;
         public static string DoubleAttackRateDownWeapon;
         public static string DoubleAttackRateUpNpc;
+        public static string DoubleAttackRateUpSummon;
         public static string DoubleAttackRateUpWeapon;
         public static string DoubleStrike;
 
@@ -354,6 +384,7 @@ namespace Worldshifters.Data
         public static string FireDefenseDownNpc;
         public static string FireElementalAttackBoostAmplificationNpc;
         public static string FireSwitch;
+        public static string FlameOfJustice;
         public static string Glaciate;
 
         /// <summary>
@@ -369,6 +400,11 @@ namespace Worldshifters.Data
         public static string HellfireCrest;
         public static string HostilityDown;
         public static string HostilityUp;
+        public static string Hype;
+        public static string Hype1;
+        public static string Hype2;
+        public static string Hype3;
+        public static string Hype4;
 
         /// <summary>
         /// <see cref="JammedNpc"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.LinearAttackBoost"/>.
@@ -416,6 +452,8 @@ namespace Worldshifters.Data
         public static string MirrorImageLocal8;
         public static string MirrorImageLocal9;
 
+        public static string Moon;
+
         public static string NextChargeAttackDamageBoost;
         public static string NextChargeAttackDamageCapBoost;
 
@@ -432,6 +470,7 @@ namespace Worldshifters.Data
         public static string ParalyzedLocal7;
         public static string ParalyzedLocal8;
         public static string ParalyzedLocal9;
+        public static string Petrified;
 
         /// <summary>
         /// <see cref="PoisonedNpc"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Burn"/>.
@@ -483,12 +522,15 @@ namespace Worldshifters.Data
         public static string RevitalizeWeapon;
 
         public static string Shield;
+        public static string ShivaAttackBoost;
 
         /// <summary>
         /// Charge gauge is frozen.
         /// </summary>
         public static string Shorted;
 
+        public static string SkillDamageBoostNpc;
+        public static string SkillDamageBoostSummon;
         public static string SkillDamageCapUpNpc;
         public static string SkillSealed;
         public static string StackableAttackDownNpc;
@@ -573,5 +615,10 @@ namespace Worldshifters.Data
         public static string WindDefenseDownNpc;
         public static string WindElementalAttackBoostAmplificationNpc;
         public static string WindSwitch;
+
+        public static void UpdatePhaseOfTheMoon(EntitySnapshot ally, int currentMoonStrength, int moonStrength, IList<RaidAction> raidActions)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

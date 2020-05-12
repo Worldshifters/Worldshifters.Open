@@ -391,7 +391,7 @@ namespace Worldshifters.Assets.Hero.Light
                 {
                     Id = "passive_counter",
                     Strength = 2,
-                    Modifier = ModifierLibrary.Counter,
+                    Modifier = ModifierLibrary.DodgeAndCounter,
                     IsUsedInternally = true,
                     IsPassiveEffect = true,
                     TurnDuration = 1,

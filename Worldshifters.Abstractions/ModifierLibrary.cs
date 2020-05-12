@@ -185,13 +185,6 @@ namespace Worldshifters.Data
         public static Modifier DelayedAbility;
 
         /// <summary>
-        /// When the effect source is a weapon: flat 3% change to dodge and counter per counter effect, unmodified by summon auras.
-        /// When applied to a character: counter attacks on turn end.
-        /// <see cref="StatusEffectSnapshot"/>s with a <see cref="Counter"/> <see cref="StatusEffectSnapshot.Modifier"/> must have <see cref="StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Counter"/>.
-        /// </summary>
-        public static Modifier Counter;
-
-        /// <summary>
         /// Dodge and counter a one-foe attack.
         /// <see cref="StatusEffectSnapshot"/>s with a <see cref="DodgeAndCounter"/> <see cref="StatusEffectSnapshot.Modifier"/> must have <see cref="StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Counter"/>.
         /// </summary>

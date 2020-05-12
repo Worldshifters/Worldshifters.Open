@@ -352,7 +352,8 @@ namespace Worldshifters.Assets.Hero.Fire
                                 IsPassiveEffect = true,
                             },
                             ($"{SunTouchedParadiseId}/atk_up", ModifierLibrary.FlatAttackBoost, 20),
-                            ($"{SunTouchedParadiseId}/def_down", ModifierLibrary.FlatDefenseBoost, -25));
+                            ($"{SunTouchedParadiseId}/def_down", ModifierLibrary.FlatDefenseBoost, -25),
+                            ($"{SunTouchedParadiseId}/crit", ModifierLibrary.CanDealCriticalHitsRegardlessOfElement, 0));
                     }
                 },
             });
@@ -462,16 +463,23 @@ namespace Worldshifters.Assets.Hero.Fire
 
             if (naya.PositionInFrontline < 4 && naya.Raid.GetActiveFieldEffectIds().Contains(SunTouchedParadiseId))
             {
+                naya.ApplyStatusEffectsFromTemplate(
+                    new StatusEffectSnapshot
+                    {
+                        IsPassiveEffect = true,
+                        IsUsedInternally = true,
+                    },
+                    ($"{BenevolentSoulId}/ca_boost", ModifierLibrary.FlatChargeAttackDamageBoost, 50),
+                    ($"{BenevolentSoulId}/ca_cap_boost", ModifierLibrary.FlatChargeAttackDamageCapBoost, 20));
+
                 naya.Raid.Allies.Where(a => a.Element == Element.Fire).ApplyStatusEffectsFromTemplate(
                     new StatusEffectSnapshot
                     {
                         IsPassiveEffect = true,
                         IsUsedInternally = true,
                     },
-                    ($"{BenevolentSoulId}_healing_boost", ModifierLibrary.HealingBoost, 25),
-                    ($"{BenevolentSoulId}_healing_cap_boost", ModifierLibrary.HealingCapBoost, 25),
-                    ($"{BenevolentSoulId}_ca_boost", ModifierLibrary.FlatChargeAttackDamageBoost, 50),
-                    ($"{BenevolentSoulId}_ca_cap_boost", ModifierLibrary.FlatChargeAttackDamageCapBoost, 20));
+                    ($"{BenevolentSoulId}/healing_boost", ModifierLibrary.HealingBoost, 25),
+                    ($"{BenevolentSoulId}/healing_cap_boost", ModifierLibrary.HealingCapBoost, 25));
             }
             else
             {
@@ -482,8 +490,8 @@ namespace Worldshifters.Assets.Hero.Fire
                         IsPassiveEffect = true,
                         IsUsedInternally = true,
                     },
-                    ($"{TheSunReversedId}_healing_boost", ModifierLibrary.HealingBoost, 20),
-                    ($"{TheSunReversedId}_healing_cap_boost", ModifierLibrary.HealingCapBoost, 20));
+                    ($"{TheSunReversedId}/healing_boost", ModifierLibrary.HealingBoost, 20),
+                    ($"{TheSunReversedId}/healing_cap_boost", ModifierLibrary.HealingCapBoost, 20));
             }
         }
     }

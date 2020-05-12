@@ -294,16 +294,14 @@ namespace Worldshifters.Assets.Hero.Earth
                         TurnDuration = int.MaxValue,
                     });
                 },
-                OnAttackStart = (elen, raidActions) =>
+                OnAttackStart = (elen, isAboutToUseSpecialAttack, raidActions) =>
                 {
                     if (elen.GetStatusEffect(ArdaFravaId) == null)
                     {
-                        return;
+                        return true;
                     }
 
-                    bool canPerformMoreThan2ChargeAttacksInARow =
-                        elen.ChargeGauge >= 200 ||
-                        elen.GetStatusEffect(StatusEffectLibrary.ChargeAttackReactivation) != null;
+                    bool canPerformMoreThan2ChargeAttacksInARow = isAboutToUseSpecialAttack && (elen.ChargeGauge >= 200 || elen.GetStatusEffect(StatusEffectLibrary.ChargeAttackReactivation) != null);
                     elen.ApplyStatusEffectsFromTemplate(
                         new StatusEffectSnapshot
                         {
@@ -317,6 +315,8 @@ namespace Worldshifters.Assets.Hero.Earth
                         },
                         ($"{ArdaFravaId}/ca_dmg_up", ModifierLibrary.FlatChargeAttackDamageBoost, canPerformMoreThan2ChargeAttacksInARow ? 20 : 4),
                         ($"{ArdaFravaId}/ca_dmg_cap_up", ModifierLibrary.FlatChainBurstDamageCapBoost, canPerformMoreThan2ChargeAttacksInARow ? 30 : 10));
+
+                    return true;
                 },
             };
         }

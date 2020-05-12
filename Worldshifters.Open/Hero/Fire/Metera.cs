@@ -159,12 +159,11 @@ namespace Worldshifters.Assets.Hero.Fire
                             },
                         });
                 },
-                OnAttackStart = (metera, raidActions) =>
+                OnAttackStart = (metera, isAboutToPerformSpecialAttack, raidActions) =>
                 {
-                    var seals = metera.GetStatusEffectStacks(AetherialSealId);
-                    if (seals <= 0)
+                    if (isAboutToPerformSpecialAttack || metera.GetStatusEffectStacks(AetherialSealId) <= 0)
                     {
-                        return;
+                        return true;
                     }
 
                     metera.ApplyStatusEffect(
@@ -177,6 +176,8 @@ namespace Worldshifters.Assets.Hero.Fire
                             IsUsedInternally = true,
                             IsUndispellable = true,
                         });
+
+                    return true;
                 },
                 OnAttackEnd = (metera, attackResult, raidActions) =>
                 {

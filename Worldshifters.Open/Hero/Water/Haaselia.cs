@@ -18,7 +18,6 @@ namespace Worldshifters.Assets.Hero.Water
 
         private const string BewitchingId = "haaselia/bewitching";
         private const string TorahId = "haaselia/torah";
-        private const string MoonId = "haaselia/moon";
         private const string TearsOfLunacyId = "haaselia/tears_of_lunacy";
 
         public static Hero NewInstance()
@@ -149,19 +148,19 @@ namespace Worldshifters.Assets.Hero.Water
                             ally.ApplyStatusEffect(
                                 new StatusEffectSnapshot
                                 {
-                                    Id = MoonId,
-                                    TurnDuration = 5,
+                                    Id = StatusEffectLibrary.Moon,
+                                    TurnDuration = 6,
                                     IsUndispellable = true,
                                     IsUsedInternally = true,
                                 });
 
-                            var stacks = ally.GetStatusEffectStacks(MoonId);
+                            var stacks = ally.GetStatusEffectStacks(StatusEffectLibrary.Moon);
                             if (stacks > 0)
                             {
-                                ally.RemoveStatusEffect($"{MoonId}_{stacks}");
+                                ally.RemoveStatusEffect($"{StatusEffectLibrary.Moon}_{stacks}");
                             }
 
-                            ally.ApplyStatusEffectStacks(MoonId, 1, raidActions, turnDuration: 2, isUndispellable: true);
+                            ally.ApplyStatusEffectStacks(StatusEffectLibrary.Moon, 1, raidActions, turnDuration: 2, isUndispellable: true);
                         }
 
                         ProcessMoonEffects(haaselia);
@@ -194,25 +193,6 @@ namespace Worldshifters.Assets.Hero.Water
                     haaselia.GlobalState[TorahId + "/1"].BooleanValue = false;
                     haaselia.GlobalState[TorahId + "/2"].BooleanValue = false;
                     haaselia.GlobalState[TorahId + "/3"].BooleanValue = false;
-
-                    foreach (var ally in haaselia.Raid.Allies)
-                    {
-                        if (!ally.IsAlive())
-                        {
-                            continue;
-                        }
-
-                        var moon = ally.GetStatusEffect(MoonId);
-                        if (moon != null)
-                        {
-                            var currentMoonStrength = ally.GetStatusEffectStacks(MoonId);
-                            UpdatePhaseOfTheMoon(
-                                ally,
-                                currentMoonStrength,
-                                Math.Max(currentMoonStrength, Math.Max(0, 5 - moon.TurnDuration) + 1),
-                                raidActions);
-                        }
-                    }
                 },
                 OnSetup = (haaselia, allies, loadout) =>
                 {
@@ -228,7 +208,7 @@ namespace Worldshifters.Assets.Hero.Water
                 {
                     if (haaselia.GetStatusEffect(TorahId) != null)
                     {
-                        for (var abilityIndex = 0; abilityIndex < haaselia.AbilityCooldowns.Count; ++abilityIndex)
+                        for (var abilityIndex = 0; abilityIndex < 2; ++abilityIndex)
                         {
                             if (haaselia.AbilityCooldowns[abilityIndex] == ability.Cooldown && !haaselia.GlobalState[TorahId + "/" + (abilityIndex + 1)].BooleanValue)
                             {
@@ -443,11 +423,11 @@ namespace Worldshifters.Assets.Hero.Water
                             }, raidActions);
 
                         // Increase the phase of the moon by 1
-                        var moonStrength = ally.GetStatusEffectStacks(MoonId);
+                        var moonStrength = ally.GetStatusEffectStacks(StatusEffectLibrary.Moon);
                         if (moonStrength > 0)
                         {
                             // Moon phases update when moonStrength reaches 3 or 5
-                            UpdatePhaseOfTheMoon(ally, moonStrength, moonStrength < 3 ? 3 : 5, raidActions);
+                            StatusEffectLibrary.UpdatePhaseOfTheMoon(ally, moonStrength, moonStrength < 3 ? 3 : 5, raidActions);
                         }
                     }
                 },
@@ -517,7 +497,7 @@ namespace Worldshifters.Assets.Hero.Water
                     continue;
                 }
 
-                var moonStrength = ally.GetStatusEffectStacks(MoonId);
+                var moonStrength = ally.GetStatusEffectStacks(StatusEffectLibrary.Moon);
                 if (moonStrength > 0)
                 {
                     ally.ApplyStatusEffectsFromTemplate(
@@ -527,8 +507,8 @@ namespace Worldshifters.Assets.Hero.Water
                             IsUndispellable = true,
                             IsUsedInternally = true,
                         },
-                        (MoonId + "/atk_up", ModifierLibrary.AttackBoost, 10 + (5 * moonStrength)),
-                        (MoonId + "/def_up", ModifierLibrary.FlatDefenseBoost, 30 + (5 * moonStrength)));
+                        (StatusEffectLibrary.Moon + "/atk_up", ModifierLibrary.AttackBoost, 10 + (5 * moonStrength)),
+                        (StatusEffectLibrary.Moon + "/def_up", ModifierLibrary.FlatDefenseBoost, 30 + (5 * moonStrength)));
                 }
 
                 if (moonStrength >= 3)
@@ -536,7 +516,7 @@ namespace Worldshifters.Assets.Hero.Water
                     ally.ApplyStatusEffect(
                         new StatusEffectSnapshot
                         {
-                            Id = MoonId + "/fire_dmg_reduced",
+                            Id = StatusEffectLibrary.Moon + "/fire_dmg_reduced",
                             TurnDuration = 1,
                             IsUndispellable = true,
                             IsUsedInternally = true,
@@ -551,7 +531,7 @@ namespace Worldshifters.Assets.Hero.Water
                     ally.ApplyStatusEffect(
                         new StatusEffectSnapshot
                         {
-                            Id = MoonId + "/fire_dmg_cut",
+                            Id = StatusEffectLibrary.Moon + "/fire_dmg_cut",
                             TurnDuration = 1,
                             IsUndispellable = true,
                             IsUsedInternally = true,
@@ -566,7 +546,7 @@ namespace Worldshifters.Assets.Hero.Water
                     ally.ApplyStatusEffect(
                         new StatusEffectSnapshot
                         {
-                            Id = MoonId + "/da_up",
+                            Id = StatusEffectLibrary.Moon + "/da_up",
                             TurnDuration = 1,
                             IsUndispellable = true,
                             IsUsedInternally = true,
@@ -579,7 +559,7 @@ namespace Worldshifters.Assets.Hero.Water
                         ally.ApplyStatusEffect(
                             new StatusEffectSnapshot
                             {
-                                Id = MoonId + "/echo",
+                                Id = StatusEffectLibrary.Moon + "/echo",
                                 TurnDuration = 1,
                                 IsUndispellable = true,
                                 IsUsedInternally = true,
@@ -593,7 +573,7 @@ namespace Worldshifters.Assets.Hero.Water
                         ally.ApplyStatusEffect(
                             new StatusEffectSnapshot
                             {
-                                Id = MoonId + "/dmg_cap_up",
+                                Id = StatusEffectLibrary.Moon + "/dmg_cap_up",
                                 TurnDuration = 1,
                                 IsUndispellable = true,
                                 IsUsedInternally = true,
@@ -603,24 +583,6 @@ namespace Worldshifters.Assets.Hero.Water
                     }
                 }
             }
-        }
-
-        private static void UpdatePhaseOfTheMoon(EntitySnapshot ally, int currentMoonStrength, int moonStrength, IList<RaidAction> raidActions)
-        {
-            if (currentMoonStrength != moonStrength)
-            {
-                ally.RemoveStatusEffect($"{MoonId}_{currentMoonStrength}");
-            }
-
-            ally.ApplyStatusEffect(
-                new StatusEffectSnapshot
-                {
-                    Id = MoonId + "_" + moonStrength,
-                    TurnDuration = 2,
-                    Strength = moonStrength,
-                    IsUndispellable = true,
-                },
-                raidActions);
         }
     }
 }

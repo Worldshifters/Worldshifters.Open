@@ -89,10 +89,11 @@ namespace Worldshifters.Data.Hero
         public Action<EntitySnapshot, IList<RaidAction>> OnAbilityStart { get; set; }
 
         /// <summary>
-        /// Callback method called before performing an attack. It won't be called if the hero can't attack. Input parameters: this.
+        /// Callback method called before performing an attack. It won't be called if the hero can't attack.
+        /// Input parameters: this, a boolean equal to true if the hero is about to perform a special attack. Returns true if the attack can be performed and false otherwise.
         /// </summary>
         /// <remarks>Called even if the character is dead.</remarks>
-        public Action<EntitySnapshot, IList<RaidAction>> OnAttackStart { get; set; }
+        public Func<EntitySnapshot, bool, IList<RaidAction>, bool> OnAttackStart { get; set; }
 
         /// <summary>
         /// Input parameters: this (the current attacker).
