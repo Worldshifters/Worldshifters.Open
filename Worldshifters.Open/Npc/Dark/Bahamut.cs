@@ -186,7 +186,7 @@ namespace Worldshifters.Assets.Npc.Dark
             bahamut.GlobalState["form"] = TypedValue.FromLong(FireForm);
             bahamut.Element = Element.Fire;
 
-            bahamut.PlayAnimation("form_change", raidActions);
+            bahamut.PlayAnimation("form_change", raidActions, applyToAllRaidParticipants: true);
             bahamut.ChangeForm(
                 new ModelMetadata
                 {
@@ -209,8 +209,8 @@ namespace Worldshifters.Assets.Npc.Dark
                     DisplayRegistrationPointY = -120,
                 }, raidActions);
 
-            bahamut.Raid.ChangeBackground("npc/bahamut/model/common_014.jpg", raidActions);
-            bahamut.FillDiamonds(raidActions);
+            bahamut.Raid.ChangeBackground("npc/bahamut/model/common_014.jpg", raidActions, applyToAllRaidParticipants: true);
+            bahamut.FillDiamonds(raidActions, applyToAllRaidParticipants: true);
         }
 
         private static void ChangeToWaterForm(EntitySnapshot bahamut, IList<RaidAction> raidActions)
@@ -224,7 +224,7 @@ namespace Worldshifters.Assets.Npc.Dark
             bahamut.GlobalState["form"] = TypedValue.FromLong(WaterForm);
             bahamut.Element = Element.Water;
 
-            bahamut.PlayAnimation("form_change", raidActions);
+            bahamut.PlayAnimation("form_change", raidActions, applyToAllRaidParticipants: true);
             bahamut.ChangeForm(
                 new ModelMetadata
                 {
@@ -247,8 +247,8 @@ namespace Worldshifters.Assets.Npc.Dark
                     DisplayRegistrationPointY = -120,
                 }, raidActions);
 
-            bahamut.Raid.ChangeBackground("npc/bahamut/model/common_016.jpg", raidActions);
-            bahamut.FillDiamonds(raidActions);
+            bahamut.Raid.ChangeBackground("npc/bahamut/model/common_016.jpg", raidActions, applyToAllRaidParticipants: true);
+            bahamut.FillDiamonds(raidActions, applyToAllRaidParticipants: true);
         }
 
         private static void ChangeToEarthForm(EntitySnapshot bahamut, IList<RaidAction> raidActions)
@@ -262,7 +262,7 @@ namespace Worldshifters.Assets.Npc.Dark
             bahamut.GlobalState["form"] = TypedValue.FromLong(EarthForm);
             bahamut.Element = Element.Earth;
 
-            bahamut.PlayAnimation("form_change", raidActions);
+            bahamut.PlayAnimation("form_change", raidActions, applyToAllRaidParticipants: true);
             bahamut.ChangeForm(
                 new ModelMetadata
                 {
@@ -285,8 +285,8 @@ namespace Worldshifters.Assets.Npc.Dark
                     DisplayRegistrationPointY = -120,
                 }, raidActions);
 
-            bahamut.Raid.ChangeBackground("npc/bahamut/model/common_018.jpg", raidActions);
-            bahamut.FillDiamonds(raidActions);
+            bahamut.Raid.ChangeBackground("npc/bahamut/model/common_018.jpg", raidActions, applyToAllRaidParticipants: true);
+            bahamut.FillDiamonds(raidActions, applyToAllRaidParticipants: true);
         }
 
         private static void ChangeToWindForm(EntitySnapshot bahamut, IList<RaidAction> raidActions)
@@ -300,7 +300,7 @@ namespace Worldshifters.Assets.Npc.Dark
             bahamut.GlobalState["form"] = TypedValue.FromLong(WindForm);
             bahamut.Element = Element.Wind;
 
-            bahamut.PlayAnimation("form_change", raidActions);
+            bahamut.PlayAnimation("form_change", raidActions, applyToAllRaidParticipants: true);
             bahamut.ChangeForm(
                 new ModelMetadata
                 {
@@ -323,8 +323,8 @@ namespace Worldshifters.Assets.Npc.Dark
                     DisplayRegistrationPointY = -120,
                 }, raidActions);
 
-            bahamut.Raid.ChangeBackground("npc/bahamut/model/common_012.jpg", raidActions);
-            bahamut.FillDiamonds(raidActions);
+            bahamut.Raid.ChangeBackground("npc/bahamut/model/common_012.jpg", raidActions, applyToAllRaidParticipants: true);
+            bahamut.FillDiamonds(raidActions, applyToAllRaidParticipants: true);
         }
 
         private static void ChangeToDarkForm(EntitySnapshot bahamut, IList<RaidAction> raidActions)
@@ -338,7 +338,7 @@ namespace Worldshifters.Assets.Npc.Dark
             bahamut.GlobalState["form"] = TypedValue.FromLong(DarkForm);
             bahamut.Element = Element.Dark;
 
-            bahamut.PlayAnimation("form_change", raidActions);
+            bahamut.PlayAnimation("form_change", raidActions, applyToAllRaidParticipants: true);
             bahamut.ChangeForm(
                 new ModelMetadata
                 {
@@ -380,8 +380,8 @@ namespace Worldshifters.Assets.Npc.Dark
                     },
                 });
 
-            bahamut.Raid.ChangeBackground("npc/bahamut/model/common_024.jpg", raidActions);
-            bahamut.FillDiamonds(raidActions);
+            bahamut.Raid.ChangeBackground("npc/bahamut/model/common_024.jpg", raidActions, applyToAllRaidParticipants: true);
+            bahamut.FillDiamonds(raidActions, applyToAllRaidParticipants: true);
         }
 
         private static void ChangeToFinalForm(EntitySnapshot bahamut, IList<RaidAction> raidActions)
@@ -395,7 +395,7 @@ namespace Worldshifters.Assets.Npc.Dark
             bahamut.GlobalState["form"] = TypedValue.FromLong(FinalForm);
             bahamut.Element = Element.Dark;
 
-            bahamut.PlayAnimation("form_change", raidActions);
+            bahamut.PlayAnimation("form_change", raidActions, applyToAllRaidParticipants: true);
             bahamut.ChangeForm(
                 new ModelMetadata
                 {
@@ -437,8 +437,8 @@ namespace Worldshifters.Assets.Npc.Dark
                     },
                 });
 
-            bahamut.Raid.ChangeBackground("npc/bahamut/model/common_024.jpg", raidActions);
-            bahamut.FillDiamonds(raidActions);
+            bahamut.Raid.ChangeBackground("npc/bahamut/model/common_024.jpg", raidActions, applyToAllRaidParticipants: true);
+            bahamut.FillDiamonds(raidActions, applyToAllRaidParticipants: true);
         }
 
         private static void RagnarokFieldII(EntitySnapshot bahamut, IList<RaidAction> raidActions)

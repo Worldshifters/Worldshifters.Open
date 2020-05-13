@@ -61,7 +61,7 @@ namespace Worldshifters.Data.Raid
             throw new NotImplementedException();
         }
 
-        public void ChangeBackground(string backgroundUrl, IList<RaidAction> raidActions)
+        public void ChangeBackground(string backgroundUrl, IList<RaidAction> raidActions, bool applyToAllRaidParticipants = false)
         {
             throw new NotImplementedException();
         }

@@ -412,7 +412,10 @@ namespace Worldshifters.Data.Raid
             throw new NotImplementedException();
         }
 
-        public void PlayAnimation(string animationName, IList<RaidAction> raidActions)
+        /// <param name="animationName"></param>
+        /// <param name="raidActions"></param>
+        /// <param name="applyToAllRaidParticipants">If set to true, the animation will also be rendered for each connected raid participant, after any ongoing action finishes rendering.</param>
+        public void PlayAnimation(string animationName, IList<RaidAction> raidActions, bool applyToAllRaidParticipants = false)
         {
             throw new NotImplementedException();
         }

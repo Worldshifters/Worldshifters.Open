@@ -101,6 +101,7 @@ namespace Worldshifters.Data.Raid
                         TargetHasStatusEffect,
                         TargetHasDebuff,
                         TargetHasModifier,
+                        OnTripleAttack,
                     }
                 }
             }

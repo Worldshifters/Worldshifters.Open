@@ -10,7 +10,7 @@ namespace Worldshifters.Data.Utils
 
     public static class NpcEntitySnapshotExtensions
     {
-        public static void FillDiamonds(this EntitySnapshot npc, IList<RaidAction> raidActions)
+        public static void FillDiamonds(this EntitySnapshot npc, IList<RaidAction> raidActions, bool applyToAllRaidParticipants = false)
         {
             throw new NotImplementedException();
         }
