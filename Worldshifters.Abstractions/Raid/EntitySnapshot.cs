@@ -144,6 +144,11 @@ namespace Worldshifters.Data.Raid
             throw new NotImplementedException();
         }
 
+        public bool CantMove()
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// <remarks>For npcs only.</remarks>
         /// </summary>

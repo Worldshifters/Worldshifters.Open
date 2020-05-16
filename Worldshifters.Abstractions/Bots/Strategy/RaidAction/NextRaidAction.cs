@@ -19,6 +19,7 @@ namespace Worldshifters.Bots.Strategy.RaidAction
             Terminate,
             EnableChargeAttack,
             DisableChargeAttack,
+            Pass,
         }
 
         public abstract ActionType Type { get; }

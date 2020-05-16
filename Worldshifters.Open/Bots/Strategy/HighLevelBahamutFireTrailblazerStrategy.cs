@@ -13,13 +13,13 @@ namespace Worldshifters.Bots.Strategy
     public class HighLevelBahamutFireTrailblazerStrategy : RaidStrategy
     {
         // Use mock IDs for example purposes
-        private static readonly int NekomancerJobId = 0;
+        private static readonly int ElysianJobId = 0;
         private static readonly Guid NayaId = Assets.Hero.Fire.Naya.Id;
         private static readonly Guid ShivaId = Guid.Empty;
         private static readonly Guid TienId = Guid.Empty;
         private static readonly Guid JeanneDArcId = Guid.Empty;
 
-        private static readonly Guid ColossusCaneOmega = Guid.Empty;
+        private static readonly Guid Ullikummi = Guid.Empty;
         private static readonly Guid IxabaId = Guid.Empty;
         private static readonly Guid ScytheOfRenunciation = Guid.Empty;
         private static readonly Guid SolRemnant = Guid.Empty;
@@ -29,6 +29,8 @@ namespace Worldshifters.Bots.Strategy
         private static readonly Guid ShivaSummonId = Guid.Empty;
         private static readonly Guid TheSunSummonId = Guid.Empty;
 
+        private bool burstSetupComplete = false;
+
         /// <summary>
         /// <remarks>Validation is performed by the core library.</remarks>
         /// </summary>
@@ -37,7 +39,7 @@ namespace Worldshifters.Bots.Strategy
             // Main hand + rest of the grid (9 slots)
             return new[]
             {
-                ColossusCaneOmega, // Main hand
+                Ullikummi, // Main hand
                 IxabaId,
                 IxabaId,
                 IxabaId,
@@ -55,7 +57,7 @@ namespace Worldshifters.Bots.Strategy
         /// </summary>
         protected override (int classId, IReadOnlyList<Guid> heroIds) GetHeroLayout()
         {
-            return (NekomancerJobId, new[] { ShivaId, TienId, JeanneDArcId, NayaId });
+            return (ElysianJobId, new[] { ShivaId, TienId, JeanneDArcId, NayaId });
         }
 
         protected override IReadOnlyList<Guid> GetSummonLoadout()
@@ -69,11 +71,12 @@ namespace Worldshifters.Bots.Strategy
             if (raidSnapshot.Turn == 0)
             {
                 return DisableChargeAttack.Action.ContinueWith(_1 =>
-                    _1.GetHeroById(JeanneDArcId).UseAbility(3).ContinueWith(_2 =>
-                    _2.GetHeroById(ShivaId).UseAbility(0).ContinueWith(_3 =>
-                    _3.GetHeroById(NayaId).UseAbility(2).ContinueWith(_4 =>
-                    _4.UseSummon(TheSunSummonId).ContinueWith(_5 =>
-                    _5.Attack())))));
+                    _1.GetAvatar().UseAbility(0).ContinueWith(_2 =>
+                    _2.GetHeroById(JeanneDArcId).UseAbility(3).ContinueWith(_3 =>
+                    _3.GetHeroById(ShivaId).UseAbility(0).ContinueWith(_4 =>
+                    _4.GetHeroById(NayaId).UseAbility(2).ContinueWith(_5 =>
+                    _5.UseSummon(TheSunSummonId).ContinueWith(_6 =>
+                    _6.Attack()))))));
             }
 
             if (raidSnapshot.Turn <= 10 && ShouldLeaveRaid(raidSnapshot))
@@ -98,11 +101,20 @@ namespace Worldshifters.Bots.Strategy
             if (raidSnapshot.Turn == 10)
             {
                 // Tien assassin break burst time
-                raidSnapshot.GetHeroById(TienId).UseAbility(1).ContinueWith(_1 =>
-                    _1.GetHeroById(TienId).UseAbility(3).ContinueWith(_2 =>
-                    _2.UseSummon(TheSunSummonId).ContinueWith(_3 =>
-                    // If for some reason Bahamut has still not moved into its wind phase, wait for it to for damage optimization
-                    _3.Enemies[0].HpPercentage > 60 ? (NextRaidAction)Wait.For(50) : _3.Attack())));
+                if (!this.burstSetupComplete)
+                {
+                    raidSnapshot.GetAvatar().UseAbility(0).ContinueWith(_1 =>
+                        _1.GetHeroById(TienId).UseAbility(1).ContinueWith(_2 =>
+                        _2.GetHeroById(TienId).UseAbility(3).ContinueWith(_3 =>
+                        _3.UseSummon(TheSunSummonId).ContinueWith(_ =>
+                            {
+                                this.burstSetupComplete = true;
+                                return Pass.Action;
+                            }))));
+                }
+
+                // If for some reason Bahamut has still not moved into its wind phase, wait for it to for damage optimization
+                return raidSnapshot.Enemies[0].HpPercentage > 60 ? (NextRaidAction)Wait.For(50) : raidSnapshot.Attack();
             }
 
             if (raidSnapshot.Turn == 11)
@@ -112,8 +124,8 @@ namespace Worldshifters.Bots.Strategy
 
             if (raidSnapshot.Turn == 12)
             {
-                // Stack up Tien's ability 2 echoes
-                raidSnapshot.GetHeroById(TienId).UseAbility(1).ContinueWith(_1 =>
+                // Stack up Tien's ability 3 echoes
+                raidSnapshot.GetHeroById(TienId).UseAbility(2).ContinueWith(_1 =>
                     _1.UseSummon(ShivaSummonId).ContinueWith(_2 =>
                     _2.Attack()));
             }

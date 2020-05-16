@@ -36,6 +36,11 @@ namespace Worldshifters.Data.Raid
             throw new NotImplementedException();
         }
 
+        public EntitySnapshot GetAvatar()
+        {
+            throw new NotImplementedException();
+        }
+
         public void AddFieldEffect(string fieldEffectId)
         {
             throw new NotImplementedException();

@@ -25,6 +25,11 @@ namespace Worldshifters.Assets.Hero.Dark
         private const string FortifiedVigor = "narmaya/fortified_vigor";
         private const string GlasswingWaltzId = "narmaya/glasswing_waltz";
 
+        private static readonly ISet<Race> BoostedRaces = new HashSet<Race>
+        {
+            Race.Draph, Race.Primal, Race.Unknow,
+        };
+
         public static Hero NewInstance()
         {
             return new Hero
@@ -610,11 +615,6 @@ namespace Worldshifters.Assets.Hero.Dark
                 ShouldRepositionSpriteAnimation = true,
             };
         }
-
-        private static ISet<Race> BoostedRaces = new HashSet<Race>
-        {
-            Race.Draph, Race.Primal, Race.Unknow,
-        };
 
         private static void ProcessPassiveEffects(EntitySnapshot narmaya)
         {
