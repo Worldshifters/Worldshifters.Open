@@ -43,7 +43,17 @@ namespace Worldshifters.Data.Hero
 
         public bool ShouldRepositionSpriteAnimation { get; set; }
 
+        /// <summary>
+        /// Whether to render the hero ability casting animation or not.
+        /// </summary>
         public bool DoNotRenderAbilityCastEffect { get; set; }
+
+        /// <summary>
+        /// Whether the ability animation should be rendered for all allied raid participants or not.
+        /// </summary>
+        bool RendeForAllAllies { get; set; }
+
+        bool CantRecast { get; set; }
 
         public Types.AbilityType Type { get; set; }
 
