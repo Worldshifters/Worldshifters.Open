@@ -438,7 +438,6 @@ namespace Worldshifters.Assets.Hero.Earth
                         new StatusEffectSnapshot
                         {
                             Id = "threo/tiger_blessing",
-                            TurnDuration = 1,
                             Modifier = ModifierLibrary.FlatChargeAttackDamageCapBoost,
                             Strength = 100,
                         },
@@ -448,7 +447,6 @@ namespace Worldshifters.Assets.Hero.Earth
                         new StatusEffectSnapshot
                         {
                             Id = "threo/tiger_blessing_atk_up",
-                            TurnDuration = 1,
                             Modifier = ModifierLibrary.FlatAttackBoost,
                             Strength = 280,
                             IsUsedInternally = true,
@@ -644,7 +642,6 @@ namespace Worldshifters.Assets.Hero.Earth
                             new StatusEffectSnapshot
                             {
                                 Id = StatusEffectLibrary.JammedNpc,
-                                TurnDuration = 1,
                                 Strength = threo.Hero.Level >= 75 ? 125 : 100,
                                 ExtraData = new LinearAttackBoost
                                 {
@@ -660,7 +657,6 @@ namespace Worldshifters.Assets.Hero.Earth
                                 new StatusEffectSnapshot
                                 {
                                     Id = StatusEffectLibrary.HostilityDown,
-                                    TurnDuration = 1,
                                     Strength = -5,
                                 },
                                 raidActions);

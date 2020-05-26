@@ -33,8 +33,10 @@ namespace Worldshifters.Assets.Hero.Wind
                 Name = "Andira",
                 Races = { Race.Erune },
                 Gender = Gender.Female,
-                MaxAttack = 7560 + 360,
-                MaxHp = 1400 + 270,
+                MaxAttack = 8940 + 360,
+                AttackLevels = { 7560 },
+                MaxHp = 1660 + 270,
+                HpLevels = { 1400 },
                 MaxLevel = 100,
                 BaseDoubleAttackRate = 6,
                 BaseTripleAttackRate = 4.5,
@@ -276,10 +278,10 @@ namespace Worldshifters.Assets.Hero.Wind
                                     ExtraData = new MultihitDamage
                                     {
                                         Element = Element.Wind,
-                                        DamageCap = 400_000,
+                                        DamageCap = 630_000,
                                         HitAllTargets = true,
                                         HitNumber = 1,
-                                        DamageModifier = 2.0,
+                                        DamageModifier = 5.0,
                                     }.ToByteString(),
                                 },
                             },
@@ -310,7 +312,7 @@ namespace Worldshifters.Assets.Hero.Wind
                                         },
                                         raidActions,
                                         ($"{MizaruId}_{newStackCount}", ModifierLibrary.FlatAttackBoost, -5 * newStackCount),
-                                        ($"{IwazaruId}_{newStackCount}", ModifierLibrary.FlatDefenseBoost, -5 * stacks),
+                                        ($"{IwazaruId}_{newStackCount}", ModifierLibrary.FlatDefenseBoost, -5 * newStackCount),
                                         ($"{KikazaruId}_{newStackCount}", ModifierLibrary.None, 0));
 
                                     var statusEffectsToRemove = new HashSet<string>();
@@ -324,20 +326,20 @@ namespace Worldshifters.Assets.Hero.Wind
                                     enemy.RemoveStatusEffects(statusEffectsToRemove);
                                 }
 
-                                andira.Raid.Allies.ApplyStatusEffectsFromTemplate(
+                                andira.ApplyStatusEffectsFromTemplate(
                                     new StatusEffectSnapshot
                                     {
-                                                                                IsPassiveEffect = true,
-                                                                                IsUsedInternally = true,
-                                                                                TurnDuration = int.MaxValue,
-                                                                                TriggerCondition = new TriggerCondition
+                                        IsPassiveEffect = true,
+                                        IsUsedInternally = true,
+                                        TurnDuration = int.MaxValue,
+                                        TriggerCondition = new TriggerCondition
                                         {
                                             Type = TriggerCondition.Types.Type.HasStatusEffect,
                                             Data = $"{KikazaruId}_{newStackCount}",
                                         },
                                     },
                                     ($"{KikazaruId}_{newStackCount}_ca_boost", ModifierLibrary.FlatChargeAttackDamageBoost, 15 * newStackCount),
-                                    ($"{KikazaruId}_{newStackCount}_ca_cap_boost", ModifierLibrary.FlatChargeAttackDamageCapBoost, 15 * newStackCount));
+                                    ($"{KikazaruId}_{newStackCount}_ca_cap_boost", ModifierLibrary.FlatChargeAttackDamageCapBoost, 10 * newStackCount));
 
                                 andira.GlobalState["decree_stacks"].IntegerValue = Math.Min(andira.GlobalState["decree_stacks"].IntegerValue + 1, 3);
                             },
@@ -450,7 +452,6 @@ namespace Worldshifters.Assets.Hero.Wind
                         {
                             Id = StatusEffectLibrary.Substitute,
                             EffectTargettingType = EffectTargettingType.OnSelectedAlly,
-                            TurnDuration = 1,
                         }.ToByteString(),
                     },
                 },
@@ -596,15 +597,6 @@ namespace Worldshifters.Assets.Hero.Wind
                     continue;
                 }
 
-                ally.RemoveStatusEffects(new HashSet<string>
-                {
-                    $"{LoopId}_atk_up",
-                    $"{LoopId}_def_up",
-                    $"{LoopId}_debuff_rate_up",
-                    $"{LoopId}_da_up",
-                    $"{LoopId}_ta_up",
-                });
-
                 if (andira.Hero.Level == 100)
                 {
                     ally.ApplyStatusEffectsFromTemplate(
@@ -613,6 +605,7 @@ namespace Worldshifters.Assets.Hero.Wind
                             IsUndispellable = true,
                             TurnDuration = loop.TurnDuration,
                         },
+                        overrideExistingEffects: true,
                         ($"{LoopId}_atk_up", ModifierLibrary.AttackBoost, 50),
                         ($"{LoopId}_def_up", ModifierLibrary.FlatDefenseBoost, 50),
                         ($"{LoopId}_debuff_rate_up", ModifierLibrary.FlatDebuffSuccessRateBoost, 30),
@@ -649,6 +642,7 @@ namespace Worldshifters.Assets.Hero.Wind
                             IsUndispellable = true,
                             TurnDuration = loop.TurnDuration,
                         },
+                        overrideExistingEffects: true,
                         ($"{LoopId}_atk_up", ModifierLibrary.AttackBoost, attackAndDefBoost),
                         ($"{LoopId}_def_up", ModifierLibrary.FlatDefenseBoost, attackAndDefBoost),
                         ($"{LoopId}_debuff_rate_up", ModifierLibrary.FlatDebuffSuccessRateBoost, debuffSuccessRateBoost),

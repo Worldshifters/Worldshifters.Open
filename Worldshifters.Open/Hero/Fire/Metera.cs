@@ -170,7 +170,6 @@ namespace Worldshifters.Assets.Hero.Fire
                         new StatusEffectSnapshot
                         {
                             Id = "metera/echo",
-                            TurnDuration = 1,
                             Strength = 80,
                             Modifier = ModifierLibrary.AdditionalDamage,
                             IsUsedInternally = true,
@@ -267,16 +266,7 @@ namespace Worldshifters.Assets.Hero.Fire
                 },
                 ProcessEffects = (metera, targetPositionInFrontline, raidActions) =>
                 {
-                    var seals = metera.GetStatusEffectStacks(AetherialSealId);
-                    metera.RemoveStatusEffect($"{AetherialSealId}_seals");
-                    metera.ApplyStatusEffect(
-                        new StatusEffectSnapshot
-                        {
-                            Id = $"{AetherialSealId}_5",
-                            Strength = 5,
-                            TurnDuration = int.MaxValue,
-                        },
-                        raidActions);
+                    metera.ApplyOrOverrideStatusEffectStacks(AetherialSealId, initialStackCount: 1, increment: 1, maxStackCount: 5, raidActions);
                 },
                 AnimationName = "ab_motion",
             };

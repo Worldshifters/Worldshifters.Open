@@ -186,7 +186,6 @@ namespace Worldshifters.Assets.Hero.Water
                             IsUndispellable = true,
                             IsUsedInternally = true,
                             Modifier = ModifierLibrary.FlatCriticalHitRateBoost,
-                            TurnDuration = 1,
                             ExtraData = new CriticalHit
                             {
                                 DamageMultiplier = 0.5,
@@ -198,7 +197,6 @@ namespace Worldshifters.Assets.Hero.Water
                             {
                                 IsUndispellable = true,
                                 IsUsedInternally = true,
-                                TurnDuration = 1,
                             },
                             ("pholia/recognition/da_up", ModifierLibrary.FlatDoubleAttackRateBoost, double.PositiveInfinity),
                             ("pholia/recognition/ta_up", ModifierLibrary.FlatTripleAttackRateBoost, 20),
@@ -288,7 +286,6 @@ namespace Worldshifters.Assets.Hero.Water
                     {
                         IsUndispellable = true,
                         IsUsedInternally = true,
-                        TurnDuration = 1,
                         TriggerCondition = new StatusEffectSnapshot.Types.TriggerCondition
                         {
                             Type = StatusEffectSnapshot.Types.TriggerCondition.Types.Type.HasStatusEffect,
@@ -305,7 +302,6 @@ namespace Worldshifters.Assets.Hero.Water
                         Id = WhiteVeilId + "/crit_rate_up",
                         IsUndispellable = true,
                         IsUsedInternally = true,
-                        TurnDuration = 1,
                         Strength = 100,
                         Modifier = ModifierLibrary.FlatCriticalHitRateBoost,
                         ExtraData = new CriticalHit
@@ -332,7 +328,6 @@ namespace Worldshifters.Assets.Hero.Water
                         BaseAccuracy = double.MaxValue,
                         IsUndispellable = true,
                         IsUsedInternally = true,
-                        TurnDuration = 1,
                         TriggerCondition = new StatusEffectSnapshot.Types.TriggerCondition
                         {
                             Type = StatusEffectSnapshot.Types.TriggerCondition.Types.Type.HasStatusEffect,

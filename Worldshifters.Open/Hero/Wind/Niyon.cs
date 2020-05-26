@@ -210,8 +210,7 @@ namespace Worldshifters.Assets.Hero.Wind
                         {
                             Name = "Nine-Realm's Security",
                             Type = Ability.Types.AbilityType.Support,
-                            Cooldown = int.MaxValue,
-                            InitialCooldown = 0,
+                            InitialCooldown = 10,
                             ModelMetadata = new ModelMetadata
                             {
                                 JsAssetPath =
@@ -232,13 +231,14 @@ namespace Worldshifters.Assets.Hero.Wind
                                 ApplyStatusEffect.FromTemplate(
                                     new ApplyStatusEffect
                                     {
-                                                                                TurnDuration = 4,
-                                                                                EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
+                                        TurnDuration = 4,
+                                        EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                                     },
                                     (StatusEffectLibrary.AdditionalWindDamageNpc, 50),
                                     (StatusEffectLibrary.TripleAttackRateUpNpc, double.PositiveInfinity)),
                             },
                             AnimationName = "ab_motion",
+                            CantRecast = true,
                         },
                         UpgradedAbilityIndex = 3,
                     },
@@ -310,7 +310,7 @@ namespace Worldshifters.Assets.Hero.Wind
                     niyon.Raid.Enemies.ApplyStatusEffects(
                         new StatusEffectSnapshot
                         {
-                            Id = $"{StatusEffectLibrary.AsleepLocal}_{randomAsleepDuration}",
+                            Id = $"{StatusEffectLibrary.AsleepLocal}",
                             BaseAccuracy = 75,
                             TurnDuration = randomAsleepDuration,
                             IsLocal = true,
@@ -351,8 +351,8 @@ namespace Worldshifters.Assets.Hero.Wind
                     ApplyStatusEffect.FromTemplate(
                         new ApplyStatusEffect
                         {
-                                                        TurnDuration = 3,
-                                                        EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
+                            TurnDuration = 3,
+                            EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                         },
                         (StatusEffectLibrary.DoubleAttackRateUpNpc, 30 * baseStrengthBoost),
                         (StatusEffectLibrary.AttackUpNpc, 20 * baseStrengthBoost),

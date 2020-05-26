@@ -6,6 +6,9 @@ namespace Worldshifters.Data.Raid
 {
     using Google.Protobuf;
 
+    /// <summary>
+    /// When neither <see cref="RemainingDurationInSeconds"/> not <see cref="TurnDuration"/> is provided, the status effect is considered to be turn based and will have a <see cref="TurnDuration"/> equal to 1.
+    /// </summary>
     public class StatusEffectSnapshot
     {
         /// <summary>
@@ -53,6 +56,9 @@ namespace Worldshifters.Data.Raid
         /// </summary>
         public int TurnDuration { get; set; }
 
+        /// <remarks>
+        /// Turn based status effects applied during an attack will have an <see cref="InitialTurnDuration"/> equal to <see cref="TurnDuration"/> - 1.
+        /// </remarks>
         public int InitialTurnDuration { get; }
 
         /// <summary>

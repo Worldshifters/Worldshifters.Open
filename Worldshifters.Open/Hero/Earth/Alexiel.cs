@@ -218,7 +218,6 @@ namespace Worldshifters.Assets.Hero.Earth
                         ExtraData = new ApplyStatusEffect
                         {
                             Id = StatusEffectLibrary.DamageCutUpNpc,
-                            TurnDuration = 1,
                             EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                         }.ToByteString(),
                     },
@@ -304,7 +303,6 @@ namespace Worldshifters.Assets.Hero.Earth
                             IsUsedInternally = true,
                             Strength = 30,
                             IsPassiveEffect = true,
-                            TurnDuration = 1,
                         });
                 }
             }

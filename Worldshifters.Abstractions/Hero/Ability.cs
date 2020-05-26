@@ -51,14 +51,14 @@ namespace Worldshifters.Data.Hero
         /// <summary>
         /// Whether the ability animation should be rendered for all allied raid participants or not.
         /// </summary>
-        bool RendeForAllAllies { get; set; }
+        public bool RenderForAllAllies { get; set; }
 
-        bool CantRecast { get; set; }
+        public bool CantRecast { get; set; }
 
         public Types.AbilityType Type { get; set; }
 
         /// <summary>
-        /// Input parameters: caster, target position in frontline (0-indexed).
+        /// Callback called when an ability is cast, before any of its <see cref="Effects"/> is applied. Input parameters: caster, target position in frontline.
         /// </summary>
         public Action<EntitySnapshot, int, IList<RaidAction>> ProcessEffects { get; set; }
 

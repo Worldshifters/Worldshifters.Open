@@ -2,10 +2,6 @@
 // Copyright (c) Worldshifters. All rights reserved.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using Worldshifters.Data.Raid;
-
 namespace Worldshifters.Data
 {
     public static class StatusEffectLibrary
@@ -62,6 +58,7 @@ namespace Worldshifters.Data
         public static string AttackDownSummonLocal;
         public static string AttackDownWeapon;
         public static string AttackUpNpc;
+        public static string AttackUpNpcLocal;
         public static string AttackUpSummon;
         public static string AttackUpWeapon;
         public static string AuroraCrest;
@@ -257,6 +254,7 @@ namespace Worldshifters.Data
         public static string DefenseDownSummonLocal;
         public static string DefenseDownWeapon;
         public static string DefenseUpNpc;
+        public static string DefenseUpNpcLocal;
         public static string DefenseUpSummon;
         public static string DefenseUpWeapon;
         public static string Delay;
@@ -280,6 +278,7 @@ namespace Worldshifters.Data
         public static string DodgeRateBoostSummon;
 
         public static string DoubleAttackRateDownNpc;
+        public static string DoubleAttackRateDownNpcLocal;
         public static string DoubleAttackRateDownSummon;
         public static string DoubleAttackRateDownWeapon;
         public static string DoubleAttackRateUpNpc;
@@ -316,6 +315,7 @@ namespace Worldshifters.Data
         public static string EarthDefenseDownNpc;
         public static string EarthElementalAttackBoostAmplificationNpc;
         public static string EarthSwitch;
+        public static string EquipmentSkillDamageCapUp;
         public static string FireAttackDownNpc;
         public static string FireAttackDownSummon;
         public static string FireAttackDownWeapon;
@@ -399,6 +399,7 @@ namespace Worldshifters.Data
 
         public static string ParalyzedLocal;
         public static string Petrified;
+        public static string PetrifiedLocal;
 
         /// <summary>
         /// <see cref="PoisonedNpc"/> status effects must have <see cref="Raid.StatusEffectSnapshot.ExtraData"/> of type <see cref="Hero.Burn"/>.
@@ -499,6 +500,7 @@ namespace Worldshifters.Data
         public static string Tenacity;
 
         public static string TripleAttackRateDownNpc;
+        public static string TripleAttackRateDownNpcLocal;
         public static string TripleAttackRateDownSummon;
         public static string TripleAttackRateDownWeapon;
         public static string TripleAttackRateUpNpc;
@@ -543,10 +545,5 @@ namespace Worldshifters.Data
         public static string WindDefenseDownNpc;
         public static string WindElementalAttackBoostAmplificationNpc;
         public static string WindSwitch;
-
-        public static void UpdatePhaseOfTheMoon(EntitySnapshot ally, int currentMoonStrength, int moonStrength, IList<RaidAction> raidActions)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

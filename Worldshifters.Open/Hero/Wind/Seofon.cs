@@ -136,7 +136,6 @@ namespace Worldshifters.Assets.Hero.Wind
                 {
                     Name = string.Empty,
                     HitCount = { 8 },
-
                     ModelMetadata =
                     {
                         new ModelMetadata
@@ -203,7 +202,6 @@ namespace Worldshifters.Assets.Hero.Wind
                         {
                             Name = "Seven-Star's Brilliance",
                             Type = Ability.Types.AbilityType.Support,
-                            Cooldown = int.MaxValue,
                             InitialCooldown = 10,
                             ModelMetadata = new ModelMetadata
                             {
@@ -240,16 +238,14 @@ namespace Worldshifters.Assets.Hero.Wind
                                 }
 
                                 seofon.Raid.Allies.ApplyStatusEffectsFromTemplate(
-                                    new StatusEffectSnapshot
-                                    {
-                                                                                TurnDuration = 1,
-                                    },
+                                    new StatusEffectSnapshot(),
                                     raidActions,
                                     ("seofon/ca_up", ModifierLibrary.FlatChargeAttackDamageBoost, 150),
                                     ("seofon/ca_cap_up", ModifierLibrary.FlatChargeAttackDamageCapBoost, 90));
                             },
                             AnimationName = "ab_motion",
                             ShouldRepositionSpriteAnimation = true,
+                            CantRecast = true,
                         },
                         UpgradedAbilityIndex = 3,
                     },
@@ -429,7 +425,6 @@ namespace Worldshifters.Assets.Hero.Wind
                 new StatusEffectSnapshot
                 {
                     Id = "seofon/passive",
-                    TurnDuration = 1,
                     IsUsedInternally = true,
                     IsUndispellable = true,
                     Strength = 50,
@@ -442,7 +437,6 @@ namespace Worldshifters.Assets.Hero.Wind
                     new StatusEffectSnapshot
                     {
                         Id = "seofon/passive_2",
-                        TurnDuration = 1,
                         IsUsedInternally = true,
                         IsUndispellable = true,
                         Strength = 10,
@@ -471,11 +465,7 @@ namespace Worldshifters.Assets.Hero.Wind
             if (stacks == 1)
             {
                 seofon.ApplyStatusEffectsFromTemplate(
-                    new StatusEffectSnapshot
-                    {
-                        IsUsedInternally = true,
-                        TurnDuration = 1,
-                    },
+                    new StatusEffectSnapshot { IsUsedInternally = true },
                     (SwordshineId + "/atk_up", ModifierLibrary.AttackBoost, 5),
                     (SwordshineId + "/def_up", ModifierLibrary.FlatDefenseBoost, 5),
                     (SwordshineId + "/da_up", ModifierLibrary.FlatDoubleAttackRateBoost, 50),
@@ -484,11 +474,7 @@ namespace Worldshifters.Assets.Hero.Wind
             else if (stacks == 2)
             {
                 seofon.ApplyStatusEffectsFromTemplate(
-                    new StatusEffectSnapshot
-                    {
-                        IsUsedInternally = true,
-                        TurnDuration = 1,
-                    },
+                    new StatusEffectSnapshot { IsUsedInternally = true },
                     (SwordshineId + "/atk_up", ModifierLibrary.AttackBoost, 10),
                     (SwordshineId + "/def_up", ModifierLibrary.FlatDefenseBoost, 10),
                     (SwordshineId + "/da_up", ModifierLibrary.FlatDoubleAttackRateBoost, 3),
@@ -497,11 +483,7 @@ namespace Worldshifters.Assets.Hero.Wind
             else if (stacks == 3)
             {
                 seofon.ApplyStatusEffectsFromTemplate(
-                    new StatusEffectSnapshot
-                    {
-                        IsUsedInternally = true,
-                        TurnDuration = 1,
-                    },
+                    new StatusEffectSnapshot { IsUsedInternally = true },
                     (SwordshineId + "/atk_up", ModifierLibrary.AttackBoost, 10),
                     (SwordshineId + "/def_up", ModifierLibrary.FlatDefenseBoost, 10),
                     (SwordshineId + "/ta_up", ModifierLibrary.FlatTripleAttackRateBoost, 100));
@@ -509,7 +491,6 @@ namespace Worldshifters.Assets.Hero.Wind
                     new StatusEffectSnapshot
                     {
                         Id = SwordshineId + "/crit_up",
-                        TurnDuration = 1,
                         IsUsedInternally = true,
                         Strength = 100,
                         Modifier = ModifierLibrary.FlatCriticalHitRateBoost,
@@ -522,11 +503,7 @@ namespace Worldshifters.Assets.Hero.Wind
             else if (stacks == 4)
             {
                 seofon.ApplyStatusEffectsFromTemplate(
-                    new StatusEffectSnapshot
-                    {
-                        IsUsedInternally = true,
-                        TurnDuration = 1,
-                    },
+                    new StatusEffectSnapshot { IsUsedInternally = true },
                     (SwordshineId + "/atk_up", ModifierLibrary.AttackBoost, 15),
                     (SwordshineId + "/def_up", ModifierLibrary.FlatDefenseBoost, 15),
                     (SwordshineId + "/ta_up", ModifierLibrary.FlatTripleAttackRateBoost, 100));
@@ -534,7 +511,6 @@ namespace Worldshifters.Assets.Hero.Wind
                     new StatusEffectSnapshot
                     {
                         Id = SwordshineId + "/crit_up",
-                        TurnDuration = 1,
                         IsUsedInternally = true,
                         Strength = 100,
                         Modifier = ModifierLibrary.FlatCriticalHitRateBoost,
@@ -547,11 +523,7 @@ namespace Worldshifters.Assets.Hero.Wind
             else if (stacks == 5)
             {
                 seofon.ApplyStatusEffectsFromTemplate(
-                    new StatusEffectSnapshot
-                    {
-                        IsUsedInternally = true,
-                        TurnDuration = 1,
-                    },
+                    new StatusEffectSnapshot { IsUsedInternally = true },
                     (SwordshineId + "/atk_up", ModifierLibrary.AttackBoost, 20),
                     (SwordshineId + "/def_up", ModifierLibrary.FlatDefenseBoost, 20),
                     (SwordshineId + "/ta_up", ModifierLibrary.FlatTripleAttackRateBoost, 100));
@@ -559,7 +531,6 @@ namespace Worldshifters.Assets.Hero.Wind
                     new StatusEffectSnapshot
                     {
                         Id = SwordshineId + "/crit_up",
-                        TurnDuration = 1,
                         IsUsedInternally = true,
                         Strength = 100,
                         Modifier = ModifierLibrary.FlatCriticalHitRateBoost,

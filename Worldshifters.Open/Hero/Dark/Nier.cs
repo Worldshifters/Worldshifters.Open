@@ -254,7 +254,6 @@ namespace Worldshifters.Assets.Hero.Dark
                         entity.ApplyStatusEffect(new StatusEffectSnapshot
                         {
                             Id = $"{WorldOfDeathAndLoveId}/atk_up",
-                            TurnDuration = 1,
                             IsUsedInternally = true,
                             Modifier = ModifierLibrary.FlatAttackBoost,
                             Strength = 20,
@@ -267,7 +266,6 @@ namespace Worldshifters.Assets.Hero.Dark
                         entity.ApplyStatusEffect(new StatusEffectSnapshot
                         {
                             Id = $"{WorldOfDeathAndLoveId}/echo",
-                            TurnDuration = 1,
                             IsUsedInternally = true,
                             Modifier = ModifierLibrary.AdditionalDamage,
                             Strength = 30,
@@ -357,20 +355,20 @@ namespace Worldshifters.Assets.Hero.Dark
                     ApplyStatusEffect.FromTemplate(
                         new ApplyStatusEffect
                         {
-                                                        IsUndispellable = true,
-                                                        EffectTargettingType = EffectTargettingType.OnSelf,
-                                                        TurnDuration = 4,
-                                                        IsUsedInternally = true,
+                            IsUndispellable = true,
+                            EffectTargettingType = EffectTargettingType.OnSelf,
+                            TurnDuration = 4,
+                            IsUsedInternally = true,
                         },
                         (StatusEffectLibrary.TripleAttackRateUpNpc, double.PositiveInfinity),
                         (StatusEffectLibrary.DamageReductionUpNpc, 50)),
                     ApplyStatusEffect.FromTemplate(
                         new ApplyStatusEffect
                         {
-                                                        IsUndispellable = true,
-                                                        EffectTargettingType = EffectTargettingType.OnSelectedAlly,
-                                                        TurnDuration = 4,
-                                                        IsUsedInternally = true,
+                            IsUndispellable = true,
+                            EffectTargettingType = EffectTargettingType.OnSelectedAlly,
+                            TurnDuration = 4,
+                            IsUsedInternally = true,
                         },
                         (StatusEffectLibrary.TripleAttackRateUpNpc, double.PositiveInfinity),
                         (StatusEffectLibrary.DamageReductionUpNpc, 50)),
@@ -487,6 +485,7 @@ namespace Worldshifters.Assets.Hero.Dark
                             IsUndispellable = true,
                             TurnDuration = 4,
                             BaseAccuracy = double.PositiveInfinity,
+                            IsLocal = true,
                         }.ToByteString(),
                     },
                 },
@@ -534,7 +533,6 @@ namespace Worldshifters.Assets.Hero.Dark
                 {
                     IsUsedInternally = true,
                     IsUndispellable = true,
-                    TurnDuration = 1,
                 },
                 ($"{LoveRedemptionId}/ca_up", ModifierLibrary.FlatChargeAttackDamageBoost, (14 - loveRedemptionStacks) * 10),
                 ($"{LoveRedemptionId}/ca_cap_up", ModifierLibrary.FlatChargeAttackDamageCapBoost, (14 - loveRedemptionStacks) * 5),

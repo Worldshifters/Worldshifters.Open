@@ -282,12 +282,7 @@ namespace Worldshifters.Assets.Hero.Dark
 
                         hero.DealRawDamage(hero.Hp - 1, Element.Null, raidActions, countAsDamage: false);
 
-                        hero.ApplyStatusEffect(
-                            new StatusEffectSnapshot
-                            {
-                                Id = StatusEffectLibrary.Unchallenged,
-                                TurnDuration = 1,
-                            }, raidActions);
+                        hero.ApplyStatusEffect(new StatusEffectSnapshot { Id = StatusEffectLibrary.Unchallenged }, raidActions);
 
                         hero.ApplyStatusEffect(
                             new StatusEffectSnapshot

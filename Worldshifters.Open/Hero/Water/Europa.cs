@@ -76,7 +76,6 @@ namespace Worldshifters.Assets.Hero.Water
                                 new ApplyStatusEffect
                                 {
                                     EffectTargettingType = EffectTargettingType.OnSelf,
-                                    TurnDuration = 1,
                                 },
                                 (StatusEffectLibrary.TripleAttackRateUpNpc, 100),
                                 (StatusEffectLibrary.AdditionalWaterDamageNpc, 70)),
@@ -356,13 +355,7 @@ namespace Worldshifters.Assets.Hero.Water
                             continue;
                         }
 
-                        var stacks = ally.GetStatusEffectStacks(StarSanctuaryId);
-                        if (stacks > 0)
-                        {
-                            ally.RemoveStatusEffect($"{StarSanctuaryId}_{stacks}");
-                        }
-
-                        ally.ApplyStatusEffectStacks(StarSanctuaryId, 2, raidActions, isUndispellable: true);
+                        ally.ApplyOrOverrideStatusEffectStacks(StarSanctuaryId, initialStackCount: 2, increment: 2, maxStackCount: 2, raidActions, isUndispellable: true);
                         ally.ApplyStatusEffect(
                             new StatusEffectSnapshot
                             {
@@ -428,7 +421,6 @@ namespace Worldshifters.Assets.Hero.Water
                         Id = StatusEffectLibrary.WaterElementalAttackBoostAmplificationNpc,
                         IsPassiveEffect = true,
                         IsUsedInternally = true,
-                        TurnDuration = 1,
                     });
                 }
             }

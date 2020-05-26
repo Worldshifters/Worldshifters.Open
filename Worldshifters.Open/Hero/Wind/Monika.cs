@@ -137,10 +137,7 @@ namespace Worldshifters.Assets.Hero.Wind
                 OnAbilityEnd = (monika, ability, raidActions) =>
                 {
                     monika.ApplyStatusEffectsFromTemplate(
-                        new StatusEffectSnapshot
-                        {
-                            TurnDuration = 1,
-                        },
+                        new StatusEffectSnapshot(),
                         raidActions,
                         (StatusEffectLibrary.TripleAttackRateUpNpc, ModifierLibrary.FlatTripleAttackRateBoost, double.MaxValue),
                         (StatusEffectLibrary.HostilityUp, ModifierLibrary.HostilityBoost, 15),

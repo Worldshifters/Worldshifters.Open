@@ -103,7 +103,7 @@ namespace Worldshifters.Assets.Hero.Fire
                                 },
                                 (StatusEffectLibrary.DefenseDownNpcLocal, -25),
                                 (StatusEffectLibrary.AttackDownNpcLocal, -25),
-                                (StatusEffectLibrary.Shorted, 0)),
+                                (StatusEffectLibrary.PetrifiedLocal, 0)),
                         },
                         AnimationName = "ab_motion",
                         ProcessEffects = (naya, _, raidActions) =>

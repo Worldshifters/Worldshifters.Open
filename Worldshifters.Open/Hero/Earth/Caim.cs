@@ -112,10 +112,7 @@ namespace Worldshifters.Assets.Hero.Earth
                 },
                 SpecialAbility = new SpecialAbility
                 {
-                    Name = string.Empty,
-
                     HitCount = { 1 },
-
                     ModelMetadata =
                     {
                         new ModelMetadata
@@ -627,7 +624,6 @@ namespace Worldshifters.Assets.Hero.Earth
                 caim.Raid.Allies.ApplyStatusEffectsFromTemplate(
                     new StatusEffectSnapshot
                     {
-                        TurnDuration = 1,
                         ElementRestriction = Element.Earth,
                         IsPassiveEffect = true,
                         IsUsedInternally = true,
@@ -647,7 +643,6 @@ namespace Worldshifters.Assets.Hero.Earth
                     {
                         IsUsedInternally = true,
                         IsUndispellable = true,
-                        TurnDuration = 1,
                     },
                     ($"{SpadesId}/atk_up", ModifierLibrary.FlatAttackBoost, StackCountToBuffStrength(caim.GetStatusEffectStacks(SpadesId))),
                     ($"{HeartsId}/healing_up", ModifierLibrary.HealingBoost, StackCountToBuffStrength(heartStacks)),
@@ -660,7 +655,6 @@ namespace Worldshifters.Assets.Hero.Earth
                     caim.ApplyStatusEffect(new StatusEffectSnapshot
                     {
                         Id = $"{HeartsId}/drain",
-                        TurnDuration = 1,
                         Modifier = ModifierLibrary.Drain,
                         Strength = 10,
                         IsUsedInternally = true,
@@ -679,7 +673,6 @@ namespace Worldshifters.Assets.Hero.Earth
                     caim.ApplyStatusEffect(new StatusEffectSnapshot
                     {
                         Id = StatusEffectLibrary.WaterSwitch,
-                        TurnDuration = 1,
                         IsUsedInternally = true,
                         IsUndispellable = true,
                     });
@@ -690,7 +683,6 @@ namespace Worldshifters.Assets.Hero.Earth
                     caim.ApplyStatusEffect(new StatusEffectSnapshot
                     {
                         Id = $"{ClubsId}/echo",
-                        TurnDuration = 1,
                         IsUsedInternally = true,
                         IsUndispellable = true,
                         Strength = 10,

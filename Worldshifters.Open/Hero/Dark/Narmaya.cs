@@ -531,7 +531,6 @@ namespace Worldshifters.Assets.Hero.Dark
                                     {
                                         Id = StatusEffectLibrary.AttackUpNpc,
                                         Strength = 20,
-                                        TurnDuration = 1,
                                         EffectTargettingType = EffectTargettingType.OnSelf,
                                     }.ToByteString(),
                                 },
@@ -542,7 +541,6 @@ namespace Worldshifters.Assets.Hero.Dark
                                     {
                                         Id = StatusEffectLibrary.AssassinStrike,
                                         Strength = 280,
-                                        TurnDuration = 1,
                                         EffectTargettingType = EffectTargettingType.OnSelf,
                                         ExtraData = new AssassinStrike
                                         {
@@ -633,7 +631,6 @@ namespace Worldshifters.Assets.Hero.Dark
                 ally.ApplyStatusEffect(new StatusEffectSnapshot
                 {
                     Id = FortifiedVigor,
-                    TurnDuration = 1,
                     IsUsedInternally = true,
                     IsUndispellable = true,
                     Modifier = ModifierLibrary.AttackBoost,

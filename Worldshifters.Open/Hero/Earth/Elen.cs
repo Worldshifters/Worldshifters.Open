@@ -174,7 +174,6 @@ namespace Worldshifters.Assets.Hero.Earth
                         {
                             Name = "Eight-Life's Pilgrimage",
                             Type = Ability.Types.AbilityType.Support,
-                            Cooldown = int.MaxValue,
                             InitialCooldown = 10,
                             Effects =
                             {
@@ -215,6 +214,7 @@ namespace Worldshifters.Assets.Hero.Earth
                             },
                             ShouldRepositionSpriteAnimation = true,
                             AnimationName = "attack",
+                            CantRecast = true,
                         },
                         UpgradedAbilityIndex = 3,
                     },
@@ -305,7 +305,6 @@ namespace Worldshifters.Assets.Hero.Earth
                     elen.ApplyStatusEffectsFromTemplate(
                         new StatusEffectSnapshot
                         {
-                            TurnDuration = 1,
                             IsUsedInternally = true,
                             TriggerCondition = new StatusEffectSnapshot.Types.TriggerCondition
                             {

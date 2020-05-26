@@ -228,13 +228,7 @@ namespace Worldshifters.Assets.Hero.Dark
 
                             if (ferry.Raid.Turn >= 10)
                             {
-                                target.ApplyStatusEffect(
-                                    new StatusEffectSnapshot
-                                    {
-                                        Id = StatusEffectLibrary.TripleStrike,
-                                        TurnDuration = 1,
-                                    },
-                                    raidActions);
+                                target.ApplyStatusEffect(new StatusEffectSnapshot { Id = StatusEffectLibrary.TripleStrike }, raidActions);
                             }
                         },
                         AnimationName = "ab_motion",

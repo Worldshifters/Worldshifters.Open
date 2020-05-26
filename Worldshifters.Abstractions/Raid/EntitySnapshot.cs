@@ -186,6 +186,20 @@ namespace Worldshifters.Data.Raid
             throw new NotImplementedException();
         }
 
+        /// <param name="effect">
+        /// Effects which have <see cref="StatusEffectSnapshot.IsUsedInternally"/> set to true won't be
+        /// rendered on the player side (but are still taken into account for server-side calculations).
+        /// </param>
+        /// <param name="overrideExistingEffects"></param>
+        /// <param name="raidActions">
+        /// The list of raid updates for the current action. No visual effects for the status effect will be rendered
+        /// if null is passed.
+        /// </param>
+        public void ApplyStatusEffect(StatusEffectSnapshot effect, bool overrideExistingEffects, IList<RaidAction> raidActions = null)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Apply a status effect buff to the character with a stack count (for instance, Dark Opus weapon crests).
         /// </summary>
@@ -232,6 +246,29 @@ namespace Worldshifters.Data.Raid
         /// <param name="raidActions">The list of raid actions to process on the player's side.</param>
         /// <param name="idsAndModifiersAndStrength">A list of triplets of <see cref="StatusEffectSnapshot.Id"/>s, <see cref="Modifier"/>s and <see cref="StatusEffectSnapshot.Strength"/>s.</param>
         public void ApplyStatusEffectsFromTemplate(StatusEffectSnapshot template, IList<RaidAction> raidActions, params (string, Modifier, double)[] idsAndModifiersAndStrength)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Apply <see cref="StatusEffectSnapshot"/>s matching a template <see cref="StatusEffectSnapshot"/>.
+        /// </summary>
+        /// <param name="template">A template <see cref="ApplyStatusEffect"/>.</param>
+        /// <param name="overrideExistingStatusEffects"></param>
+        /// <param name="raidActions">The list of raid actions to process on the player's side.</param>
+        /// <param name="idsAndModifiersAndStrength">A list of triplets of <see cref="StatusEffectSnapshot.Id"/>s, <see cref="Modifier"/>s and <see cref="StatusEffectSnapshot.Strength"/>s.</param>
+        public void ApplyStatusEffectsFromTemplate(StatusEffectSnapshot template, bool overrideExistingEffects, IList<RaidAction> raidActions, params (string, Modifier, double)[] idsAndModifiersAndStrength)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Apply <see cref="StatusEffectSnapshot"/>s matching a template <see cref="StatusEffectSnapshot"/>.
+        /// </summary>
+        /// <param name="template">A template <see cref="ApplyStatusEffect"/>.</param>
+        /// <param name="overrideExistingStatusEffects"></param>
+        /// <param name="idsAndModifiersAndStrength">A list of triplets of <see cref="StatusEffectSnapshot.Id"/>s, <see cref="Modifier"/>s and <see cref="StatusEffectSnapshot.Strength"/>s.</param>
+        public void ApplyStatusEffectsFromTemplate(StatusEffectSnapshot template, bool overrideExistingEffects, params (string, Modifier, double)[] idsAndModifiersAndStrength)
         {
             throw new NotImplementedException();
         }

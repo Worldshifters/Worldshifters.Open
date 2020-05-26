@@ -29,7 +29,7 @@ namespace Worldshifters.Assets.Hero.Dark
                 Gender = Gender.Female,
                 MaxAttack = 7800,
                 MaxHp = 1480,
-                MaxLevel = 100,
+                MaxLevel = 80,
                 BaseDoubleAttackRate = 6,
                 BaseTripleAttackRate = 4.5,
                 Element = Element.Dark,
@@ -230,7 +230,7 @@ namespace Worldshifters.Assets.Hero.Dark
                     olivia.Raid.Enemies.ApplyStatusEffects(
                         new StatusEffectSnapshot
                         {
-                            Id = TwilightTerrorId + "_2",
+                            Id = TwilightTerrorId,
                             TurnDuration = 2,
                             IsLocal = true,
                             BaseAccuracy = 90,
@@ -247,7 +247,7 @@ namespace Worldshifters.Assets.Hero.Dark
                             TriggerCondition = new StatusEffectSnapshot.Types.TriggerCondition
                             {
                                 Type = StatusEffectSnapshot.Types.TriggerCondition.Types.Type.HasStatusEffect,
-                                Data = TwilightTerrorId + "_2",
+                                Data = TwilightTerrorId,
                                 LinkToParentCondition = true,
                             },
                         },
@@ -385,7 +385,6 @@ namespace Worldshifters.Assets.Hero.Dark
                 new StatusEffectSnapshot
                 {
                     Id = "olivia/passive/echo",
-                    TurnDuration = 1,
                     Strength = Math.Min(30, 3 * olivia.Raid.Turn),
                     Modifier = ModifierLibrary.AdditionalDamage,
                     AttackElementRestriction = Element.Dark,
@@ -397,7 +396,6 @@ namespace Worldshifters.Assets.Hero.Dark
                 new StatusEffectSnapshot
                 {
                     Id = "olivia/passive/light_def_down",
-                    TurnDuration = 1,
                     Strength = Math.Max(-30, -3 * olivia.Raid.Turn),
                     Modifier = ModifierLibrary.FlatDefenseBoost,
                     AttackElementRestriction = Element.Light,
@@ -415,7 +413,6 @@ namespace Worldshifters.Assets.Hero.Dark
                         Modifier = ModifierLibrary.Seraphic,
                         AttackElementRestriction = Element.Dark,
                         Strength = 10,
-                        TurnDuration = 1,
                         IsPassiveEffect = true,
                         IsUsedInternally = true,
                     });
