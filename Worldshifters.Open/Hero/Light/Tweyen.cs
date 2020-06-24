@@ -15,9 +15,9 @@ namespace Worldshifters.Assets.Hero.Light
 
     public static class Tweyen
     {
-        public static Guid Id = Guid.Parse("ea84d795-d699-4825-833c-82a8713bff52");
+        public const string BringTheThunderId = "tweyen/bring_the_thunder";
 
-        private const string BringTheThunderId = "tweyen/bring_the_thunder";
+        public static Guid Id = Guid.Parse("ea84d795-d699-4825-833c-82a8713bff52");
 
         public static Hero NewInstance()
         {
@@ -109,6 +109,7 @@ namespace Worldshifters.Assets.Hero.Light
                                     Path = "npc/ea84d795-d699-4825-833c-82a8713bff52/model/0/nsp_3710072000_01.png",
                                 },
                             },
+                            DisplayRegistrationPointY = 150,
                         },
                     },
                     Effects =
@@ -184,7 +185,6 @@ namespace Worldshifters.Assets.Hero.Light
                         {
                             Name = "Two-Crown's Strife",
                             Type = Ability.Types.AbilityType.Support,
-                            Cooldown = int.MaxValue,
                             InitialCooldown = 10,
                             ModelMetadata = new ModelMetadata
                             {
@@ -236,6 +236,7 @@ namespace Worldshifters.Assets.Hero.Light
                                 }
                             },
                             AnimationName = "attack",
+                            CantRecast = true,
                         },
                         UpgradedAbilityIndex = 3,
                     },
@@ -319,7 +320,6 @@ namespace Worldshifters.Assets.Hero.Light
                         {
                             Id = StatusEffectLibrary.Dodge,
                             Strength = 1,
-                            TurnDuration = 1,
                             EffectTargettingType = EffectTargettingType.OnSelf,
                         }.ToByteString(),
                     },
@@ -526,7 +526,7 @@ namespace Worldshifters.Assets.Hero.Light
                         damage.DamageCap = 900_000;
                         damage.ProcessEffects(tweyen, tweyen.Raid.SelectedTarget, raidActions);
 
-                        if (tweyen.GetStatusEffects().Any(e => e.Id == BringTheThunderId))
+                        if (tweyen.HasStatusEffect(BringTheThunderId))
                         {
                             TryParalyze(target, raidActions);
                         }
@@ -541,7 +541,7 @@ namespace Worldshifters.Assets.Hero.Light
                                                 .Sum(e => e.GetDebuffs().Count() * 0.5);
                     damage.ProcessEffects(tweyen, tweyen.Raid.SelectedTarget, raidActions);
 
-                    if (tweyen.GetStatusEffects().All(e => e.Id != BringTheThunderId))
+                    if (!tweyen.HasStatusEffect(BringTheThunderId))
                     {
                         return;
                     }

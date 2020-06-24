@@ -5,7 +5,6 @@
 namespace Worldshifters.Assets.Hero.Wind
 {
     using System;
-    using System.Linq;
     using Google.Protobuf;
     using Worldshifters.Data;
     using Worldshifters.Data.Hero;
@@ -166,8 +165,7 @@ namespace Worldshifters.Assets.Hero.Wind
                         chargeAttackAdditionalDamage.Cast(niyon, raidActions);
                         foreach (var ally in niyon.Raid.Allies)
                         {
-                            foreach (var buff in ally.GetStatusEffects().Where(e =>
-                                e.Id == HarmonicsId || e.Id.StartsWith(SharpingId, StringComparison.OrdinalIgnoreCase)))
+                            foreach (var buff in ally.GetStatusEffects(HarmonicsId, $"{SharpingId}_da_up", $"{SharpingId}_ta_up"))
                             {
                                 buff.TurnDuration += 2;
                             }
@@ -310,7 +308,7 @@ namespace Worldshifters.Assets.Hero.Wind
                     niyon.Raid.Enemies.ApplyStatusEffects(
                         new StatusEffectSnapshot
                         {
-                            Id = $"{StatusEffectLibrary.AsleepLocal}",
+                            Id = StatusEffectLibrary.AsleepLocal,
                             BaseAccuracy = 75,
                             TurnDuration = randomAsleepDuration,
                             IsLocal = true,
@@ -478,12 +476,13 @@ namespace Worldshifters.Assets.Hero.Wind
             {
                 niyon.Raid.Enemies.ApplyStatusEffects(new StatusEffectSnapshot
                 {
-                    Id = $"{TuningId}_dmg_reduction",
+                    Id = $"{TuningId}/dmg_reduction",
                     Strength = -20,
                     BaseAccuracy = double.PositiveInfinity,
                     Modifier = ModifierLibrary.DamageReductionBoost,
                     IsPassiveEffect = true,
                     IsUsedInternally = true,
+                    IsLocal = true,
                     TriggerCondition = new TriggerCondition
                     {
                         Type = TriggerCondition.Types.Type.HasStatusEffect,

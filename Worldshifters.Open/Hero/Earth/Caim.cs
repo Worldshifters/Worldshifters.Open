@@ -390,7 +390,7 @@ namespace Worldshifters.Assets.Hero.Earth
                 },
                 ProcessEffects = (caim, targetIndex, raidActions) =>
                 {
-                    caim.ApplyOrOverrideStatusEffectStacks(ClubsId, 1, 1, 4, raidActions, isUndispellable: true);
+                    caim.ApplyOrOverrideStatusEffectStacks(ClubsId, initialStackCount: 1, increment: 1, maxStackCount: 4, raidActions, isUndispellable: true);
                 },
             };
         }
@@ -443,7 +443,7 @@ namespace Worldshifters.Assets.Hero.Earth
                             Strength = 15,
                         },
                         raidActions);
-                    caim.ApplyOrOverrideStatusEffectStacks(DiamondsId, 1, 1, 4, raidActions, isUndispellable: true);
+                    caim.ApplyOrOverrideStatusEffectStacks(DiamondsId, initialStackCount: 1, increment: 1, maxStackCount: 4, raidActions, isUndispellable: true);
                 },
             };
         }
@@ -502,7 +502,7 @@ namespace Worldshifters.Assets.Hero.Earth
                 },
                 ProcessEffects = (caim, targetIndex, raidActions) =>
                 {
-                    caim.ApplyOrOverrideStatusEffectStacks(HeartsId, 1, 1, 4, raidActions, isUndispellable: true);
+                    caim.ApplyOrOverrideStatusEffectStacks(HeartsId, initialStackCount: 1, increment: 1, maxStackCount: 4, raidActions, isUndispellable: true);
                 },
             };
         }
@@ -549,7 +549,7 @@ namespace Worldshifters.Assets.Hero.Earth
                 ProcessEffects = (caim, targetIndex, raidActions) =>
                 {
                     caim.Attack(raidActions, disableSpecialAttack: true);
-                    caim.ApplyOrOverrideStatusEffectStacks(SpadesId, 1, 1, 4, raidActions, isUndispellable: true);
+                    caim.ApplyOrOverrideStatusEffectStacks(SpadesId, initialStackCount: 1, increment: 1, maxStackCount: 4, raidActions, isUndispellable: true);
                 },
             };
         }
@@ -604,10 +604,10 @@ namespace Worldshifters.Assets.Hero.Earth
                 ProcessEffects = (caim, targetIndex, raidActions) =>
                 {
                     EndOfJoker().Cast(caim, raidActions);
-                    caim.ApplyOrOverrideStatusEffectStacks(ClubsId, (uint)(ThreadSafeRandom.NextDouble() * 4) + 1, 1, 4, raidActions, isUndispellable: true);
-                    caim.ApplyOrOverrideStatusEffectStacks(DiamondsId, (uint)(ThreadSafeRandom.NextDouble() * 4) + 1, 1, 4, raidActions, isUndispellable: true);
-                    caim.ApplyOrOverrideStatusEffectStacks(HeartsId, (uint)(ThreadSafeRandom.NextDouble() * 4) + 1, 1, 4, raidActions, isUndispellable: true);
-                    caim.ApplyOrOverrideStatusEffectStacks(SpadesId, (uint)(ThreadSafeRandom.NextDouble() * 4) + 1, 1, 4, raidActions, isUndispellable: true);
+                    caim.ApplyOrOverrideStatusEffectStacks(ClubsId, initialStackCount: (uint)(ThreadSafeRandom.NextDouble() * 4) + 1, increment: 1, maxStackCount: 4, raidActions, isUndispellable: true);
+                    caim.ApplyOrOverrideStatusEffectStacks(DiamondsId, initialStackCount: (uint)(ThreadSafeRandom.NextDouble() * 4) + 1, increment: 1, maxStackCount: 4, raidActions, isUndispellable: true);
+                    caim.ApplyOrOverrideStatusEffectStacks(HeartsId, initialStackCount: (uint)(ThreadSafeRandom.NextDouble() * 4) + 1, increment: 1, maxStackCount: 4, raidActions, isUndispellable: true);
+                    caim.ApplyOrOverrideStatusEffectStacks(SpadesId, initialStackCount: (uint)(ThreadSafeRandom.NextDouble() * 4) + 1, increment: 1, maxStackCount: 4, raidActions, isUndispellable: true);
                 },
             };
         }
@@ -635,18 +635,18 @@ namespace Worldshifters.Assets.Hero.Earth
 
             if (caim.PositionInFrontline < 4)
             {
-                var clubStacks = caim.GetStatusEffectStacks(ClubsId);
-                var diamondStacks = caim.GetStatusEffectStacks(DiamondsId);
-                var heartStacks = caim.GetStatusEffectStacks(HeartsId);
+                var clubStacks = (int)caim.GetStatusEffectStrength(ClubsId);
+                var diamondStacks = (int)caim.GetStatusEffectStrength(DiamondsId);
+                var heartStacks = (int)caim.GetStatusEffectStrength(HeartsId);
                 caim.ApplyStatusEffectsFromTemplate(
                     new StatusEffectSnapshot
                     {
                         IsUsedInternally = true,
                         IsUndispellable = true,
                     },
-                    ($"{SpadesId}/atk_up", ModifierLibrary.FlatAttackBoost, StackCountToBuffStrength(caim.GetStatusEffectStacks(SpadesId))),
+                    ($"{SpadesId}/atk_up", ModifierLibrary.FlatAttackBoost, StackCountToBuffStrength((int)caim.GetStatusEffectStrength(SpadesId))),
                     ($"{HeartsId}/healing_up", ModifierLibrary.HealingBoost, StackCountToBuffStrength(heartStacks)),
-                    ($"{HeartsId}/healing_cap_up", ModifierLibrary.HealingCapBoost, StackCountToBuffStrength(caim.GetStatusEffectStacks(HeartsId))),
+                    ($"{HeartsId}/healing_cap_up", ModifierLibrary.HealingCapBoost, StackCountToBuffStrength((int)caim.GetStatusEffectStrength(HeartsId))),
                     ($"{DiamondsId}/def_up", ModifierLibrary.FlatDefenseBoost, 25 * diamondStacks),
                     ($"{DiamondsId}/dsr", ModifierLibrary.FlatDebuffSuccessRateBoost, StackCountToBuffStrength(clubStacks)));
 
@@ -694,27 +694,14 @@ namespace Worldshifters.Assets.Hero.Earth
 
         private static double StackCountToBuffStrength(int stackCount)
         {
-            if (stackCount == 0)
+            return stackCount switch
             {
-                return 0;
-            }
-
-            if (stackCount == 1)
-            {
-                return 10;
-            }
-
-            if (stackCount == 2)
-            {
-                return 20;
-            }
-
-            if (stackCount == 3)
-            {
-                return 35;
-            }
-
-            return 50;
+                0 => 0,
+                1 => 10,
+                2 => 20,
+                3 => 35,
+                _ => 50,
+            };
         }
     }
 }

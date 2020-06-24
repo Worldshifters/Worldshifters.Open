@@ -157,24 +157,6 @@ namespace Worldshifters.Assets.Hero.Dark
                     },
                 },
                 OnActionStart = (olivia, _, raidActions) => ProcessPassiveEffects(olivia),
-                OnTurnEnd = (olivia, raidActions) =>
-                {
-                    foreach (var enemy in olivia.Raid.Enemies)
-                    {
-                        if (!enemy.IsAlive() || enemy.PositionInFrontline >= 4)
-                        {
-                            continue;
-                        }
-
-                        var stacks = enemy.GetStatusEffectStacks(TwilightTerrorId);
-                        if (stacks == 2)
-                        {
-                            enemy.GetStatusEffect(TwilightTerrorId + "/ca_disabled").TriggerCondition.Data = TwilightTerrorId + "_1";
-                            enemy.GetStatusEffect(TwilightTerrorId + "/frozen_charge_diamonds").TriggerCondition.Data = TwilightTerrorId + "_1";
-                            enemy.ApplyOrOverrideStatusEffectStacks(TwilightTerrorId, 2, -1, 2, raidActions, turnDuration: 2);
-                        }
-                    }
-                },
                 OnEnteringFrontline = (olivia, raidActions) => ProcessPassiveEffects(olivia),
                 OnAbilityEnd = (olivia, ability, raidActions) =>
                 {
@@ -248,8 +230,8 @@ namespace Worldshifters.Assets.Hero.Dark
                             {
                                 Type = StatusEffectSnapshot.Types.TriggerCondition.Types.Type.HasStatusEffect,
                                 Data = TwilightTerrorId,
-                                LinkToParentCondition = true,
                             },
+                            IsLocal = true,
                         },
                         (TwilightTerrorId + "/ca_disabled", ModifierLibrary.CantUseChargeAttack, 0),
                         (TwilightTerrorId + "/frozen_charge_diamonds", ModifierLibrary.FrozenChargeDiamonds, 0));
@@ -404,7 +386,7 @@ namespace Worldshifters.Assets.Hero.Dark
                     IsPassiveEffect = true,
                 });
 
-            if (olivia.GetStatusEffects().Any(e => !e.IsUsedInternally && Equals(ModifierLibrary.ElementalAttackBoost, e.Modifier) && e.AttackElementRestriction == Element.Dark))
+            if (olivia.GetStatusEffects(ModifierLibrary.ElementalAttackBoost).Any(e => !e.IsUsedInternally && e.AttackElementRestriction == Element.Dark))
             {
                 olivia.ApplyStatusEffect(
                     new StatusEffectSnapshot

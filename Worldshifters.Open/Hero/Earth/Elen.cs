@@ -5,7 +5,6 @@
 namespace Worldshifters.Assets.Hero.Earth
 {
     using System;
-    using System.Linq;
     using Google.Protobuf;
     using Worldshifters.Data;
     using Worldshifters.Data.Hero;
@@ -226,7 +225,7 @@ namespace Worldshifters.Assets.Hero.Earth
                         return;
                     }
 
-                    if (elen.GetStatusEffects().Any(e => e.Id == EightLifePilgrimageId))
+                    if (elen.HasStatusEffect(EightLifePilgrimageId))
                     {
                         if (elen.PositionInFrontline < 4)
                         {
@@ -474,7 +473,7 @@ namespace Worldshifters.Assets.Hero.Earth
 
         private static void ProcessAikiEffects(EntitySnapshot elen)
         {
-            switch (elen.GetStatusEffectStacks(AikiId))
+            switch ((int)elen.GetStatusEffectStrength(AikiId))
             {
                 case 1:
                     elen.ApplyStatusEffectsFromTemplate(

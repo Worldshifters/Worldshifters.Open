@@ -205,21 +205,21 @@ namespace Worldshifters.Assets.Hero.Dark
 
                     IncrementLoveRedemption(nier, -2, raidActions);
 
-                    if (nier.GetStatusEffectStacks(LoveRedemptionId) == 0)
+                    if ((int)nier.GetStatusEffectStrength(LoveRedemptionId) <= 0)
                     {
                         nier.Kill(raidActions);
                     }
                 },
                 OnAbilityEnd = (nier, ability, raidActions) =>
                 {
-                    if (nier.IsAlive() && nier.PositionInFrontline < 4 && nier.GetStatusEffectStacks(LoveRedemptionId) == 0)
+                    if (nier.IsAlive() && nier.PositionInFrontline < 4 && (int)nier.GetStatusEffectStrength(LoveRedemptionId) <= 0)
                     {
                         nier.Kill(raidActions);
                     }
                 },
                 OnDeath = (nier, raidActions) =>
                 {
-                    if (nier.GetStatusEffectStacks(LoveRedemptionId) > 0)
+                    if ((int)nier.GetStatusEffectStrength(LoveRedemptionId) > 0)
                     {
                         UnfinishedBusiness().Cast(nier, raidActions);
                     }
@@ -527,7 +527,7 @@ namespace Worldshifters.Assets.Hero.Dark
                 return;
             }
 
-            var loveRedemptionStacks = nier.GetStatusEffectStacks(LoveRedemptionId);
+            var loveRedemptionStacks = (int)nier.GetStatusEffectStrength(LoveRedemptionId);
             nier.ApplyStatusEffectsFromTemplate(
                 new StatusEffectSnapshot
                 {
@@ -543,14 +543,15 @@ namespace Worldshifters.Assets.Hero.Dark
         {
             // Love redemption stacks are frozen when Nier is relegated to the backrow.
             // Nier starts with 13 stacks after being revived.
-            if (nier.GetStatusEffectStacks(LoveRedemptionId) == 0)
+            if (!nier.HasStatusEffect(LoveRedemptionId))
             {
                 nier.ApplyStatusEffect(new StatusEffectSnapshot
                 {
-                    Id = $"{LoveRedemptionId}_13",
+                    Id = LoveRedemptionId,
                     Strength = 13,
                     IsUndispellable = true,
                     TurnDuration = int.MaxValue,
+                    IsLocal = true,
                 });
             }
 

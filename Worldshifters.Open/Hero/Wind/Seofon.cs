@@ -218,7 +218,7 @@ namespace Worldshifters.Assets.Hero.Wind
                             },
                             CanCast = (seofon, _) =>
                             {
-                                if (seofon.GetStatusEffectStacks(SwordshineId) < 3)
+                                if ((int)seofon.GetStatusEffectStrength(SwordshineId) < 3)
                                 {
                                     return (false, "Not enough Swordshine stacks");
                                 }
@@ -263,16 +263,16 @@ namespace Worldshifters.Assets.Hero.Wind
                         return;
                     }
 
-                    var stacks = seofon.GetStatusEffectStacks(SwordshineId);
-                    if (stacks > 0)
+                    var swordshine = seofon.GetStatusEffect(SwordshineId);
+                    if (swordshine != null)
                     {
                         if (seofon.Hero.Level >= 85)
                         {
-                            seofon.ApplyOrOverrideStatusEffectStacks(SwordshineId, (uint)stacks, -2, 5, raidActions, seofon.GetStatusEffect(SwordshineId + "_" + stacks).TurnDuration);
+                            seofon.ApplyOrOverrideStatusEffectStacks(SwordshineId, 0, -2, 5, raidActions, swordshine.TurnDuration);
                         }
                         else
                         {
-                            seofon.ApplyOrOverrideStatusEffectStacks(SwordshineId, (uint)stacks, -stacks, 3, raidActions);
+                            seofon.RemoveStatusEffect(SwordshineId);
                         }
 
                         ProcessSwordshineEffects(seofon);
@@ -314,7 +314,7 @@ namespace Worldshifters.Assets.Hero.Wind
                     uint maxStackCount = seofon.Hero.Level >= 85 ? 5U : 3U;
                     int turnDuration = seofon.Hero.Level >= 85 ? 5 : (seofon.Hero.Level >= 55 ? 3 : 2);
                     turnDuration += seofon.Hero.GetSupportSkillRank();
-                    seofon.ApplyOrOverrideStatusEffectStacks(SwordshineId, (uint)increment, increment, maxStackCount, raidActions, turnDuration);
+                    seofon.ApplyOrOverrideStatusEffectStacks(SwordshineId, initialStackCount: (uint)increment, increment, maxStackCount, raidActions, turnDuration);
                     ProcessSwordshineEffects(seofon);
                 },
                 AnimationName = "ab_motion",
@@ -389,7 +389,7 @@ namespace Worldshifters.Assets.Hero.Wind
                 },
                 CanCast = (seofon, _) =>
                 {
-                    if (seofon.GetStatusEffectStacks(SwordshineId) < 3)
+                    if ((int)seofon.GetStatusEffectStrength(SwordshineId) < 3)
                     {
                         return (false, "Not enough Swordshine stacks");
                     }
@@ -398,8 +398,8 @@ namespace Worldshifters.Assets.Hero.Wind
                 },
                 ProcessEffects = (seofon, targetPositionInFrontline, raidActions) =>
                 {
-                    var stacks = seofon.GetStatusEffectStacks(SwordshineId);
-                    seofon.ApplyOrOverrideStatusEffectStacks(SwordshineId, (uint)stacks, -3, 5, raidActions, seofon.GetStatusEffect(SwordshineId + "_" + stacks).TurnDuration);
+                    var swordshine = seofon.GetStatusEffect(SwordshineId);
+                    seofon.ApplyOrOverrideStatusEffectStacks(SwordshineId, 0, -3, 5, raidActions, swordshine.TurnDuration);
                     foreach (var ally in seofon.Raid.Allies)
                     {
                         if (ally.PositionInFrontline >= 4)
@@ -449,96 +449,99 @@ namespace Worldshifters.Assets.Hero.Wind
 
         private static void ProcessSwordshineEffects(EntitySnapshot seofon)
         {
-            var stacks = seofon.GetStatusEffectStacks(SwordshineId);
-            if (stacks == 0)
+            switch ((int)seofon.GetStatusEffectStrength(SwordshineId))
             {
-                seofon.RemoveStatusEffects(
-                    new HashSet<string>
-                    {
+                case 0:
+                    seofon.RemoveStatusEffects(
+                        new HashSet<string>
+                        {
                         SwordshineId + "/atk_up",
                         SwordshineId + "/def_up",
                         SwordshineId + "/da_up",
                         SwordshineId + "/crit_up",
-                    });
-            }
+                        });
+                    break;
 
-            if (stacks == 1)
-            {
-                seofon.ApplyStatusEffectsFromTemplate(
-                    new StatusEffectSnapshot { IsUsedInternally = true },
-                    (SwordshineId + "/atk_up", ModifierLibrary.AttackBoost, 5),
-                    (SwordshineId + "/def_up", ModifierLibrary.FlatDefenseBoost, 5),
-                    (SwordshineId + "/da_up", ModifierLibrary.FlatDoubleAttackRateBoost, 50),
-                    (SwordshineId + "/ta_up", ModifierLibrary.FlatTripleAttackRateBoost, 3));
-            }
-            else if (stacks == 2)
-            {
-                seofon.ApplyStatusEffectsFromTemplate(
-                    new StatusEffectSnapshot { IsUsedInternally = true },
-                    (SwordshineId + "/atk_up", ModifierLibrary.AttackBoost, 10),
-                    (SwordshineId + "/def_up", ModifierLibrary.FlatDefenseBoost, 10),
-                    (SwordshineId + "/da_up", ModifierLibrary.FlatDoubleAttackRateBoost, 3),
-                    (SwordshineId + "/ta_up", ModifierLibrary.FlatTripleAttackRateBoost, 40));
-            }
-            else if (stacks == 3)
-            {
-                seofon.ApplyStatusEffectsFromTemplate(
-                    new StatusEffectSnapshot { IsUsedInternally = true },
-                    (SwordshineId + "/atk_up", ModifierLibrary.AttackBoost, 10),
-                    (SwordshineId + "/def_up", ModifierLibrary.FlatDefenseBoost, 10),
-                    (SwordshineId + "/ta_up", ModifierLibrary.FlatTripleAttackRateBoost, 100));
-                seofon.ApplyStatusEffect(
-                    new StatusEffectSnapshot
-                    {
-                        Id = SwordshineId + "/crit_up",
-                        IsUsedInternally = true,
-                        Strength = 100,
-                        Modifier = ModifierLibrary.FlatCriticalHitRateBoost,
-                        ExtraData = new CriticalHit
+                case 1:
+                    seofon.ApplyStatusEffectsFromTemplate(
+                        new StatusEffectSnapshot { IsUsedInternally = true },
+                        (SwordshineId + "/atk_up", ModifierLibrary.AttackBoost, 5),
+                        (SwordshineId + "/def_up", ModifierLibrary.FlatDefenseBoost, 5),
+                        (SwordshineId + "/da_up", ModifierLibrary.FlatDoubleAttackRateBoost, 50),
+                        (SwordshineId + "/ta_up", ModifierLibrary.FlatTripleAttackRateBoost, 3));
+                    break;
+
+                case 2:
+                    seofon.ApplyStatusEffectsFromTemplate(
+                        new StatusEffectSnapshot { IsUsedInternally = true },
+                        (SwordshineId + "/atk_up", ModifierLibrary.AttackBoost, 10),
+                        (SwordshineId + "/def_up", ModifierLibrary.FlatDefenseBoost, 10),
+                        (SwordshineId + "/da_up", ModifierLibrary.FlatDoubleAttackRateBoost, 3),
+                        (SwordshineId + "/ta_up", ModifierLibrary.FlatTripleAttackRateBoost, 40));
+                    break;
+
+                case 3:
+                    seofon.ApplyStatusEffectsFromTemplate(
+                        new StatusEffectSnapshot { IsUsedInternally = true },
+                        (SwordshineId + "/atk_up", ModifierLibrary.AttackBoost, 10),
+                        (SwordshineId + "/def_up", ModifierLibrary.FlatDefenseBoost, 10),
+                        (SwordshineId + "/ta_up", ModifierLibrary.FlatTripleAttackRateBoost, 100));
+                    seofon.ApplyStatusEffect(
+                        new StatusEffectSnapshot
                         {
-                            DamageMultiplier = 0.3,
-                        }.ToByteString(),
-                    });
-            }
-            else if (stacks == 4)
-            {
-                seofon.ApplyStatusEffectsFromTemplate(
-                    new StatusEffectSnapshot { IsUsedInternally = true },
-                    (SwordshineId + "/atk_up", ModifierLibrary.AttackBoost, 15),
-                    (SwordshineId + "/def_up", ModifierLibrary.FlatDefenseBoost, 15),
-                    (SwordshineId + "/ta_up", ModifierLibrary.FlatTripleAttackRateBoost, 100));
-                seofon.ApplyStatusEffect(
-                    new StatusEffectSnapshot
-                    {
-                        Id = SwordshineId + "/crit_up",
-                        IsUsedInternally = true,
-                        Strength = 100,
-                        Modifier = ModifierLibrary.FlatCriticalHitRateBoost,
-                        ExtraData = new CriticalHit
+                            Id = SwordshineId + "/crit_up",
+                            IsUsedInternally = true,
+                            Strength = 100,
+                            Modifier = ModifierLibrary.FlatCriticalHitRateBoost,
+                            ExtraData = new CriticalHit
+                            {
+                                DamageMultiplier = 0.3,
+                            }.ToByteString(),
+                        });
+                    break;
+
+                case 4:
+                    seofon.ApplyStatusEffectsFromTemplate(
+                        new StatusEffectSnapshot { IsUsedInternally = true },
+                        (SwordshineId + "/atk_up", ModifierLibrary.AttackBoost, 15),
+                        (SwordshineId + "/def_up", ModifierLibrary.FlatDefenseBoost, 15),
+                        (SwordshineId + "/ta_up", ModifierLibrary.FlatTripleAttackRateBoost, 100));
+                    seofon.ApplyStatusEffect(
+                        new StatusEffectSnapshot
                         {
-                            DamageMultiplier = 0.4,
-                        }.ToByteString(),
-                    });
-            }
-            else if (stacks == 5)
-            {
-                seofon.ApplyStatusEffectsFromTemplate(
-                    new StatusEffectSnapshot { IsUsedInternally = true },
-                    (SwordshineId + "/atk_up", ModifierLibrary.AttackBoost, 20),
-                    (SwordshineId + "/def_up", ModifierLibrary.FlatDefenseBoost, 20),
-                    (SwordshineId + "/ta_up", ModifierLibrary.FlatTripleAttackRateBoost, 100));
-                seofon.ApplyStatusEffect(
-                    new StatusEffectSnapshot
-                    {
-                        Id = SwordshineId + "/crit_up",
-                        IsUsedInternally = true,
-                        Strength = 100,
-                        Modifier = ModifierLibrary.FlatCriticalHitRateBoost,
-                        ExtraData = new CriticalHit
+                            Id = SwordshineId + "/crit_up",
+                            IsUsedInternally = true,
+                            Strength = 100,
+                            Modifier = ModifierLibrary.FlatCriticalHitRateBoost,
+                            ExtraData = new CriticalHit
+                            {
+                                DamageMultiplier = 0.4,
+                            }.ToByteString(),
+                        });
+                    break;
+
+                case 5:
+                    seofon.ApplyStatusEffectsFromTemplate(
+                        new StatusEffectSnapshot { IsUsedInternally = true },
+                        (SwordshineId + "/atk_up", ModifierLibrary.AttackBoost, 20),
+                        (SwordshineId + "/def_up", ModifierLibrary.FlatDefenseBoost, 20),
+                        (SwordshineId + "/ta_up", ModifierLibrary.FlatTripleAttackRateBoost, 100));
+                    seofon.ApplyStatusEffect(
+                        new StatusEffectSnapshot
                         {
-                            DamageMultiplier = 0.5,
-                        }.ToByteString(),
-                    });
+                            Id = SwordshineId + "/crit_up",
+                            IsUsedInternally = true,
+                            Strength = 100,
+                            Modifier = ModifierLibrary.FlatCriticalHitRateBoost,
+                            ExtraData = new CriticalHit
+                            {
+                                DamageMultiplier = 0.5,
+                            }.ToByteString(),
+                        });
+                    break;
+
+                default:
+                    break;
             }
         }
     }

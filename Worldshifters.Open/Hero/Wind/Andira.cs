@@ -198,7 +198,6 @@ namespace Worldshifters.Assets.Hero.Wind
                                 {
                                     Type = TriggerCondition.Types.Type.HasStatusEffect,
                                     Data = InfiniteDiversityId,
-                                    LinkToParentCondition = true,
                                 },
                             },
                             ($"{InfiniteDiversityId}/atk_up", ModifierLibrary.FlatAttackBoost, 20),
@@ -218,7 +217,6 @@ namespace Worldshifters.Assets.Hero.Wind
                                 {
                                     Type = TriggerCondition.Types.Type.HasStatusEffect,
                                     Data = InfiniteDiversityId,
-                                    LinkToParentCondition = true,
                                 },
                             });
                     },
@@ -311,35 +309,44 @@ namespace Worldshifters.Assets.Hero.Wind
                                             IsUndispellable = true,
                                         },
                                         raidActions,
-                                        ($"{MizaruId}_{newStackCount}", ModifierLibrary.FlatAttackBoost, -5 * newStackCount),
-                                        ($"{IwazaruId}_{newStackCount}", ModifierLibrary.FlatDefenseBoost, -5 * newStackCount),
-                                        ($"{KikazaruId}_{newStackCount}", ModifierLibrary.None, 0));
+                                        (MizaruId, ModifierLibrary.None, newStackCount),
+                                        (IwazaruId, ModifierLibrary.None, newStackCount),
+                                        (KikazaruId, ModifierLibrary.None, newStackCount));
 
-                                    var statusEffectsToRemove = new HashSet<string>();
-                                    for (var oldStackCount = 1; oldStackCount < newStackCount; ++oldStackCount)
+                                    var mizaruStacks = (int)enemy.GetStatusEffectStrength(MizaruId);
+                                    if (mizaruStacks > 0)
                                     {
-                                        statusEffectsToRemove.Add($"{MizaruId}_{oldStackCount}");
-                                        statusEffectsToRemove.Add($"{IwazaruId}_{oldStackCount}");
-                                        statusEffectsToRemove.Add($"{KikazaruId}_{oldStackCount}");
+                                        enemy.ApplyStatusEffect(
+                                            new StatusEffectSnapshot
+                                            {
+                                                Id = $"{MizaruId}/atk_reduction",
+                                                Modifier = ModifierLibrary.FlatAttackBoost,
+                                                Strength = -5 * mizaruStacks,
+                                                IsLocal = true,
+                                                BaseAccuracy = double.MaxValue,
+                                                TurnDuration = int.MaxValue,
+                                                IsUndispellable = true,
+                                                IsUsedInternally = true,
+                                            });
                                     }
 
-                                    enemy.RemoveStatusEffects(statusEffectsToRemove);
-                                }
-
-                                andira.ApplyStatusEffectsFromTemplate(
-                                    new StatusEffectSnapshot
+                                    var iwazaruStacks = (int)enemy.GetStatusEffectStrength(IwazaruId);
+                                    if (iwazaruStacks > 0)
                                     {
-                                        IsPassiveEffect = true,
-                                        IsUsedInternally = true,
-                                        TurnDuration = int.MaxValue,
-                                        TriggerCondition = new TriggerCondition
-                                        {
-                                            Type = TriggerCondition.Types.Type.HasStatusEffect,
-                                            Data = $"{KikazaruId}_{newStackCount}",
-                                        },
-                                    },
-                                    ($"{KikazaruId}_{newStackCount}_ca_boost", ModifierLibrary.FlatChargeAttackDamageBoost, 15 * newStackCount),
-                                    ($"{KikazaruId}_{newStackCount}_ca_cap_boost", ModifierLibrary.FlatChargeAttackDamageCapBoost, 10 * newStackCount));
+                                        enemy.ApplyStatusEffect(
+                                            new StatusEffectSnapshot
+                                            {
+                                                Id = $"{IwazaruId}/def_reduction",
+                                                Modifier = ModifierLibrary.FlatDefenseBoost,
+                                                Strength = -5 * iwazaruStacks,
+                                                IsLocal = true,
+                                                BaseAccuracy = double.MaxValue,
+                                                TurnDuration = int.MaxValue,
+                                                IsUndispellable = true,
+                                                IsUsedInternally = true,
+                                            });
+                                    }
+                                }
 
                                 andira.GlobalState["decree_stacks"].IntegerValue = Math.Min(andira.GlobalState["decree_stacks"].IntegerValue + 1, 3);
                             },
@@ -373,15 +380,48 @@ namespace Worldshifters.Assets.Hero.Wind
                         }
                     }
                 },
-                OnEnteringFrontline = (andira, raidActions) => ProcessEffects(andira),
+                OnAttackStart = (andira, isAboutToUseSpecialAttack, raidActions) =>
+                {
+                    if (!isAboutToUseSpecialAttack)
+                    {
+                        return true;
+                    }
+
+                    var kikazaruStacks = (int)andira.ResolveEnemyTarget(andira.CurrentTargetPositionInFrontline).GetStatusEffectStrength(KikazaruId);
+                    if (kikazaruStacks > 0)
+                    {
+                        andira.ApplyStatusEffectsFromTemplate(
+                            new StatusEffectSnapshot
+                            {
+                                IsUndispellable = true,
+                                IsUsedInternally = true,
+                            },
+                            overrideExistingEffects: true,
+                            ($"{KikazaruId}/ca_boost", ModifierLibrary.FlatChargeAttackDamageBoost, 15 * kikazaruStacks),
+                            ($"{KikazaruId}/ca_cap_boost", ModifierLibrary.FlatChargeAttackDamageCapBoost, 10 * kikazaruStacks));
+                    }
+
+                    return true;
+                },
+                OnEnteringFrontline = (andira, raidActions) =>
+                {
+                    andira.Raid.Allies.ApplyStatusEffects(new StatusEffectSnapshot
+                    {
+                        Id = QueenOfMonkeysId,
+                        Modifier = ModifierLibrary.DodgeRateBoost,
+                        Strength = 5,
+                        IsPassiveEffect = true,
+                        IsUsedInternally = true,
+                        TurnDuration = int.MaxValue,
+                    });
+
+                    ProcessEffects(andira);
+                },
                 OnDeath = (andira, raidActions) =>
                 {
                     foreach (var ally in andira.Raid.Allies)
                     {
-                        if (ally.PositionInFrontline < 4)
-                        {
-                            ally.RemoveStatusEffect(QueenOfMonkeysId);
-                        }
+                        ally.RemoveStatusEffect(QueenOfMonkeysId);
                     }
                 },
             };
@@ -660,15 +700,6 @@ namespace Worldshifters.Assets.Hero.Wind
             {
                 return;
             }
-
-            andira.ApplyStatusEffect(new StatusEffectSnapshot
-            {
-                Id = QueenOfMonkeysId,
-                Modifier = ModifierLibrary.DodgeRateBoost,
-                Strength = 5,
-                IsPassiveEffect = true,
-                IsUsedInternally = true,
-            });
         }
     }
 }

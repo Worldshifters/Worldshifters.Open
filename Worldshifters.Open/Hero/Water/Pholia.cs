@@ -174,7 +174,7 @@ namespace Worldshifters.Assets.Hero.Water
                 {
                     foreach (var hero in pholia.Raid.Allies)
                     {
-                        if (!hero.IsAlive() || hero.GetStatusEffects().All(e => e.Id != "pholia_recognition"))
+                        if (!hero.IsAlive() || !hero.HasStatusEffect(RecognitionId))
                         {
                             continue;
                         }
@@ -212,7 +212,7 @@ namespace Worldshifters.Assets.Hero.Water
                     {
                         if (pholia.IsAlive())
                         {
-                            var whiteVeilBuff = pholia.GetStatusEffects().FirstOrDefault(e => e.Id == WhiteVeilId);
+                            var whiteVeilBuff = pholia.GetStatusEffect(WhiteVeilId);
                             if (whiteVeilBuff != null)
                             {
                                 whiteVeilBuff.Strength = (long)Math.Min(pholia.MaxHp * 0.4, 8000);
@@ -223,11 +223,10 @@ namespace Worldshifters.Assets.Hero.Water
                         {
                             if (hero.IsAlive())
                             {
-                                var pholiaRecognition = hero.GetStatusEffects()
-                                    .FirstOrDefault(e => e.Id == "pholia_recognition");
+                                var pholiaRecognition = hero.GetStatusEffect(RecognitionId);
                                 if (pholiaRecognition != null)
                                 {
-                                    pholiaRecognition.TurnDuration = pholiaRecognition.TurnDuration + 2;
+                                    pholiaRecognition.TurnDuration += 2;
                                 }
                             }
                         }
@@ -254,7 +253,8 @@ namespace Worldshifters.Assets.Hero.Water
                         return;
                     }
 
-                    if (pholia.GetStatusEffects().All(e => e.Id != UnveiledSinId && e.Id != WhiteVeilId) && (bool)pholia.ActionLocalDataStore[WhiteVeilAtTurnStart])
+                    // Broken shield
+                    if (!pholia.GetStatusEffects(UnveiledSinId, WhiteVeilId).Any() && (bool)pholia.ActionLocalDataStore[WhiteVeilAtTurnStart])
                     {
                         pholia.ApplyStatusEffect(
                             new StatusEffectSnapshot
@@ -278,7 +278,7 @@ namespace Worldshifters.Assets.Hero.Water
                 return;
             }
 
-            if (pholia.GetStatusEffects().Any(e => e.Id == WhiteVeilId))
+            if (pholia.HasStatusEffect(WhiteVeilId))
             {
                 pholia.ActionLocalDataStore[WhiteVeilAtTurnStart] = true;
                 pholia.ApplyStatusEffectsFromTemplate(
@@ -320,7 +320,7 @@ namespace Worldshifters.Assets.Hero.Water
                 pholia.ActionLocalDataStore[WhiteVeilAtTurnStart] = false;
             }
 
-            if (pholia.GetStatusEffects().Any(e => e.Id == UnveiledSinId))
+            if (pholia.HasStatusEffect(UnveiledSinId))
             {
                 pholia.ApplyStatusEffectsFromTemplate(
                     new StatusEffectSnapshot

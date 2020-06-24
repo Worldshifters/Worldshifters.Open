@@ -411,7 +411,7 @@ namespace Worldshifters.Assets.Hero.Water
                         if (moon != null)
                         {
                             // Moon phases update when moonStrength reaches 3 or 5
-                            moon.Strength = moon.Strength < 3 ? 3 : 5;
+                            moon.Strength = moon.Strength <= 1 ? 2 : 4;
                             ally.ApplyStatusEffect(moon, overrideExistingEffects: true, raidActions);
                         }
                     }
@@ -487,7 +487,7 @@ namespace Worldshifters.Assets.Hero.Water
                     continue;
                 }
 
-                moon.Strength = Math.Max(moon.Strength, 5 - moon.TurnDuration);
+                moon.Strength = Math.Max(moon.Strength, Math.Max(0, 5 - moon.TurnDuration));
                 if (moon.Strength > 0)
                 {
                     ally.ApplyStatusEffectsFromTemplate(

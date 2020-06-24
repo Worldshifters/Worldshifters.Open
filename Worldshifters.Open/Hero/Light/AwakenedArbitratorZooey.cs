@@ -420,7 +420,6 @@ namespace Worldshifters.Assets.Hero.Light
                 {
                     Id = StatusEffectLibrary.Dodge,
                     Strength = 1,
-                    TurnDuration = 1,
                 });
             }
 
@@ -430,7 +429,6 @@ namespace Worldshifters.Assets.Hero.Light
                     Id = "zooey/crit_rate",
                     IsPassiveEffect = true,
                     IsUsedInternally = true,
-                    TurnDuration = 1,
                     Modifier = ModifierLibrary.FlatCriticalHitRateBoost,
                     Strength = Math.Min(50, 5 * zooey.Raid.Turn),
                     ExtraData = new CriticalHit
@@ -440,14 +438,13 @@ namespace Worldshifters.Assets.Hero.Light
                 });
 
             var supportSkillRank = zooey.Hero.GetSupportSkillRank();
-            if (supportSkillRank > 0 && zooey.GetStatusEffects().Any(e => Equals(ModifierLibrary.DodgeRateBoost, e.Modifier)))
+            if (supportSkillRank > 0 && zooey.GetStatusEffects(ModifierLibrary.DodgeRateBoost).Any())
             {
                 zooey.ApplyStatusEffect(
                     new StatusEffectSnapshot
                     {
                         Id = "zooey/passive",
                         Strength = supportSkillRank * 10,
-                        TurnDuration = 1,
                         IsPassiveEffect = true,
                         IsUsedInternally = true,
                         Modifier = ModifierLibrary.DodgeRateBoost,

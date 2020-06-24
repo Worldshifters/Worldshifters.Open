@@ -6,7 +6,6 @@ namespace Worldshifters.Assets.Hero.Light
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using Google.Protobuf;
     using Worldshifters.Data;
     using Worldshifters.Data.Hero;
@@ -18,7 +17,7 @@ namespace Worldshifters.Assets.Hero.Light
         public static Guid Id = Guid.Parse("f7d1ac97-7348-4de9-ba3a-0e433ffc94dc");
 
         private const string LimiterBreakId = "halluel_and_malluel/limiter_break";
-        private const string AdventurousTwinsId = "halluel_and_melluel/adventurous twins";
+        private const string AdventurousTwinsId = "halluel_and_malluel/adventurous twins";
 
         public static Hero NewInstance()
         {
@@ -111,20 +110,7 @@ namespace Worldshifters.Assets.Hero.Light
                         ShouldRepositionSpriteAnimation = true,
                         ProcessEffects = (halluelAndMalluel, _, raidActions) =>
                         {
-                            var stacks = halluelAndMalluel.GetStatusEffectStacks(LimiterBreakId);
-                            if (stacks > 0)
-                            {
-                                halluelAndMalluel.RemoveStatusEffect($"{LimiterBreakId}_{stacks}");
-                            }
-
-                            halluelAndMalluel.ApplyStatusEffect(
-                                new StatusEffectSnapshot
-                                {
-                                    Id = $"{LimiterBreakId}_3",
-                                    Strength = 3,
-                                    TurnDuration = int.MaxValue,
-                                    IsUndispellable = true,
-                                }, raidActions);
+                            halluelAndMalluel.ApplyOrOverrideStatusEffectStacks(LimiterBreakId, initialStackCount: 3, increment: 1, maxStackCount: 3, raidActions: raidActions, isUndispellable: true);
                         },
                     },
                 },
@@ -156,7 +142,7 @@ namespace Worldshifters.Assets.Hero.Light
                     ProcessEffects = (halluelAndMalluel, raidActions) =>
                     {
                         AddAuroraCrest(halluelAndMalluel, raidActions);
-                        if (halluelAndMalluel.GetStatusEffectStacks(LimiterBreakId) > 0)
+                        if (halluelAndMalluel.HasStatusEffect(LimiterBreakId))
                         {
                             halluelAndMalluel.Raid.Allies.ApplyStatusEffects(
                                 new StatusEffectSnapshot
@@ -179,7 +165,7 @@ namespace Worldshifters.Assets.Hero.Light
 
                     foreach (var ally in halluelAndMalluel.Raid.Allies)
                     {
-                        var auroraCrests = ally.GetStatusEffectStacks(StatusEffectLibrary.AuroraCrest);
+                        var auroraCrests = (int)ally.GetStatusEffectStrength(StatusEffectLibrary.AuroraCrest);
                         if (auroraCrests > 0)
                         {
                             ally.ApplyStatusEffect(new StatusEffectSnapshot
@@ -198,7 +184,7 @@ namespace Worldshifters.Assets.Hero.Light
                         }
                     }
 
-                    if (halluelAndMalluel.GetStatusEffectStacks(LimiterBreakId) <= 0)
+                    if (!halluelAndMalluel.HasStatusEffect(LimiterBreakId))
                     {
                         return;
                     }
@@ -222,20 +208,7 @@ namespace Worldshifters.Assets.Hero.Light
                         return;
                     }
 
-                    var limiterBreak = halluelAndMalluel.GetStatusEffects().FirstOrDefault(e => e.Id.StartsWith(LimiterBreakId, StringComparison.InvariantCultureIgnoreCase));
-                    if (limiterBreak != null)
-                    {
-                        if ((int)limiterBreak.Strength == 1)
-                        {
-                            halluelAndMalluel.RemoveStatusEffect(limiterBreak.Id);
-                        }
-                        else
-                        {
-                            var remainingStacks = (int)limiterBreak.Strength - 1;
-                            limiterBreak.Id = $"{LimiterBreakId}_{remainingStacks}";
-                            limiterBreak.Strength = remainingStacks;
-                        }
-                    }
+                    halluelAndMalluel.ApplyOrOverrideStatusEffectStacks(LimiterBreakId, initialStackCount: 0, increment: -1, maxStackCount: 3, raidActions: raidActions, isUndispellable: true);
                 },
                 OnDeath = (halluelAndMalluel, raidActions) =>
                 {
@@ -272,7 +245,12 @@ namespace Worldshifters.Assets.Hero.Light
                     var target = halluelAndMalluel.Raid.Enemies.AtPosition(targetPositionInFrontline);
                     target.DealRawDamage(Math.Min(1_000_000, (long)Math.Ceiling(target.MaxHp * 0.1)), Element.Null, raidActions);
 
-                    var auroraCrests = halluelAndMalluel.GetStatusEffectStacks(StatusEffectLibrary.AuroraCrest);
+                    var auroraCrests = (int)halluelAndMalluel.GetStatusEffectStrength(StatusEffectLibrary.AuroraCrest);
+                    if (auroraCrests <= 0)
+                    {
+                        return;
+                    }
+
                     foreach (var ally in halluelAndMalluel.Raid.Allies)
                     {
                         if (!ally.IsAlive() || ally.PositionInFrontline >= 4)
@@ -345,7 +323,7 @@ namespace Worldshifters.Assets.Hero.Light
                         }
                     }
 
-                    if (halluelAndMalluel.GetStatusEffectStacks(LimiterBreakId) > 0)
+                    if (halluelAndMalluel.HasStatusEffect(LimiterBreakId))
                     {
                         halluelAndMalluel.Raid.Allies.ApplyStatusEffects(
                             new StatusEffectSnapshot

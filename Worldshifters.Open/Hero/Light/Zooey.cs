@@ -160,7 +160,6 @@ namespace Worldshifters.Assets.Hero.Light
                         entity.ApplyStatusEffectsFromTemplate(
                             new StatusEffectSnapshot
                             {
-                                TurnDuration = 1,
                                 IsUsedInternally = true,
                                 IsPassiveEffect = true,
                             },
@@ -400,7 +399,6 @@ namespace Worldshifters.Assets.Hero.Light
                 {
                     IsPassiveEffect = true,
                     IsUsedInternally = true,
-                    TurnDuration = 1,
                 },
                 ("zooey/atk_up", ModifierLibrary.AttackBoost, 15 * distinctElements),
                 ("zooey/atk_up", ModifierLibrary.AttackBoost, 15 * distinctElements),
@@ -418,7 +416,6 @@ namespace Worldshifters.Assets.Hero.Light
                         Id = "zooey/echo",
                         Strength = (int)((rank + 1) * 2.5),
                         Modifier = ModifierLibrary.AdditionalDamage,
-                        TurnDuration = 1,
                         IsUsedInternally = true,
                         IsPassiveEffect = true,
                     });

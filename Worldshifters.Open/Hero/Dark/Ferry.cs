@@ -6,7 +6,6 @@ namespace Worldshifters.Assets.Hero.Dark
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using Google.Protobuf;
     using Worldshifters.Data;
     using Worldshifters.Data.Hero;
@@ -319,8 +318,7 @@ namespace Worldshifters.Assets.Hero.Dark
                 {
                     foreach (var enemy in ferry.Raid.Enemies)
                     {
-                        if (enemy.IsAlive() && enemy.NumSpecialAttacksUsedThisTurn > 0 &&
-                            enemy.GetStatusEffects().Any(e => e.Id == GhostCageId))
+                        if (enemy.IsAlive() && enemy.NumSpecialAttacksUsedThisTurn > 0 && enemy.HasStatusEffect(GhostCageId))
                         {
                             ghostCage.Cast(ferry, raidActions);
                             enemy.RemoveStatusEffect(GhostCageId);

@@ -114,14 +114,30 @@ namespace Worldshifters.Data.Raid
         /// </summary>
         public MapField<string, TypedValue> GlobalState { get; }
 
-        /// <returns>Local and global status effects.</returns>
-        public IEnumerable<StatusEffectSnapshot> GetStatusEffects()
+        /// <returns>The current <see cref="StatusEffectSnapshot"/> for <see cref="id"/> or null if no such status effect could be found.</returns>
+        public StatusEffectSnapshot GetStatusEffect(string id)
         {
             throw new NotImplementedException();
         }
 
-        /// <returns>The current <see cref="StatusEffectSnapshot"/> for <see cref="id"/> or null if no such status effect could be found.</returns>
-        public StatusEffectSnapshot GetStatusEffect(string id)
+        /// <returns>Local and global status effects.</returns>
+        public IEnumerable<StatusEffectSnapshot> GetStatusEffects(params string[] ids)
+        {
+            throw new NotImplementedException();
+        }
+
+        public double GetStatusEffectStrength(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool HasStatusEffect(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <returns>The current <see cref="StatusEffectSnapshot"/>s for <see cref="modifier"/> or an empty collection if no such status effects could be found.</returns>
+        public IEnumerable<StatusEffectSnapshot> GetStatusEffects(Modifier modifier)
         {
             throw new NotImplementedException();
         }
@@ -203,14 +219,6 @@ namespace Worldshifters.Data.Raid
         /// <summary>
         /// Apply a status effect buff to the character with a stack count (for instance, Dark Opus weapon crests).
         /// </summary>
-        public void ApplyStatusEffectStacks(string id, uint numStacks, IList<RaidAction> raidActions, int turnDuration = int.MaxValue, bool isUndispellable = false)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Apply a status effect buff to the character with a stack count (for instance, Dark Opus weapon crests).
-        /// </summary>
         /// <param name="id">The base ID of the status effect.</param>
         /// <param name="initialStackCount">The initial number of stacks of the status effect if no previous instance exists.</param>
         /// <param name="increment">The number of stacks (signed integer) to add to the existing status effect, if any.</param>
@@ -220,21 +228,6 @@ namespace Worldshifters.Data.Raid
         /// <param name="isUndispellable">Whether the status effect can be dispelled or not.</param>
         /// <returns>False if the effect was removed due to its stack count reaching 0, true otherwise.</returns>
         public bool ApplyOrOverrideStatusEffectStacks(string id, uint initialStackCount, int increment, uint maxStackCount, IList<RaidAction> raidActions, int turnDuration = int.MaxValue, bool isUndispellable = false)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Override a status effect buff to the character with a stack count (for instance, Dark Opus weapon crests).
-        /// </summary>
-        /// <param name="id">The base ID of the status effect.</param>
-        /// <param name="increment">The number of stacks (signed integer) to add to the existing status effect, if any.</param>
-        /// <param name="maxStackCount">The maximum number of stacks.</param>
-        /// <param name="raidActions"></param>
-        /// <param name="turnDuration">The duration of the status effect in number of turns.</param>
-        /// <param name="isUndispellable">Whether the status effect can be dispelled or not.</param>
-        /// <returns>False if the effect was removed due to its stack count reaching 0 or if no existing status effect was found, true otherwise.</returns>
-        public bool OverrideStatusEffectStacks(string id, int increment, uint maxStackCount, IList<RaidAction> raidActions, int turnDuration = int.MaxValue, bool isUndispellable = false)
         {
             throw new NotImplementedException();
         }
@@ -370,11 +363,6 @@ namespace Worldshifters.Data.Raid
         /// Deal <see cref="Hp"/> null damage to the character.
         /// </summary>
         public void Kill(IList<RaidAction> raidActions)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int GetStatusEffectStacks(string id)
         {
             throw new NotImplementedException();
         }

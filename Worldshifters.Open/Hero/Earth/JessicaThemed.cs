@@ -245,7 +245,7 @@ namespace Worldshifters.Assets.Hero.Earth
                 },
                 ProcessEffects = (jessica, targetPositionInFrontline, raidActions) =>
                 {
-                    var fireSupportStack = jessica.GetStatusEffectStacks(FireSupportId);
+                    var fireSupportStack = (int)jessica.GetStatusEffectStrength(FireSupportId);
                     new MultihitDamage
                     {
                         Element = Element.Earth,
@@ -315,7 +315,7 @@ namespace Worldshifters.Assets.Hero.Earth
                         ($"{FeuerwerkId}_da_up", ModifierLibrary.FlatDoubleAttackRateBoost, 30),
                         ($"{FeuerwerkId}_ta_up", ModifierLibrary.FlatTripleAttackRateBoost, 30));
 
-                    if (jessica.GetStatusEffectStacks(FireSupportId) > 0)
+                    if (jessica.HasStatusEffect(FireSupportId))
                     {
                         jessica.Raid.Allies.ApplyStatusEffects(
                             new StatusEffectSnapshot
@@ -392,7 +392,6 @@ namespace Worldshifters.Assets.Hero.Earth
                             {
                                 Type = TriggerCondition.Types.Type.HasStatusEffect,
                                 Data = StatusEffectLibrary.Shield,
-                                LinkToParentCondition = true,
                             },
                         },
                         raidActions);

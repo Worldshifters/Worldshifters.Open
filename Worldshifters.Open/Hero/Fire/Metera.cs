@@ -161,7 +161,7 @@ namespace Worldshifters.Assets.Hero.Fire
                 },
                 OnAttackStart = (metera, isAboutToPerformSpecialAttack, raidActions) =>
                 {
-                    if (isAboutToPerformSpecialAttack || metera.GetStatusEffectStacks(AetherialSealId) <= 0)
+                    if (isAboutToPerformSpecialAttack || !metera.HasStatusEffect(AetherialSealId))
                     {
                         return true;
                     }
@@ -180,13 +180,12 @@ namespace Worldshifters.Assets.Hero.Fire
                 },
                 OnAttackEnd = (metera, attackResult, raidActions) =>
                 {
-                    var seals = metera.GetStatusEffectStacks(AetherialSealId);
-                    if (seals <= 0)
+                    if (!metera.HasStatusEffect(AetherialSealId))
                     {
                         return;
                     }
 
-                    metera.ApplyOrOverrideStatusEffectStacks(AetherialSealId, 5, -1, 5, raidActions);
+                    metera.ApplyOrOverrideStatusEffectStacks(AetherialSealId, initialStackCount: 5, increment: -1, maxStackCount: 5, raidActions);
 
                     if (attackResult != EntitySnapshot.AttackResult.SpecialAttack)
                     {
@@ -205,8 +204,7 @@ namespace Worldshifters.Assets.Hero.Fire
                                 new ImageAsset
                                 {
                                     Name = "ab_3040072000_01",
-                                    Path =
-                                        "npc/161daf6a-56c0-4cf1-ad23-8fb88a804475/abilities/0/ab_3040072000_01.png",
+                                    Path = "npc/161daf6a-56c0-4cf1-ad23-8fb88a804475/abilities/0/ab_3040072000_01.png",
                                 },
                             },
                         },
@@ -349,12 +347,11 @@ namespace Worldshifters.Assets.Hero.Fire
                 },
                 ProcessEffects = (metera, targetPositionInFrontline, raidActions) =>
                 {
-                    var seals = metera.GetStatusEffectStacks(AetherialSealId);
-                    if (seals > 0)
+                    if (metera.HasStatusEffect(AetherialSealId))
                     {
                         if (ThreadSafeRandom.NextDouble() > (metera.Hero.GetSupportSkillRank() * 0.2) - 0.1)
                         {
-                            metera.ApplyOrOverrideStatusEffectStacks(AetherialSealId, 5, -1, 5, raidActions);
+                            metera.ApplyOrOverrideStatusEffectStacks(AetherialSealId, initialStackCount: 5, increment: -1, maxStackCount: 5, raidActions);
                         }
 
                         return;

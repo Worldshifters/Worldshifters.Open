@@ -245,7 +245,6 @@ namespace Worldshifters.Assets.Hero.Light
                         {
                             Id = StatusEffectLibrary.DarkDamageCutUpNpc,
                             Strength = 60,
-                            TurnDuration = 1,
                             EffectTargettingType = EffectTargettingType.OnAllPartyMembers,
                         }.ToByteString(),
                     },
@@ -291,9 +290,9 @@ namespace Worldshifters.Assets.Hero.Light
                 },
                 ProcessEffects = (sara, targetPositionInFrontline, raidActions) =>
                 {
-                    var hammerOfGraphosStacks = sara.GetStatusEffectStacks(HammerOfGraphosId);
-                    sara.ApplyOrOverrideStatusEffectStacks(HammerOfGraphosId, 1, 1, 5, raidActions, isUndispellable: true);
+                    sara.ApplyOrOverrideStatusEffectStacks(HammerOfGraphosId, initialStackCount: 1, increment: 1, maxStackCount: 5, raidActions, isUndispellable: true);
 
+                    var hammerOfGraphosStacks = (int)sara.GetStatusEffectStrength(HammerOfGraphosId);
                     foreach (var ally in sara.Raid.Allies)
                     {
                         if (!ally.IsAlive() || ally.PositionInFrontline >= 4 || ally.PositionInFrontline == sara.PositionInFrontline)
@@ -344,28 +343,26 @@ namespace Worldshifters.Assets.Hero.Light
                         {
                             Id = StatusEffectLibrary.Substitute,
                             EffectTargettingType = EffectTargettingType.OnSelf,
-                            TurnDuration = 1,
                         }.ToByteString(),
                     },
                 },
                 ProcessEffects = (sara, targetPositionInFrontline, raidActions) =>
                 {
-                    var hammerOfGraphosStacks = sara.GetStatusEffectStacks(HammerOfGraphosId);
-                    if (hammerOfGraphosStacks >= 3)
+                    if ((int)sara.GetStatusEffectStrength(HammerOfGraphosId) >= 3)
                     {
                         sara.ApplyStatusEffect(
                             new StatusEffectSnapshot
                             {
                                 Id = AfflatusId,
-                                TurnDuration = 1,
                                 IsUndispellable = true,
+                                Modifier = ModifierLibrary.FlatAttackBoost,
+                                Strength = 50,
                             },
                             raidActions);
 
                         sara.ApplyStatusEffect(new StatusEffectSnapshot
                         {
                             Id = StatusEffectLibrary.AssassinStrike,
-                            TurnDuration = 1,
                             IsUndispellable = true,
                             IsUsedInternally = true,
                             Strength = 50,
@@ -389,12 +386,11 @@ namespace Worldshifters.Assets.Hero.Light
             sara.ApplyStatusEffect(
                 new StatusEffectSnapshot
                 {
-                    Id = "passive_counter",
+                    Id = "sara/passive",
                     Strength = 2,
                     Modifier = ModifierLibrary.DodgeAndCounter,
                     IsUsedInternally = true,
                     IsPassiveEffect = true,
-                    TurnDuration = 1,
                     ExtraData = new Counter
                     {
                         HitCount = 2,
@@ -402,17 +398,19 @@ namespace Worldshifters.Assets.Hero.Light
                     }.ToByteString(),
                 });
 
-            var hammerOfGraphosStacks = sara.GetStatusEffectStacks(HammerOfGraphosId);
-            sara.ApplyStatusEffectsFromTemplate(
-                new StatusEffectSnapshot
-                {
-                    TurnDuration = 1,
-                    IsUsedInternally = true,
-                    IsUndispellable = true,
-                },
-                (HammerOfGraphosId + "/def_up", ModifierLibrary.FlatDefenseBoost, hammerOfGraphosStacks * 20),
-                (HammerOfGraphosId + "/dr_up", ModifierLibrary.FlatDebuffResistanceBoost, hammerOfGraphosStacks * 20),
-                (HammerOfGraphosId + "/hostility_up", ModifierLibrary.HostilityBoost, hammerOfGraphosStacks * 9.94));
+            var hammerOfGraphosStacks = (int)sara.GetStatusEffectStrength(HammerOfGraphosId);
+            if (hammerOfGraphosStacks > 0)
+            {
+                sara.ApplyStatusEffectsFromTemplate(
+                    new StatusEffectSnapshot
+                    {
+                        IsUsedInternally = true,
+                        IsUndispellable = true,
+                    },
+                    (HammerOfGraphosId + "/def_up", ModifierLibrary.FlatDefenseBoost, hammerOfGraphosStacks * 20),
+                    (HammerOfGraphosId + "/dr_up", ModifierLibrary.FlatDebuffResistanceBoost, hammerOfGraphosStacks * 20),
+                    (HammerOfGraphosId + "/hostility_up", ModifierLibrary.HostilityBoost, hammerOfGraphosStacks * 9.94));
+            }
         }
     }
 }

@@ -317,7 +317,7 @@ namespace Worldshifters.Assets.Hero.Earth
                 return;
             }
 
-            var bladeCount = alexiel.GetStatusEffectStacks(MirrorBladeId);
+            var bladeCount = (int)alexiel.GetStatusEffectStrength(MirrorBladeId);
             if (bladeCount == 0)
             {
                 return;
