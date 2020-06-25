@@ -177,6 +177,7 @@ namespace Worldshifters.Assets.Hero.Light
                         RayStrikeBonusEffect().Cast(zooey, zooey.CurrentTargetPositionInFrontline, raidActions);
                     }
                 },
+                HeroArchetype = "zooey",
             };
         }
 

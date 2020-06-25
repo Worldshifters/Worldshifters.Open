@@ -144,6 +144,7 @@ namespace Worldshifters.Assets.Hero.Light
                 },
                 OnActionStart = (zooey, _, raidActions) => ProcessPassiveEffects(zooey),
                 OnEnteringFrontline = (zooey, raidActions) => ProcessPassiveEffects(zooey),
+                HeroArchetype = "zooey",
             };
         }
 

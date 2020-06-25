@@ -51,6 +51,11 @@ namespace Worldshifters.Data.Hero
 
         public string Name { get; set; }
 
+        /// <summary>
+        /// A same hero may have several versions, but all of them will share the same <see cref="HeroArchetype"/>.
+        /// </summary>
+        public string HeroArchetype { get; set; }
+
         public RepeatedField<PassiveAbility> PassiveAbilities { get; }
 
         public RepeatedField<Race> Races { get; set; }

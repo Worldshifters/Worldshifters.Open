@@ -5,7 +5,6 @@
 namespace Worldshifters.Assets.Hero.Water
 {
     using System;
-    using System.Collections.Generic;
     using Google.Protobuf;
     using Worldshifters.Data;
     using Worldshifters.Data.Hero;

@@ -5,7 +5,6 @@
 namespace Worldshifters.Assets.Hero.Wind
 {
     using System;
-    using System.Collections.Generic;
     using Google.Protobuf;
     using Worldshifters.Data;
     using Worldshifters.Data.Hero;
@@ -154,24 +153,19 @@ namespace Worldshifters.Assets.Hero.Wind
                             },
                         },
                     },
-                    UpradedEffects =
+                    ProcessEffects = (andira, raidActions) =>
                     {
-                        new AbilityEffectUpgrade
+                        if (andira.Hero.Rank >= 5)
                         {
-                            RequiredRank = 5,
-                            Effect = new AbilityEffect
-                            {
-                                Type = AbilityEffect.Types.AbilityEffectType.ApplyStatusEffect,
-                                ExtraData = new ApplyStatusEffect
+                            andira.ResolveEnemyTarget(andira.CurrentTargetPositionInFrontline).ApplyStatusEffect(
+                                new StatusEffectSnapshot
                                 {
                                     Id = StatusEffectLibrary.Dispel,
                                     BaseAccuracy = 200,
-                                }.ToByteString(),
-                            },
-                        },
-                    },
-                    ProcessEffects = (andira, raidActions) =>
-                    {
+                                },
+                                raidActions);
+                        }
+
                         if (andira.Hero.Level < 95)
                         {
                             return;
@@ -202,23 +196,8 @@ namespace Worldshifters.Assets.Hero.Wind
                             },
                             ($"{InfiniteDiversityId}/atk_up", ModifierLibrary.FlatAttackBoost, 20),
                             ($"{InfiniteDiversityId}/da_up", ModifierLibrary.FlatDoubleAttackRateBoost, 20),
-                            ($"{InfiniteDiversityId}/ta_up", ModifierLibrary.FlatTripleAttackRateBoost, 10));
-
-                        andira.ApplyStatusEffect(
-                            new StatusEffectSnapshot
-                            {
-                                Id = $"{InfiniteDiversityId}_echo",
-                                TurnDuration = int.MaxValue,
-                                IsUndispellable = true,
-                                Strength = 20,
-                                Modifier = ModifierLibrary.AdditionalDamage,
-                                AttackElementRestriction = Element.Wind,
-                                TriggerCondition = new TriggerCondition
-                                {
-                                    Type = TriggerCondition.Types.Type.HasStatusEffect,
-                                    Data = InfiniteDiversityId,
-                                },
-                            });
+                            ($"{InfiniteDiversityId}/ta_up", ModifierLibrary.FlatTripleAttackRateBoost, 10),
+                            ($"{InfiniteDiversityId}/echo", ModifierLibrary.AdditionalDamage, 20));
                     },
                 },
                 Abilities =
@@ -250,108 +229,7 @@ namespace Worldshifters.Assets.Hero.Wind
                     new AbilityUpgrade
                     {
                         RequiredLevel = 95,
-                        Ability = new Ability
-                        {
-                            Name = "Multi-Decree",
-                            Type = Ability.Types.AbilityType.Offensive,
-                            Cooldown = 5,
-                            ModelMetadata = new ModelMetadata
-                            {
-                                JsAssetPath = "npc/e0db0d71-c148-49af-8f86-9d403136e311/abilities/3/ab_all_3040071000_01.js",
-                                ConstructorName = "mc_ab_all_3040071000_01",
-                                ImageAssets =
-                                {
-                                    new ImageAsset
-                                    {
-                                        Name = "ab_all_3040071000_01",
-                                        Path = "npc/e0db0d71-c148-49af-8f86-9d403136e311/abilities/3/ab_all_3040071000_01.png",
-                                    },
-                                },
-                            },
-                            Effects =
-                            {
-                                new AbilityEffect
-                                {
-                                    Type = AbilityEffect.Types.AbilityEffectType.MultihitDamage,
-                                    ExtraData = new MultihitDamage
-                                    {
-                                        Element = Element.Wind,
-                                        DamageCap = 630_000,
-                                        HitAllTargets = true,
-                                        HitNumber = 1,
-                                        DamageModifier = 5.0,
-                                    }.ToByteString(),
-                                },
-                            },
-                            ProcessEffects = (andira, _, raidActions) =>
-                            {
-                                if (!andira.GlobalState.ContainsKey("decree_stacks"))
-                                {
-                                    andira.GlobalState.Add("decree_stacks", TypedValue.FromLong(0));
-                                }
-
-                                var stacks = andira.GlobalState["decree_stacks"].IntegerValue;
-                                var newStackCount = Math.Min(stacks + 1, 3);
-
-                                foreach (var enemy in andira.Raid.Enemies)
-                                {
-                                    if (!enemy.IsAlive() || enemy.PositionInFrontline >= 4)
-                                    {
-                                        continue;
-                                    }
-
-                                    enemy.ApplyStatusEffectsFromTemplate(
-                                        new StatusEffectSnapshot
-                                        {
-                                            IsLocal = true,
-                                            BaseAccuracy = 100,
-                                            TurnDuration = int.MaxValue,
-                                            IsUndispellable = true,
-                                        },
-                                        raidActions,
-                                        (MizaruId, ModifierLibrary.None, newStackCount),
-                                        (IwazaruId, ModifierLibrary.None, newStackCount),
-                                        (KikazaruId, ModifierLibrary.None, newStackCount));
-
-                                    var mizaruStacks = (int)enemy.GetStatusEffectStrength(MizaruId);
-                                    if (mizaruStacks > 0)
-                                    {
-                                        enemy.ApplyStatusEffect(
-                                            new StatusEffectSnapshot
-                                            {
-                                                Id = $"{MizaruId}/atk_reduction",
-                                                Modifier = ModifierLibrary.FlatAttackBoost,
-                                                Strength = -5 * mizaruStacks,
-                                                IsLocal = true,
-                                                BaseAccuracy = double.MaxValue,
-                                                TurnDuration = int.MaxValue,
-                                                IsUndispellable = true,
-                                                IsUsedInternally = true,
-                                            });
-                                    }
-
-                                    var iwazaruStacks = (int)enemy.GetStatusEffectStrength(IwazaruId);
-                                    if (iwazaruStacks > 0)
-                                    {
-                                        enemy.ApplyStatusEffect(
-                                            new StatusEffectSnapshot
-                                            {
-                                                Id = $"{IwazaruId}/def_reduction",
-                                                Modifier = ModifierLibrary.FlatDefenseBoost,
-                                                Strength = -5 * iwazaruStacks,
-                                                IsLocal = true,
-                                                BaseAccuracy = double.MaxValue,
-                                                TurnDuration = int.MaxValue,
-                                                IsUndispellable = true,
-                                                IsUsedInternally = true,
-                                            });
-                                    }
-                                }
-
-                                andira.GlobalState["decree_stacks"].IntegerValue = Math.Min(andira.GlobalState["decree_stacks"].IntegerValue + 1, 3);
-                            },
-                            AnimationName = "ab_motion",
-                        },
+                        Ability = MultiDecree(),
                         UpgradedAbilityIndex = 3,
                     },
                     new AbilityUpgrade
@@ -627,6 +505,112 @@ namespace Worldshifters.Assets.Hero.Wind
             };
         }
 
+        private static Ability MultiDecree()
+        {
+            return new Ability
+            {
+                Name = "Multi-Decree",
+                Type = Ability.Types.AbilityType.Offensive,
+                Cooldown = 5,
+                ModelMetadata = new ModelMetadata
+                {
+                    JsAssetPath = "npc/e0db0d71-c148-49af-8f86-9d403136e311/abilities/3/ab_all_3040071000_01.js",
+                    ConstructorName = "mc_ab_all_3040071000_01",
+                    ImageAssets =
+                    {
+                        new ImageAsset
+                        {
+                            Name = "ab_all_3040071000_01",
+                            Path = "npc/e0db0d71-c148-49af-8f86-9d403136e311/abilities/3/ab_all_3040071000_01.png",
+                        },
+                    },
+                },
+                Effects =
+                {
+                    new AbilityEffect
+                    {
+                        Type = AbilityEffect.Types.AbilityEffectType.MultihitDamage,
+                        ExtraData = new MultihitDamage
+                        {
+                            Element = Element.Wind,
+                            DamageCap = 630_000,
+                            HitAllTargets = true,
+                            HitNumber = 1,
+                            DamageModifier = 5.0,
+                        }.ToByteString(),
+                    },
+                },
+                ProcessEffects = (andira, _, raidActions) =>
+                {
+                    if (!andira.GlobalState.ContainsKey("decree_stacks"))
+                    {
+                        andira.GlobalState.Add("decree_stacks", TypedValue.FromLong(0));
+                    }
+
+                    var stacks = andira.GlobalState["decree_stacks"].IntegerValue;
+                    var newStackCount = Math.Min(stacks + 1, 3);
+
+                    foreach (var enemy in andira.Raid.Enemies)
+                    {
+                        if (!enemy.IsAlive() || enemy.PositionInFrontline >= 4)
+                        {
+                            continue;
+                        }
+
+                        enemy.ApplyStatusEffectsFromTemplate(
+                            new StatusEffectSnapshot
+                            {
+                                IsLocal = true,
+                                BaseAccuracy = 100,
+                                TurnDuration = int.MaxValue,
+                                IsUndispellable = true,
+                            },
+                            raidActions,
+                            (MizaruId, ModifierLibrary.None, newStackCount),
+                            (IwazaruId, ModifierLibrary.None, newStackCount),
+                            (KikazaruId, ModifierLibrary.None, newStackCount));
+
+                        var mizaruStacks = (int)enemy.GetStatusEffectStrength(MizaruId);
+                        if (mizaruStacks > 0)
+                        {
+                            enemy.ApplyStatusEffect(
+                                new StatusEffectSnapshot
+                                {
+                                    Id = $"{MizaruId}/atk_reduction",
+                                    Modifier = ModifierLibrary.FlatAttackBoost,
+                                    Strength = -5 * mizaruStacks,
+                                    IsLocal = true,
+                                    BaseAccuracy = double.MaxValue,
+                                    TurnDuration = int.MaxValue,
+                                    IsUndispellable = true,
+                                    IsUsedInternally = true,
+                                });
+                        }
+
+                        var iwazaruStacks = (int)enemy.GetStatusEffectStrength(IwazaruId);
+                        if (iwazaruStacks > 0)
+                        {
+                            enemy.ApplyStatusEffect(
+                                new StatusEffectSnapshot
+                                {
+                                    Id = $"{IwazaruId}/def_reduction",
+                                    Modifier = ModifierLibrary.FlatDefenseBoost,
+                                    Strength = -5 * iwazaruStacks,
+                                    IsLocal = true,
+                                    BaseAccuracy = double.MaxValue,
+                                    TurnDuration = int.MaxValue,
+                                    IsUndispellable = true,
+                                    IsUsedInternally = true,
+                                });
+                        }
+                    }
+
+                    andira.GlobalState["decree_stacks"].IntegerValue = Math.Min(andira.GlobalState["decree_stacks"].IntegerValue + 1, 3);
+                },
+                AnimationName = "ab_motion",
+            };
+        }
+
         private static void ProcessLoopEffects(EntitySnapshot andira)
         {
             foreach (var ally in andira.Raid.Allies)
@@ -694,12 +678,12 @@ namespace Worldshifters.Assets.Hero.Wind
 
         private static void ProcessEffects(EntitySnapshot andira)
         {
-            ProcessLoopEffects(andira);
-
             if (!andira.IsAlive() || andira.PositionInFrontline >= 4)
             {
                 return;
             }
+
+            ProcessLoopEffects(andira);
         }
     }
 }

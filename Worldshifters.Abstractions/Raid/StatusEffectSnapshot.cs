@@ -91,11 +91,6 @@ namespace Worldshifters.Data.Raid
 
                 public string Data { get; set; }
 
-                /// <summary>
-                /// Whether to remove the status effect when the parent dependency (a status effect for instance) is broken.
-                /// </summary>
-                public bool LinkToParentCondition { get; set; }
-
                 public static class Types
                 {
                     public enum Type

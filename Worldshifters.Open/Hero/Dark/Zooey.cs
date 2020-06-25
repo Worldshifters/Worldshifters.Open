@@ -124,6 +124,7 @@ namespace Worldshifters.Assets.Hero.Dark
                         },
                     },
                 },
+                HeroArchetype = "zooey",
             };
         }
 

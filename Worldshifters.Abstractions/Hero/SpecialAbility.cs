@@ -26,8 +26,6 @@ namespace Worldshifters.Data.Hero
 
         public string Name { get; set; }
 
-        public RepeatedField<AbilityEffectUpgrade> UpradedEffects { get; }
-
         public bool ShouldRepositionSpriteAnimationOnTarget { get; set; }
 
         /// <summary>
